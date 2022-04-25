@@ -5,7 +5,7 @@ import piece.utils.Color;
 import piece.utils.Name;
 
 /**
- * 
+ * A standard interface for a Piece Factory.
  *
  */
 public interface PieceFactory {
