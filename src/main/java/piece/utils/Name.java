@@ -1,0 +1,31 @@
+package piece.utils;
+/**
+ * 
+ *
+ */
+public enum Name {
+    /**
+     * 
+     */
+    PAWN,
+    /**
+     * 
+     */
+    QUEEN,
+    /**
+     * 
+     */
+    KING,
+    /**
+     * 
+     */
+    KNIGHT,
+    /**
+     * 
+     */
+    BISHOP,
+    /**
+     * 
+     */
+    ROOK
+}
