@@ -17,6 +17,6 @@ public interface JsonConverter<T extends Serializable> {
  * @param obj - the generic Object
  * @return String - the string formatted in json
  */
-        String serialize(Object obj) throws IllegalArgumentException;
+        String serialize(Object obj);
 
 }

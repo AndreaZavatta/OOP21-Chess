@@ -16,7 +16,7 @@ public class JsonConverterImpl<T extends Serializable> implements JsonConverter<
     }
 
     @Override
-    public String serialize(final Object obj) throws IllegalArgumentException {
+    public String serialize(final Object obj) {
         // TODO Auto-generated method stub
         return null;
     }
