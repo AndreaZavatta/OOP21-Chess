@@ -12,8 +12,16 @@ import piece.utils.Name;
  */
 public final class Pawn extends AbstractPiece {
 
-    Pawn(final Name name, final Position position, final Color color) {
-        super(name, position, color);
+    private static final int PAWN_VALUE = 1;
+
+    /**
+     * A Pawn piece constructor.
+     * 
+     * @param position the piece position.
+     * @param color the piece color.
+     */
+    protected Pawn(final Position position, final Color color) {
+        super(Name.PAWN, position, color);
         // TODO Auto-generated constructor stub
     }
 
@@ -32,7 +40,7 @@ public final class Pawn extends AbstractPiece {
     @Override
     public int getValue() {
         // TODO Auto-generated method stub
-        return 0;
+        return PAWN_VALUE;
     }
 
 }
