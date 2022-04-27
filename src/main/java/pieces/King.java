@@ -11,8 +11,16 @@ import piece.utils.Name;
  */
 public class King extends AbstractPiece {
 
-    King(final Name name, final Position position, final Color color) {
-        super(name, position, color);
+    private static final int KING_VALUE = 0;
+
+    /**
+     * A King piece constructor.
+     * 
+     * @param position the piece position.
+     * @param color the piece color.
+     */
+    protected King(final Position position, final Color color) {
+        super(Name.KING, position, color);
         // TODO Auto-generated constructor stub
     }
 
@@ -31,7 +39,7 @@ public class King extends AbstractPiece {
     @Override
     public int getValue() {
         // TODO Auto-generated method stub
-        return 0;
+        return KING_VALUE;
     }
 
 }
