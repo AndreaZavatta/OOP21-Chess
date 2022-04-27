@@ -12,8 +12,16 @@ import piece.utils.Name;
  */
 public class Queen extends AbstractPiece {
 
-    Queen(final Name name, final Position position, final Color color) {
-        super(name, position, color);
+    private static final int QUEEN_VALUE = 9;
+
+    /**
+     * A Queen piece constructor.
+     * 
+     * @param position the piece position.
+     * @param color the piece color.
+     */
+    protected Queen(final Position position, final Color color) {
+        super(Name.QUEEN, position, color);
         // TODO Auto-generated constructor stub
     }
 
@@ -32,7 +40,7 @@ public class Queen extends AbstractPiece {
     @Override
     public int getValue() {
         // TODO Auto-generated method stub
-        return 0;
+        return QUEEN_VALUE;
     }
 
 }
