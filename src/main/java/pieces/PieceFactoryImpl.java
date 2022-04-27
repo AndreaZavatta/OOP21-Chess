@@ -4,7 +4,7 @@ import piece.utils.Color;
 import piece.utils.Name;
 import piece.utils.Position;
 /**
- * 
+ * Implementation of PieceFactory interface.
  *
  */
 public class PieceFactoryImpl implements PieceFactory {
