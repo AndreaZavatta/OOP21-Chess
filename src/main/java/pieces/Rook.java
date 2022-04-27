@@ -12,8 +12,16 @@ import piece.utils.Name;
  */
 public class Rook extends AbstractPiece {
 
-    Rook(final Name name, final Position position, final Color color) {
-        super(name, position, color);
+    private static final int ROOK_VALUE = 5;
+
+    /**
+     * A Rook piece constructor.
+     * 
+     * @param position the piece position.
+     * @param color the piece color.
+     */
+    protected Rook(final Position position, final Color color) {
+        super(Name.ROOK, position, color);
         // TODO Auto-generated constructor stub
     }
 
@@ -32,7 +40,7 @@ public class Rook extends AbstractPiece {
     @Override
     public int getValue() {
         // TODO Auto-generated method stub
-        return 0;
+        return ROOK_VALUE;
     }
 
 }
