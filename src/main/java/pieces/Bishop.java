@@ -11,9 +11,16 @@ import piece.utils.Name;
  */
 public class Bishop extends AbstractPiece {
 
-    Bishop(final Name name, final Position position, final Color color) {
-        super(name, position, color);
-        // TODO Auto-generated constructor stub
+    private static final int BISHOP_VALUE = 3;
+
+    /**
+     * A Bishop piece constructor.
+     * 
+     * @param position the piece position.
+     * @param color the piece color.
+     */
+    protected Bishop(final Position position, final Color color) {
+        super(Name.BISHOP, position, color);
     }
 
     @Override
@@ -31,6 +38,6 @@ public class Bishop extends AbstractPiece {
     @Override
     public int getValue() {
         // TODO Auto-generated method stub
-        return 0;
+        return BISHOP_VALUE;
     }
 }
