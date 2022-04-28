@@ -23,7 +23,7 @@ public interface Piece {
     boolean move();
     /**
      * 
-     * @return a list of positions with all possible positions the piece can go.
+     * @return a list of positions with all the possible positions the piece can go to.
      */
     List<Position> getAllPossiblePositions();
     /**
