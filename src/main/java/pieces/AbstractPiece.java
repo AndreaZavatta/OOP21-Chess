@@ -10,7 +10,6 @@ import piece.utils.Name;
  *
  */
 public abstract class AbstractPiece implements Piece {
-
     private final Name name;
     private final Position position;
     private final Color color;
