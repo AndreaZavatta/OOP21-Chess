@@ -27,12 +27,7 @@ public class Queen extends AbstractPiece {
     }
 
     @Override
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public List<Position> getAllPossiblePositions() {
+    public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
         // TODO Auto-generated method stub
         return List.of();
     }

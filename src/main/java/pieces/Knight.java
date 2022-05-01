@@ -2,6 +2,7 @@ package pieces;
 
 import java.util.List;
 
+import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Color;
 import piece.utils.Name;
@@ -26,13 +27,7 @@ public final class Knight extends AbstractPiece {
     }
 
     @Override
-    public boolean move() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public List<Position> getAllPossiblePositions() {
+    public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
         // TODO Auto-generated method stub
         return List.of();
     }
