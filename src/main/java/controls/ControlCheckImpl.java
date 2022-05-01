@@ -2,8 +2,7 @@ package controls;
 
 import java.awt.Color;
 import java.util.List;
-
-import javax.swing.text.Position;
+import piece.utils.Position;
 
 import board.Chessboard;
 import pieces.Piece;
