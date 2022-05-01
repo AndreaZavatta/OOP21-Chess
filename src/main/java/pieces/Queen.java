@@ -2,6 +2,7 @@ package pieces;
 
 import java.util.List;
 
+import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Color;
 import piece.utils.Name;
@@ -26,7 +27,6 @@ public class Queen extends AbstractPiece {
     }
 
     @Override
-    public boolean move() {
         // TODO Auto-generated method stub
         return false;
     }

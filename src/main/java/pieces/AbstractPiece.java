@@ -2,6 +2,9 @@ package pieces;
 
 import java.util.List;
 
+import board.Chessboard;
+import controls.ControlCheck;
+import controls.ControlCheckImpl;
 import piece.utils.Position;
 import piece.utils.Color;
 import piece.utils.Name;
@@ -13,11 +16,13 @@ public abstract class AbstractPiece implements Piece {
     private final Name name;
     private final Position position;
     private final Color color;
+    private final ControlCheck advancedControls;
 
     AbstractPiece(final Name name, final Position position, final Color color) {
         this.name = name;
         this.position = position;
         this.color = color;
+        this.advancedControls = new ControlCheckImpl();
     }
 
     @Override
@@ -35,11 +40,22 @@ public abstract class AbstractPiece implements Piece {
         return this.color;
     }
 
-    @Override
-    public abstract boolean move();
+    /**
+     * 
+     * @return a.
+     */
+    public ControlCheck getAdvancedControls() {
+        return this.advancedControls;
+    }
 
     @Override
-    public abstract List<Position> getAllPossiblePositions();
+    public boolean move(final Position pos, final Chessboard board) {
+        final List<Position> l = this.getAdvancedControls().moveInCheck(board, this, this.getAllPossiblePositions(this, board));
+        return l.contains(pos);
+    }
+
+    @Override
+    public abstract List<Position> getAllPossiblePositions(Piece piece, Chessboard board);
 
     @Override
     public abstract int getValue();
