@@ -2,6 +2,7 @@ package pieces;
 
 import java.util.List;
 
+import board.Chessboard;
 import piece.utils.Color;
 import piece.utils.Name;
 import piece.utils.Position;
@@ -18,14 +19,18 @@ public interface Piece {
     Name getName();
     /**
      * 
+     * @param pos TODO
+     * @param board TODO
      * @return true if the move is ok, false otherwise.
      */
-    boolean move();
+    boolean move(Position pos, Chessboard board);
     /**
      * 
+     * @param piece TODO
+     * @param board TODO
      * @return a list of positions with all the possible positions the piece can go to.
      */
-    List<Position> getAllPossiblePositions();
+    List<Position> getAllPossiblePositions(Piece piece, Chessboard board);
     /**
      * 
      * @return the position of the piece.
