@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 import piece.utils.Position;
 import pieces.Piece;
 
+    /**
+     * 
+     * a normal chessboard.
+     *
+     */
 class ChessboardImpl implements Chessboard {
     private List<Piece> piecesList;
     private final int xBorder;
