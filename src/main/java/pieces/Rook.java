@@ -31,7 +31,7 @@ public class Rook extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
-        for (final var pos : Name.BISHOP.directions()) {
+        for (final var pos : Name.ROOK.directions()) {
             for (int i = 1; i < 8; i++) {
                 final Position p = ControlsUtility.getNewPosition(this, pos, i);
                 if (ControlsUtility.checkPiece(this, p, board)) {
