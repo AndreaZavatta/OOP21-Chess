@@ -19,15 +19,15 @@ public interface Piece {
     Name getName();
     /**
      * 
-     * @param pos TODO
-     * @param board TODO
+     * @param pos the position you want to move the piece.
+     * @param board the current board.
      * @return true if the move is ok, false otherwise.
      */
     boolean move(Position pos, Chessboard board);
     /**
      * 
-     * @param piece TODO
-     * @param board TODO
+     * @param piece the piece the user wants to move.
+     * @param board the current board.
      * @return a list of positions with all the possible positions the piece can go to.
      */
     List<Position> getAllPossiblePositions(Piece piece, Chessboard board);
