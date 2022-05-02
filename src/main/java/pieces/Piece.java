@@ -23,14 +23,13 @@ public interface Piece {
      * @param board the current board.
      * @return true if the move is ok, false otherwise.
      */
-    boolean move(Position pos, Chessboard board);
+    boolean canMove(Position pos, Chessboard board);
     /**
      * 
-     * @param piece the piece the user wants to move.
      * @param board the current board.
      * @return a list of positions with all the possible positions the piece can go to.
      */
-    List<Position> getAllPossiblePositions(Piece piece, Chessboard board);
+    List<Position> getAllPossiblePositions(Chessboard board);
     /**
      * 
      * @return the position of the piece.

@@ -49,13 +49,13 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public boolean move(final Position pos, final Chessboard board) {
-        final List<Position> l = this.getAdvancedControls().moveInCheck(board, this, this.getAllPossiblePositions(this, board));
+    public boolean canMove(final Position pos, final Chessboard board) {
+        final List<Position> l = this.getAdvancedControls().moveInCheck(board, this, this.getAllPossiblePositions(board));
         return l.contains(pos);
     }
 
     @Override
-    public abstract List<Position> getAllPossiblePositions(Piece piece, Chessboard board);
+    public abstract List<Position> getAllPossiblePositions(Chessboard board);
 
     @Override
     public abstract int getValue();
