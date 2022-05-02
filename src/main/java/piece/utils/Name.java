@@ -1,31 +1,72 @@
 package piece.utils;
+
+import java.util.List;
+
 /**
  * A standard enum class for the pieces names.
- *
  */
 public enum Name {
     /**
      * Pawn piece name.
      */
-    PAWN,
-    /**
+    PAWN {
+        @Override
+        public List<Position> directions() {
+            return List.of();
+        }
+    },    /**
      * Queen piece name.
      */
-    QUEEN,
+    QUEEN {
+        @Override
+        public List<Position> directions() {
+            return List.of();
+        }
+    },
     /**
      * King piece name.
      */
-    KING,
+    KING {
+        @Override
+        public List<Position> directions() {
+            return List.of();
+        }
+    },
     /**
      * Knight piece name.
      */
-    KNIGHT,
+    KNIGHT {
+        @Override
+        public List<Position> directions() {
+            return List.of(new Position(-1, -2), new Position(+1, -2),
+                    new Position(+2, -1), new Position(+2, +1),
+                    new Position(-1, +2), new Position(+1, +2),
+                    new Position(-2, -1), new Position(-2, +1));
+        }
+    },
     /**
      * Bishop piece name.
      */
-    BISHOP,
+    BISHOP {
+        @Override
+        public List<Position> directions() {
+            return List.of(new Position(+1, +1), new Position(-1, -1),
+                    new Position(+1, -1), new Position(-1, +1));
+        }
+    },
     /**
      * Rook piece name.
      */
-    ROOK
+    ROOK {
+        @Override
+        public List<Position> directions() {
+            return List.of(new Position(+1, 0), new Position(-1, 0), 
+                    new Position(0, +1), new Position(0, -1));
+        }
+    }; 
+    /**
+     * 
+     * @return the directions a piece can go to.
+     */
+    public abstract List<Position> directions();
 }
