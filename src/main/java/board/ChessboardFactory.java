@@ -19,7 +19,8 @@ public interface ChessboardFactory {
 
     /**
      * 
-     * @return a chess ONLY for tests
+     * @param piecesOnBoard
+     * @return a chessboard ONLY for tests
      */
     Chessboard createTestCB(List<Piece> piecesOnBoard);
 }
