@@ -23,4 +23,16 @@ public interface Chessboard {
      * @return if the piece can do this move
      */
     boolean move(Position actualPos, Position finalPos);
+
+    /**
+     * 
+     * @return X border of chessboard
+     */
+    int getxBorder();
+
+    /**
+     * 
+     * @return Y border of chessboard
+     */
+    int getyBorder();
 }
