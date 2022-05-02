@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Color;
+import piece.utils.ControlsUtility;
 import piece.utils.Name;
 /**
  * 
@@ -32,13 +33,13 @@ public class Bishop extends AbstractPiece {
         final List<Position> list = new ArrayList<>();
         for (final var pos : Name.BISHOP.directions()) {
             for (int i = 1; i < 8; i++) {
-                final Position p = this.getNewPosition(this, pos, i);
-                if (this.checkPiece(p, board)) {
-                    if (this.checkEnemy(p, board)) {
+                final Position p = ControlsUtility.getNewPosition(this, pos, i);
+                if (ControlsUtility.checkPiece(this, p, board)) {
+                    if (ControlsUtility.checkEnemy(this, p, board)) {
                         list.add(p);
                     } 
                     break;
-                } else if (this.checkPosition(p)) {
+                } else if (ControlsUtility.checkPosition(this, p)) {
                     list.add(p);
                 } else {
                     break;
@@ -46,32 +47,6 @@ public class Bishop extends AbstractPiece {
             }
         }
         return Collections.unmodifiableList(list);
-    }
-
-    private boolean checkEnemy(final Position position, final Chessboard board) {
-        final Color s = board.getAllPieces().stream()
-                .filter(x -> x.getPosition().equals(position))
-                .map(x -> x.getColor())
-                .findFirst().get();
-        return board.getAllPieces().stream()
-                .filter(x -> !this.getColor().equals(s))
-                .map(Piece::getPosition)
-                .collect(Collectors.toList())
-                .contains(position);
-    }
-
-    private boolean checkPiece(final Position position, final Chessboard board) {
-        return board.getAllPieces().stream().map(Piece::getPosition).collect(Collectors.toList()).contains(position);
-    }
-
-    private boolean checkPosition(final Position position) {
-        return position.getX() < 8 && position.getX() >= 0 
-                && position.getY() < 8 && position.getY() >= 0;
-    }
-
-    private Position getNewPosition(final Piece piece, final Position position, final int multiplier) {
-        return new Position(piece.getPosition().getX() + (position.getX() * multiplier),
-                piece.getPosition().getY() + (position.getY() * multiplier));
     }
 
     @Override
