@@ -1,6 +1,8 @@
 package piece.utils;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A standard enum class for the pieces names.
@@ -29,7 +31,8 @@ public enum Name {
     KING {
         @Override
         public List<Position> directions() {
-            return List.of();
+            return Stream.concat(BISHOP.directions().stream(), 
+                    ROOK.directions().stream()).collect(Collectors.toList());
         }
     },
     /**
