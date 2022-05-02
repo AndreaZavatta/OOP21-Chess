@@ -16,7 +16,8 @@ public enum Name {
         public List<Position> directions() {
             return List.of();
         }
-    },    /**
+    },
+    /**
      * Queen piece name.
      */
     QUEEN {
