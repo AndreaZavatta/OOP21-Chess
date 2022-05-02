@@ -20,9 +20,8 @@ public interface Chessboard {
      * 
      * @param actualPos
      * @param finalPos
-     * @return if the piece can do this move
      */
-    boolean move(Position actualPos, Position finalPos);
+    void move(Position actualPos, Position finalPos);
 
     /**
      * 
