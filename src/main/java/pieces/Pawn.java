@@ -23,18 +23,15 @@ public final class Pawn extends AbstractPiece {
      */
     protected Pawn(final Position position, final Color color) {
         super(Name.PAWN, position, color);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
-    public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
-        // TODO Auto-generated method stub
+    public List<Position> getAllPossiblePositions(final Chessboard board) {
         return List.of();
     }
 
     @Override
     public int getValue() {
-        // TODO Auto-generated method stub
         return PAWN_VALUE;
     }
 
