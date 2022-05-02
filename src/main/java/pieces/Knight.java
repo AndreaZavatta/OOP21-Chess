@@ -32,16 +32,16 @@ public final class Knight extends AbstractPiece {
     public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
         final List<Position> list = new ArrayList<>();
         for (final var pos: Name.KNIGHT.directions()) {
-                final Position p = this.getNewPosition(piece, pos, 1);
-                if (this.checkPosition(p)) {
-                        if (this.checkPiece(p, board)) {
-                                if (checkEnemy(p, board)) {
-                                        list.add(p);
-                                }
-                        } else {
-                                list.add(p);
-                        }
+            final Position p = this.getNewPosition(piece, pos, 1);
+            if (this.checkPosition(p)) {
+                if (this.checkPiece(p, board)) {
+                    if (checkEnemy(p, board)) {
+                        list.add(p);
+                    }
+                } else {
+                    list.add(p);
                 }
+            }
         }
         return Collections.unmodifiableList(list);
     }
