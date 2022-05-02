@@ -1,6 +1,8 @@
 package pieces;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import board.Chessboard;
 import piece.utils.Position;
@@ -14,6 +16,8 @@ import piece.utils.Name;
 public class Queen extends AbstractPiece {
 
     private static final int QUEEN_VALUE = 9;
+    private final Bishop bishop;
+    private final Rook rook;
 
     /**
      * A Queen piece constructor.
@@ -23,18 +27,18 @@ public class Queen extends AbstractPiece {
      */
     protected Queen(final Position position, final Color color) {
         super(Name.QUEEN, position, color);
-        // TODO Auto-generated constructor stub
+        this.bishop = new Bishop(position, color);
+        this.rook = new Rook(position, color);
     }
 
     @Override
     public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
-        // TODO Auto-generated method stub
-        return List.of();
+        return Stream.concat(bishop.getAllPossiblePositions(piece, board).stream(), 
+                rook.getAllPossiblePositions(piece, board).stream()).collect(Collectors.toList());
     }
 
     @Override
     public int getValue() {
-        // TODO Auto-generated method stub
         return QUEEN_VALUE;
     }
 
