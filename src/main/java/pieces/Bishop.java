@@ -3,7 +3,6 @@ package pieces;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import board.Chessboard;
 import piece.utils.Position;
@@ -39,7 +38,7 @@ public class Bishop extends AbstractPiece {
                         list.add(p);
                     } 
                     break;
-                } else if (ControlsUtility.checkPosition(this, p)) {
+                } else if (ControlsUtility.checkPosition(this, p, board)) {
                     list.add(p);
                 } else {
                     break;
