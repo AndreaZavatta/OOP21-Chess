@@ -15,7 +15,7 @@ public class ControlCheckImpl implements ControlCheck {
     @Override
     public List<Position> moveInCheck(final Chessboard chessboard, final Piece piece, final List<Position> avaliableMoves) {
         // TODO Auto-generated method stub
-        return null;
+        return List.of();
     }
 
     @Override
