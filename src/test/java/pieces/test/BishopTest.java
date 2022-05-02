@@ -25,10 +25,10 @@ class BishopTest {
 
     @Test
     void test() {
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(0, 0), Color.WHITE);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(2, 2), Color.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(0, 0), Color.BLACK);
+        final Piece king = factory.createPiece(Name.KING, new Position(2, 2), Color.BLACK);
         list.add(bishop);
-        list.add(bishop1);
+        list.add(king);
         assertNotNull(bishop.getAllPossiblePositions(board.createTestCB(list)));
         bishop.getAllPossiblePositions(board.createTestCB(list)).forEach(x -> System.out.println(x));
         System.out.println(bishop);
