@@ -1,9 +1,8 @@
 package controls;
 
-import java.awt.Color;
+import piece.utils.Color;
 import java.util.List;
 import piece.utils.Position;
-
 import board.Chessboard;
 import pieces.Piece;
 
