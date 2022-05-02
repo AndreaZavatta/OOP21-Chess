@@ -1,6 +1,7 @@
 package pieces;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,16 +34,16 @@ public class King extends AbstractPiece {
         for (final var pos : Name.KING.directions()) {
             final Position p = this.getNewPosition(piece, pos, 1);
             if (this.checkPosition(p)) {
-                if (this.checkPiece(p, board)) {
-                    if (checkEnemy(p, board)) {
-                        list.add(p);
-                    }
-                } else {
-                    list.add(p);
-                }
+                addPiece(board, list, p);
             }
         }
-        return List.of();
+        return Collections.unmodifiableList(list);
+    }
+
+    private void addPiece(final Chessboard board, final List<Position> list, final Position p) {
+        if (this.checkPiece(p, board) || checkEnemy(p, board)) {
+            list.add(p);
+        }
     }
 
     @Override
