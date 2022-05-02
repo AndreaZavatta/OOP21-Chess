@@ -13,7 +13,7 @@ import pieces.Piece;
 public class ControlCheckImpl implements ControlCheck {
 
     @Override
-    public List<Position> moveInCheck(final Chessboard chessboard, final Piece piece, final List<Position> avaliableMoves) {
+    public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece, final List<Position> avaliableMoves) {
         // TODO Auto-generated method stub
         return List.of();
     }

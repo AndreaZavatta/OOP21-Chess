@@ -21,7 +21,7 @@ public interface ControlCheck {
      * @param avaliableMoves
      * @return List<Position>
      */
-    List<Position> moveInCheck(Chessboard chessboard, Piece piece, List<Position> avaliableMoves);
+    List<Position> removeMoveInCheck(Chessboard chessboard, Piece piece, List<Position> avaliableMoves);
     /**
      * this method checks if the king is in check, according to the color.
      * @param chessboard
