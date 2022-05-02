@@ -3,11 +3,11 @@ package pieces;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Color;
+import piece.utils.ControlsUtility;
 import piece.utils.Name;
 /**
  * 
@@ -32,50 +32,24 @@ public class King extends AbstractPiece {
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
         for (final var pos : Name.KING.directions()) {
-            final Position p = this.getNewPosition(this, pos, 1);
-            if (this.checkPosition(p)) {
-                addPiece(board, list, p);
+            final Position p = ControlsUtility.getNewPosition(this, pos, 1);
+            if (ControlsUtility.checkPosition(this, p, board)) {
+                if (ControlsUtility.checkPiece(this, p, board)) {
+                    if (ControlsUtility.checkEnemy(this, p, board)) {
+                        list.add(p);
+                    }
+                } else {
+                    list.add(p);
+                }
             }
         }
         return Collections.unmodifiableList(list);
-    }
-
-    private void addPiece(final Chessboard board, final List<Position> list, final Position p) {
-        if (this.checkPiece(p, board) || checkEnemy(p, board)) {
-            list.add(p);
-        }
     }
 
     @Override
     public int getValue() {
         // TODO Auto-generated method stub
         return KING_VALUE;
-    }
-
-    private Position getNewPosition(final Piece piece, final Position position, final int multiplier) {
-        return new Position(piece.getPosition().getX() + (position.getX() * multiplier),
-                piece.getPosition().getY() + (position.getY() * multiplier));
-    }
-
-    private boolean checkEnemy(final Position position, final Chessboard board) {
-        final Color s = board.getAllPieces().stream()
-                .filter(x -> x.getPosition().equals(position))
-                .map(x -> x.getColor())
-                .findFirst().get();
-        return board.getAllPieces().stream()
-                .filter(x -> !this.getColor().equals(s))
-                .map(Piece::getPosition)
-                .collect(Collectors.toList())
-                .contains(position);
-    }
-
-    private boolean checkPiece(final Position position, final Chessboard board) {
-        return board.getAllPieces().stream().map(Piece::getPosition).collect(Collectors.toList()).contains(position);
-    }
-
-    private boolean checkPosition(final Position position) {
-        return position.getX() < 8 && position.getX() >= 0 
-                && position.getY() < 8 && position.getY() >= 0;
     }
 
 }
