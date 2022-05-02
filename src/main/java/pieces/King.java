@@ -29,10 +29,10 @@ public class King extends AbstractPiece {
     }
 
     @Override
-    public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
+    public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
         for (final var pos : Name.KING.directions()) {
-            final Position p = this.getNewPosition(piece, pos, 1);
+            final Position p = this.getNewPosition(this, pos, 1);
             if (this.checkPosition(p)) {
                 addPiece(board, list, p);
             }

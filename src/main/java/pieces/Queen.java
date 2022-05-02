@@ -32,9 +32,9 @@ public class Queen extends AbstractPiece {
     }
 
     @Override
-    public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
-        return Stream.concat(bishop.getAllPossiblePositions(piece, board).stream(), 
-                rook.getAllPossiblePositions(piece, board).stream()).collect(Collectors.toList());
+    public List<Position> getAllPossiblePositions(final Chessboard board) {
+        return Stream.concat(bishop.getAllPossiblePositions(board).stream(), 
+                rook.getAllPossiblePositions(board).stream()).collect(Collectors.toList());
     }
 
     @Override

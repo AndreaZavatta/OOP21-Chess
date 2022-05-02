@@ -28,11 +28,11 @@ public class Bishop extends AbstractPiece {
     }
 
     @Override
-    public List<Position> getAllPossiblePositions(final Piece piece, final Chessboard board) {
+    public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
         for (final var pos : Name.BISHOP.directions()) {
             for (int i = 1; i < 8; i++) {
-                final Position p = this.getNewPosition(piece, pos, i);
+                final Position p = this.getNewPosition(this, pos, i);
                 if (this.checkPiece(p, board)) {
                     if (this.checkEnemy(p, board)) {
                         list.add(p);
