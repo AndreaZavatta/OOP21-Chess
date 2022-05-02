@@ -42,7 +42,7 @@ public abstract class AbstractPiece implements Piece {
 
     /**
      * 
-     * @return a.
+     * @return a ControlCheck object.
      */
     public ControlCheck getAdvancedControls() {
         return this.advancedControls;
