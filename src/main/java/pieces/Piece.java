@@ -3,6 +3,7 @@ package pieces;
 import java.util.List;
 
 import board.Chessboard;
+import controls.ControlCheck;
 import piece.utils.Color;
 import piece.utils.Name;
 import piece.utils.Position;
@@ -45,5 +46,10 @@ public interface Piece {
      * @return the value of the piece.
      */
     int getValue();
+    /**
+     * 
+     * @return a ControlCheck object.
+     */
+    ControlCheck getAdvancedControls();
 
 }
