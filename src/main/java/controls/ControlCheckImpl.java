@@ -2,10 +2,7 @@ package controls;
 
 import piece.utils.Color;
 import piece.utils.Name;
-
 import java.util.List;
-import java.util.Optional;
-
 import piece.utils.Position;
 import board.Chessboard;
 import pieces.Piece;
@@ -14,6 +11,7 @@ import pieces.Piece;
  * 
  *
  */
+
 public class ControlCheckImpl implements ControlCheck {
 
     @Override
