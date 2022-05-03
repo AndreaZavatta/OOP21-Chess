@@ -9,7 +9,7 @@ import piece.utils.Position;
 import piece.utils.Color;
 import piece.utils.Name;
 /**
- * 
+ * An abstract class that implements the Piece interface.
  *
  */
 public abstract class AbstractPiece implements Piece {
@@ -31,24 +31,6 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public Position getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public Color getColor() {
-        return this.color;
-    }
-
-    /**
-     * 
-     * @return a ControlCheck object.
-     */
-    public ControlCheck getAdvancedControls() {
-        return this.advancedControls;
-    }
-
-    @Override
     public boolean canMove(final Position pos, final Chessboard board) {
         final List<Position> l = this.getAdvancedControls().removeMoveInCheck(board, this, this.getAllPossiblePositions(board));
         return l.contains(pos);
@@ -58,11 +40,25 @@ public abstract class AbstractPiece implements Piece {
     public abstract List<Position> getAllPossiblePositions(Chessboard board);
 
     @Override
+    public Position getPosition() {
+        return this.position;
+    }
+
+    @Override
+    public Color getColor() {
+        return this.color;
+    }
+
+    @Override
     public abstract int getValue();
+
+    @Override
+    public ControlCheck getAdvancedControls() {
+        return this.advancedControls;
+    }
 
     @Override
     public String toString() {
         return "Piece [name=" + name + ", position=" + position + ", color=" + color + "]";
     }
-
 }
