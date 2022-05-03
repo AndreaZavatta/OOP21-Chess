@@ -10,7 +10,7 @@ import piece.utils.Color;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
 /**
- * 
+ * A King class that extends AbstractPiece abstract class.
  *
  */
 public class King extends AbstractPiece {

@@ -11,7 +11,7 @@ import piece.utils.ControlsUtility;
 import piece.utils.Name;
 
 /**
- * 
+ * A Rook class that extends AbstractPiece abstract class.
  *
  */
 public class Rook extends AbstractPiece {

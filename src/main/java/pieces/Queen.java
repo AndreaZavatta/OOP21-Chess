@@ -10,7 +10,7 @@ import piece.utils.Color;
 import piece.utils.Name;
 
 /**
- * 
+ * A Queen class that extends AbstractPiece abstract class.
  *
  */
 public class Queen extends AbstractPiece {

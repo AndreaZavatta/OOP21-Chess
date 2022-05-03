@@ -8,7 +8,7 @@ import piece.utils.Color;
 import piece.utils.Name;
 
 /**
- * 
+ * A Pawn class that extends AbstractPiece abstract class.
  *
  */
 public final class Pawn extends AbstractPiece {
