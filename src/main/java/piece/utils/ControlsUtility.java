@@ -15,7 +15,7 @@ public final class ControlsUtility {
     }
 
     /**
-     * 
+     * This method checks if in the given position there is an enemy piece.
      * @param piece the piece you are calculating the possible positions.
      * @param position the position you are checking.
      * @param board the current board.
@@ -34,7 +34,7 @@ public final class ControlsUtility {
     }
 
     /**
-     * 
+     * This method checks if in the given position there is a piece.
      * @param piece the piece you are calculating the possible positions.
      * @param position the position you are checking.
      * @param board the current board.
@@ -45,7 +45,7 @@ public final class ControlsUtility {
     }
 
     /**
-     * 
+     * This method checks if the given position is in the board.
      * @param board the current board.
      * @param piece the piece you are calculating the possible positions.
      * @param position the position you are checking.
@@ -57,7 +57,7 @@ public final class ControlsUtility {
     }
 
     /**
-     * 
+     * This method, given a direction and a multiplier, returns a new position.
      * @param piece the piece you are calculating the possible positions.
      * @param direction the directions the piece can go to.
      * @param multiplier position multiplier.
