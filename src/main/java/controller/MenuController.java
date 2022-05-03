@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +25,9 @@ public class MenuController {
             stage1.setTitle("Users");
             stage1.setScene(new Scene(root1));
             stage1.show();
-         } catch (Exception e) {
-             System.out.println(e);
-         }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -38,9 +39,9 @@ public class MenuController {
             stage2.setTitle("Tutorial");
             stage2.setScene(new Scene(root2));
             stage2.show();
-         } catch (Exception e) {
-             System.out.println(e);
-         }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -55,6 +56,11 @@ public class MenuController {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    @FXML
+    void exitApp(final ActionEvent event) {
+        Platform.exit();
     }
 
 }
