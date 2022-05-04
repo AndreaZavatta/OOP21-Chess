@@ -69,10 +69,8 @@ public abstract class AbstractPiece implements Piece {
     public boolean isMoved() {
         return this.isMoved;
     }
-    /**
-     * 
-     * @param position the new Position
-     */
+
+    @Override
     public void setPosition(final Position position) {
         this.position = position;
     }
