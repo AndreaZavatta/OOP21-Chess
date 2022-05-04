@@ -4,7 +4,6 @@ import piece.utils.Color;
 import piece.utils.Name;
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import piece.utils.Position;
 import board.Chessboard;
