@@ -51,5 +51,15 @@ public interface Piece {
      * @return a ControlCheck object.
      */
     ControlCheck getAdvancedControls();
+    /**
+     * Set to true the isMoved boolean.
+     * 
+     */
+    void setIsMoved();
+    /**
+     * 
+     * @return the current state of the isMoved boolean.
+     */
+    boolean isMoved();
 
 }
