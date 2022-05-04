@@ -1,10 +1,13 @@
 package pieces;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Color;
+import piece.utils.ControlsUtility;
 import piece.utils.Name;
 
 /**
@@ -27,12 +30,45 @@ public final class Pawn extends AbstractPiece {
 
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
-        return List.of();
+        final List<Position> list = new ArrayList<>();
+        goEat(board, list);
+        goFoward(board, list, 1);
+        if (!this.isMoved()) {
+            goFoward(board, list, 2);
+        }
+        return Collections.unmodifiableList(list);
     }
 
     @Override
     public int getValue() {
         return PAWN_VALUE;
+    }
+
+    private void goEat(final Chessboard board, final List<Position> list) {
+        for (final var pos : Name.PAWN.directions()) {
+            final Position p = ControlsUtility.getNewPosition(this, pos, this.getDirection(this.getColor()));
+            if (ControlsUtility.checkPosition(this, p, board) 
+                    && ControlsUtility.checkPiece(this, p, board) 
+                    && ControlsUtility.checkEnemy(this, p, board)) {
+                list.add(p);
+            }
+        }
+    }
+
+    private void goFoward(final Chessboard board, final List<Position> list, final int lenght) {
+        final Position p = ControlsUtility.getNewPosition(this, 
+                new Position(lenght, 0), this.getDirection(this.getColor()));
+        if (ControlsUtility.checkPosition(this, p, board) 
+                    && !ControlsUtility.checkPiece(this, p, board)) {
+            list.add(p);
+        }
+    }
+
+    private int getDirection(final Color color) {
+        if (color.equals(Color.BLACK)) {
+            return +1;
+        }
+        return -1;
     }
 
 }
