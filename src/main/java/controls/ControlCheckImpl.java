@@ -2,8 +2,11 @@ package controls;
 
 import piece.utils.Color;
 import piece.utils.Name;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Iterator;
 import piece.utils.Position;
 import board.Chessboard;
 import board.ChessboardFactory;
@@ -20,12 +23,15 @@ public class ControlCheckImpl implements ControlCheck {
     private ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
     public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece) {
-        final List<Position> avaliableMoves = List.copyOf(piece.getAllPossiblePositions(chessboard));
-        for (final Position pos: avaliableMoves) {
+
+        final List<Position> avaliableMoves = new ArrayList<>(piece.getAllPossiblePositions(chessboard));
+        final Iterator<Position> itPos = avaliableMoves.iterator();
+        while (itPos.hasNext()) {
+            final Position pos = itPos.next();
             final Chessboard chessboardCopy = chessboardFact.createTestCB(chessboard.getAllPieces());
             setPosition(piece, pos, chessboardCopy);
             if (isInCheck(chessboardCopy, piece.getColor())) {
-                avaliableMoves.remove(pos);
+                itPos.remove();
             }
         }
         return avaliableMoves;
