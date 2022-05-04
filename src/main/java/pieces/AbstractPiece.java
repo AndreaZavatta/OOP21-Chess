@@ -14,7 +14,7 @@ import piece.utils.Name;
  */
 public abstract class AbstractPiece implements Piece {
     private final Name name;
-    private final Position position;
+    private Position position;
     private final Color color;
     private final ControlCheck advancedControls;
     private boolean isMoved;
@@ -68,6 +68,13 @@ public abstract class AbstractPiece implements Piece {
     @Override
     public boolean isMoved() {
         return this.isMoved;
+    }
+    /**
+     * 
+     * @param position the new Position
+     */
+    public void setPosition(final Position position) {
+        this.position = position;
     }
 
     @Override
