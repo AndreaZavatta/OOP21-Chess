@@ -61,5 +61,10 @@ public interface Piece {
      * @return the current state of the isMoved boolean.
      */
     boolean isMoved();
+    /**
+     * 
+     * @param position the new Position
+     */
+    void setPosition(Position position);
 
 }
