@@ -17,12 +17,14 @@ public abstract class AbstractPiece implements Piece {
     private final Position position;
     private final Color color;
     private final ControlCheck advancedControls;
+    private boolean isMoved;
 
     AbstractPiece(final Name name, final Position position, final Color color) {
         this.name = name;
         this.position = position;
         this.color = color;
         this.advancedControls = new ControlCheckImpl();
+        this.isMoved = false;
     }
 
     @Override
@@ -56,6 +58,16 @@ public abstract class AbstractPiece implements Piece {
     @Override
     public ControlCheck getAdvancedControls() {
         return this.advancedControls;
+    }
+
+    @Override
+    public void setIsMoved() {
+        this.isMoved = true;
+    }
+
+    @Override
+    public boolean isMoved() {
+        return this.isMoved;
     }
 
     @Override
