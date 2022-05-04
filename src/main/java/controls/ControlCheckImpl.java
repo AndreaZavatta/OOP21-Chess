@@ -5,6 +5,8 @@ import piece.utils.Name;
 import java.util.List;
 import piece.utils.Position;
 import board.Chessboard;
+import board.ChessboardFactory;
+import board.ChessboardFactoryImpl;
 import pieces.Piece;
 
 /**
@@ -14,10 +16,18 @@ import pieces.Piece;
 
 public class ControlCheckImpl implements ControlCheck {
 
+    private ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
-    public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece, final List<Position> avaliableMoves) {
-        // TODO Auto-generated method stub
-        return List.of();
+    public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece) {
+        List<Position> avaliableMoves = piece.getAllPossiblePositions(chessboard);
+        for (Position pos: avaliableMoves) {
+            Chessboard chessboardCopy = chessboardFact.createTestCB(chessboard.getAllPieces());
+            //chessboardCopy.move(piece.getPosition(), pos); -> this move should not check removeMoveInCheck
+            if (isInCheck(chessboardCopy, piece.getColor())) {
+                avaliableMoves.remove(pos);
+            }
+        }
+        return avaliableMoves;
     }
 
     @Override

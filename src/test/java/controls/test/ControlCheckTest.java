@@ -45,7 +45,7 @@ class ControlCheckTest {
         Piece blackBishop = pieceFactory.createPiece(BISHOP, new Position(4, 1), BLACK);
         Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(5, 1), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackBishop, whiteRook));
-        List<Position> pos = control.removeMoveInCheck(chessboard, blackBishop, blackBishop.getAllPossiblePositions(chessboard));
+        List<Position> pos = control.removeMoveInCheck(chessboard, blackBishop);
         assertFalse(pos.contains(new Position(5, 2)));
         assertFalse(pos.contains(new Position(3, 2)));
         assertFalse(pos.contains(new Position(2, 3)));
@@ -56,7 +56,7 @@ class ControlCheckTest {
         Piece blackBishop = pieceFactory.createPiece(BISHOP, new Position(4, 1), BLACK);
         Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(5, 3), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackBishop, whiteRook));
-        List<Position> pos = control.removeMoveInCheck(chessboard, blackBishop, blackBishop.getAllPossiblePositions(chessboard));
+        List<Position> pos = control.removeMoveInCheck(chessboard, blackBishop);
         assertTrue(pos.contains(new Position(5, 2)));
         assertTrue(pos.contains(new Position(3, 2)));
         assertTrue(pos.contains(new Position(2, 3)));
@@ -67,7 +67,7 @@ class ControlCheckTest {
         Piece blackRook = pieceFactory.createPiece(ROOK, new Position(5, 2), BLACK);
         Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(1, 3), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackRook, whiteRook));
-        List<Position> pos = control.removeMoveInCheck(chessboard, blackRook, blackRook.getAllPossiblePositions(chessboard));
+        List<Position> pos = control.removeMoveInCheck(chessboard, blackRook);
         assertTrue(pos.contains(new Position(1, 2)));
         assertFalse(pos.contains(new Position(3, 2)));
         assertFalse(pos.contains(new Position(6, 2)));
@@ -78,7 +78,7 @@ class ControlCheckTest {
         Piece blackRook = pieceFactory.createPiece(ROOK, new Position(5, 2), BLACK);
         Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(1, 3), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackRook, whiteRook));
-        List<Position> pos = control.removeMoveInCheck(chessboard, blackKing, blackKing.getAllPossiblePositions(chessboard));
+        List<Position> pos = control.removeMoveInCheck(chessboard, blackKing);
         assertFalse(pos.contains(new Position(1, 2)));
         assertTrue(pos.contains(new Position(2, 1)));
         assertTrue(pos.contains(new Position(2, 2)));
