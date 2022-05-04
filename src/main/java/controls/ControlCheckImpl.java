@@ -3,7 +3,6 @@ package controls;
 import piece.utils.Color;
 import piece.utils.Name;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import piece.utils.Position;
 import board.Chessboard;
@@ -20,16 +19,25 @@ public class ControlCheckImpl implements ControlCheck {
 
     private ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
-    public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece, final BiConsumer<Position, Position> move) {
-        List<Position> avaliableMoves = List.copyOf(piece.getAllPossiblePositions(chessboard));
-        for (Position pos: avaliableMoves) {
-            Chessboard chessboardCopy = chessboardFact.createTestCB(chessboard.getAllPieces());
-            move.accept(piece.getPosition(), pos);
+    public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece) {
+        final List<Position> avaliableMoves = List.copyOf(piece.getAllPossiblePositions(chessboard));
+        for (final Position pos: avaliableMoves) {
+            final Chessboard chessboardCopy = chessboardFact.createTestCB(chessboard.getAllPieces());
+            setPosition(piece, pos, chessboardCopy);
             if (isInCheck(chessboardCopy, piece.getColor())) {
                 avaliableMoves.remove(pos);
             }
         }
         return avaliableMoves;
+    }
+
+    private void setPosition(final Piece piece, final Position pos, final Chessboard chessboardCopy) {
+        chessboardCopy.getAllPieces().stream()
+        .filter(x -> x.getPosition()
+        .equals(piece.getPosition()))
+        .findFirst()
+        .get()
+        .setPosition(pos);
     }
 
     @Override
