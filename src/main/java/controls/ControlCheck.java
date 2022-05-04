@@ -18,7 +18,6 @@ public interface ControlCheck {
      * 
      * @param chessboard
      * @param piece
-     * @param avaliableMoves
      * @return List<Position>
      */
     List<Position> removeMoveInCheck(Chessboard chessboard, Piece piece);
