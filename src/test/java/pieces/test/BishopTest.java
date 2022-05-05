@@ -91,4 +91,35 @@ class BishopTest {
         assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
     }
 
+    @Test
+    void testWithEnemy() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(1, 1), new Position(2, 2));
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(0, 0), Color.WHITE);
+
+        final Piece rook = factory.createPiece(Name.ROOK, new Position(2, 2), Color.BLACK);
+        list.add(bishop);
+        list.add(rook);
+        assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
+    }
+
+    @Test
+    void test2WithEnemy() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(2, 2), new Position(0, 0), 
+                new Position(2, 0), new Position(0, 2));
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(1, 1), Color.BLACK);
+
+        final Piece rook = factory.createPiece(Name.ROOK, new Position(0, 0), Color.WHITE);
+        final Piece rook1 = factory.createPiece(Name.ROOK, new Position(2, 2), Color.WHITE);
+        final Piece rook2 = factory.createPiece(Name.ROOK, new Position(2, 0), Color.WHITE);
+        final Piece rook3 = factory.createPiece(Name.ROOK, new Position(0, 2), Color.WHITE);
+        list.add(bishop);
+        list.add(rook3);
+        list.add(rook2);
+        list.add(rook1);
+        list.add(rook);
+        assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
+    }
+
 }
