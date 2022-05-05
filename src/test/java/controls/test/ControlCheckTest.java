@@ -2,6 +2,7 @@ package controls.test;
 import static piece.utils.Name.KING;
 import static piece.utils.Name.BISHOP;
 import static piece.utils.Name.ROOK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static piece.utils.Color.BLACK;
@@ -31,7 +32,7 @@ class ControlCheckTest {
         control = new ControlCheckImpl();
     }
     @Test
-    void testIsInCheck() {
+    void beInCheckEnemyAttackKingTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(1, 1), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(5, 1), WHITE);
         final Piece whiteKing = pieceFactory.createPiece(KING, new Position(6, 5), WHITE);
@@ -40,45 +41,40 @@ class ControlCheckTest {
         assertFalse(control.isInCheck(chessboard, WHITE));
     }
     @Test
-    void testPinOnKing() {
+    void ableToMovePinOnKingFalse() {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(1, 1), BLACK);
         final Piece blackBishop = pieceFactory.createPiece(BISHOP, new Position(4, 1), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(5, 1), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackBishop, whiteRook));
-        final List<Position> pos = control.removeMoveInCheck(chessboard, blackBishop); //TODO
-        assertFalse(pos.contains(new Position(5, 2)));
-        assertFalse(pos.contains(new Position(3, 2)));
-        assertFalse(pos.contains(new Position(2, 3)));
+        final List<Position> pos = control.removeMovesInCheck(chessboard, blackBishop);
+        assertEquals(pos, List.of());
     }
     @Test
-    void testClassicalMove() {
+    void ableToMoveNoPinOnKingTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(1, 1), BLACK);
         final Piece blackBishop = pieceFactory.createPiece(BISHOP, new Position(4, 1), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(5, 3), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackBishop, whiteRook));
-        final List<Position> pos = control.removeMoveInCheck(chessboard, blackBishop); //TODO
+        final List<Position> pos = control.removeMovesInCheck(chessboard, blackBishop);
         assertTrue(pos.contains(new Position(5, 2)));
         assertTrue(pos.contains(new Position(3, 2)));
         assertTrue(pos.contains(new Position(2, 3)));
     }
     @Test
-    void testCoverageFromCheck() {
+    void ableToMoveOnlyToCoverCheckTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(1, 1), BLACK);
         final Piece blackRook = pieceFactory.createPiece(ROOK, new Position(5, 2), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(1, 3), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackRook, whiteRook));
-        final List<Position> pos = control.removeMoveInCheck(chessboard, blackRook); //TODO
-        assertTrue(pos.contains(new Position(1, 2)));
-        assertFalse(pos.contains(new Position(3, 2)));
-        assertFalse(pos.contains(new Position(6, 2)));
+        final List<Position> pos = control.removeMovesInCheck(chessboard, blackRook);
+        assertEquals(pos, List.of(new Position(1, 2)));
     }
     @Test
-    void testEscapeFromCheck() {
+    void ableToMoveOnlyToEscapeFromCheckTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(1, 1), BLACK);
-        final Piece blackRook = pieceFactory.createPiece(ROOK, new Position(5, 2), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(1, 3), WHITE);
-        chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackRook, whiteRook));
-        final List<Position> pos = control.removeMoveInCheck(chessboard, blackKing); //TODO
+        chessboard = chessboardFactory.createTestCB(List.of(blackKing, whiteRook));
+        final List<Position> pos = control.removeMovesInCheck(chessboard, blackKing);
         assertFalse(pos.contains(new Position(1, 2)));
         assertTrue(pos.contains(new Position(2, 1)));
         assertTrue(pos.contains(new Position(2, 2)));
