@@ -2,10 +2,7 @@ package controls;
 
 import piece.utils.Color;
 import java.util.List;
-import java.util.function.BiConsumer;
-
 import piece.utils.Position;
-
 import board.Chessboard;
 import pieces.Piece;
 /**
@@ -21,7 +18,7 @@ public interface ControlCheck {
      * @param piece
      * @return List<Position>
      */
-    List<Position> removeMoveInCheck(Chessboard chessboard, Piece piece);
+    List<Position> removeMovesInCheck(Chessboard chessboard, Piece piece);
     /**
      * this method checks if the king is in check, according to the color.
      * @param chessboard

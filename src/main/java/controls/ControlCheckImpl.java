@@ -22,19 +22,31 @@ public class ControlCheckImpl implements ControlCheck {
 
     private ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
-    public List<Position> removeMoveInCheck(final Chessboard chessboard, final Piece piece) {
+    public List<Position> removeMovesInCheck(final Chessboard chessboard, final Piece piece) {
 
         final List<Position> avaliableMoves = new ArrayList<>(piece.getAllPossiblePositions(chessboard));
         final Iterator<Position> itPos = avaliableMoves.iterator();
         while (itPos.hasNext()) {
             final Position pos = itPos.next();
-            final Chessboard chessboardCopy = chessboardFact.createTestCB(chessboard.getAllPieces());
-            setPosition(piece, pos, chessboardCopy);
-            if (isInCheck(chessboardCopy, piece.getColor())) {
+            if (isMoveInCheck(chessboard, piece, pos)) {
                 itPos.remove();
             }
         }
         return avaliableMoves;
+    }
+
+    private boolean isMoveInCheck(final Chessboard chessboard, final Piece piece, final Position pos) {
+        return isInCheck(simulateMove(chessboard, piece, pos), piece.getColor());
+    }
+
+    private Chessboard simulateMove(final Chessboard chessboard, final Piece piece, final Position pos) {
+        final Chessboard chessboardCopy = copyChessboard(chessboard);
+        setPosition(piece, pos, chessboardCopy);
+        return chessboardCopy;
+    }
+
+    private Chessboard copyChessboard(final Chessboard chessboard) {
+        return chessboardFact.createTestCB(chessboard.getAllPieces());
     }
 
     private void setPosition(final Piece piece, final Position pos, final Chessboard chessboardCopy) {
