@@ -35,7 +35,7 @@ public abstract class AbstractPiece implements Piece {
     @Override
     public boolean canMove(final Position pos, final Chessboard board) {
         final List<Position> l = this.getAdvancedControls()
-                .removeMoveInCheck(board, this);
+                .removeMovesInCheck(board, this);
         return l.contains(pos);
     }
 
