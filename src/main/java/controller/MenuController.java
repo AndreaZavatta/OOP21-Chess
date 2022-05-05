@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 
 /**
  * 
@@ -20,11 +21,13 @@ public class MenuController {
     void openUserHandler(final ActionEvent event) {
         try {
             FXMLLoader userloader = new FXMLLoader(getClass().getResource("/layouts/UserHandler.fxml"));
+            //FXMLLoader gridloader = new FXMLLoader(getClass().getResource("/layouts/Grid.fxml"));
             Parent root1 = (Parent) userloader.load();
             Stage stage1 = new Stage();
             stage1.setTitle("Users");
             stage1.setScene(new Scene(root1));
             stage1.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -39,6 +42,7 @@ public class MenuController {
             stage2.setTitle("Tutorial");
             stage2.setScene(new Scene(root2));
             stage2.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -53,6 +57,7 @@ public class MenuController {
             stage3.setTitle("Stats");
             stage3.setScene(new Scene(root3));
             stage3.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             System.out.println(e);
         }
