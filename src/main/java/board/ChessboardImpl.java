@@ -2,8 +2,12 @@ package board;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import controls.ControlCheck;
+import controls.ControlCheckImpl;
+import exceptions.PositionNotFoundException;
 import piece.utils.Position;
 import pieces.Piece;
 
@@ -13,7 +17,7 @@ import pieces.Piece;
      *
      */
 class ChessboardImpl implements Chessboard {
-    private List<Piece> piecesList;
+    private final List<Piece> piecesList;
     private final int xBorder;
     private final int yBorder;
 
@@ -29,9 +33,15 @@ class ChessboardImpl implements Chessboard {
     }
 
     @Override
-    public void move(final Position actualPos, final Position finalPos) {
-        // TODO Auto-generated method stub
-        return;
+    public void move(final Position actualPos, final Position finalPos) throws PositionNotFoundException {
+        final ControlCheck movesController = new ControlCheckImpl();
+        final Piece attacker = this.getPieceOnPosition(actualPos).get();
+        if (movesController.removeMovesInCheck(this, attacker).contains(finalPos)) {
+            this.moveWithoutChecks(attacker, finalPos);
+        } else {
+            throw new PositionNotFoundException();
+        }
+
     }
 
     public int getxBorder() {
@@ -44,8 +54,24 @@ class ChessboardImpl implements Chessboard {
 
     @Override
     public String toString() {
-        String pieces = this.piecesList.stream().map(Piece::toString)
-                                               .collect(Collectors.joining(" | "));
-        return "Chessboard: " + pieces;
+        return "Chessboard: " + this.piecesList.stream().map(Piece::toString)
+                                            .collect(Collectors.joining(" | "));
+    }
+
+    private Optional<Piece> getPieceOnPosition(final Position selectedPos) {
+        return piecesList.stream()
+                .filter(t -> t.getPosition().equals(selectedPos))
+                .findFirst();
+    }
+
+    private boolean canKill(final Position targetPos) {
+        return this.getPieceOnPosition(targetPos).isPresent();
+    }
+
+    private void moveWithoutChecks(final Piece piece, final Position targetPos) {
+        if (this.canKill(targetPos)) {
+           this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
+        }
+        piece.setPosition(targetPos);
     }
 }
