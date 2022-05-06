@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @param <T>
  */
-public class FileWriterImpl<T extends Serializable> extends AbstractFileManager<T> implements FileWriter<T> {
+public class FileWriterImpl<T extends Serializable> implements FileWriter<T> {
 
     @Override
     public void writeFile(final T obj) throws IOException {
