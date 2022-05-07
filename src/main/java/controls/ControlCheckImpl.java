@@ -16,7 +16,7 @@ import pieces.Piece;
  */
 
 public class ControlCheckImpl implements ControlCheck {
-    private ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
+  private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
     public List<Position> removeMovesInCheck(final Chessboard chessboard, final Piece piece) {
         final List<Position> avaliableMoves = new ArrayList<>(piece.getAllPossiblePositions(chessboard));
@@ -38,15 +38,14 @@ public class ControlCheckImpl implements ControlCheck {
     private void setPosition(final Piece piece, final Position pos, final Chessboard chessboardCopy) {
         chessboardCopy.getAllPieces().stream()
         .filter(x -> x.getPosition().equals(piece.getPosition()))
-        .findFirst().get()
-        .setPosition(pos);
+        .findFirst()
+        .ifPresent(x -> x.setPosition(pos));
     }
     @Override
     public boolean isInCheck(final Chessboard chessboard, final Color color) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getColor().equals(color))
-                .filter(x -> canEatKing(chessboard, x))
-                .findFirst().isPresent();
+                .anyMatch(x -> canEatKing(chessboard, x));
     }
 
     private boolean canEatKing(final Chessboard chessboard, final Piece piece) {
@@ -58,7 +57,8 @@ public class ControlCheckImpl implements ControlCheck {
                 .filter(x -> !x.getColor().equals(piece.getColor()))
                 .filter(x -> x.getName().equals(KING))
                 .findFirst()
-                .get().getPosition();
+                .map(Piece::getPosition)
+                .orElse(null);
     }
 
 
