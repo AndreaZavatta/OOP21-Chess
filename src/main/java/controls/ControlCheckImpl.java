@@ -4,6 +4,8 @@ import static piece.utils.Name.KING;
 import piece.utils.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import piece.utils.Position;
 import board.Chessboard;
 import board.ChessboardFactory;
@@ -49,16 +51,16 @@ public class ControlCheckImpl implements ControlCheck {
     }
 
     private boolean canEatKing(final Chessboard chessboard, final Piece piece) {
-        return piece.getAllPossiblePositions(chessboard)
-                    .contains(getEnemyKingPosition(chessboard, piece));
+        final Optional<Position> pos = getEnemyKingPosition(chessboard, piece);
+        return pos.isPresent() && piece.getAllPossiblePositions(chessboard).contains(pos.get());
     }
-    private Position getEnemyKingPosition(final Chessboard chessboard, final Piece piece) {
+    private Optional<Position> getEnemyKingPosition(final Chessboard chessboard, final Piece piece) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getColor().equals(piece.getColor()))
                 .filter(x -> x.getName().equals(KING))
                 .findFirst()
-                .map(Piece::getPosition)
-                .orElse(null);
+                .map(x -> Optional.of(x.getPosition()))
+                .orElse(Optional.empty());
     }
 
 

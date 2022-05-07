@@ -31,6 +31,11 @@ class ControlCheckTest {
         pieceFactory = new PieceFactoryImpl();
         control = new ControlCheckImpl();
     }
+    void testCanEatKingWithoutKing() {
+        final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(5, 1), WHITE);
+        chessboard = chessboardFactory.createTestCB(List.of(whiteRook));
+        assertFalse(control.isInCheck(chessboard, WHITE));
+    }
     @Test
     void beInCheckEnemyAttackKingTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(1, 1), BLACK);
