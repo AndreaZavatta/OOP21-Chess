@@ -6,7 +6,12 @@ package piece.utils;
 public class Move {
     private final Position start;
     private final Position destination;
-    Move(final Position start, final Position destination) {
+    /**
+     * 
+     * @param start
+     * @param destination
+     */
+    public Move(final Position start, final Position destination) {
         this.start = start;
         this.destination = destination;
     }
