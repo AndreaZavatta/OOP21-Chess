@@ -22,30 +22,30 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
 
     @Override
     public Chessboard createNormalCB() {
-        List<Piece> chessOnBoard = this.createPawns(2, Color.WHITE);
-        chessOnBoard.addAll(this.createBackLine(2, Color.WHITE));
-        chessOnBoard.addAll(this.createPawns(7, Color.BLACK));
-        chessOnBoard.addAll(this.createBackLine(7, Color.BLACK));
+        final List<Piece> chessOnBoard = this.createPawns(6, Color.WHITE);
+        chessOnBoard.addAll(this.createBackLine(7, Color.WHITE));
+        chessOnBoard.addAll(this.createPawns(1, Color.BLACK));
+        chessOnBoard.addAll(this.createBackLine(0, Color.BLACK));
         return null;
     }
 
     @Override
     public Chessboard createTestCB(final List<Piece> piecesOnBoard) {
-        return new ChessboardImpl(piecesOnBoard, 8, 8);
+        return new ChessboardImpl(piecesOnBoard, 7, 7);
     }
 
     private List<Piece> createPawns(final int row, final Color color) {
-        PieceFactory pieceCreator = new PieceFactoryImpl();
+        final PieceFactory pieceCreator = new PieceFactoryImpl();
         return Stream.iterate(0, n -> n + 1)
-                .limit(8)
+                .limit(7)
                 .<Piece>map(n -> pieceCreator.createPiece(Name.PAWN, new Position(row, n), color))
                 .collect(Collectors.toList());
     }
 
     private List<Piece> createBackLine(final int row, final Color color) {
-        PieceFactory pieceCreator = new PieceFactoryImpl();
-        List<Piece> backLine = new LinkedList<>();
-        int n = 1;
+        final PieceFactory pieceCreator = new PieceFactoryImpl();
+        final List<Piece> backLine = new LinkedList<>();
+        int n = 0;
         backLine.add(pieceCreator.createPiece(Name.ROOK, new Position(row, n++), color));
         backLine.add(pieceCreator.createPiece(Name.KNIGHT, new Position(row, n++), color));
         backLine.add(pieceCreator.createPiece(Name.BISHOP, new Position(row, n++), color));
