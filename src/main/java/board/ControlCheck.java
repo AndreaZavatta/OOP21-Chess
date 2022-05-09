@@ -1,11 +1,7 @@
 package board;
 
 import piece.utils.Color;
-import piece.utils.Move;
-
 import java.util.List;
-import java.util.function.Consumer;
-
 import piece.utils.Position;
 import pieces.Piece;
 /**
