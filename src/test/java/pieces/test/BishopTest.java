@@ -122,4 +122,14 @@ class BishopTest {
         assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
     }
 
+    @Test
+    void testpedone() {
+        final List<Piece> l = new ArrayList<>();
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 0), Color.BLACK);
+        l.add(pawn);
+        System.out.println(pawn.getAllPossiblePositions(board.createTestCB(l)));
+        pawn.setIsMoved();
+        System.out.println(pawn.getAllPossiblePositions(board.createTestCB(l)));
+    }
+
 }
