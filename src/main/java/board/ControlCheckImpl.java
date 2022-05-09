@@ -1,4 +1,4 @@
-package controls;
+package board;
 
 import static piece.utils.Name.KING;
 import piece.utils.Color;
@@ -6,12 +6,8 @@ import piece.utils.Move;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 import piece.utils.Position;
-import board.Chessboard;
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
 import exceptions.KingNotFoundException;
 import pieces.Piece;
 
@@ -23,18 +19,18 @@ import pieces.Piece;
 public class ControlCheckImpl implements ControlCheck {
   private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
-    public List<Position> removeMovesInCheck(final Chessboard chessboard, final Piece piece, final Consumer<Move> move) {
+    public List<Position> removeMovesInCheck(final Chessboard chessboard, final Piece piece) {
         final List<Position> avaliableMoves = new ArrayList<>(piece.getAllPossiblePositions(chessboard));
-        avaliableMoves.removeIf(x -> this.isMoveInCheck(chessboard, piece, x, move));
+        avaliableMoves.removeIf(x -> this.isMoveInCheck(chessboard, piece, x));
         return avaliableMoves;
     }
 
-    private boolean isMoveInCheck(final Chessboard chessboard, final Piece piece, final Position pos, final Consumer<Move> move) {
-        return isInCheck(simulateMove(chessboard, piece, pos, move), piece.getColor());
+    private boolean isMoveInCheck(final Chessboard chessboard, final Piece piece, final Position pos) {
+        return isInCheck(simulateMove(chessboard, piece, pos), piece.getColor());
     }
-    private Chessboard simulateMove(final Chessboard chessboard, final Piece piece, final Position destPos, final Consumer<Move> move) {
-        final Chessboard chessboardCopy = copyChessboard(chessboard);
-        move.accept(new Move(piece.getPosition(), destPos, chessboard));
+    private Chessboard simulateMove(final Chessboard chessboard, final Piece piece, final Position destPos) {
+        final ChessboardImpl chessboardCopy = (ChessboardImpl) copyChessboard(chessboard);
+        chessboardCopy.moveWithoutChecks(piece, destPos);
         return chessboardCopy;
     }
     private Chessboard copyChessboard(final Chessboard chessboard) {

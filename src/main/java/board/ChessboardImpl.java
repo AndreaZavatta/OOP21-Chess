@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import controls.ControlCheck;
-import controls.ControlCheckImpl;
 import exceptions.PositionNotFoundException;
 import piece.utils.Position;
 import pieces.Piece;
@@ -68,7 +66,7 @@ class ChessboardImpl implements Chessboard {
         return this.getPieceOnPosition(targetPos).isPresent();
     }
 
-    private void moveWithoutChecks(final Piece piece, final Position targetPos) {
+    protected void moveWithoutChecks(final Piece piece, final Position targetPos) {
         if (this.canKill(targetPos)) {
            this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
         }

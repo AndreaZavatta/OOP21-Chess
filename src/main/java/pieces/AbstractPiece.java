@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Objects;
 
 import board.Chessboard;
-import controls.ControlCheck;
-import controls.ControlCheckImpl;
+import board.ControlCheck;
+import board.ControlCheckImpl;
 import piece.utils.Position;
 import piece.utils.Color;
 import piece.utils.Name;

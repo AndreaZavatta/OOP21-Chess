@@ -1,4 +1,4 @@
-package controls;
+package board;
 
 import piece.utils.Color;
 import piece.utils.Move;
@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import piece.utils.Position;
-import board.Chessboard;
 import pieces.Piece;
 /**
  * 
@@ -20,10 +19,9 @@ public interface ControlCheck {
      * 
      * @param chessboard
      * @param piece
-     * @param move
      * @return List<Position>
      */
-    List<Position> removeMovesInCheck(Chessboard chessboard, Piece piece, Consumer<Move> move);
+    List<Position> removeMovesInCheck(Chessboard chessboard, Piece piece);
     /**
      * this method checks if the king is in check, according to the color.
      * @param chessboard
