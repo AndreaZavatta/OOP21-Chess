@@ -1,6 +1,7 @@
 package pieces;
 
 import java.util.List;
+import java.util.Objects;
 
 import board.Chessboard;
 import controls.ControlCheck;
@@ -78,5 +79,22 @@ public abstract class AbstractPiece implements Piece {
     @Override
     public String toString() {
         return "Piece [name=" + name + ", position=" + position + ", color=" + color + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, name, position);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AbstractPiece other = (AbstractPiece) obj;
+        return color == other.color && name == other.name && Objects.equals(position, other.position);
     }
 }
