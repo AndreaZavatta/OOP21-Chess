@@ -2,11 +2,9 @@ package board;
 
 import static piece.utils.Name.KING;
 import piece.utils.Color;
-import piece.utils.Move;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 import piece.utils.Position;
 import exceptions.KingNotFoundException;
 import pieces.Piece;
@@ -29,15 +27,19 @@ public class ControlCheckImpl implements ControlCheck {
         return isInCheck(simulateMove(chessboard, piece.getPosition(), pos), piece.getColor());
     }
     private Chessboard simulateMove(final Chessboard chessboard, final Position startPos, final Position destPos) {
-        final ChessboardImpl chessboardCopy = (ChessboardImpl) copyChessboard(chessboard);
-        chessboardCopy.getAllPieces().stream()
-        .filter(x -> x.getPosition().equals(startPos))
-        .findFirst()
+        final ChessboardImpl chessboardCopy = copyChessboard(chessboard);
+        fromPosToPiece(startPos, chessboardCopy)
         .ifPresent(x -> chessboardCopy.moveWithoutChecks(x, destPos));
         return chessboardCopy;
     }
-    private Chessboard copyChessboard(final Chessboard chessboard) {
-        return chessboardFact.createTestCB(chessboard.getAllPieces());
+
+    private Optional<Piece> fromPosToPiece(final Position startPos, final ChessboardImpl chessboardCopy) {
+        return chessboardCopy.getAllPieces().stream()
+        .filter(x -> x.getPosition().equals(startPos))
+        .findFirst();
+    }
+    private ChessboardImpl copyChessboard(final Chessboard chessboard) {
+        return (ChessboardImpl) chessboardFact.createTestCB(chessboard.getAllPieces());
     }
     @Override
     public boolean isInCheck(final Chessboard chessboard, final Color color) {
