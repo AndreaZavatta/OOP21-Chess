@@ -87,14 +87,17 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        AbstractPiece other = (AbstractPiece) obj;
+        }
+        final AbstractPiece other = (AbstractPiece) obj;
         return color == other.color && name == other.name && Objects.equals(position, other.position);
     }
 }
