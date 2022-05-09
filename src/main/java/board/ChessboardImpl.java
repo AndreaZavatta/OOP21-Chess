@@ -58,7 +58,7 @@ class ChessboardImpl implements Chessboard {
                                             .collect(Collectors.joining(" | "));
     }
 
-    private Optional<Piece> getPieceOnPosition(final Position selectedPos) {
+    public Optional<Piece> getPieceOnPosition(final Position selectedPos) {
         return piecesList.stream()
                 .filter(t -> t.getPosition().equals(selectedPos))
                 .findFirst();
@@ -73,5 +73,8 @@ class ChessboardImpl implements Chessboard {
            this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
         }
         piece.setPosition(targetPos);
+        if (piece.isMoved()) {
+            piece.setIsMoved();
+        }
     }
 }

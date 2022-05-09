@@ -1,6 +1,7 @@
 package board;
 
 import java.util.List;
+import java.util.Optional;
 
 import exceptions.PositionNotFoundException;
 import piece.utils.Position;
@@ -37,4 +38,11 @@ public interface Chessboard {
      * @return Y border of chessboard
      */
     int getyBorder();
+
+    /**
+     * 
+     * @param selectedPos
+     * @return an optional of a piece
+     */
+    Optional<Piece> getPieceOnPosition(Position selectedPos);
 }

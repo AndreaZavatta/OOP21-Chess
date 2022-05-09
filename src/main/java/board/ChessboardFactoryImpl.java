@@ -1,5 +1,6 @@
 package board;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,18 +27,18 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         chessOnBoard.addAll(this.createBackLine(7, Color.WHITE));
         chessOnBoard.addAll(this.createPawns(1, Color.BLACK));
         chessOnBoard.addAll(this.createBackLine(0, Color.BLACK));
-        return null;
+        return new ChessboardImpl(chessOnBoard, 7, 7);
     }
 
     @Override
     public Chessboard createTestCB(final List<Piece> piecesOnBoard) {
-        return new ChessboardImpl(piecesOnBoard, 7, 7);
+        return new ChessboardImpl(this.createCopyOf(piecesOnBoard), 7, 7);
     }
 
     private List<Piece> createPawns(final int row, final Color color) {
         final PieceFactory pieceCreator = new PieceFactoryImpl();
         return Stream.iterate(0, n -> n + 1)
-                .limit(7)
+                .limit(8)
                 .<Piece>map(n -> pieceCreator.createPiece(Name.PAWN, new Position(row, n), color))
                 .collect(Collectors.toList());
     }
@@ -57,4 +58,11 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         return backLine;
     }
 
+    private List<Piece> createCopyOf(final List<Piece> originalList) {
+        final List<Piece> copy = new ArrayList<>();
+        final PieceFactory piece = new PieceFactoryImpl();
+        originalList.stream()
+            .forEach(x -> copy.add(piece.createPiece(x.getName(), x.getPosition(), x.getColor())));
+        return copy;
+    }
 }
