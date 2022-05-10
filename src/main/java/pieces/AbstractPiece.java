@@ -17,27 +17,18 @@ public abstract class AbstractPiece implements Piece {
     private final Name name;
     private Position position;
     private final Color color;
-    private final ControlCheck advancedControls;
     private boolean isMoved;
 
     AbstractPiece(final Name name, final Position position, final Color color) {
         this.name = name;
         this.position = position;
         this.color = color;
-        this.advancedControls = new ControlCheckImpl();
         this.isMoved = false;
     }
 
     @Override
     public Name getName() {
         return this.name;
-    }
-
-    @Override
-    public boolean canMove(final Position pos, final Chessboard board) {
-        final List<Position> l = this.getAdvancedControls()
-                .removeMovesInCheck(board, this);
-        return l.contains(pos);
     }
 
     @Override
@@ -55,11 +46,6 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public abstract int getValue();
-
-    @Override
-    public ControlCheck getAdvancedControls() {
-        return this.advancedControls;
-    }
 
     @Override
     public void setIsMoved() {
