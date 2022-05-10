@@ -52,7 +52,7 @@ public final class ControlsUtility {
      * @return true if the position is in the board, false otherwise.
      */
     public static boolean checkPosition(final Piece piece, final Position position, final Chessboard board) {
-        return board.getAllPieces().contains(piece) && position.getX() < 8 && position.getX() >= 0 
+        return position.getX() < 8 && position.getX() >= 0 
                 && position.getY() < 8 && position.getY() >= 0;
     }
 

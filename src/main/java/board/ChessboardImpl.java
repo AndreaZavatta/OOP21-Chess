@@ -71,7 +71,7 @@ class ChessboardImpl implements Chessboard {
            this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
         }
         piece.setPosition(targetPos);
-        if (piece.isMoved()) {
+        if (!piece.isMoved()) {
             piece.setIsMoved();
         }
     }
