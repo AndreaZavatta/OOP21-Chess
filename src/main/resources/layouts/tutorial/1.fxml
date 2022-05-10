@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TutorialController">
+   <children>
+      <Text layoutX="247.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What's chess?">
+         <font>
+            <Font name="Courier New Bold" size="40.0" />
+         </font>
+      </Text>
+      <Text layoutX="264.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chess is a strategy game played by two players. It envolves a square chessboard with 64 squares arranged in an eight-by-eight grid." textAlignment="JUSTIFY" wrappingWidth="278.803466796875">
+         <font>
+            <Font name="Courier New Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="264.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The object of the game is to checkmate the opponent's king, whereby the opponent's king is in &quot;check&quot; (under attack) and there aren't any positions for it to escape. However, the match could also end in a draw." textAlignment="JUSTIFY" wrappingWidth="278.803466796875">
+         <font>
+            <Font name="Courier New Bold" size="16.0" />
+         </font>
+      </Text>
+      <Button layoutX="555.0" layoutY="188.0" mnemonicParsing="false" onAction="#goOn" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></Button>
+      <ImageView fitHeight="342.0" fitWidth="191.0" layoutX="28.0" layoutY="31.0" preserveRatio="true">
+         <image>
+            <Image url="@../../media/chess.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
