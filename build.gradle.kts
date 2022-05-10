@@ -44,6 +44,7 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
 }
 
 tasks.withType<JavaCompile> {
