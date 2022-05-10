@@ -1,0 +1,20 @@
+.background {
+    -fx-background-color: linear-gradient(to bottom, red, crimson);
+}
+
+.button {
+    -fx-background-color: coral;
+    -fx-opacity: 0;
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
+}
+
+.chessButton  {
+    -fx-opacity: 1;
+    -fx-background-color: gold;
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
+}
+
+.button:hover {
+    -fx-opacity: 0.5;
+}
