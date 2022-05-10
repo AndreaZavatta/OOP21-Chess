@@ -49,4 +49,19 @@ class ChessboardTest {
                 () -> board.move(new Position(4, 0), new Position(2, 0)));
     }
 
+    @Test
+    void checkIfKill() throws PositionNotFoundException {
+        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.BLACK),
+                                            pieceFct.createPiece(Name.KING, new Position(1, 1), Color.BLACK),
+                                            pieceFct.createPiece(Name.ROOK, new Position(7, 0), Color.WHITE),
+                                            pieceFct.createPiece(Name.KING, new Position(7, 7), Color.WHITE));
+        final Chessboard board = chessboardFct.createTestCB(pieces);
+
+        board.move(new Position(7, 0), new Position(0, 0));
+        assertEquals(board.getPieceOnPosition(new Position(0, 0)).get(), 
+                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.WHITE));
+        assertFalse(board.getAllPieces().contains(
+                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.BLACK)));
+    }
+
 }
