@@ -1,7 +1,5 @@
 package gui.board;
 
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import piece.utils.Position;
 
