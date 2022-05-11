@@ -3,7 +3,6 @@ package pieces;
 import java.util.List;
 
 import board.Chessboard;
-import board.ControlCheck;
 import piece.utils.Color;
 import piece.utils.Name;
 import piece.utils.Position;
