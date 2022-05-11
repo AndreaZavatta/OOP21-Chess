@@ -31,8 +31,6 @@ class ChessboardTest {
         assertEquals(32, board.getAllPieces().size());
         assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Color.WHITE)).count());
         assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Color.BLACK)).count());
-
-
     }
 
     @Test
