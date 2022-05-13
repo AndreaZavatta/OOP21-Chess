@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import piece.utils.Name;
 import pieces.Piece;
@@ -23,8 +24,6 @@ import pieces.Piece;
 public class BoardController {
     @FXML
     private GridPane pane;
-    @FXML
-    private SVGPath abc;
 
     private final List<Tile> tiles = new ArrayList<>();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
@@ -44,13 +43,6 @@ public class BoardController {
 
     @FXML
     void initialize() {
-        //        SVGPath svg = new SVGPath();
-        //        svg.setContent("M150 0 L75 200 L225 200 Z");
-        //        final Region svgShape = new Region();
-        //        svgShape.setShape(svg);
-        //        svgShape.setStyle("-fx-background-color: black;");
-        //        Scene scene = new Scene(new StackPane(svgShape), 200, 200);
-        //        pane.add(svgShape, TILE_SIZE, HEIGHT);
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 final Tile t = new Tile(i, j);
@@ -62,37 +54,35 @@ public class BoardController {
             }
         }
         this.updateView();
-        //        SVGPath svg = new SVGPath();
-        //        svg.setContent("M150 0 L75 200 L225 200 Z");
-        //        final Region svgShape = new Region();
-        //        svgShape.setShape(svg);
-        //        svgShape.setStyle("-fx-background-color: black;");
-        //        Scene scene = new Scene(new StackPane(svgShape), 200, 200);
-        //        pane.add(svgShape, TILE_SIZE, HEIGHT);
-        
-
     }
 
     private void updateView() {
+        final Circle c = new Circle();
         final List<Piece> l =  board.getAllPieces();
         tiles.forEach(x -> {
             if (l.stream().map(y -> y.getPosition()).collect(Collectors.toList()).contains(x.getPosition())) {
                 final Piece p = l.stream().filter(a -> a.getPosition().equals(x.getPosition())).findFirst().get();
                 if (p.getName().equals(Name.PAWN)) {
-                    final ImagePattern i = new ImagePattern(new Image("/pieces/images/blackPawn.png"));
-                    //x.setFill(i);
+                    //final ImagePattern i = new ImagePattern(new Image("/pieces/images/blackPawn.png"));
+                    //final ImageView im = new ImageView("/pieces/images/blackPawn.png");
+                    final Image im = new Image("/pieces/images/blackPawn.png");
+                    c.setFill(new ImagePattern(im));
+                    c.setStroke(Color.BLACK);
+                    c.prefHeight(10);
+                    c.prefWidth(10);
+                    c.setOnMouseClicked(e -> System.out.println("a"));
+                    //c.set
+                    //x.setFill(c);
+                    //im.setViewport();
+                    //x.setClip(c);
                 }
             }
         });
+        pane.getChildren().add(c);
     }
 
     private void printPos(final Tile t) {
         System.out.println(t.getPosition());
         t.setFill(Color.BEIGE);
-        final String s = "M 802 1577 c -106 -39 -169 -155 -143 -265 l 12 -48 l -39 -41 c -106 -112 -125 -264 -49 -407 l 31 -58 l -29 -21 c -54 -37 -139 -132 -178 -198 c -58 -99 -98 -235 -104 -357 l -6 -102 l 583 0 l 583 0 l -6 88 c -16 234 -105 425 -256 546 l -59 48 l 28 45 c 81 127 63 300 -43 413 c -31 34 -32 36 -32 130 c 0 91 -1 97 -32 142 c -58 82 -168 118 -261 85 Z";
-        abc.setScaleX(0.1);
-        abc.setScaleY(0.1);
-        abc.setContent(s);
-        t.setClip(abc);
     }
 }
