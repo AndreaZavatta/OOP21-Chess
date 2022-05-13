@@ -68,9 +68,9 @@ public class BoardController {
 
     private void updateView() {
         final List<Piece> l =  board.getAllPieces();
-        tiles.forEach(x -> {
-            if (l.stream().map(y -> y.getPosition()).collect(Collectors.toList()).contains(x.getPosition())) {
-                final Piece p = l.stream().filter(a -> a.getPosition().equals(x.getPosition())).findFirst().get();
+        rectangle.forEach((r, pos) -> {
+            if (l.stream().map(y -> y.getPosition()).collect(Collectors.toList()).contains(pos)) {
+                final Piece p = l.stream().filter(a -> a.getPosition().equals(pos)).findFirst().get();
                 if (p.getName().equals(Name.PAWN)) {
                     //final ImagePattern i = new ImagePattern(new Image("/pieces/images/blackPawn.png"));
                     //final ImageView im = new ImageView("/pieces/images/blackPawn.png");
@@ -83,21 +83,14 @@ public class BoardController {
                     c.setOnMouseClicked(e -> System.out.println("a"));
 
                     c.setRadius(30);
-                    //                        c.setTranslateX(x);
-                    //                        c.setTranslateY(y);
-
-                    //x.setFill(c);
-                    //im.setViewport();
-                    //x.setClip(c);
-                    pane.getChildren().add(c);
+                    pane.add(c, pos.getX(), pos.getY());
                 }
             }
         });
     }
 
-    private void printPos(final Rectangle t) {
-        //System.out.println(t.getPosition());
-        System.out.println(rectangle.get(t).toString());
-        t.setFill(Color.BEIGE);
+    private void printPos(final Rectangle r) {
+        System.out.println(rectangle.get(r).toString());
+        r.setFill(Color.BEIGE);
     }
 }
