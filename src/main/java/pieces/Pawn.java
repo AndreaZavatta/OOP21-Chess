@@ -57,7 +57,7 @@ public final class Pawn extends AbstractPiece {
 
     private void goFoward(final Chessboard board, final List<Position> list, final int lenght) {
         final Position p = ControlsUtility.getNewPosition(this, 
-                new Position(lenght, 0), this.getDirection(this.getColor()));
+                new Position(0, lenght), this.getDirection(this.getColor()));
         if (ControlsUtility.checkPosition(this, p, board) 
                     && !ControlsUtility.checkPiece(this, p, board)) {
             list.add(p);
