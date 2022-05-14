@@ -20,14 +20,13 @@ public class MoveBuilder implements Move {
     private boolean isCapture = false;
     private boolean isKingsideCastling = false;
     private boolean isQueensideCastling = false;
-    
     @Override
     public Optional<Piece> getPiece() {
         return piece;
     }
 
     @Override
-    public Move setPiece(Piece piece) {
+    public Move setPiece(final Piece piece) {
         this.piece = Optional.ofNullable(piece);
         return this;
     }
@@ -36,13 +35,11 @@ public class MoveBuilder implements Move {
     public Optional<Position> getDestination() {
         return destination;
     }
-    
     @Override
-    public Move setDestination(Position destination) {
+    public Move setDestination(final Position destination) {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
-    
     @Override
     public boolean isCapture() {
         return isCapture;
@@ -71,8 +68,8 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move setQueensideCastling(boolean isQueensideCastling) {
-        this.isQueensideCastling = isQueensideCastling;
+    public Move setQueensideCastling() {
+        this.isQueensideCastling = true;
         return this;
     }
 
@@ -82,8 +79,8 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move setPromotion(boolean isPromotion) {
-        this.isPromotion = isPromotion;
+    public Move setPromotion() {
+        this.isPromotion = true;
         return this;
     }
 
@@ -93,8 +90,8 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move setDrawOffer(boolean isDrawOffer) {
-        this.isDrawOffer = isDrawOffer;
+    public Move setDrawOffer() {
+        this.isDrawOffer = true;
         return this;
     }
 
@@ -104,8 +101,8 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move setCheck(boolean isCheck) {
-        this.isCheck = isCheck;
+    public Move setCheck() {
+        this.isCheck = true;
         return this;
     }
 
@@ -115,16 +112,23 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move setCheckmate(boolean isCheckmate) {
-        this.isCheckmate = isCheckmate;
+    public Move setCheckmate() {
+        this.isCheckmate = true;
         return this;
     }
 
     @Override
-    public String build(Chessboard chessboard) throws IllegalMoveException{
-        if(this.piece.isEmpty() || this.getDestination().isEmpty()) {
+    public Move build(final Chessboard chessboard) throws IllegalMoveException {
+        if (this.piece.isEmpty() || this.getDestination().isEmpty()) {
             throw new IllegalMoveException();
         }
+        return this;
+    }
+    /**
+     * 
+     * @return the string representation of the move
+     */
+    public String toStirng() {
         return "";
     }
 
