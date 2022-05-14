@@ -76,13 +76,6 @@ public class BoardController {
                     final Image im = new Image("/pieces/images/blackPawn.png");
                     final GuiPiece c = new GuiPiece(p.getPosition().getX(), p.getPosition().getY(), new Circle());
                     c.setFill(new ImagePattern(im));
-                    //c.setStroke(Color.BLACK);
-                    c.prefHeight(10);
-                    c.prefWidth(10);
-                    c.setOnMousePressed(event -> pressed(event, c));
-                    c.setOnMouseDragged(event -> dragged(event, c));
-                    c.setOnMouseReleased(event -> released(event, c));
-                    c.setRadius(10);
                     pane.add(c, pos.getX(), pos.getY());
                 }
             }
@@ -94,22 +87,5 @@ public class BoardController {
         r.setFill(Color.BEIGE);
     }
 
-    private void pressed(final MouseEvent event, final GuiPiece c) {
-        c.setFill(Color.DARKGOLDENROD);
-        System.out.println(c.getPosition());
-    }
 
-    private void dragged(final MouseEvent event, final GuiPiece c) {
-        c.setX(c.getX() + event.getX());
-        c.setX(c.getY() + event.getY());
-        c.draw();
-    }
-
-    private void released(final MouseEvent event, final GuiPiece p) {
-        final int gridx = (int) p.getX() / TILE_SIZE;
-        final int gridy = (int) p.getY() / TILE_SIZE;
-        p.setX(TILE_SIZE / 2 + TILE_SIZE * gridx);
-        p.setY(TILE_SIZE / 2 + TILE_SIZE * gridy);
-        p.draw();
-    }
 }
