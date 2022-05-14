@@ -45,4 +45,11 @@ public interface Chessboard {
      * @return an optional of a piece
      */
     Optional<Piece> getPieceOnPosition(Position selectedPos);
+
+    /**
+     * 
+     * @param attacker
+     * @return a list of all possible position
+     */
+    List<Position> getAllPosition(Piece attacker);
 }

@@ -32,9 +32,8 @@ class ChessboardImpl implements Chessboard {
 
     @Override
     public void move(final Position actualPos, final Position finalPos) throws PositionNotFoundException {
-        final ControlCheck movesController = new ControlCheckImpl();
         final Piece attacker = this.getPieceOnPosition(actualPos).get();
-        if (movesController.removeMovesInCheck(this, attacker).contains(finalPos)) {
+        if (this.getAllPosition(attacker).contains(finalPos)) {
             this.moveWithoutChecks(attacker, finalPos);
         } else {
             throw new PositionNotFoundException();
@@ -60,6 +59,12 @@ class ChessboardImpl implements Chessboard {
         return piecesList.stream()
                 .filter(t -> t.getPosition().equals(selectedPos))
                 .findFirst();
+    }
+
+    @Override
+    public List<Position> getAllPosition(final Piece attacker) {
+        final ControlCheck movesController = new ControlCheckImpl();
+        return movesController.removeMovesInCheck(this, attacker);
     }
 
     private boolean canKill(final Position targetPos) {
