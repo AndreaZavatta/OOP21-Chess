@@ -28,7 +28,7 @@ public class GuiPiece extends Circle {
         this.setOnMousePressed(event -> pressed(this));
         this.setOnMouseDragged(event -> dragged(event, this));
         this.setOnMouseReleased(event -> released(this));
-        this.setRadius(10);
+        this.setRadius(30);
     }
     /**
      * 
