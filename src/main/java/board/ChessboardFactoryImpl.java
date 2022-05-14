@@ -39,7 +39,7 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         final PieceFactory pieceCreator = new PieceFactoryImpl();
         return Stream.iterate(0, n -> n + 1)
                 .limit(8)
-                .<Piece>map(n -> pieceCreator.createPiece(Name.PAWN, new Position(row, n), color))
+                .<Piece>map(n -> pieceCreator.createPiece(Name.PAWN, new Position(n, row), color))
                 .collect(Collectors.toList());
     }
 
@@ -47,14 +47,14 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         final PieceFactory pieceCreator = new PieceFactoryImpl();
         final List<Piece> backLine = new LinkedList<>();
         int n = 0;
-        backLine.add(pieceCreator.createPiece(Name.ROOK, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.KNIGHT, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.BISHOP, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.QUEEN, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.KING, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.BISHOP, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.KNIGHT, new Position(row, n++), color));
-        backLine.add(pieceCreator.createPiece(Name.ROOK, new Position(row, n), color));
+        backLine.add(pieceCreator.createPiece(Name.ROOK, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.KNIGHT, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.BISHOP, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.QUEEN, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.KING, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.BISHOP, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.KNIGHT, new Position(n++, row), color));
+        backLine.add(pieceCreator.createPiece(Name.ROOK, new Position(n, row), color));
         return backLine;
     }
 

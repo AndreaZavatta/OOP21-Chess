@@ -37,25 +37,25 @@ class ChessboardTest {
     void tryIllegalMove() throws PositionNotFoundException {
         final Chessboard board = chessboardFct.createNormalCB();
 
-        assertTrue(board.getPieceOnPosition(new Position(6, 0)).isPresent());
-        assertFalse(board.getPieceOnPosition(new Position(4, 0)).isPresent());
-        board.move(new Position(6, 0), new Position(4, 0));
-        assertFalse(board.getPieceOnPosition(new Position(6, 0)).isPresent());
-        assertTrue(board.getPieceOnPosition(new Position(4, 0)).isPresent());
+        assertTrue(board.getPieceOnPosition(new Position(0, 6)).isPresent());
+        assertFalse(board.getPieceOnPosition(new Position(0, 4)).isPresent());
+        board.move(new Position(0, 6), new Position(0, 4));
+        assertFalse(board.getPieceOnPosition(new Position(0, 6)).isPresent());
+        assertTrue(board.getPieceOnPosition(new Position(0, 4)).isPresent());
 
         assertThrows(PositionNotFoundException.class, 
-                () -> board.move(new Position(4, 0), new Position(2, 0)));
+                () -> board.move(new Position(0, 4), new Position(0, 2)));
     }
 
     @Test
     void checkIfKill() throws PositionNotFoundException {
         final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.BLACK),
                                             pieceFct.createPiece(Name.KING, new Position(1, 1), Color.BLACK),
-                                            pieceFct.createPiece(Name.ROOK, new Position(7, 0), Color.WHITE),
+                                            pieceFct.createPiece(Name.ROOK, new Position(0, 7), Color.WHITE),
                                             pieceFct.createPiece(Name.KING, new Position(7, 7), Color.WHITE));
         final Chessboard board = chessboardFct.createTestCB(pieces);
 
-        board.move(new Position(7, 0), new Position(0, 0));
+        board.move(new Position(0, 7), new Position(0, 0));
         assertEquals(board.getPieceOnPosition(new Position(0, 0)).get(), 
                     pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.WHITE));
         assertFalse(board.getAllPieces().contains(
