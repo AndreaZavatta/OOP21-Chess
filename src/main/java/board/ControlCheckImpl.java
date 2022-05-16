@@ -4,7 +4,6 @@ import static piece.utils.Name.KING;
 import piece.utils.Side;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import piece.utils.Position;
 import exceptions.KingNotFoundException;
 import pieces.Piece;
@@ -19,7 +18,7 @@ public class ControlCheckImpl implements ControlCheck {
     @Override
     public List<Position> controlledMoves(final Chessboard chessboard, final Piece piece) {
         final List<Position> avaliableMoves = new ArrayList<>(piece.getAllPossiblePositions(chessboard));
-        avaliableMoves.removeIf(x -> this.isMoveInCheck(chessboard, piece, x));
+        avaliableMoves.removeIf(x -> isMoveInCheck(chessboard, piece, x));
         return avaliableMoves;
     }
 
@@ -28,7 +27,7 @@ public class ControlCheckImpl implements ControlCheck {
     }
     private Chessboard simulateMove(final Chessboard chessboard, final Piece piece, final Position destPos) {
         final ChessboardImpl chessboardCopy = copyChessboard(chessboard);
-        chessboardCopy.getAllPieces().stream().filter(x -> x.getPosition() == piece.getPosition())
+        chessboardCopy.getAllPieces().stream().filter(x -> x.getPosition().equals(piece.getPosition()))
         .findFirst()
         .ifPresent(x -> chessboardCopy.moveWithoutChecks(x, destPos));
         return chessboardCopy;
