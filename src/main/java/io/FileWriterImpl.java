@@ -29,10 +29,9 @@ public class FileWriterImpl<T extends Serializable> implements FileWriter<T> {
 
     @Override
     public void writeFile(final T obj) throws IOException {
-            final String jsonString = jSerializer.serialize(obj);
             final FileOutputStream file = new FileOutputStream(cd + fs + fileName);
             try (var a = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8))) {
-                a.write(jsonString);
+                a.write(jSerializer.serialize(obj));
             }
     }
 
