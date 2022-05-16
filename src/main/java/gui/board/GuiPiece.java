@@ -75,14 +75,14 @@ public class GuiPiece extends Circle {
     }
 
     private void pressed(final GuiPiece c) {
-        //c.setFill(Color.DARKGOLDENROD);
+        c.setFill(Color.DARKGOLDENROD);
         System.out.println(c.getPosition());
     }
 
     private void dragged(final MouseEvent event, final GuiPiece c) {
         c.setX(c.getX() + event.getX());
         c.setX(c.getY() + event.getY());
-        //c.draw();
+        c.draw();
     }
 
     private void released(final GuiPiece p) {
@@ -90,6 +90,6 @@ public class GuiPiece extends Circle {
         final int gridy = (int) p.getY() / BoardController.TILE_SIZE;
         p.setX(BoardController.TILE_SIZE / 2 + BoardController.TILE_SIZE * gridx);
         p.setY(BoardController.TILE_SIZE / 2 + BoardController.TILE_SIZE * gridy);
-        //p.draw();
+        p.draw();
     }
 }
