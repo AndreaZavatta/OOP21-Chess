@@ -1,8 +1,6 @@
 package gui.board;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -12,14 +10,11 @@ import board.ChessboardFactoryImpl;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import piece.utils.Name;
-import pieces.Piece;
 import piece.utils.Position;
 
 /**
@@ -30,10 +25,11 @@ public class BoardController {
     @FXML
     private Pane pane;
 
-    private final Map<Rectangle, Position> rectangle = new HashMap<>();
+    //private final Map<Rectangle, Position> rectangle = new HashMap<>();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
-    private final List<GuiPiece> guipiece = new ArrayList<>();
+    //private final List<GuiPiece> guipiece = new ArrayList<>();
+
     private final Map<Position, Rectangle> map = new HashMap<>();
     /**
      * The tile size.
@@ -116,7 +112,9 @@ public class BoardController {
             }
         }
         final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 7, TILE_SIZE / 2 + TILE_SIZE * 7, 20);
-        c.setFill(Color.BLUE);
+        final Image im = new Image("/pieces/images/blackPawn.png");
+        c.setFill(new ImagePattern(im));
+        //c.setFill(Color.BLUE);
         c.setOnMouseDragged(x -> dragged(x, c));
         c.setOnMouseReleased(event -> released(c));
         pane.getChildren().add(c);
@@ -133,7 +131,14 @@ public class BoardController {
         p.setCenterX(TILE_SIZE / 2 + TILE_SIZE * x);
         p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
         final Position finalPosition = new Position(x, y);
-        map.get(finalPosition).setFill(Color.RED);
         System.out.println(finalPosition);
+        lightRectangle(finalPosition);
+        //return finalPosition;
+    }
+
+    private void lightRectangle(final Position finalPosition) {
+        if (board.getAllPieces().stream().map(g -> g.getPosition()).collect(Collectors.toList()).contains(finalPosition)) {
+            map.get(finalPosition).setFill(Color.RED);
+        }
     }
 }
