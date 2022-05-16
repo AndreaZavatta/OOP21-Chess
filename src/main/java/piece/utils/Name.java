@@ -14,7 +14,7 @@ public enum Name {
     PAWN {
         @Override
         public List<Position> directions() {
-            return List.of(new Position(+1, +1), new Position(+1, -1));
+            return List.of(new Position(+1, +1), new Position(-1, +1));
         }
     },
     /**
