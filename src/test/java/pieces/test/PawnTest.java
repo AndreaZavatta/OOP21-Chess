@@ -168,4 +168,28 @@ class PawnTest {
         assertTrue(pawn.isMoved());
     }
 
+    @Test
+    void testBlackPawnOnEdgeNoPositionPossible() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of();
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(7, 7), Side.BLACK);
+        list.add(pawn);
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
+    }
+
+    @Test
+    void testWhitePawnOnEdgeNoPositionPossible() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of();
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 0), Side.WHITE);
+        list.add(pawn);
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
+    }
+
 }
