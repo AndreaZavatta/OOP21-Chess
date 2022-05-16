@@ -17,7 +17,7 @@ import pieces.Piece;
 public class ControlCheckImpl implements ControlCheck {
   private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override
-    public List<Position> removeMovesInCheck(final Chessboard chessboard, final Piece piece) {
+    public List<Position> controlledMoves(final Chessboard chessboard, final Piece piece) {
         final List<Position> avaliableMoves = new ArrayList<>(piece.getAllPossiblePositions(chessboard));
         avaliableMoves.removeIf(x -> this.isMoveInCheck(chessboard, piece, x));
         return avaliableMoves;

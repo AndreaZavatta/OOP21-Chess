@@ -61,7 +61,7 @@ class ControlCheckTest {
         final Piece blackBishop = pieceFactory.createPiece(BISHOP, new Position(3, 0), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(4, 0), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackBishop, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackBishop);
+        final List<Position> pos = control.controlledMoves(chessboard, blackBishop);
         assertEquals(pos, List.of());
     }
     @Test
@@ -70,7 +70,7 @@ class ControlCheckTest {
         final Piece blackBishop = pieceFactory.createPiece(BISHOP, new Position(3, 0), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(4, 2), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackBishop, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackBishop);
+        final List<Position> pos = control.controlledMoves(chessboard, blackBishop);
         assertTrue(pos.containsAll(List.of(new Position(5, 2), new Position(4, 1), new Position(6, 3), new Position(7, 4), new Position(2, 1), new Position(1, 2), new Position(0,3))));
     }
     @Test
@@ -79,7 +79,7 @@ class ControlCheckTest {
         final Piece blackRook = pieceFactory.createPiece(ROOK, new Position(4, 1), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(0, 2), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackRook, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackRook);
+        final List<Position> pos = control.controlledMoves(chessboard, blackRook);
         assertEquals(pos, List.of(new Position(0, 1)));
     }
     @Test
@@ -87,7 +87,7 @@ class ControlCheckTest {
         final Piece blackKing = pieceFactory.createPiece(KING, new Position(0, 0), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(0, 2), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackKing);
+        final List<Position> pos = control.controlledMoves(chessboard, blackKing);
         assertTrue(pos.containsAll(List.of(new Position(1, 1), new Position(1, 0))));
     }
     @Test
@@ -96,7 +96,7 @@ class ControlCheckTest {
         final Piece blackKinght = pieceFactory.createPiece(KNIGHT, new Position(4, 5), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(2, 5), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackKinght, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackKinght);
+        final List<Position> pos = control.controlledMoves(chessboard, blackKinght);
         assertEquals(pos, List.of(new Position(2, 4)));
     }
     @Test
@@ -105,7 +105,7 @@ class ControlCheckTest {
         final Piece blackKinght = pieceFactory.createPiece(KNIGHT, new Position(4, 4), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(2, 5), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackKinght, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackKinght);
+        final List<Position> pos = control.controlledMoves(chessboard, blackKinght);
         assertTrue(pos.containsAll(List.of(new Position(2, 3), new Position(2, 5))));
     }
     @Test
@@ -114,7 +114,7 @@ class ControlCheckTest {
         final Piece blackQueen = pieceFactory.createPiece(QUEEN, new Position(2, 3), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(2, 5), WHITE);
         chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackQueen, whiteRook));
-        final List<Position> pos = control.removeMovesInCheck(chessboard, blackQueen);
+        final List<Position> pos = control.controlledMoves(chessboard, blackQueen);
         assertTrue(pos.containsAll(List.of(new Position(2, 2), new Position(2, 5), new Position(2, 4))));
     }
 

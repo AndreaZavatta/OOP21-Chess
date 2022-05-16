@@ -64,7 +64,7 @@ class ChessboardImpl implements Chessboard {
     @Override
     public List<Position> getAllPosition(final Piece attacker) {
         final ControlCheck movesController = new ControlCheckImpl();
-        return movesController.removeMovesInCheck(this, attacker);
+        return movesController.controlledMoves(this, attacker);
     }
 
     private boolean canKill(final Position targetPos) {
