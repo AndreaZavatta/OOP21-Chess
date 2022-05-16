@@ -105,8 +105,8 @@ public class BoardController {
 
     @FXML
     void initialize() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
                 map.put(new Position(i, j), r);
