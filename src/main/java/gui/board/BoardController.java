@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -27,17 +28,18 @@ import piece.utils.Position;
  */
 public class BoardController {
     @FXML
-    private GridPane pane;
+    private Pane pane;
 
     private final List<Tile> tiles = new ArrayList<>();
     private final Map<Rectangle, Position> rectangle = new HashMap<>();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
     private final List<GuiPiece> guipiece = new ArrayList<>();
+    private final Map<Position, Rectangle> map = new HashMap<>();
     /**
      * The tile size.
      */
-    public static final int TILE_SIZE = 600 / 8;
+    public static final int TILE_SIZE = 400 / 8;
     /**
      * The width of the board.
      */
@@ -104,28 +106,35 @@ public class BoardController {
 
     @FXML
     void initialize() {
-        int count = 0;
         for (int i = 0; i < 8; i++) {
-            count++;
             for (int j = 0; j < 8; j++) {
-                final Rectangle r = new Rectangle(i, j, TILE_SIZE, TILE_SIZE);
-                if (count % 2 == 0) {
-                    r.setFill(Color.GREENYELLOW);
-                } else {
-                    r.setFill(Color.BEIGE);
-                }
+                final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
+                        TILE_SIZE, TILE_SIZE);
+                map.put(new Position(i, j), r);
+                r.setFill(Color.BEIGE);
                 r.setStroke(Color.BLACK);
-                rectangle.put(r, new Position(i, j));
-                r.setOnMousePressed(e -> printPos(r));
-                //pane.add(r, i, j);
-                GridPane.setConstraints(r, i, j);
                 pane.getChildren().add(r);
-                count++;
             }
         }
+        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 7, TILE_SIZE / 2 + TILE_SIZE * 7, 20);
+        c.setFill(Color.BLUE);
+        c.setOnMouseDragged(x -> dragged(x, c));
+        c.setOnMouseReleased(event -> released(c));
+        pane.getChildren().add(c);
     }
 
-    private void printPos(final Rectangle r) {
-        System.out.println(rectangle.get(r).toString());
+    private void dragged(final MouseEvent event, final Circle p) {
+        p.setCenterX(event.getX());
+        p.setCenterY(event.getY());
+    }
+
+    private void released(final Circle p) {
+        final int x = (int) p.getCenterX() / TILE_SIZE;
+        final int y = (int) p.getCenterY() / TILE_SIZE;
+        p.setCenterX(TILE_SIZE / 2 + TILE_SIZE * x);
+        p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
+        final Position finalPosition = new Position(x, y);
+        map.get(finalPosition).setFill(Color.RED);
+        System.out.println(finalPosition);
     }
 }
