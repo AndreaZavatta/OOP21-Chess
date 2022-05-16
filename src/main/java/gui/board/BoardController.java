@@ -30,7 +30,6 @@ public class BoardController {
     @FXML
     private Pane pane;
 
-    private final List<Tile> tiles = new ArrayList<>();
     private final Map<Rectangle, Position> rectangle = new HashMap<>();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
