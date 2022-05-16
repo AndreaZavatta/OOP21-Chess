@@ -41,14 +41,11 @@ public class MoveBuilder implements Move {
         return this;
     }
 
-
     @Override
     public Move setCapture() {
         this.capture = true;
         return this;
     }
-
-
 
     @Override
     public Move setKingsideCastling() {
@@ -56,13 +53,11 @@ public class MoveBuilder implements Move {
         return this;
     }
 
-
     @Override
     public Move setQueensideCastling() {
         queenSideCastling = true;
         return this;
     }
-
 
     @Override
     public Move setPromotion(final Piece piece) {
@@ -70,20 +65,17 @@ public class MoveBuilder implements Move {
         return this;
     }
 
-
     @Override
     public Move setDrawOffer() {
         this.drawOffer = true;
         return this;
     }
 
-
     @Override
     public Move setCheck() {
         this.check = true;
         return this;
     }
-
 
     @Override
     public Move setCheckmate() {
@@ -105,18 +97,15 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
-        setRankAndFile(chessboard);
+        List<Piece> pieces = piecesSameTypeCanGoDestPos(chessboard);
+        findPiecesSameRank(pieces).ifPresent(x -> setRank());
+        findPiecesSameFile(pieces).ifPresent(x -> setFile());
         return this;
     }
     /*
      * function that check if there is the same piece in the same row or column that can go in the same destination
      * update the rank and file field
      * */
-    private void setRankAndFile(final Chessboard chessboard) {
-        List<Piece> pieces = piecesSameTypeCanGoDestPos(chessboard);
-        findPiecesSameRank(pieces).ifPresent(x -> setRank());
-        findPiecesSameFile(pieces).ifPresent(x -> setFile());
-    }
 
     private Optional<Piece> findPiecesSameRank(final List<Piece> pieces) {
         return pieces.stream()
