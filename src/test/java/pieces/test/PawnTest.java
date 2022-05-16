@@ -51,7 +51,7 @@ class PawnTest {
     @Test
     void testOnePositionMovementWhitePawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(2, 3));
+        final List<Position> l = List.of(new Position(2, 1));
         final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.WHITE);
         list.add(pawn);
         assertFalse(pawn.isMoved());
@@ -70,6 +70,22 @@ class PawnTest {
         pawn.setIsMoved();
         assertTrue(pawn.isMoved());
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+    }
+
+    @Test
+    void testGoFowardTwoTilesAndCanEatLeftAndRightBlackPawn() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(3, 3), new Position(1, 3), new Position(2, 3), new Position(2, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.WHITE);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(1, 3), Side.WHITE);
+        list.add(pawn);
+        list.add(bishop1);
+        list.add(bishop);
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
     }
 
 }
