@@ -104,4 +104,68 @@ class PawnTest {
         assertTrue(pawn.isMoved());
     }
 
+    @Test
+    void testGoFowardOneTileAndCanEatLeftAndRightWhitePawn() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(4, 4), new Position(6, 4), new Position(5, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(5, 5), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 4), Side.BLACK);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(6, 4), Side.BLACK);
+        list.add(pawn);
+        list.add(bishop1);
+        list.add(bishop);
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+    }
+
+    @Test
+    void testGoFowardOneTileAndCanEatLeftAndRightBlackPawn() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(3, 3), new Position(1, 3), new Position(2, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.WHITE);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(1, 3), Side.WHITE);
+        list.add(pawn);
+        list.add(bishop1);
+        list.add(bishop);
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+    }
+
+    @Test
+    void testGoFowardTwoTilesAndCantEatBlackPawn() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(2, 3), new Position(2, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.BLACK);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(1, 3), Side.BLACK);
+        list.add(pawn);
+        list.add(bishop1);
+        list.add(bishop);
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
+    }
+
+    @Test
+    void testGoFowardTwoTilesAndCantEatWhitePawn() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(5, 4), new Position(5, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(5, 5), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 4), Side.WHITE);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(6, 4), Side.WHITE);
+        list.add(pawn);
+        list.add(bishop1);
+        list.add(bishop);
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+        assertFalse(pawn.isMoved());
+        pawn.setIsMoved();
+        assertTrue(pawn.isMoved());
+    }
+
 }
