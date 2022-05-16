@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import board.Chessboard;
 import piece.utils.Position;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 
 /**
@@ -25,7 +25,7 @@ public class Queen extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Queen(final Position position, final Color color) {
+    protected Queen(final Position position, final Side color) {
         super(Name.QUEEN, position, color);
         this.bishop = new Bishop(position, color);
         this.rook = new Rook(position, color);

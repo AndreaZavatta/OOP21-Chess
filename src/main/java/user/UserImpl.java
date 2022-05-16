@@ -1,6 +1,6 @@
 package user;
 
-import piece.utils.Color;
+import piece.utils.Side;
 
 /**
  * 
@@ -9,7 +9,7 @@ import piece.utils.Color;
  */
 public class UserImpl implements User {
     private final String name;
-    private final Color userColor;
+    private final Side userColor;
     private boolean isWinner;
 
     /**
@@ -17,7 +17,7 @@ public class UserImpl implements User {
      * @param name
      * @param userColor
      */
-    public UserImpl(final String name, final Color userColor) {
+    public UserImpl(final String name, final Side userColor) {
         super();
         this.name = name;
         this.userColor = userColor;
@@ -30,7 +30,7 @@ public class UserImpl implements User {
     }
 
     @Override
-    public Color getColor() {
+    public Side getColor() {
         return this.userColor;
     }
 

@@ -1,6 +1,6 @@
 package board;
 
-import piece.utils.Color;
+import piece.utils.Side;
 import java.util.List;
 import piece.utils.Position;
 import pieces.Piece;
@@ -24,5 +24,5 @@ public interface ControlCheck {
      * @param color
      * @return boolean
      */
-    boolean isInCheck(Chessboard chessboard, Color color);
+    boolean isInCheck(Chessboard chessboard, Side color);
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 import board.Chessboard;
 import piece.utils.Position;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
 
@@ -24,7 +24,7 @@ public final class Knight extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Knight(final Position position, final Color color) {
+    protected Knight(final Position position, final Side color) {
         super(Name.KNIGHT, position, color);
     }
 

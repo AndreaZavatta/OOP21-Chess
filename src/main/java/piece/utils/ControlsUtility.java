@@ -22,7 +22,7 @@ public final class ControlsUtility {
      * @return true if the position in occupied by an enemy, false otherwise.
      */
     public static boolean checkEnemy(final Piece piece, final Position position, final Chessboard board) {
-        final Color s = board.getAllPieces().stream()
+        final Side s = board.getAllPieces().stream()
                 .filter(x -> x.getPosition().equals(position))
                 .map(x -> x.getColor())
                 .findFirst().get();

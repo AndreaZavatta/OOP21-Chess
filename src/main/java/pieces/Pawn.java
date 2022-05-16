@@ -6,7 +6,7 @@ import java.util.List;
 
 import board.Chessboard;
 import piece.utils.Position;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
 
@@ -24,7 +24,7 @@ public final class Pawn extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Pawn(final Position position, final Color color) {
+    protected Pawn(final Position position, final Side color) {
         super(Name.PAWN, position, color);
     }
 
@@ -64,8 +64,8 @@ public final class Pawn extends AbstractPiece {
         }
     }
 
-    private int getDirection(final Color color) {
-        return color.equals(Color.BLACK) ? +1 : -1;
+    private int getDirection(final Side color) {
+        return color.equals(Side.BLACK) ? +1 : -1;
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 import piece.utils.Position;
 import pieces.Piece;
@@ -23,10 +23,10 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
 
     @Override
     public Chessboard createNormalCB() {
-        final List<Piece> chessOnBoard = this.createPawns(6, Color.WHITE);
-        chessOnBoard.addAll(this.createBackLine(7, Color.WHITE));
-        chessOnBoard.addAll(this.createPawns(1, Color.BLACK));
-        chessOnBoard.addAll(this.createBackLine(0, Color.BLACK));
+        final List<Piece> chessOnBoard = this.createPawns(6, Side.WHITE);
+        chessOnBoard.addAll(this.createBackLine(7, Side.WHITE));
+        chessOnBoard.addAll(this.createPawns(1, Side.BLACK));
+        chessOnBoard.addAll(this.createBackLine(0, Side.BLACK));
         return new ChessboardImpl(chessOnBoard, 7, 7);
     }
 
@@ -35,7 +35,7 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         return new ChessboardImpl(this.createCopyOf(piecesOnBoard), 7, 7);
     }
 
-    private List<Piece> createPawns(final int row, final Color color) {
+    private List<Piece> createPawns(final int row, final Side color) {
         final PieceFactory pieceCreator = new PieceFactoryImpl();
         return Stream.iterate(0, n -> n + 1)
                 .limit(8)
@@ -43,7 +43,7 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
                 .collect(Collectors.toList());
     }
 
-    private List<Piece> createBackLine(final int row, final Color color) {
+    private List<Piece> createBackLine(final int row, final Side color) {
         final PieceFactory pieceCreator = new PieceFactoryImpl();
         final List<Piece> backLine = new LinkedList<>();
         int n = 0;

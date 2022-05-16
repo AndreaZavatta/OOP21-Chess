@@ -1,7 +1,7 @@
 package pieces;
 
 import piece.utils.Position;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 
 /**
@@ -18,5 +18,5 @@ public interface PieceFactory {
      * @param color the color of the piece.
      * @return given a name, return a Piece object.
      */
-    Piece createPiece(Name name, Position position, Color color);
+    Piece createPiece(Name name, Position position, Side color);
 }

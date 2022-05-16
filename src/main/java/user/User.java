@@ -1,6 +1,6 @@
 package user;
 
-import piece.utils.Color;
+import piece.utils.Side;
 
 /**
  * 
@@ -18,7 +18,7 @@ public interface User {
      * 
      * @return the color of user pieces
      */
-    Color getColor();
+    Side getColor();
 
     /**
      * set user as winner.

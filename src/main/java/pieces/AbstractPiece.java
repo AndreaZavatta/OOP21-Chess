@@ -7,7 +7,7 @@ import board.Chessboard;
 import board.ControlCheck;
 import board.ControlCheckImpl;
 import piece.utils.Position;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 /**
  * An abstract class that implements the Piece interface.
@@ -16,10 +16,10 @@ import piece.utils.Name;
 public abstract class AbstractPiece implements Piece {
     private final Name name;
     private Position position;
-    private final Color color;
+    private final Side color;
     private boolean isMoved;
 
-    AbstractPiece(final Name name, final Position position, final Color color) {
+    AbstractPiece(final Name name, final Position position, final Side color) {
         this.name = name;
         this.position = position;
         this.color = color;
@@ -40,7 +40,7 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public Color getColor() {
+    public Side getColor() {
         return this.color;
     }
 

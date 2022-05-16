@@ -13,7 +13,7 @@ import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import exceptions.PositionNotFoundException;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 import piece.utils.Position;
 import pieces.Piece;
@@ -29,8 +29,8 @@ class ChessboardTest {
     void creationChessboard() {
         final Chessboard board = chessboardFct.createNormalCB();
         assertEquals(32, board.getAllPieces().size());
-        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Color.WHITE)).count());
-        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Color.BLACK)).count());
+        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Side.WHITE)).count());
+        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Side.BLACK)).count());
     }
 
     @Test
@@ -49,17 +49,17 @@ class ChessboardTest {
 
     @Test
     void checkIfKill() throws PositionNotFoundException {
-        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.BLACK),
-                                            pieceFct.createPiece(Name.KING, new Position(1, 1), Color.BLACK),
-                                            pieceFct.createPiece(Name.ROOK, new Position(0, 7), Color.WHITE),
-                                            pieceFct.createPiece(Name.KING, new Position(7, 7), Color.WHITE));
+        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
+                                            pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
+                                            pieceFct.createPiece(Name.ROOK, new Position(0, 7), Side.WHITE),
+                                            pieceFct.createPiece(Name.KING, new Position(7, 7), Side.WHITE));
         final Chessboard board = chessboardFct.createTestCB(pieces);
 
         board.move(new Position(0, 7), new Position(0, 0));
         assertEquals(board.getPieceOnPosition(new Position(0, 0)).get(), 
-                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.WHITE));
+                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.WHITE));
         assertFalse(board.getAllPieces().contains(
-                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Color.BLACK)));
+                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK)));
     }
 
 }

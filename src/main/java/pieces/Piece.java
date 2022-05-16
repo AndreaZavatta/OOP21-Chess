@@ -3,7 +3,7 @@ package pieces;
 import java.util.List;
 
 import board.Chessboard;
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 import piece.utils.Position;
 
@@ -32,7 +32,7 @@ public interface Piece {
      * 
      * @return the color of the piece.
      */
-    Color getColor();
+    Side getColor();
     /**
      * 
      * @return the value of the piece.

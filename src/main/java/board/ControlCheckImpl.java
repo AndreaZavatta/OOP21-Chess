@@ -1,7 +1,7 @@
 package board;
 
 import static piece.utils.Name.KING;
-import piece.utils.Color;
+import piece.utils.Side;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +42,7 @@ public class ControlCheckImpl implements ControlCheck {
         return (ChessboardImpl) chessboardFact.createTestCB(chessboard.getAllPieces());
     }
     @Override
-    public boolean isInCheck(final Chessboard chessboard, final Color color) {
+    public boolean isInCheck(final Chessboard chessboard, final Side color) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getColor().equals(color))
                 .anyMatch(x -> canEatKing(chessboard, x));

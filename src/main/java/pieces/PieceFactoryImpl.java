@@ -1,6 +1,6 @@
 package pieces;
 
-import piece.utils.Color;
+import piece.utils.Side;
 import piece.utils.Name;
 import piece.utils.Position;
 /**
@@ -10,7 +10,7 @@ import piece.utils.Position;
 public class PieceFactoryImpl implements PieceFactory {
 
     @Override
-    public Piece createPiece(final Name name, final Position position, final Color color) {
+    public Piece createPiece(final Name name, final Position position, final Side color) {
         switch (name) {
         case QUEEN: 
             return new Queen(position, color);

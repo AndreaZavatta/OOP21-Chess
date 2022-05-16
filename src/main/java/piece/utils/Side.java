@@ -1,9 +1,9 @@
 package piece.utils;
 /**
- * A standard enum class for the piece colors.
+ * A standard enum class for the piece side.
  *
  */
-public enum Color {
+public enum Side {
     /**
      * Black piece color.
      */

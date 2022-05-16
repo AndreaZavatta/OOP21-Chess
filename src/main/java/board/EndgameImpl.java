@@ -1,6 +1,6 @@
 package board;
 
-import piece.utils.Color;
+import piece.utils.Side;
 import java.util.List;
 import piece.utils.Position;
 import pieces.King;
