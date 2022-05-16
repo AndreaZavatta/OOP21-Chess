@@ -19,6 +19,14 @@ import javafx.stage.Stage;
 public class TutorialController {
 
     @FXML
+    private Button pawn;
+    private Button bishop;
+    private Button knight;
+    private Button rook;
+    private Button queen;
+    private Button king;
+
+    @FXML
     void openSlide(final ActionEvent event) {
 
         try {
@@ -49,121 +57,121 @@ public class TutorialController {
             System.out.println(e);
         }
     }
-//
-//    @FXML
-//    void goBack(final ActionEvent event) {
-//
-//    }
+
+    @FXML
+    void goBack(final ActionEvent event) {
+
+    }
 
     @FXML
     void showPiece(final ActionEvent event) {
-        Button caller = (Button)event.getSource();
+        Button caller = (Button) event.getSource();
         System.out.println(caller.getId());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/"+ caller.getId()+".fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Chess Pieces");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
+//  void showBishop(final ActionEvent event) {
+//      showPiece("Bishop", event);
+//  }
+
+//    @FXML
+//    void showBishop(final ActionEvent event) {
 //        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/"+piece+".fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Bishop.fxml"));
 //            Parent root = (Parent) loader.load();
 //            Stage stage = new Stage();
-//            stage.setTitle("Pieces");
+//            stage.setTitle("Stats");
 //            stage.setScene(new Scene(root));
 //            stage.show();
 //            ((Node) (event.getSource())).getScene().getWindow().hide();
 //        } catch (Exception e) {
 //            System.out.println(e);
 //        }
-    }
-    
-
-  void showBishop(final ActionEvent event) {
-      showPiece("Bishop", event);
-  }
-    
-    @FXML
-    void showBishop(final ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Bishop.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @FXML
-    void showKing(final ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/King.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @FXML
-    void showKnight(final ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Knight.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @FXML
-    void showPawn(final ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Pawn.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @FXML
-    void showQueen(final ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Queen.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @FXML
-    void showRook(final ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Rook.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+//    }
+//
+//    @FXML
+//    void showKing(final ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/King.fxml"));
+//            Parent root = (Parent) loader.load();
+//            Stage stage = new Stage();
+//            stage.setTitle("Stats");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//            ((Node) (event.getSource())).getScene().getWindow().hide();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//
+//    @FXML
+//    void showKnight(final ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Knight.fxml"));
+//            Parent root = (Parent) loader.load();
+//            Stage stage = new Stage();
+//            stage.setTitle("Stats");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//            ((Node) (event.getSource())).getScene().getWindow().hide();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//
+//    @FXML
+//    void showPawn(final ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Pawn.fxml"));
+//            Parent root = (Parent) loader.load();
+//            Stage stage = new Stage();
+//            stage.setTitle("Stats");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//            ((Node) (event.getSource())).getScene().getWindow().hide();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//
+//    @FXML
+//    void showQueen(final ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Queen.fxml"));
+//            Parent root = (Parent) loader.load();
+//            Stage stage = new Stage();
+//            stage.setTitle("Stats");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//            ((Node) (event.getSource())).getScene().getWindow().hide();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//
+//    @FXML
+//    void showRook(final ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/Rook.fxml"));
+//            Parent root = (Parent) loader.load();
+//            Stage stage = new Stage();
+//            stage.setTitle("Stats");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//            ((Node) (event.getSource())).getScene().getWindow().hide();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
 }
