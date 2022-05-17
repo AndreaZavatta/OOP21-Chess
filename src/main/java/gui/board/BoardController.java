@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Popup;
 import piece.utils.Position;
 
 /**
@@ -25,12 +26,12 @@ public class BoardController {
     @FXML
     private Pane pane;
 
-    //private final Map<Rectangle, Position> rectangle = new HashMap<>();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
-    //private final List<GuiPiece> guipiece = new ArrayList<>();
 
     private final Map<Position, Rectangle> map = new HashMap<>();
+    private double lastX;
+    private double lastY;
     /**
      * The tile size.
      */
@@ -43,61 +44,6 @@ public class BoardController {
      * The height of the board.
      */
     public static final int HEIGHT = 8;
-    //
-    //    @FXML
-    //    void initialize() {
-    //        for (int i = 0; i < WIDTH; i++) {
-    //            for (int j = 0; j < HEIGHT; j++) {
-    //                //                final Tile t = new Tile(i, j);
-    //                //                tiles.add(t);
-    //                //                t.setOnMousePressed(e -> printPos(t));
-    //                //                t.setStroke(Color.BLACK);
-    //                //                t.setFill(Color.RED);
-    //                //                pane.add(t, i, j);
-    //                final Rectangle r = new Rectangle(i, j, TILE_SIZE, TILE_SIZE);
-    //                r.setStroke(Color.BLACK);
-    //                r.setFill(Color.BLUE);
-    //                rectangle.put(r, new Position(i, j));
-    //                r.setOnMousePressed(e -> printPos(r));
-    //                //pane.add(r, i, j);
-    //                GridPane.setConstraints(r, i, j);
-    //                pane.getChildren().add(r);
-    //            }
-    //        }
-    //        this.updateView();
-    //    }
-    //
-    //    private void updateView() {
-    //        final List<Piece> l =  board.getAllPieces();
-    //        rectangle.forEach((r, pos) -> {
-    //            if (l.stream().map(y -> y.getPosition()).collect(Collectors.toList()).contains(pos)) {
-    //                final Piece p = l.stream().filter(a -> a.getPosition().equals(pos)).findFirst().get();
-    //                if (p.getName().equals(Name.PAWN)) {
-    //                    final Image im = new Image("/pieces/images/blackPawn.png");
-    //                    //r.setFill(new ImagePattern(im));
-    //                    final GuiPiece c = new GuiPiece(p.getPosition().getX(), p.getPosition().getY(), new Circle());
-    //                    c.setFill(new ImagePattern(im));
-    //                    pane.getChildren().add(c);
-    //                    GridPane.setConstraints(c, pos.getX(), pos.getY());
-    //                    //pane.add(c, pos.getX(), pos.getY());
-    //                    guipiece.add(c);
-    //                } else if (p.getName().equals(Name.BISHOP)) {
-    //                    final Image im = new Image("/pieces/images/blackBishop.png");
-    //                    final GuiPiece c = new GuiPiece(p.getPosition().getX(), p.getPosition().getY(), new Circle());
-    //                    c.setFill(new ImagePattern(im));
-    //                    pane.getChildren().add(c);
-    //                    GridPane.setConstraints(c, pos.getX(), pos.getY());
-    //                    //pane.add(c, pos.getX(), pos.getY());
-    //                    guipiece.add(c);
-    //                }
-    //            }
-    //        });
-    //    }
-    //
-    //    private void printPos(final Rectangle r) {
-    //        System.out.println(rectangle.get(r).toString());
-    //        r.setFill(Color.BEIGE);
-    //    }
 
     @FXML
     void initialize() {
@@ -112,11 +58,16 @@ public class BoardController {
             }
         }
         final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 7, TILE_SIZE / 2 + TILE_SIZE * 7, 20);
+        lastX = c.getCenterX();
+        lastY = c.getCenterY();
         final Image im = new Image("/pieces/images/blackPawn.png");
         c.setFill(new ImagePattern(im));
-        //c.setFill(Color.BLUE);
         c.setOnMouseDragged(x -> dragged(x, c));
         c.setOnMouseReleased(event -> released(c));
+        c.setOnMouseClicked(x -> {
+            lastX = c.getCenterX();
+            lastY = c.getCenterY();
+        });
         pane.getChildren().add(c);
     }
 
@@ -128,9 +79,16 @@ public class BoardController {
     private void released(final Circle p) {
         final int x = (int) p.getCenterX() / TILE_SIZE;
         final int y = (int) p.getCenterY() / TILE_SIZE;
-        p.setCenterX(TILE_SIZE / 2 + TILE_SIZE * x);
-        p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
         final Position finalPosition = new Position(x, y);
+        if (map.containsKey(finalPosition)) {
+            p.setCenterX(TILE_SIZE / 2 + TILE_SIZE * x);
+            p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
+        } else {
+            System.out.println("Posizione errata");
+            //final Popup pop = new Popup();
+            p.setCenterX(lastX);
+            p.setCenterY(lastY);
+        }
         System.out.println(finalPosition);
         lightRectangle(finalPosition);
         //return finalPosition;
