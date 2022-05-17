@@ -19,6 +19,8 @@ import static piece.utils.Side.BLACK;
 import static piece.utils.Name.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -30,18 +32,23 @@ public class MoveBuilderTest {
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
    private Chessboard chessboard;
+   private List<Piece> list;
    /**
  * @throws IllegalMoveException 
     * 
     */
 
+   @BeforeAll
+   void init() {
+       list = new ArrayList<Piece>();
+   }
    @Test
    void testBishopMove() throws IllegalMoveException {
        initBishopTest();
        moveBuilder.piece(pieceFact.createPiece(BISHOP, new Position(3, 4), WHITE))
        .destination(new Position(5, 6))
        .build(chessboard);
-       System.out.println(moveBuilder);
+       assertEquals("Bf2", moveBuilder.toString());
    }
    @Test
    void testDisambiguousMove() throws IllegalMoveException {
@@ -49,12 +56,10 @@ public class MoveBuilderTest {
        moveBuilder.piece(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE))
        .destination(new Position(4, 2))
        .build(chessboard);
-       System.out.println(moveBuilder);
+       assertEquals("N3e6", moveBuilder.toString());
    }
 
    private void initDisambiguousMoveTest() {
-       //4, 4
-       List<Piece> list = new ArrayList();
        list.add(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE));
        list.add(pieceFact.createPiece(KNIGHT, new Position(5, 4), WHITE));
        list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
@@ -62,7 +67,6 @@ public class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
    }
    private void initBishopTest() {
-       List<Piece> list = new ArrayList();
        list.add(pieceFact.createPiece(BISHOP, new Position(3, 4), WHITE));
        list.add(pieceFact.createPiece(BISHOP, new Position(4, 3), BLACK));
        list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
