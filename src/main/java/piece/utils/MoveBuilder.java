@@ -137,7 +137,7 @@ public class MoveBuilder implements Move {
      * 
      * @return the string representation of the move
      */
-    public String toStirng() {
+    public String toString() {
         StringBuilder str = new StringBuilder();
         if (drawOffer) {
             return "(=)";
