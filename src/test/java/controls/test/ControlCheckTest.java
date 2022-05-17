@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static piece.utils.Side.BLACK;
 import static piece.utils.Side.WHITE;
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import board.Chessboard;
 import board.ChessboardFactory;
@@ -26,15 +25,10 @@ import pieces.PieceFactoryImpl;
 
 class ControlCheckTest {
     private Chessboard chessboard;
-    private ChessboardFactory chessboardFactory;
-    private PieceFactory pieceFactory;
-    private ControlCheck control;
-    @BeforeAll
-    public void init() {
-        chessboardFactory = new ChessboardFactoryImpl();
-        pieceFactory = new PieceFactoryImpl();
-        control = new ControlCheckImpl();
-    }
+    private static ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
+    private static PieceFactory pieceFactory  = new PieceFactoryImpl();
+    private static ControlCheck control  = new ControlCheckImpl();
+
     @Test
     void testKingNotFoundException() {
         final Piece whiteRook = pieceFactory.createPiece(ROOK, new Position(4, 0), WHITE);
