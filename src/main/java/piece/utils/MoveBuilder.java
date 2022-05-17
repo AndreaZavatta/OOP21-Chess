@@ -158,6 +158,11 @@ public class MoveBuilder implements Move {
         }
         str.append(destination.get().getY());
         str.append(destination.get().getX());
+        if (check) {
+            str.append("+");
+        } else if (checkmate) {
+            str.append("#");
+        }
         return str.toString();
     }
 
