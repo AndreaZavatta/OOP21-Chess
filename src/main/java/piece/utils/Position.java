@@ -58,13 +58,11 @@ public class Position {
 
     @Override
     public String toString() {
-        return this.convertFromNumberToLetter(x) + "" + (8 - y);
+        return convertFromNumberToLetter(x) + String.valueOf(8 - y);
     }
 
     private char convertFromNumberToLetter(final int x) {
         final char a = 'a';
         return (char) (a + x);
     }
-
-
 }
