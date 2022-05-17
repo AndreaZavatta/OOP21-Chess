@@ -12,7 +12,7 @@ import pieces.Piece;
 
 /**
  * a MoveBuilder to convert a move to String 
- * represented by algebric notation
+ * represented by algebric notation.
  *
  */
 public class MoveBuilder implements Move {
@@ -147,13 +147,40 @@ public class MoveBuilder implements Move {
         } else if (queenSideCastling) {
             return "0-0-0";
         }
-        str.append(nameNotation());
-        manageDisambiguousMoves(str);
+        addPieceNotation(str);
+        addDepartureX(str);
+        addDepartureY(str);
         addCapture(str);
-        str.append(destination.get().getX());
-        str.append(destination.get().getY());
+        addDestination(str);
+        addPromotion(str);
         addCheckConditions(str);
         return str.toString();
+    }
+
+    private void addDepartureY(final StringBuilder str) {
+        if (rank) {
+            str.append(piece.get().getPosition().getY());
+        }
+    }
+
+    private void addDepartureX(final StringBuilder str) {
+        if (file) {
+            str.append(piece.get().getPosition().getX());
+        }
+    }
+
+    private void addPieceNotation(final StringBuilder str) {
+        str.append(nameNotation());
+    }
+
+    private void addDestination(final StringBuilder str) {
+        str.append(destination.get());
+    }
+
+    private void addPromotion(final StringBuilder str) {
+        if (promotion.isPresent()) {
+            str.append(promotion.get().getName().notation());
+        }
     }
 
     private void addCheckConditions(final StringBuilder str) {
@@ -170,14 +197,6 @@ public class MoveBuilder implements Move {
         }
     }
 
-    private void manageDisambiguousMoves(final StringBuilder str) {
-        if (file) {
-            str.append(piece.get().getPosition().getX());
-        }
-        if (rank) {
-            str.append(piece.get().getPosition().getY());
-        }
-    }
 
     private String nameNotation() {
         return piece.get().getName().notation();
