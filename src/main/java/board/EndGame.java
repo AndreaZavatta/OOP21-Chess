@@ -32,4 +32,11 @@ public interface EndGame {
      */
     boolean isStalemate(Side side, Chessboard chessboard);
 
+    /**
+     * 
+     * @param chessboard
+     * @return
+     */
+    boolean isDrawByInsufficientfMaterial(Chessboard chessboard);
+
 }
