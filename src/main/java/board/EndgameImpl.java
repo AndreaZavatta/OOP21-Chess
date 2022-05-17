@@ -29,6 +29,7 @@ public class EndGameImpl implements EndGame {
      * 
      * @return
      */
+    @Override
     public boolean isGameOver() {
         return gameOver;
     };
@@ -39,6 +40,7 @@ public class EndGameImpl implements EndGame {
      * @param chessboard
      * @return
      */
+    @Override
     public boolean isCheckmate(final Side side, final Chessboard chessboard) {
 
         final List<Piece> attackedColor = getAttackedSide(side, chessboard);
@@ -59,6 +61,7 @@ public class EndGameImpl implements EndGame {
      * @param chessboard
      * @return
      */
+    @Override
     public boolean isStalemate(final Side side, final Chessboard chessboard) {
 
         final List<Piece> attackedColor = getAttackedSide(side, chessboard);
