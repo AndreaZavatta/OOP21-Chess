@@ -147,6 +147,17 @@ public class MoveBuilder implements Move {
             return "0-0-0";
         }
         str.append(piece.get().getName().notation());
+        if (file) {
+            str.append(piece.get().getPosition().getY());
+        }
+        if (rank) {
+            str.append(piece.get().getPosition().getX());
+        }
+        if (capture) {
+            str.append("x");
+        }
+        str.append(destination.get().getY());
+        str.append(destination.get().getX());
         return str.toString();
     }
 
