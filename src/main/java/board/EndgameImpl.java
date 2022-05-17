@@ -11,7 +11,7 @@ import pieces.Piece;
  * This Interface models and handles all the possible ways a chess game can end with.
  *
  */
-public class EndGameImpl implements EndGame {
+public class EndgameImpl implements EndGame {
 
     private final boolean gameOver;
     private final ControlCheck controls = new ControlCheckImpl(); 
