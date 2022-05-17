@@ -8,6 +8,7 @@ import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import javafx.fxml.FXML;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -35,7 +36,7 @@ public class BoardController {
     /**
      * The tile size.
      */
-    public static final int TILE_SIZE = 400 / 8;
+    public static final int TILE_SIZE = 600 / 8;
     /**
      * The width of the board.
      */
@@ -47,17 +48,32 @@ public class BoardController {
 
     @FXML
     void initialize() {
+        int count = 0;
         for (int i = 0; i < WIDTH; i++) {
+            count++;
             for (int j = 0; j < HEIGHT; j++) {
                 final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
                 map.put(new Position(i, j), r);
-                r.setFill(Color.BEIGE);
+                if (count % 2 == 0) {
+                    r.setFill(Color.GREEN);
+                } else {
+                    r.setFill(Color.BEIGE);
+                }
+                count++;
                 r.setStroke(Color.BLACK);
+                r.setOnMouseEntered(x -> {
+                    r.setStroke(Color.RED);
+                    r.setStrokeWidth(4);
+                });
+                r.setOnMouseExited(x -> {
+                    r.setStrokeWidth(1);
+                    r.setStroke(Color.BLACK);
+                });
                 pane.getChildren().add(r);
             }
         }
-        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 7, TILE_SIZE / 2 + TILE_SIZE * 7, 20);
+        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
         lastX = c.getCenterX();
         lastY = c.getCenterY();
         final Image im = new Image("/pieces/images/blackPawn.png");
@@ -85,7 +101,6 @@ public class BoardController {
             p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
         } else {
             System.out.println("Posizione errata");
-            //final Popup pop = new Popup();
             p.setCenterX(lastX);
             p.setCenterY(lastY);
         }
@@ -96,7 +111,7 @@ public class BoardController {
 
     private void lightRectangle(final Position finalPosition) {
         if (board.getAllPieces().stream().map(g -> g.getPosition()).collect(Collectors.toList()).contains(finalPosition)) {
-            map.get(finalPosition).setFill(Color.RED);
+            map.get(finalPosition).setFill(Color.BLUE);
         }
     }
 }
