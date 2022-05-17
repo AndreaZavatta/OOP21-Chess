@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * 
- * A standard Position class, with getters, hashCode, equals, and toString well implemented.
+ * A standard Position class, with getters, hashCode, equals, and toString.
 
  */
 public class Position {
