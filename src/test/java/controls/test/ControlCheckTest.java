@@ -26,11 +26,11 @@ import pieces.PieceFactoryImpl;
 
 class ControlCheckTest {
     private Chessboard chessboard;
-    private static ChessboardFactory chessboardFactory;
-    private static PieceFactory pieceFactory;
-    private static ControlCheck control;
+    private ChessboardFactory chessboardFactory;
+    private PieceFactory pieceFactory;
+    private ControlCheck control;
     @BeforeAll
-    public static void init() {
+    public void init() {
         chessboardFactory = new ChessboardFactoryImpl();
         pieceFactory = new PieceFactoryImpl();
         control = new ControlCheckImpl();
