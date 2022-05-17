@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import piece.utils.Side;
@@ -42,7 +43,6 @@ class BishopTest {
         //                new Position(6, 3), new Position(7, 2), new Position(3, 6), new Position(2, 7));
 
         final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 5), Side.WHITE);
-
         final Piece rook = factory.createPiece(Name.ROOK, new Position(5, 6), Side.WHITE);
         final Piece rook1 = factory.createPiece(Name.ROOK, new Position(3, 4), Side.WHITE);
         final Piece rook2 = factory.createPiece(Name.ROOK, new Position(5, 4), Side.WHITE);
@@ -123,13 +123,12 @@ class BishopTest {
     }
 
     @Test
-    void testpedone() {
-        final List<Piece> l = new ArrayList<>();
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 0), Side.BLACK);
-        l.add(pawn);
-        System.out.println(pawn.getAllPossiblePositions(board.createTestCB(l)));
-        pawn.setIsMoved();
-        System.out.println(pawn.getAllPossiblePositions(board.createTestCB(l)));
+    void testBlackOnNormalBoard() {
+        final Chessboard chessboard = board.createNormalCB();
+        final List<Piece> list = chessboard.getAllPieces();
+        final Piece bishop = list.stream().filter(x -> x.getPosition().equals(new Position(2, 0))).findFirst().get();
+        final List<Position> l = List.of();
+        assertEquals(l, bishop.getAllPossiblePositions(chessboard));
     }
 
 }
