@@ -18,6 +18,7 @@ import piece.utils.PieceDirections;
 public final class Pawn extends AbstractPiece {
 
     private static final int PAWN_VALUE = 1;
+    private boolean dontgo;
     /**
      * A Pawn piece constructor.
      * 
@@ -33,7 +34,7 @@ public final class Pawn extends AbstractPiece {
         final List<Position> list = new ArrayList<>();
         goEat(board, list);
         goFoward(board, list, 1);
-        if (!this.isMoved()) {
+        if (!this.isMoved() && !dontgo) {
             goFoward(board, list, 2);
         }
         return Collections.unmodifiableList(list);
@@ -61,6 +62,8 @@ public final class Pawn extends AbstractPiece {
         if (ControlsUtility.checkPosition(this, p, board) 
                     && !ControlsUtility.checkPiece(this, p, board)) {
             list.add(p);
+        } else {
+            dontgo = true;
         }
     }
 
