@@ -1,6 +1,7 @@
 package movebuilder.test;
 
-import org.junit.jupiter.api.BeforeAll;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import board.Chessboard;
 import board.ChessboardFactory;
@@ -20,6 +21,8 @@ import static piece.utils.Side.BLACK;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * 
  *
@@ -33,8 +36,17 @@ public class MoveBuilderTest {
     * 
     */
 
+   @Test
    void testBishopMove() {
-
+       initBishopTest();
+       try {
+           moveBuilder.piece(pieceFact.createPiece(Name.BISHOP, new Position(3, 4), WHITE))
+           .destination(new Position(5, 6))
+           .build(chessboard);
+       } catch (IllegalMoveException e) {
+           System.out.println(e.getMessage());
+       }
+       System.out.println(moveBuilder);
    }
 
 private void initBishopTest() {
@@ -46,3 +58,4 @@ private void initBishopTest() {
        chessboard = boardFactory.createTestCB(list);
 }
 }
+
