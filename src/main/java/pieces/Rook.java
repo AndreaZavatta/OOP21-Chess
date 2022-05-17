@@ -9,6 +9,7 @@ import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
+import piece.utils.PieceDirections;
 
 /**
  * A Rook class that extends AbstractPiece abstract class.
@@ -31,7 +32,7 @@ public class Rook extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
-        for (final var pos : Name.ROOK.directions()) {
+        for (final var pos : PieceDirections.ROOK_DIR.directions()) {
             for (int i = 1; i < 8; i++) {
                 final Position p = ControlsUtility.getNewPosition(this, pos, i);
                 if (ControlsUtility.checkPiece(this, p, board)) {

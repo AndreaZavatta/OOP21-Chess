@@ -9,6 +9,7 @@ import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
+import piece.utils.PieceDirections;
 
 /**
  * A Pawn class that extends AbstractPiece abstract class.
@@ -17,7 +18,6 @@ import piece.utils.Name;
 public final class Pawn extends AbstractPiece {
 
     private static final int PAWN_VALUE = 1;
-
     /**
      * A Pawn piece constructor.
      * 
@@ -45,7 +45,7 @@ public final class Pawn extends AbstractPiece {
     }
 
     private void goEat(final Chessboard board, final List<Position> list) {
-        for (final var pos : Name.PAWN.directions()) {
+        for (final var pos : PieceDirections.PAWN_DIR.directions()) {
             final Position p = ControlsUtility.getNewPosition(this, pos, this.getDirection(this.getColor()));
             if (ControlsUtility.checkPosition(this, p, board) 
                     && ControlsUtility.checkPiece(this, p, board) 
