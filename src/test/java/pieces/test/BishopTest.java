@@ -126,7 +126,8 @@ class BishopTest {
     void testBlackOnNormalBoard() {
         final Chessboard chessboard = board.createNormalCB();
         final List<Piece> list = chessboard.getAllPieces();
-        final Piece bishop = list.stream().filter(x -> x.getPosition().equals(new Position(2, 0))).findFirst().get();
+        final Piece bishop = list.stream().filter(x -> x.getPosition().equals(new Position(2, 0)) 
+                && x.getName().equals(Name.BISHOP)).findFirst().get();
         final List<Position> l = List.of();
         assertEquals(l, bishop.getAllPossiblePositions(chessboard));
     }

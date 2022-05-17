@@ -269,7 +269,8 @@ class PawnTest {
     void testBlackPawnOnNormalBoard() {
         final Chessboard chessboard = board.createNormalCB();
         final List<Piece> list = chessboard.getAllPieces();
-        final Piece pawn = list.stream().filter(x -> x.getPosition().equals(new Position(1, 1))).findFirst().get();
+        final Piece pawn = list.stream().filter(x -> x.getPosition().equals(new Position(1, 1)) 
+                && x.getName().equals(Name.PAWN)).findFirst().get();
         final List<Position> l = List.of(new Position(1, 2), new Position(1, 3));
         assertEquals(l, pawn.getAllPossiblePositions(chessboard));
     }
