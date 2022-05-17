@@ -16,17 +16,17 @@ import pieces.Piece;
  */
 public class MoveBuilder implements Move {
     private final ControlCheck controls = new ControlCheckImpl();
-    private Optional<Piece> piece = Optional.empty();
-    private Optional<Position> destination = Optional.empty();
-    private Optional<Piece> promotion = Optional.empty();
-    private boolean drawOffer = false;
-    private boolean check = false;
-    private boolean checkmate = false;
-    private boolean capture = false;
-    private boolean kingsideCastling = false;
-    private boolean queenSideCastling = false;
-    private boolean file = false;
-    private boolean rank = false;
+    private Optional<Piece> piece;
+    private Optional<Position> destination;
+    private Optional<Piece> promotion;
+    private boolean drawOffer;
+    private boolean check;
+    private boolean checkmate;
+    private boolean capture;
+    private boolean kingsideCastling;
+    private boolean queenSideCastling;
+    private boolean file;
+    private boolean rank;
 
 
     @Override
@@ -97,9 +97,12 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
-        List<Piece> pieces = piecesSameTypeCanGoDestPos(chessboard);
+        List<Piece> pieces = verifyDualityOnDestPos(chessboard);
         findPiecesSameRank(pieces).ifPresent(x -> setRank());
         findPiecesSameFile(pieces).ifPresent(x -> setFile());
+        if (rank && file) {
+            setFile();
+        }
         return this;
     }
     /*
@@ -118,7 +121,7 @@ public class MoveBuilder implements Move {
         .findAny();
     }
 
-    private List<Piece> piecesSameTypeCanGoDestPos(final Chessboard chessboard) {
+    private List<Piece> verifyDualityOnDestPos(final Chessboard chessboard) {
         return getPiecesSameType(chessboard)
                 .stream()
                 .filter(x -> controls.controlledMoves(chessboard, x).contains(destination.get()))
@@ -135,6 +138,7 @@ public class MoveBuilder implements Move {
      * @return the string representation of the move
      */
     public String toStirng() {
+        StringBuilder str = new StringBuilder();
         if (drawOffer) {
             return "(=)";
         } else if (kingsideCastling) {
@@ -142,7 +146,8 @@ public class MoveBuilder implements Move {
         } else if (queenSideCastling) {
             return "0-0-0";
         }
-        return "";
+        str.append(piece.get().getName().notation());
+        return str;
     }
 
 }
