@@ -11,7 +11,8 @@ import exceptions.IllegalMoveException;
 import pieces.Piece;
 
 /**
- * a POJO to represents a move, so it memorizes the start position and the destination position .
+ * a MoveBuilder to convert a move to String 
+ * represented by algebric notation
  *
  */
 public class MoveBuilder implements Move {
@@ -146,24 +147,40 @@ public class MoveBuilder implements Move {
         } else if (queenSideCastling) {
             return "0-0-0";
         }
-        str.append(piece.get().getName().notation());
-        if (file) {
-            str.append(piece.get().getPosition().getY());
-        }
-        if (rank) {
-            str.append(piece.get().getPosition().getX());
-        }
-        if (capture) {
-            str.append("x");
-        }
-        str.append(destination.get().getY());
+        str.append(nameNotation());
+        manageDisambiguousMoves(str);
+        addCapture(str);
         str.append(destination.get().getX());
+        str.append(destination.get().getY());
+        addCheckConditions(str);
+        return str.toString();
+    }
+
+    private void addCheckConditions(final StringBuilder str) {
         if (check) {
             str.append("+");
         } else if (checkmate) {
             str.append("#");
         }
-        return str.toString();
+    }
+
+    private void addCapture(final StringBuilder str) {
+        if (capture) {
+            str.append("x");
+        }
+    }
+
+    private void manageDisambiguousMoves(final StringBuilder str) {
+        if (file) {
+            str.append(piece.get().getPosition().getX());
+        }
+        if (rank) {
+            str.append(piece.get().getPosition().getY());
+        }
+    }
+
+    private String nameNotation() {
+        return piece.get().getName().notation();
     }
 
 }
