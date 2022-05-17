@@ -1,5 +1,4 @@
 package piece.utils;
-
 import board.Chessboard;
 import exceptions.IllegalMoveException;
 import pieces.Piece;
@@ -16,33 +15,33 @@ public interface Move {
      * 
      * @return this to join the pattern builder
      */
-    Move setPiece(Piece piece);
+    Move piece(Piece piece);
 
     /**
      * 
      * @param destination
      * @return this to join the pattern builder
      */
-    Move setDestination(Position destination);
+    Move destination(Position destination);
 
     /**
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move setCapture();
+    Move capture();
 
     /**
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move setKingsideCastling();
+    Move kingSideCastling();
 
 
     /**
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move setQueensideCastling();
+    Move queenSideCastling();
 
 
     /**
@@ -50,46 +49,43 @@ public interface Move {
      * @param piece
      * @return this to join the pattern builder
      */
-    Move setPromotion(Piece piece);
+    Move promotion(Piece piece);
 
 
     /**
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move setDrawOffer();
+    Move drawOffer();
 
 
     /**
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move setCheck();
+    Move check();
 
 
     /**
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move setCheckmate();
+    Move checkMate();
 
     /**
      * 
      * @return Move
      */
-    Move setRank();
+    Move rank();
 
     /**
      * 
      * @return Move
      */
-    Move setFile();
+    Move file();
     /**
      * @param chessboard
      * @return a string that represent a move
      */
     Move build(Chessboard chessboard) throws IllegalMoveException;
-
-
-
 }

@@ -30,67 +30,67 @@ public class MoveBuilder implements Move {
 
 
     @Override
-    public Move setPiece(final Piece piece) {
+    public Move piece(final Piece piece) {
         this.piece = Optional.ofNullable(piece);
         return this;
     }
 
     @Override
-    public Move setDestination(final Position destination) {
+    public Move destination(final Position destination) {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
 
     @Override
-    public Move setCapture() {
+    public Move capture() {
         this.capture = true;
         return this;
     }
 
     @Override
-    public Move setKingsideCastling() {
+    public Move kingSideCastling() {
         this.kingsideCastling = true;
         return this;
     }
 
     @Override
-    public Move setQueensideCastling() {
+    public Move queenSideCastling() {
         queenSideCastling = true;
         return this;
     }
 
     @Override
-    public Move setPromotion(final Piece piece) {
+    public Move promotion(final Piece piece) {
         this.promotion = Optional.ofNullable(piece);
         return this;
     }
 
     @Override
-    public Move setDrawOffer() {
+    public Move drawOffer() {
         this.drawOffer = true;
         return this;
     }
 
     @Override
-    public Move setCheck() {
+    public Move check() {
         this.check = true;
         return this;
     }
 
     @Override
-    public Move setCheckmate() {
+    public Move checkMate() {
         this.checkmate = true;
         return this;
     }
 
     @Override
-    public Move setRank() {
+    public Move rank() {
         rank = true;
         return this;
     }
 
     @Override
-    public Move setFile() {
+    public Move file() {
         file = true;
         return this;
     }
@@ -98,10 +98,10 @@ public class MoveBuilder implements Move {
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
         List<Piece> pieces = verifyDualityOnDestPos(chessboard);
-        findPiecesSameRank(pieces).ifPresent(x -> setRank());
-        findPiecesSameFile(pieces).ifPresent(x -> setFile());
+        findPiecesSameRank(pieces).ifPresent(x -> rank());
+        findPiecesSameFile(pieces).ifPresent(x -> file());
         if (rank && file) {
-            setFile();
+            file();
         }
         return this;
     }
