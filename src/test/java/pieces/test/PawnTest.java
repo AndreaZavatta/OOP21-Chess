@@ -192,4 +192,23 @@ class PawnTest {
         assertTrue(pawn.isMoved());
     }
 
+    @Test
+    void testBlackPawnBlocked() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of();
+        final Piece pawn = factory.createPiece(Name.PAWN, new Position(4, 4), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, new Position(4, 3), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.WHITE);
+        final Piece queen = factory.createPiece(Name.QUEEN, new Position(5, 3), Side.WHITE);
+        final Piece knight = factory.createPiece(Name.KNIGHT, new Position(4, 5), Side.WHITE);
+        final Piece pawn2 = factory.createPiece(Name.PAWN, new Position(4, 2), Side.WHITE);
+        list.add(queen);
+        list.add(knight);
+        list.add(bishop);
+        list.add(rook);
+        list.add(pawn2);
+        list.add(pawn);
+        assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
+    }
+
 }
