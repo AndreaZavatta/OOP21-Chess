@@ -3,12 +3,15 @@ package pieces;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
+import piece.utils.PieceDirections;
 /**
  * A King class that extends AbstractPiece abstract class.
  *
@@ -16,7 +19,6 @@ import piece.utils.Name;
 public class King extends AbstractPiece {
 
     private static final int KING_VALUE = 0;
-
     /**
      * A King piece constructor.
      * 
@@ -31,7 +33,7 @@ public class King extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
-        for (final var pos : Name.KING.directions()) {
+        for (final var pos : PieceDirections.KING_DIR.directions()) {
             final Position p = ControlsUtility.getNewPosition(this, pos, 1);
             if (ControlsUtility.checkPosition(this, p, board)) {
                 if (ControlsUtility.checkPiece(this, p, board)) {

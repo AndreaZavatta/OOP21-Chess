@@ -16,7 +16,11 @@ import piece.utils.Name;
 public class Bishop extends AbstractPiece {
 
     private static final int BISHOP_VALUE = 3;
-
+    /**
+     * 
+     */
+    protected static final List<Position> POSITIONS = List.of(new Position(+1, +1), new Position(-1, -1),
+            new Position(+1, -1), new Position(-1, +1));
     /**
      * A Bishop piece constructor.
      * 
@@ -30,7 +34,7 @@ public class Bishop extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
-        for (final var pos : Name.BISHOP.directions()) {
+        for (final var pos : POSITIONS) {
             for (int i = 1; i < 8; i++) {
                 final Position p = ControlsUtility.getNewPosition(this, pos, i);
                 if (ControlsUtility.checkPiece(this, p, board)) {
