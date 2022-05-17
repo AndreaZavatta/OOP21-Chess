@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * A standard enum class for the pieces names.
+ * A standard enum class for the pieces names. It also has a function that returns
+ * a string representing the piece.
  */
 public enum Name {
     /**
