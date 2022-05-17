@@ -32,14 +32,14 @@ public class MoveBuilderTest {
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
    private Chessboard chessboard;
-   private List<Piece> list;
+   private static List<Piece> list;
    /**
  * @throws IllegalMoveException 
     * 
     */
 
    @BeforeAll
-   void init() {
+   static void init() {
        list = new ArrayList<Piece>();
    }
    @Test
