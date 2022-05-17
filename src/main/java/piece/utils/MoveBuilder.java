@@ -147,7 +147,7 @@ public class MoveBuilder implements Move {
             return "0-0-0";
         }
         str.append(piece.get().getName().notation());
-        return str;
+        return str.toString();
     }
 
 }
