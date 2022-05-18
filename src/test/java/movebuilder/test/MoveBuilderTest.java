@@ -41,7 +41,7 @@ class MoveBuilderTest {
    void init() {
        list = new ArrayList<Piece>();
    }
-
+   
    @Test
    void testPawnAdvancementMove() {
        initPawnAdvancementMove();
@@ -78,6 +78,15 @@ class MoveBuilderTest {
        list.add(pieceFact.createPiece(Name.KING, new Position(4, 5), BLACK));
        list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
        chessboard = boardFactory.createTestCB(list);
+   }
+   @Test
+   void testDrawOffer() {
+       try {
+        moveBuilder.drawOffer().build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
+       assertEquals("(=)", moveBuilder.toString());
    }
    @Test
    void testCheckMove() {

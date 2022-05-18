@@ -134,9 +134,13 @@ public class MoveBuilder implements Move {
     }
 
     private List<Piece> getPiecesSameType(final Chessboard chessboard) {
-        return chessboard.getAllPieces().stream()
-        .filter(x -> x.getName().equals(piece.get().getName()))
-        .filter(x -> !x.equals(piece.get())).collect(Collectors.toList());
+        return Optional.ofNullable(chessboard)
+        .map(x -> x.getAllPieces().stream()
+        .filter(y -> !y.equals(piece.get()))
+        .filter(y -> y.getName().equals(piece.get().getName()))
+        .filter(y -> !y.equals(piece.get())).collect(Collectors.toList()))
+        .orElse(List.of());
+
     }
     /**
      * 
