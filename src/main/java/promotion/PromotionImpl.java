@@ -23,7 +23,9 @@ public class PromotionImpl {
     public boolean checkForPromotion(final List<Piece> pieceList) {
         //        pieceList.stream().filter(x -> x.getColor().equals(Side.WHITE)).
         //        filter(x -> x.getPosition().getY() == 0).findFirst().isPresent();
-        return pieceList.stream().filter(x -> x.getColor().equals(Side.WHITE)).
-                filter(x -> x.getPosition().getY() == 0).findFirst().isPresent();
+        return pieceList.stream()
+                .filter(x -> x.getColor().equals(Side.WHITE))
+                .filter(x -> x.getPosition().getY() == 0)
+                .findFirst().isPresent();
     }
 }
