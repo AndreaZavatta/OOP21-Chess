@@ -99,12 +99,12 @@ public class BoardController {
         if (map.containsKey(finalPosition)) {
             p.setCenterX(TILE_SIZE / 2 + TILE_SIZE * x);
             p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
+            System.out.println(finalPosition);
         } else {
             System.out.println("Posizione errata");
             p.setCenterX(lastX);
             p.setCenterY(lastY);
         }
-        System.out.println(finalPosition);
         lightRectangle(finalPosition);
         //return finalPosition;
     }
