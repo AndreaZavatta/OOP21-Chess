@@ -2,6 +2,7 @@ package promotion;
 
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ class PromotionImplTest {
         final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 6), Side.WHITE);
         list.add(pawn);
         assertFalse(prom.checkForPromotion(list));
+        pawn.setPosition(new Position(0, 0));
+        assertTrue(prom.checkForPromotion(list));
     }
 
 }
