@@ -62,4 +62,20 @@ class ChessboardTest {
                     pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK)));
     }
 
+    @Test
+    void checkBoardBorders() throws PositionNotFoundException {
+        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
+                                            pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
+                                            pieceFct.createPiece(Name.ROOK, new Position(0, 7), Side.WHITE),
+                                            pieceFct.createPiece(Name.KING, new Position(7, 7), Side.WHITE),
+                                            pieceFct.createPiece(Name.PAWN, new Position(5, 0), Side.WHITE));
+        final Chessboard board = chessboardFct.createTestCB(pieces);
+
+        assertFalse(board.getPieceOnPosition(new Position(5, 0)).get()
+                .getAllPossiblePositions(board).contains(new Position(5, -1)));
+
+        assertFalse(board.getPieceOnPosition(new Position(0, 0)).get()
+                .getAllPossiblePositions(board).contains(new Position(0, 8)));
+    }
+
 }
