@@ -70,7 +70,7 @@ public interface Move {
      * setter for field.
      * @return this to join the pattern builder
      */
-    Move checkMate();
+    Move checkmate();
 
     /**
      * 

@@ -79,7 +79,7 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move checkMate() {
+    public Move checkmate() {
         this.checkmate = true;
         return this;
     }
