@@ -33,7 +33,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -45,7 +45,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -56,7 +56,7 @@ class PawnTest {
         final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.WHITE);
         list.add(pawn);
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
     }
@@ -68,7 +68,7 @@ class PawnTest {
         final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
         list.add(pawn);
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
     }
@@ -85,7 +85,7 @@ class PawnTest {
         list.add(bishop);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -101,7 +101,7 @@ class PawnTest {
         list.add(bishop);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -116,7 +116,7 @@ class PawnTest {
         list.add(bishop1);
         list.add(bishop);
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
     }
@@ -132,7 +132,7 @@ class PawnTest {
         list.add(bishop1);
         list.add(bishop);
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
     }
@@ -149,7 +149,7 @@ class PawnTest {
         list.add(bishop);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -165,7 +165,7 @@ class PawnTest {
         list.add(bishop);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -177,7 +177,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -189,7 +189,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -211,7 +211,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -225,7 +225,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
@@ -238,7 +238,7 @@ class PawnTest {
         list.add(rook);
         list.add(pawn);
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertTrue(pawn.isMoved());
     }
@@ -261,7 +261,7 @@ class PawnTest {
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
-        pawn.setIsMoved();
+        pawn.setPosition(pawn.getPosition());
         assertTrue(pawn.isMoved());
     }
 
