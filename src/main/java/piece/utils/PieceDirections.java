@@ -15,7 +15,6 @@ public enum PieceDirections {
     PAWN_DIR {
         @Override
         public List<Position> directions() {
-            // TODO Auto-generated method stub
             return List.of(new Position(+1, +1), new Position(-1, +1));
         }
     },
@@ -25,7 +24,6 @@ public enum PieceDirections {
     KING_DIR {
         @Override
         public List<Position> directions() {
-            // TODO Auto-generated method stub
             return Stream.concat(ROOK_DIR.directions().stream(),
                     BISHOP_DIR.directions().stream()).collect(Collectors.toList());
         }
@@ -46,7 +44,6 @@ public enum PieceDirections {
     BISHOP_DIR {
         @Override
         public List<Position> directions() {
-            // TODO Auto-generated method stub
             return List.of(new Position(+1, +1), new Position(-1, -1),
                     new Position(+1, -1), new Position(-1, +1));
         }
@@ -57,7 +54,6 @@ public enum PieceDirections {
     KNIGHT_DIR {
         @Override
         public List<Position> directions() {
-            // TODO Auto-generated method stub
             return List.of(new Position(-1, -2), new Position(+1, -2),
                     new Position(+2, -1), new Position(+2, +1),
                     new Position(-1, +2), new Position(+1, +2),
