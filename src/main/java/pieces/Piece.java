@@ -38,11 +38,6 @@ public interface Piece {
      * @return the value of the piece.
      */
     int getValue();
-//    /**
-//     * Set to true the isMoved boolean.
-//     * 
-//     */
-//    void setIsMoved();
     /**
      * 
      * @return the current state of the isMoved boolean.
