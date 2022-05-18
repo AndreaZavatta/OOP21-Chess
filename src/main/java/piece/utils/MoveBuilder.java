@@ -19,7 +19,7 @@ public class MoveBuilder implements Move {
     private final ControlCheck controls = new ControlCheckImpl();
     private Optional<Piece> piece = Optional.empty();
     private Optional<Position> destination = Optional.empty();
-    private Optional<Piece> promotion = Optional.empty();
+    private Optional<Name> promotion = Optional.empty();
     private boolean drawOffer = false;
     private boolean check = false;
     private boolean checkmate = false;
@@ -61,7 +61,7 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move promotion(final Piece piece) {
+    public Move promotion(final Name piece) {
         this.promotion = Optional.ofNullable(piece);
         return this;
     }
@@ -179,7 +179,7 @@ public class MoveBuilder implements Move {
 
     private void addPromotion(final StringBuilder str) {
         if (promotion.isPresent()) {
-            str.append(promotion.get().getName().notation());
+            str.append("=" + promotion.get().notation());
         }
     }
 
