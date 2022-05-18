@@ -1,7 +1,10 @@
 package piece.utils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import board.Chessboard;
 import board.ControlCheck;
@@ -112,13 +115,14 @@ public class MoveBuilder implements Move {
      * */
 
     private Optional<Piece> findPiecesSameRow(final List<Piece> pieces) {
-        return pieces.stream()
-        .filter(x -> (x.getPosition().getY() == (piece.get().getPosition().getY())))
-        .findAny();
+        return findPiecesFunction(pieces, x -> x.getPosition().getY());
     }
     private Optional<Piece> findPiecesSameColumn(final List<Piece> pieces) {
+        return findPiecesFunction(pieces, x -> x.getPosition().getX());
+    }
+    private Optional<Piece> findPiecesFunction(final List<Piece> pieces, final ToIntFunction<Piece> func) {
         return pieces.stream()
-        .filter(x -> (x.getPosition().getX() == (piece.get().getPosition().getX())))
+        .filter(x -> (Objects.equals(func.applyAsInt(x), (func.applyAsInt(piece.get())))))
         .findAny();
     }
 
