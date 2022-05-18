@@ -83,8 +83,6 @@ public class EndGameImpl implements EndGame {
                 .findAny()
                 .isPresent();
     }
-
-    
     
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
@@ -92,10 +90,12 @@ public class EndGameImpl implements EndGame {
                 .collect(Collectors.toList());
     }
 
+    // Private method that indicates if the pieces of the attacked side can protect their King.
     private boolean canShield(final Chessboard chessboard, final ControlCheck controls, final Piece shield) {
         return !controls.controlledMoves(chessboard, shield).isEmpty(); 
     }
 
+    // Private method that indicates if the King is in check.
     private boolean controlCheck(final Side side, final Chessboard chessboard, final ControlCheck controls) {
         return controls.isInCheck(chessboard, side);
     }
