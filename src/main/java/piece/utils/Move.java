@@ -76,13 +76,13 @@ public interface Move {
      * 
      * @return Move
      */
-    Move rank();
+    Move row();
 
     /**
      * 
      * @return Move
      */
-    Move file();
+    Move column();
     /**
      * @param chessboard
      * @return a string that represent a move

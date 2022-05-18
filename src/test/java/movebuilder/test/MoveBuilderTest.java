@@ -43,6 +43,24 @@ public class MoveBuilderTest {
        list = new ArrayList<Piece>();
    }
    @Test
+   void testPawnAdvancementMove() throws IllegalMoveException {
+       initPawnAdvancementMove();
+       moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 5), WHITE))
+       .destination(new Position(3, 4))
+       .build(chessboard);
+       assertEquals("d4", moveBuilder.toString());
+   }
+   @Test
+   void testPawnCaptureMove() throws IllegalMoveException {
+       initPawnCaptureMove();
+       moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK))
+       .capture()
+       .destination(new Position(4, 5))
+       .build(chessboard);
+       System.out.println(moveBuilder);
+       assertEquals("dxe3", moveBuilder.toString());
+   }
+   @Test
    void testBishopMove() throws IllegalMoveException {
        initBishopTest();
        moveBuilder.piece(pieceFact.createPiece(BISHOP, new Position(3, 4), WHITE))
@@ -56,9 +74,26 @@ public class MoveBuilderTest {
        moveBuilder.piece(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE))
        .destination(new Position(4, 2))
        .build(chessboard);
+       System.out.println(moveBuilder.toString());
        assertEquals("N3e6", moveBuilder.toString());
    }
 
+
+   private void initPawnAdvancementMove() {
+       list.add(pieceFact.createPiece(PAWN, new Position(3, 4), WHITE));
+       list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
+       list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
+       chessboard = boardFactory.createTestCB(list);
+   }
+   
+   private void initPawnCaptureMove() {
+       list.add(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK));
+       list.add(pieceFact.createPiece(PAWN, new Position(4, 5), WHITE));
+       list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
+       list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
+       chessboard = boardFactory.createTestCB(list);
+   }
+   
    private void initDisambiguousMoveTest() {
        list.add(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE));
        list.add(pieceFact.createPiece(KNIGHT, new Position(5, 4), WHITE));
