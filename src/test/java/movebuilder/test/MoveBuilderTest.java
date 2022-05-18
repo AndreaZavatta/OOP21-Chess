@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -38,10 +39,11 @@ public class MoveBuilderTest {
     * 
     */
 
-   @BeforeAll
-   static void init() {
+   @BeforeEach
+   void init() {
        list = new ArrayList<Piece>();
    }
+
    @Test
    void testPawnAdvancementMove() {
        initPawnAdvancementMove();
@@ -96,6 +98,28 @@ public class MoveBuilderTest {
        list.add(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK));
        list.add(pieceFact.createPiece(QUEEN, new Position(4, 5), WHITE));
        list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
+       list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
+       chessboard = boardFactory.createTestCB(list);
+   }
+   @Test
+   void testCheckmate() {
+       initTestCheckmate();
+       try {
+           moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(2, 4), WHITE))
+              .checkmate()
+              .destination(new Position(1, 5))
+              .build(chessboard);
+       } catch (IllegalMoveException e) {
+           fail();
+       }
+       assertEquals("Qbb3#", moveBuilder.toString());
+   }
+   
+   private void initTestCheckmate() {
+       list.add(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK));
+       list.add(pieceFact.createPiece(QUEEN, new Position(2, 4), WHITE));
+       list.add(pieceFact.createPiece(QUEEN, new Position(0, 4), WHITE));
+       list.add(pieceFact.createPiece(Name.KING, new Position(0, 0), BLACK));
        list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
        chessboard = boardFactory.createTestCB(list);
    }
