@@ -3,12 +3,12 @@ package piece.utils;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import board.Chessboard;
 import board.ControlCheck;
 import board.ControlCheckImpl;
 import exceptions.IllegalMoveException;
 import pieces.Piece;
+import static piece.utils.Name.PAWN;
 
 /**
  * a MoveBuilder to convert a move to String 
@@ -26,8 +26,8 @@ public class MoveBuilder implements Move {
     private boolean capture = false;
     private boolean kingsideCastling = false;
     private boolean queenSideCastling = false;
-    private boolean file = false;
-    private boolean rank = false;
+    private boolean column = false;
+    private boolean row = false;
 
 
     @Override
@@ -85,24 +85,24 @@ public class MoveBuilder implements Move {
     }
 
     @Override
-    public Move rank() {
-        rank = true;
+    public Move row() {
+        row = true;
         return this;
     }
 
     @Override
-    public Move file() {
-        file = true;
+    public Move column() {
+        column = true;
         return this;
     }
 
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
         List<Piece> pieces = verifyDualityOnDestPos(chessboard);
-        findPiecesSameRank(pieces).ifPresent(x -> rank());
-        findPiecesSameFile(pieces).ifPresent(x -> file());
-        if (rank && file) {
-            file();
+        findPiecesSameRow(pieces).ifPresent(x -> column());
+        findPiecesSameColumn(pieces).ifPresent(x -> row());
+        if (row && column) {
+            row();
         }
         return this;
     }
@@ -111,14 +111,14 @@ public class MoveBuilder implements Move {
      * update the rank and file field
      * */
 
-    private Optional<Piece> findPiecesSameRank(final List<Piece> pieces) {
-        return pieces.stream()
-        .filter(x -> (x.getPosition().getX() == (piece.get().getPosition().getX())))
-        .findAny();
-    }
-    private Optional<Piece> findPiecesSameFile(final List<Piece> pieces) {
+    private Optional<Piece> findPiecesSameRow(final List<Piece> pieces) {
         return pieces.stream()
         .filter(x -> (x.getPosition().getY() == (piece.get().getPosition().getY())))
+        .findAny();
+    }
+    private Optional<Piece> findPiecesSameColumn(final List<Piece> pieces) {
+        return pieces.stream()
+        .filter(x -> (x.getPosition().getX() == (piece.get().getPosition().getX())))
         .findAny();
     }
 
@@ -158,13 +158,13 @@ public class MoveBuilder implements Move {
     }
 
     private void addDepartureY(final StringBuilder str) {
-        if (rank) {
+        if (row || (piece.get().getName().equals(PAWN) && capture)) {
             str.append(piece.get().getPosition().getY());
         }
     }
 
     private void addDepartureX(final StringBuilder str) {
-        if (file) {
+        if (column) {
             str.append(piece.get().getPosition().getX());
         }
     }
