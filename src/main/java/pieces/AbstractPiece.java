@@ -46,11 +46,11 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public abstract int getValue();
-
-    @Override
-    public void setIsMoved() {
-        this.isMoved = true;
-    }
+//
+//    @Override
+//    public void setIsMoved() {
+//        this.isMoved = true;
+//    }
 
     @Override
     public boolean isMoved() {
@@ -60,6 +60,7 @@ public abstract class AbstractPiece implements Piece {
     @Override
     public void setPosition(final Position position) {
         this.position = position;
+        this.isMoved = true;
     }
 
     @Override
