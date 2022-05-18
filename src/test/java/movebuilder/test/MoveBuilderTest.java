@@ -72,6 +72,22 @@ public class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
    }
    @Test
+   void testCheckMove() throws IllegalMoveException {
+       initTestCheckMove();
+       moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(4,5), WHITE))
+       .check()
+       .destination(new Position(1, 5))
+       .build(chessboard);
+       assertEquals("Qb3+", moveBuilder.toString());
+   }
+   private void initTestCheckMove() {
+       list.add(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK));
+       list.add(pieceFact.createPiece(QUEEN, new Position(4, 5), WHITE));
+       list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
+       list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
+       chessboard = boardFactory.createTestCB(list);  
+   }
+   @Test
    void testPawnCaptureMove() throws IllegalMoveException {
        initPawnCaptureMove();
        moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK))
