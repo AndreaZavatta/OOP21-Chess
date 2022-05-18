@@ -49,7 +49,7 @@ public interface Move {
      * @param piece
      * @return this to join the pattern builder
      */
-    Move promotion(Piece piece);
+    Move promotion(Name piece);
 
 
     /**
