@@ -4,7 +4,7 @@
 
 .button {
     -fx-background-color: coral;
-    -fx-opacity: 0;
+    /*-fx-opacity: 0;*/
     -fx-pref-height: 40;
     -fx-pref-width: 40;
 }
@@ -15,14 +15,13 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
 }
 
-.startButton
- {
-     -fx-background-color: coral;
-     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
-     -fx-opacity: 1;
-     -fx-pref-height: 100;
+.startTutorialButton {
+    -fx-background-color: coral;
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
+    -fx-pref-height: 80;
     -fx-pref-width: 150;
- }
+    
+}
 
 .button:hover {
     -fx-opacity: 0.5;
