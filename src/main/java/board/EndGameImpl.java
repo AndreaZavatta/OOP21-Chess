@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import pieces.Piece;
 
-
 /**
  * 
- * This Interface models and handles all the possible ways a chess game can end with.
+ * Implementation of EndGame Interface's methods.
  *
  */
 public class EndGameImpl implements EndGame {
@@ -83,7 +82,12 @@ public class EndGameImpl implements EndGame {
                 .findAny()
                 .isPresent();
     }
-    
+
+    @Override
+    public boolean isDrawByRepetition(final Chessboard chessboard) {
+        return true;
+    }
+
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getColor().equals(side))
