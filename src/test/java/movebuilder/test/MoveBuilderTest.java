@@ -43,11 +43,15 @@ public class MoveBuilderTest {
        list = new ArrayList<Piece>();
    }
    @Test
-   void testPawnAdvancementMove() throws IllegalMoveException {
+   void testPawnAdvancementMove() {
        initPawnAdvancementMove();
-       moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 5), WHITE))
-       .destination(new Position(3, 4))
-       .build(chessboard);
+       try {
+        moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 5), WHITE))
+           .destination(new Position(3, 4))
+           .build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
        assertEquals("d4", moveBuilder.toString());
    }
    private void initPawnAdvancementMove() {
@@ -57,12 +61,16 @@ public class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
    }
    @Test
-   void testPromotionMove() throws IllegalMoveException {
+   void testPromotionMove() {
        initPromotionMove();
-       moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(1, 1), WHITE))
-       .promotion(QUEEN)
-       .destination(new Position(1, 0))
-       .build(chessboard);
+       try {
+        moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(1, 1), WHITE))
+           .promotion(QUEEN)
+           .destination(new Position(1, 0))
+           .build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
        assertEquals("b8=Q", moveBuilder.toString());
    }
    private void initPromotionMove() {
@@ -72,12 +80,16 @@ public class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
    }
    @Test
-   void testCheckMove() throws IllegalMoveException {
+   void testCheckMove() {
        initTestCheckMove();
-       moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(4,5), WHITE))
-       .check()
-       .destination(new Position(1, 5))
-       .build(chessboard);
+       try {
+        moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(4,5), WHITE))
+           .check()
+           .destination(new Position(1, 5))
+           .build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
        assertEquals("Qb3+", moveBuilder.toString());
    }
    private void initTestCheckMove() {
@@ -85,15 +97,19 @@ public class MoveBuilderTest {
        list.add(pieceFact.createPiece(QUEEN, new Position(4, 5), WHITE));
        list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
        list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
-       chessboard = boardFactory.createTestCB(list);  
+       chessboard = boardFactory.createTestCB(list);
    }
    @Test
-   void testPawnCaptureMove() throws IllegalMoveException {
+   void testPawnCaptureMove() {
        initPawnCaptureMove();
-       moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK))
-       .capture()
-       .destination(new Position(4, 5))
-       .build(chessboard);
+       try {
+        moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK))
+           .capture()
+           .destination(new Position(4, 5))
+           .build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
        assertEquals("dxe3", moveBuilder.toString());
    }
    private void initPawnCaptureMove() {
@@ -104,11 +120,15 @@ public class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
    }
    @Test
-   void testBishopMove() throws IllegalMoveException {
+   void testBishopMove() {
        initBishopTest();
-       moveBuilder.piece(pieceFact.createPiece(BISHOP, new Position(3, 4), WHITE))
-       .destination(new Position(5, 6))
-       .build(chessboard);
+       try {
+        moveBuilder.piece(pieceFact.createPiece(BISHOP, new Position(3, 4), WHITE))
+           .destination(new Position(5, 6))
+           .build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
        assertEquals("Bf2", moveBuilder.toString());
    }
    private void initBishopTest() {
@@ -119,12 +139,15 @@ public class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
 }
    @Test
-   void testDisambiguousMove() throws IllegalMoveException {
+   void testDisambiguousMove() {
        initDisambiguousMoveTest();
-       moveBuilder.piece(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE))
-       .destination(new Position(4, 2))
-       .build(chessboard);
-       System.out.println(moveBuilder.toString());
+       try {
+        moveBuilder.piece(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE))
+           .destination(new Position(4, 2))
+           .build(chessboard);
+    } catch (IllegalMoveException e) {
+        fail();
+    }
        assertEquals("N3e6", moveBuilder.toString());
    }
 
