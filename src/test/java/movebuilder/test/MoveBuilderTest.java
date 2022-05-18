@@ -19,8 +19,6 @@ import static piece.utils.Side.BLACK;
 import static piece.utils.Name.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +26,7 @@ import org.junit.jupiter.api.Test;
  * 
  *
  */
-public class MoveBuilderTest {
+class MoveBuilderTest {
    private final Move moveBuilder = new MoveBuilder();
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
