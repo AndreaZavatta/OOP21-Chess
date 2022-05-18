@@ -24,7 +24,7 @@ public interface Game {
      * @return the winner one
      */
     Optional<User> getWinner();
-    
+
     /**
      * 
      * @return if the game is finished
