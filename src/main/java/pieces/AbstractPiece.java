@@ -44,11 +44,6 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public abstract int getValue();
-//
-//    @Override
-//    public void setIsMoved() {
-//        this.isMoved = true;
-//    }
 
     @Override
     public boolean isMoved() {
