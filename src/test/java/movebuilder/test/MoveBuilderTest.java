@@ -44,7 +44,7 @@ class MoveBuilderTest {
    @Test
    void testPawnAdvancementMove() {
        initPawnAdvancementMove();
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 5), WHITE))
+       wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, new Position(3, 4), WHITE))
                .destination(new Position(3, 4)));
        assertEquals("d4", moveBuilder.toString());
    }
@@ -144,17 +144,33 @@ class MoveBuilderTest {
        chessboard = boardFactory.createTestCB(list);
 }
    @Test
-   void testDisambiguousMove() {
-       initDisambiguousMoveTest();
+   void testDisambiguousMoveSameRow() {
+       initTestDisambiguousMoveSameRow();
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE))
                .destination(new Position(4, 2)));
 
        assertEquals("N3e6", moveBuilder.toString());
    }
 
-   private void initDisambiguousMoveTest() {
+   private void initTestDisambiguousMoveSameRow() {
        list.add(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE));
        list.add(pieceFact.createPiece(KNIGHT, new Position(5, 4), WHITE));
+       list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
+       list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
+       chessboard = boardFactory.createTestCB(list);
+   }
+   @Test
+   void testDisambiguousMoveSameRowAndCol() {
+       initTestDisambiguousMoveSameRowAndCol();
+       wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(3, 4), WHITE))
+               .destination(new Position(4, 4)));
+       System.out.println(moveBuilder.toString());
+       assertEquals("Qd4e4", moveBuilder.toString());
+   }
+   private void initTestDisambiguousMoveSameRowAndCol() {
+       list.add(pieceFact.createPiece(QUEEN, new Position(3, 4), WHITE));
+       list.add(pieceFact.createPiece(QUEEN, new Position(5, 4), WHITE));
+       list.add(pieceFact.createPiece(QUEEN, new Position(3, 3), WHITE));
        list.add(pieceFact.createPiece(Name.KING, new Position(1, 1), BLACK));
        list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
        chessboard = boardFactory.createTestCB(list);
@@ -166,6 +182,9 @@ class MoveBuilderTest {
            fail();
        }
    }
+   
+   //TODO testDisambiguousMove with 3 pieces
+   //TODO test exception thrown
 
 }
 
