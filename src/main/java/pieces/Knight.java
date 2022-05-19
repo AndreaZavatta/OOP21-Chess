@@ -10,7 +10,6 @@ import piece.utils.Side;
 import piece.utils.ControlsUtility;
 import piece.utils.Name;
 import piece.utils.PieceDirections;
-
 /**
  * A Knight class that extends AbstractPiece abstract class.
  *

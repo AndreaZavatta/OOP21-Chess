@@ -25,7 +25,6 @@ public class King extends AbstractPiece {
      */
     protected King(final Position position, final Side color) {
         super(Name.KING, position, color);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -48,7 +47,6 @@ public class King extends AbstractPiece {
 
     @Override
     public int getValue() {
-        // TODO Auto-generated method stub
         return KING_VALUE;
     }
 
