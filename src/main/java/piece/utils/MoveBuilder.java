@@ -172,7 +172,7 @@ public class MoveBuilder implements Move {
 
     private void addDepartureX(final StringBuilder str) {
         if (column) {
-            str.append(piece.get().getPosition().getX());
+            str.append(piece.get().getPosition().getCharX());
         }
     }
 

@@ -94,7 +94,8 @@ class MoveBuilderTest {
            wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(2, 4), WHITE))
                     .checkmate()
                     .destination(new Position(1, 5)));
-       assertEquals("Qbb3#", moveBuilder.toString());
+           System.out.println(moveBuilder);
+       assertEquals("Qcb3#", moveBuilder.toString());
    }
    private void initTestCheckmate() {
        list.add(pieceFact.createPiece(PAWN, new Position(3, 4), BLACK));
@@ -148,8 +149,7 @@ class MoveBuilderTest {
        initTestDisambiguousMoveSameRow();
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(KNIGHT, new Position(3, 4), WHITE))
                .destination(new Position(4, 2)));
-
-       assertEquals("N3e6", moveBuilder.toString());
+       assertEquals("Nde6", moveBuilder.toString());
    }
 
    private void initTestDisambiguousMoveSameRow() {
@@ -164,7 +164,6 @@ class MoveBuilderTest {
        initTestDisambiguousMoveSameRowAndCol();
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(3, 4), WHITE))
                .destination(new Position(4, 4)));
-       System.out.println(moveBuilder.toString());
        assertEquals("Qd4e4", moveBuilder.toString());
    }
    private void initTestDisambiguousMoveSameRowAndCol() {
