@@ -2,6 +2,7 @@ package promotion;
 
 import java.util.List;
 
+import piece.utils.Name;
 import piece.utils.Side;
 import pieces.Piece;
 import pieces.PieceFactory;
@@ -21,11 +22,21 @@ public class PromotionImpl {
      * @return a
      */
     public boolean checkForPromotion(final List<Piece> pieceList) {
-        //        pieceList.stream().filter(x -> x.getColor().equals(Side.WHITE)).
-        //        filter(x -> x.getPosition().getY() == 0).findFirst().isPresent();
+        return checkColor(Side.BLACK, pieceList, 0) || checkColor(Side.WHITE, pieceList, 7);
+    }
+    /**
+     * 
+     * @return a
+     */
+    public Piece changePiece() {
+        return factory.createPiece(null, null, null);
+    }
+
+    private boolean checkColor(final Side side, final List<Piece> pieceList, final int position) {
         return pieceList.stream()
-                .filter(x -> x.getColor().equals(Side.WHITE))
-                .filter(x -> x.getPosition().getY() == 0)
+                .filter(x -> x.getColor().equals(side))
+                .filter(x -> x.getPosition().getY() == position)
+                .filter(x -> x.getName().equals(Name.PAWN))
                 .findFirst().isPresent();
     }
 }
