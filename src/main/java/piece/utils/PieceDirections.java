@@ -54,17 +54,17 @@ public enum PieceDirections {
     KNIGHT_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(new Position(-1, -2), new Position(+1, -2),
+            return List.of(new Position(-1, MTWO), new Position(+1, MTWO),
                     new Position(+2, -1), new Position(+2, +1),
                     new Position(-1, +2), new Position(+1, +2),
-                    new Position(-2, -1), new Position(-2, +1));
+                    new Position(MTWO, -1), new Position(MTWO, +1));
         }
     };
 
+    private static final int MTWO = -2;
     /**
      * 
      * @return the directions a piece can go to.
      */
     public abstract List<Position> directions();
-
 }
