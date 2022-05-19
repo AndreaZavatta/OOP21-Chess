@@ -5,7 +5,7 @@ import javafx.scene.shape.Circle;
  * 
  *
  */
-public class GuiPiece{
+public class GuiPiece {
 
     private double x;
     private double y;
@@ -56,5 +56,11 @@ public class GuiPiece{
      */
     public double getY() {
         return y;
+    }
+    /**
+     * @return the circle
+     */
+    public Circle getCircle() {
+        return circle;
     }
 }

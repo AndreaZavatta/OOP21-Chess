@@ -8,7 +8,6 @@ import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import javafx.fxml.FXML;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -16,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Popup;
 import piece.utils.Position;
 
 /**
@@ -25,7 +23,7 @@ import piece.utils.Position;
  */
 public class BoardController {
     @FXML
-    private Pane pane;
+    private Pane pane = new Pane();
 
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
