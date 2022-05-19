@@ -1,13 +1,11 @@
 package pieces;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Side;
-import piece.utils.ControlsUtility;
 import piece.utils.Name;
 import piece.utils.PieceDirections;
 /**
@@ -30,23 +28,24 @@ public class Rook extends AbstractPiece {
 
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
-        final List<Position> list = new ArrayList<>();
-        for (final var pos : PieceDirections.ROOK_DIR.directions()) {
-            for (int i = 1; i < 8; i++) {
-                final Position p = ControlsUtility.getNewPosition(this, pos, i);
-                if (ControlsUtility.checkPiece(this, p, board)) {
-                    if (ControlsUtility.checkEnemy(this, p, board)) {
-                        list.add(p);
-                    } 
-                    break;
-                } else if (ControlsUtility.checkPosition(this, p, board)) {
-                    list.add(p);
-                } else {
-                    break;
-                }
-            }
-        }
-        return Collections.unmodifiableList(list);
+//        final List<Position> list = new ArrayList<>();
+//        for (final var pos : PieceDirections.ROOK_DIR.directions()) {
+//            for (int i = 1; i < 8; i++) {
+//                final Position p = ControlsUtility.getNewPosition(this, pos, i);
+//                if (ControlsUtility.checkPiece(this, p, board)) {
+//                    if (ControlsUtility.checkEnemy(this, p, board)) {
+//                        list.add(p);
+//                    } 
+//                    break;
+//                } else if (ControlsUtility.checkPosition(this, p, board)) {
+//                    list.add(p);
+//                } else {
+//                    break;
+//                }
+//            }
+//        }
+//        return Collections.unmodifiableList(list);
+        return Collections.unmodifiableList(this.getBasicMoves().doubleIteration(PieceDirections.ROOK_DIR, board, this));
     }
 
     @Override
