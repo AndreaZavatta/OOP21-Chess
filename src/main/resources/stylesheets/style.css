@@ -17,6 +17,7 @@
 
 .startTutorialButton {
     -fx-background-color: coral;
+    -fx-font-family: Courier New;
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
     -fx-pref-height: 80;
     -fx-pref-width: 150;
