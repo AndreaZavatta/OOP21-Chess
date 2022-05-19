@@ -165,15 +165,19 @@ public class MoveBuilder implements Move {
     }
 
     private void addDepartureY(final StringBuilder str) {
-        if (row || (piece.get().getName().equals(PAWN) && capture)) {
+        if (row) {
             str.append(piece.get().getPosition().getY());
         }
     }
 
     private void addDepartureX(final StringBuilder str) {
-        if (column) {
+        if (column || isPawnCapture()) {
             str.append(piece.get().getPosition().getCharX());
         }
+    }
+
+    private boolean isPawnCapture() {
+        return piece.get().getName().equals(PAWN) && capture;
     }
 
     private void addPieceNotation(final StringBuilder str) {
