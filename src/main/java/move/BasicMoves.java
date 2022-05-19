@@ -31,10 +31,10 @@ public interface BasicMoves {
      * because it iterates only for the piece's direction since for those pieces 
      * you don't need to iterate for the entire board.
      * 
-     * @param directions
-     * @param board
-     * @param piece
-     * @return a
+     * @param directions the piece's directions
+     * @param board the current board
+     * @param piece the piece
+     * @return a list of position the piece can go to.
      */
     List<Position> singleIteration(PieceDirections directions, Chessboard board, Piece piece);
 
