@@ -35,6 +35,13 @@ public class Position {
     public int getY() {
         return y;
     }
+    /**
+     * 
+     * @return
+     */
+    public char getCharX() {
+        return this.convertFromNumberToLetter(x);
+    }
 
     @Override
     public int hashCode() {
