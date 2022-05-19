@@ -3,7 +3,6 @@ package piece.utils;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import board.Chessboard;
@@ -166,15 +165,19 @@ public class MoveBuilder implements Move {
     }
 
     private void addDepartureY(final StringBuilder str) {
-        if (row || (piece.get().getName().equals(PAWN) && capture)) {
+        if (row) {
             str.append(piece.get().getPosition().getY());
         }
     }
 
     private void addDepartureX(final StringBuilder str) {
-        if (column) {
-            str.append(piece.get().getPosition().getX());
+        if (column || isPawnCapture()) {
+            str.append(piece.get().getPosition().getCharX());
         }
+    }
+
+    private boolean isPawnCapture() {
+        return piece.get().getName().equals(PAWN) && capture;
     }
 
     private void addPieceNotation(final StringBuilder str) {

@@ -35,6 +35,13 @@ public class Position {
     public int getY() {
         return y;
     }
+    /**
+     * 
+     * @return
+     */
+    public char getCharX() {
+        return this.convertFromNumberToLetter();
+    }
 
     @Override
     public int hashCode() {
@@ -58,10 +65,10 @@ public class Position {
 
     @Override
     public String toString() {
-        return convertFromNumberToLetter(x) + String.valueOf(8 - y);
+        return convertFromNumberToLetter() + String.valueOf(8 - y);
     }
 
-    private char convertFromNumberToLetter(final int x) {
+    private char convertFromNumberToLetter() {
         final char a = 'a';
         return (char) (a + x);
     }
