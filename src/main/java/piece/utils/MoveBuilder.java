@@ -100,6 +100,9 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
+        if ((!drawOffer && !isCastling() && (piece.isEmpty() || destination.isEmpty()))) {
+            throw new IllegalMoveException();
+        }
         List<Piece> pieces = verifyDualityOnDestPos(chessboard);
         findPiecesSameRow(pieces).ifPresent(x -> column());
         findPiecesSameColumn(pieces).ifPresent(x -> row());
@@ -107,6 +110,9 @@ public class MoveBuilder implements Move {
             row();
         }
         return this;
+    }
+    private boolean isCastling() {
+        return kingsideCastling || queenSideCastling;
     }
     /*
      * function that check if there is the same piece in the same row or column that can go in the same destination

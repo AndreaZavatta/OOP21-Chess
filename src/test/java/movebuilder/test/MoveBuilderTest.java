@@ -171,6 +171,19 @@ class MoveBuilderTest {
        list.add(pieceFact.createPiece(Name.KING, new Position(6, 6), WHITE));
        chessboard = boardFactory.createTestCB(list);
    }
+   @Test
+   void testIllegalMoveExceptionDestinationNotFound() {
+       assertThrows(
+               IllegalMoveException.class,
+               () -> moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(3, 4), WHITE)).build(chessboard));
+   }
+   @Test
+   void testIllegalMoveExceptionPieceNotFound() {
+       assertThrows(
+               IllegalMoveException.class,
+               () -> moveBuilder.destination(new Position(3, 4)).build(chessboard));
+   }
+
    private void wrapBuild(final Move move) {
        try {
            move.build(chessboard);
@@ -178,9 +191,7 @@ class MoveBuilderTest {
            fail();
        }
    }
-   
-   //TODO testDisambiguousMove with 3 pieces
-   //TODO test exception thrown
+
 
 }
 
