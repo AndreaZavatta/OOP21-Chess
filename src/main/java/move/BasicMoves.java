@@ -1,67 +1,41 @@
 package move;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
-import piece.utils.ControlsUtility;
 import piece.utils.PieceDirections;
 import piece.utils.Position;
 import pieces.Piece;
 /**
- * This class .
+ * This interface contains methods used by the pieces in order to
+ * generate the list of possible positions.
  *
  */
-public class BasicMoves {
-    /**
-     * 
-     * @param piece
-     * @param board
-     * @param directions
-     * @return a
-     */
-    public List<Position> doubleIteration(final PieceDirections directions, final Chessboard board, final Piece piece) {
-        final List<Position> list = new ArrayList<>();
-        for (final var pos : directions.directions()) {
-            for (int i = 1; i < 8; i++) {
-                final Position p = ControlsUtility.getNewPosition(piece, pos, i);
-                if (ControlsUtility.checkPiece(piece, p, board)) {
-                    if (ControlsUtility.checkEnemy(piece, p, board)) {
-                        list.add(p);
-                    } 
-                    break;
-                } else if (ControlsUtility.checkPosition(piece, p, board)) {
-                    list.add(p);
-                } else {
-                    break;
-                }
-            }
-        }
-        return Collections.unmodifiableList(list);
-    }
+public interface BasicMoves {
 
     /**
+     * This method is used by the Rook and Bishop in order to 
+     * return the list of possible position. It's called doubleIteration
+     * because it iterates for the piece's direction and for the entire board.
+     * 
+     * @param piece the piece
+     * @param board the current board
+     * @param directions the piece's directions
+     * @return a list of position the piece can go to.
+     */
+    List<Position> doubleIteration(PieceDirections directions, Chessboard board, Piece piece);
+
+    /**
+     * This method is used by the King and Knight in order to 
+     * return the list of possible position. It's called singleIteration
+     * because it iterates only for the piece's direction since for those pieces 
+     * you don't need to iterate for the entire board.
      * 
      * @param directions
      * @param board
      * @param piece
      * @return a
      */
-    public List<Position> singleIteration(final PieceDirections directions, final Chessboard board, final Piece piece) {
-        final List<Position> list = new ArrayList<>();
-        for (final var pos : directions.directions()) {
-            final Position p = ControlsUtility.getNewPosition(piece, pos, 1);
-            if (ControlsUtility.checkPosition(piece, p, board)) {
-                if (ControlsUtility.checkPiece(piece, p, board)) {
-                    if (ControlsUtility.checkEnemy(piece, p, board)) {
-                        list.add(p);
-                    }
-                } else {
-                    list.add(p);
-                }
-            }
-        }
-        return Collections.unmodifiableList(list);
-    }
+    List<Position> singleIteration(PieceDirections directions, Chessboard board, Piece piece);
+
 }

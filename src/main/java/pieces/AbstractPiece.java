@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import board.Chessboard;
 import move.BasicMoves;
+import move.BasicMovesImpl;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;
@@ -24,7 +25,7 @@ public abstract class AbstractPiece implements Piece {
         this.position = position;
         this.color = color;
         this.isMoved = false;
-        this.basicMoves = new BasicMoves();
+        this.basicMoves = new BasicMovesImpl();
     }
 
     @Override
