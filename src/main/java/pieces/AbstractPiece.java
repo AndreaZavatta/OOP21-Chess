@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import board.Chessboard;
+import move.BasicMoves;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;
@@ -16,12 +17,14 @@ public abstract class AbstractPiece implements Piece {
     private Position position;
     private final Side color;
     private boolean isMoved;
+    private final BasicMoves basicMoves;
 
     AbstractPiece(final Name name, final Position position, final Side color) {
         this.name = name;
         this.position = position;
         this.color = color;
         this.isMoved = false;
+        this.basicMoves = new BasicMoves();
     }
 
     @Override
@@ -54,6 +57,13 @@ public abstract class AbstractPiece implements Piece {
     public void setPosition(final Position position) {
         this.position = position;
         this.isMoved = true;
+    }
+
+    /**
+     * @return the basicMoves
+     */
+    public BasicMoves getBasicMoves() {
+        return basicMoves;
     }
 
     @Override
