@@ -1,8 +1,6 @@
 package movebuilder.test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
@@ -94,7 +92,6 @@ class MoveBuilderTest {
            wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(2, 4), WHITE))
                     .checkmate()
                     .destination(new Position(1, 5)));
-           System.out.println(moveBuilder);
        assertEquals("Qcb3#", moveBuilder.toString());
    }
    private void initTestCheckmate() {
