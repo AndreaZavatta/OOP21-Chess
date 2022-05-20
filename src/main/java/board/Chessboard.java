@@ -3,6 +3,7 @@ package board;
 import java.util.List;
 import java.util.Optional;
 
+import exceptions.PieceNotFoundException;
 import exceptions.PositionNotFoundException;
 import piece.utils.Position;
 import pieces.Piece;
@@ -24,8 +25,9 @@ public interface Chessboard {
      * @param actualPos
      * @param finalPos
      * @throws PositionNotFoundException 
+     * @throws PieceNotFoundException 
      */
-    void move(Position actualPos, Position finalPos) throws PositionNotFoundException;
+    void move(Position actualPos, Position finalPos) throws PositionNotFoundException, PieceNotFoundException;
 
     /**
      * 
