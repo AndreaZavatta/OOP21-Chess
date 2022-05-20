@@ -16,23 +16,7 @@ import pieces.Piece;
  */
 public class EndGameImpl implements EndGame {
 
-    private final boolean gameOver;
     private final ControlCheck controls = new ControlCheckImpl(); 
-
-    /**
-     * 
-     * @param gameOver
-     */
-    public EndGameImpl(final boolean gameOver) {
-        super();
-        this.gameOver = gameOver;
-    }
-
-
-    @Override
-    public boolean isGameOver() {
-        return gameOver;
-    };
 
 
     @Override
