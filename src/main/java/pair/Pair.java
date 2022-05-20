@@ -1,5 +1,7 @@
 package pair;
 
+import java.io.Serializable;
+
 /**
  * 
  * A generic Pair.
@@ -7,7 +9,10 @@ package pair;
  * @param <X>
  * @param <Y>
  */
-public class Pair<X, Y> {
+public class Pair<X, Y> implements Serializable {
+
+    private static final long serialVersionUID = 8065526709210920611L;
+
     private final X x;
     private final Y y;
 

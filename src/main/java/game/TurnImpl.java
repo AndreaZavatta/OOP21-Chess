@@ -1,10 +1,15 @@
 package game;
 
+import java.io.Serializable;
+
 import pair.Pair;
 import piece.utils.Side;
 import user.User;
 
-class TurnImpl implements Turn {
+class TurnImpl implements Turn, Serializable {
+
+    private static final long serialVersionUID = -8909627808592630582L;
+
     private int turn;
     private final Pair<User, Side> player1;
     private final Pair<User, Side> player2;
