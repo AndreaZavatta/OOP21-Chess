@@ -13,14 +13,23 @@ public class Position {
     private final int y;
     /**
      * 
-     * @param x 
-     * @param y
+     * @param x the x value.
+     * @param y the y value.
      */
     public Position(final int x, final int y) {
         super();
         this.x = x;
         this.y = y;
     }
+//    /**
+//     * 
+//     * @param x
+//     * @param y
+//     * @return a
+//     */
+//    public static Position createNewPosition(final String position) {
+//        return new Position(x, y);
+//    }
     /**
      * 
      * @return the x variable.
@@ -37,7 +46,7 @@ public class Position {
     }
     /**
      * 
-     * @return
+     * @return the letter corresponding to the position.
      */
     public char getCharX() {
         return this.convertFromNumberToLetter();

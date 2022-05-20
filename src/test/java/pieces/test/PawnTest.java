@@ -273,5 +273,8 @@ class PawnTest {
                 && x.getName().equals(Name.PAWN)).findFirst().get();
         final List<Position> l = List.of(new Position(1, 2), new Position(1, 3));
         assertEquals(l, pawn.getAllPossiblePositions(chessboard));
+        pawn.setPosition(new Position(1, 2));
+        assertTrue(pawn.isMoved());
+        assertEquals(List.of(new Position(1, 3)), pawn.getAllPossiblePositions(chessboard));
     }
 }
