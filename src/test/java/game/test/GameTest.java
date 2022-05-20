@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import exceptions.PieceNotFoundException;
+import exceptions.PositionNotFoundException;
 import game.Game;
 import game.GameImpl;
 import pair.Pair;
@@ -31,7 +33,7 @@ class GameTest {
     }
 
     @Test
-    void gameEnded() {
+    void gameEnded() throws PositionNotFoundException, PieceNotFoundException {
         final Game match = createGame();
 
         match.nextMove(new Position(6, 6), 
@@ -47,6 +49,6 @@ class GameTest {
                         new Position(7, 4));
 
         assertTrue(match.isGameFinished());
-        assertEquals(Side.BLACK, match.getWinner().get().getColor());
+        assertEquals(Side.BLACK, match.getWinner().get().getY());
     }
 }

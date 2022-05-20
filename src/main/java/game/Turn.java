@@ -1,5 +1,6 @@
 package game;
 
+import pair.Pair;
 import piece.utils.Side;
 import user.User;
 
@@ -11,7 +12,7 @@ interface Turn {
 
     Side getUserTurn();
 
-    User getUserByColor(Side color);
+    Pair<User, Side> getPairByColor(Side color);
 
     Side getOppositeColor(Side color);
 }

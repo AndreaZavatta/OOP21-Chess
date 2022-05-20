@@ -32,10 +32,10 @@ class TurnImpl implements Turn {
     }
 
     @Override
-    public User getUserByColor(final Side color) {
+    public Pair<User, Side> getPairByColor(final Side color) {
         return player1.getY().equals(color) 
-                        ? player1.getX() 
-                        : player2.getX();
+                        ? player1 
+                        : player2;
     }
 
     @Override
