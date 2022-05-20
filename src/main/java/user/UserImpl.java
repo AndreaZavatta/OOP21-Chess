@@ -1,11 +1,16 @@
 package user;
 
+import java.io.Serializable;
+
 /**
  * 
  * contain information about user during the game.
  *
  */
-public class UserImpl implements User {
+public class UserImpl implements User, Serializable {
+
+    private static final long serialVersionUID = 5552078593645290172L;
+
     private final String name;
     private boolean isWinner;
 
