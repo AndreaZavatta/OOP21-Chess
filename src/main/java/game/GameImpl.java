@@ -10,6 +10,7 @@ import board.EndGameImpl;
 import pair.Pair;
 import piece.utils.Position;
 import piece.utils.Side;
+import pieces.Piece;
 import user.User;
 
 /**
@@ -46,6 +47,10 @@ public class GameImpl implements Game, Serializable {
     @Override
     public void nextMove(final Position firstPos, final Position finalPos) {
         // TODO Auto-generated method stub
+        final Optional<Piece> attacker = chessboard.getPieceOnPosition(firstPos);
+        if (attacker.isPresent() && !attacker.get().getColor().equals(turnManager.getUserTurn())) {
+            throw new IllegalArgumentException();
+        }
 
     }
 
