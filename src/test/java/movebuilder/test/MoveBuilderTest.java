@@ -1,6 +1,9 @@
 package movebuilder.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
@@ -14,7 +17,10 @@ import pieces.PieceFactory;
 import pieces.PieceFactoryImpl;
 import static piece.utils.Side.WHITE;
 import static piece.utils.Side.BLACK;
-import static piece.utils.Name.*;
+import static piece.utils.Name.PAWN;
+import static piece.utils.Name.QUEEN;
+import static piece.utils.Name.BISHOP;
+import static piece.utils.Name.KNIGHT;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,7 +80,7 @@ class MoveBuilderTest {
    @Test
    void testCheckMove() {
        initTestCheckMove();
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(4,5), WHITE))
+       wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, new Position(4, 5), WHITE))
                  .check()
                  .destination(new Position(1, 5)));
        assertEquals("Qb3+", moveBuilder.toString());

@@ -1,11 +1,5 @@
 package io.test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-
 import game.Game;
 import game.GameImpl;
 import io.JsonSerializer;

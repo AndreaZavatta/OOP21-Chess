@@ -1,10 +1,7 @@
 package io;
-
 import java.io.Serializable;
 import java.util.Objects;
 import com.google.gson.Gson;
-
-import game.GameImpl;
 /**
  * 
  *
