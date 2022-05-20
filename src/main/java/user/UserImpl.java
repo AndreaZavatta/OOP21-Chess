@@ -1,7 +1,5 @@
 package user;
 
-import piece.utils.Side;
-
 /**
  * 
  * contain information about user during the game.
@@ -9,29 +7,21 @@ import piece.utils.Side;
  */
 public class UserImpl implements User {
     private final String name;
-    private final Side userColor;
     private boolean isWinner;
 
     /**
      * 
      * @param name
-     * @param userColor
      */
-    public UserImpl(final String name, final Side userColor) {
+    public UserImpl(final String name) {
         super();
         this.name = name;
-        this.userColor = userColor;
         this.isWinner = false;
     }
 
     @Override
     public String getName() {
         return this.name;
-    }
-
-    @Override
-    public Side getColor() {
-        return this.userColor;
     }
 
     @Override
@@ -46,6 +36,6 @@ public class UserImpl implements User {
 
     @Override
     public String toString() {
-        return "UserImpl [name=" + name + ", userColor=" + userColor + "]";
+        return "UserImpl [name=" + name + "]";
     }
 }
