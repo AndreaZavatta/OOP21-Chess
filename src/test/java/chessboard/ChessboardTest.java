@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
+import exceptions.PieceNotFoundException;
 import exceptions.PositionNotFoundException;
 import piece.utils.Side;
 import piece.utils.Name;
@@ -34,7 +35,7 @@ class ChessboardTest {
     }
 
     @Test
-    void tryIllegalMove() throws PositionNotFoundException {
+    void tryIllegalMove() throws PositionNotFoundException, PieceNotFoundException {
         final Chessboard board = chessboardFct.createNormalCB();
 
         assertTrue(board.getPieceOnPosition(new Position(0, 6)).isPresent());
@@ -48,7 +49,7 @@ class ChessboardTest {
     }
 
     @Test
-    void checkIfKill() throws PositionNotFoundException {
+    void checkIfKill() throws PositionNotFoundException, PieceNotFoundException {
         final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
                                             pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
                                             pieceFct.createPiece(Name.ROOK, new Position(0, 7), Side.WHITE),
@@ -63,7 +64,7 @@ class ChessboardTest {
     }
 
     @Test
-    void checkBoardBorders() throws PositionNotFoundException {
+    void checkBoardBorders() {
         final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
                                             pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
                                             pieceFct.createPiece(Name.ROOK, new Position(0, 7), Side.WHITE),
@@ -78,4 +79,11 @@ class ChessboardTest {
                 .getAllPossiblePositions(board).contains(new Position(0, 8)));
     }
 
+    @Test
+    void tryIllegalPosition() {
+        final Chessboard board = chessboardFct.createNormalCB();
+
+        assertThrows(PieceNotFoundException.class, 
+                () -> board.move(new Position(0, 4), new Position(0, 2)));
+    }
 }
