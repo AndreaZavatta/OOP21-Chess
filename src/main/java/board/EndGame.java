@@ -12,12 +12,6 @@ public interface EndGame {
 
     /**
      * 
-     * @return
-     */
-    boolean isGameOver();
-
-    /**
-     * 
      * @param side
      * @param chessboard
      * @return true if the passed Side is under Checkmate.
