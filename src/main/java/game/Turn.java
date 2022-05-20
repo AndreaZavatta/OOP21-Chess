@@ -1,6 +1,7 @@
 package game;
 
 import piece.utils.Side;
+import user.User;
 
 interface Turn {
 
@@ -9,4 +10,8 @@ interface Turn {
     void turnIncrement();
 
     Side getUserTurn();
+
+    User getUserByColor(Side color);
+
+    Side getOppositeColor(Side color);
 }
