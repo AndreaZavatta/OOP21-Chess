@@ -1,5 +1,6 @@
 package game;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import board.Chessboard;
@@ -17,7 +18,10 @@ import user.User;
  * it manage a match user vs user.
  *
  */
-public class GameImpl implements Game {
+public class GameImpl implements Game, Serializable {
+
+    private static final long serialVersionUID = -5387039618669465656L;
+
     private final Pair<User, Side> player1;
     private final Pair<User, Side> player2;
     private boolean isFinished;
