@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import game.Game;
 import game.GameImpl;
+import pair.Pair;
 import piece.utils.Position;
 import piece.utils.Side;
 import user.User;
@@ -16,8 +17,8 @@ import user.UserImpl;
 class GameTest {
 
     private Game createGame() {
-        final User player1 = new UserImpl("Gigi", Side.WHITE);
-        final User player2 = new UserImpl("Mario", Side.BLACK);
+        final Pair<User, Side> player1 = new Pair<>(new UserImpl("Mario"), Side.WHITE);
+        final Pair<User, Side> player2 = new Pair<>(new UserImpl("Gigi"), Side.WHITE);
         return new GameImpl(player1, player2);
     }
 
