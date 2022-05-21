@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import exceptions.PieceNotFoundException;
-import exceptions.PositionNotFoundException;
 import piece.utils.Position;
 import pieces.Piece;
 
@@ -32,14 +30,8 @@ class ChessboardImpl implements Chessboard {
     }
 
     @Override
-    public void move(final Position actualPos, final Position finalPos) throws PositionNotFoundException, PieceNotFoundException {
-        if (this.getPieceOnPosition(actualPos).isEmpty()) {
-            throw new PieceNotFoundException();
-        }
+    public void move(final Position actualPos, final Position finalPos) {
         final Piece attacker = this.getPieceOnPosition(actualPos).get();
-        if (!this.getAllPosition(attacker).contains(finalPos)) {
-            throw new PositionNotFoundException();
-        }
         this.moveWithoutChecks(attacker, finalPos);
 
     }

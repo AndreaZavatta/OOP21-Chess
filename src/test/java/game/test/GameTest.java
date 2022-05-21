@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import exceptions.PieceNotFoundException;
-import exceptions.PositionNotFoundException;
 import game.Game;
 import game.GameImpl;
 import pair.Pair;
@@ -33,7 +31,7 @@ class GameTest {
     }
 
     @Test
-    void gameEnded() throws PositionNotFoundException, PieceNotFoundException {
+    void gameEnded() {
         final Game match = createGame();
 
         match.nextMove(new Position(6, 6), 
