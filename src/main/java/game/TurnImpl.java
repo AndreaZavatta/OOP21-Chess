@@ -28,7 +28,7 @@ class TurnImpl implements Turn, Serializable {
 
     @Override
     public Side getUserTurn() {
-        return turn % 2 == 1 ? Side.WHITE : Side.BLACK;
+        return Math.abs(turn % 2) == 1 ? Side.WHITE : Side.BLACK;
     }
 
     @Override
