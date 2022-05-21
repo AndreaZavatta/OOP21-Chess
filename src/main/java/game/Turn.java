@@ -1,10 +1,12 @@
 package game;
 
+import java.io.Serializable;
+
 import pair.Pair;
 import piece.utils.Side;
 import user.User;
 
-interface Turn {
+interface Turn extends Serializable {
 
     int getTurn();
 

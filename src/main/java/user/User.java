@@ -1,11 +1,13 @@
 package user;
 
+import java.io.Serializable;
+
 /**
  * 
  * user interface for UserImpl.
  *
  */
-public interface User {
+public interface User extends Serializable {
     /**
      * 
      * @return the user name

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @param <X>
  * @param <Y>
  */
-public class Pair<X, Y> implements Serializable {
+public class Pair<X extends Serializable, Y extends Serializable> implements Serializable {
 
     private static final long serialVersionUID = 8065526709210920611L;
 
