@@ -40,9 +40,9 @@ public class PromotionImpl {
 
     private Optional<Piece> checkColor(final Side side, final List<Piece> pieceList, final int position) {
         return pieceList.stream()
-        .filter(x -> x.getColor().equals(side))
-        .filter(x -> x.getPosition().getY() == position)
-        .filter(x -> x.getName().equals(Name.PAWN))
-        .findFirst();
+                .filter(x -> x.getColor().equals(side))
+                .filter(x -> x.getPosition().getY() == position)
+                .filter(x -> x.getName().equals(Name.PAWN))
+                .findFirst();
     }
 }
