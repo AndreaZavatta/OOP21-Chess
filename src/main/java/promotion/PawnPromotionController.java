@@ -8,7 +8,7 @@ import pieces.Piece;
  *
  */
 public class PawnPromotionController {
-    private final PromotionImpl promotion = new PromotionImpl();
+    private final Promotion promotion = new PromotionImpl();
     private final Piece piece;
     /**
      * 

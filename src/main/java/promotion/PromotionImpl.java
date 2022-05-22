@@ -13,7 +13,7 @@ import pieces.PieceFactoryImpl;
  * The Pawn promotion class.
  *
  */
-public class PromotionImpl {
+public class PromotionImpl implements Promotion {
 
     private final PieceFactory factory = new PieceFactoryImpl();
 
@@ -22,6 +22,7 @@ public class PromotionImpl {
      * @param pieceList
      * @return a
      */
+    @Override
     public Optional<Piece> checkForPromotion(final List<Piece> pieceList) {
         if (checkColor(Side.BLACK, pieceList, 0).isPresent()) {
             return checkColor(Side.BLACK, pieceList, 0);
@@ -34,6 +35,7 @@ public class PromotionImpl {
      * @param piece
      * @return a
      */
+    @Override
     public Piece changePiece(final Name name, final Piece piece) {
         return factory.createPiece(name, piece.getPosition(), piece.getColor());
     }
