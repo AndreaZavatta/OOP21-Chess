@@ -1,4 +1,4 @@
-package piece.utils;
+package chess.parsers;
 
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +9,8 @@ import board.Chessboard;
 import board.ControlCheck;
 import board.ControlCheckImpl;
 import exceptions.IllegalMoveException;
+import piece.utils.Name;
+import piece.utils.Position;
 import pieces.Piece;
 import static piece.utils.Name.PAWN;
 

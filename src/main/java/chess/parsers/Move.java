@@ -1,6 +1,8 @@
-package piece.utils;
+package chess.parsers;
 import board.Chessboard;
 import exceptions.IllegalMoveException;
+import piece.utils.Name;
+import piece.utils.Position;
 import pieces.Piece;
 
 /**
