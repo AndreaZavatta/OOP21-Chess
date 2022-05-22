@@ -18,7 +18,7 @@ import pieces.PieceFactoryImpl;
 
 class PromotionImplTest {
 
-    private final PromotionImpl prom = new PromotionImpl();
+    private final Promotion prom = new PromotionImpl();
     private final PieceFactory factory = new PieceFactoryImpl();
     //private final ChessboardFactory board = new ChessboardFactoryImpl();
 
