@@ -27,10 +27,14 @@ public class ControlCheckImpl implements ControlCheck {
     }
     private Chessboard simulateMove(final Chessboard chessboard, final Piece piece, final Position destPos) {
         final ChessboardImpl chessboardCopy = copyChessboard(chessboard);
+        moveIfPresent(piece, destPos, chessboardCopy);
+        return chessboardCopy;
+    }
+
+    private void moveIfPresent(final Piece piece, final Position destPos, final ChessboardImpl chessboardCopy) {
         chessboardCopy.getAllPieces().stream().filter(x -> x.getPosition().equals(piece.getPosition()))
         .findFirst()
         .ifPresent(x -> chessboardCopy.moveWithoutChecks(x, destPos));
-        return chessboardCopy;
     }
 
     private ChessboardImpl copyChessboard(final Chessboard chessboard) {
