@@ -26,7 +26,7 @@ public class EndGameImpl implements EndGame {
 
         if (controlCheck(side, chessboard, controls)) {
             for (final Piece shield : attackedColor) {
-                if (canShield(chessboard, controls, shield)) {
+                if (!cannotShield(chessboard, controls, shield)) {
                     return false;
                 }
             }
@@ -41,7 +41,7 @@ public class EndGameImpl implements EndGame {
         final List<Piece> attackedColor = getAttackedSide(side, chessboard);
 
         for (final Piece piece : attackedColor) {
-            if (!canShield(chessboard, controls, piece)) {
+            if (!cannotShield(chessboard, controls, piece)) {
                 return false;
             }
         }
@@ -84,8 +84,8 @@ public class EndGameImpl implements EndGame {
     }
 
     // Private method that indicates if the pieces of the attacked side can protect their King.
-    private boolean canShield(final Chessboard chessboard, final ControlCheck controls, final Piece shield) {
-        return !controls.controlledMoves(chessboard, shield).isEmpty(); 
+    private boolean cannotShield(final Chessboard chessboard, final ControlCheck controls, final Piece shield) {
+        return controls.controlledMoves(chessboard, shield).isEmpty();
     }
 
     // Private method that indicates if the King is in check.
