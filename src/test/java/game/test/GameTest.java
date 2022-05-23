@@ -2,6 +2,7 @@ package game.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ class GameTest {
 
     private Game createGame() {
         final Pair<User, Side> player1 = new Pair<>(new UserImpl("Mario"), Side.WHITE);
-        final Pair<User, Side> player2 = new Pair<>(new UserImpl("Gigi"), Side.WHITE);
+        final Pair<User, Side> player2 = new Pair<>(new UserImpl("Gigi"), Side.BLACK);
         return new GameImpl(player1, player2);
     }
 
@@ -46,13 +47,35 @@ class GameTest {
         match.nextMove(new Position(3, 0),
                         new Position(7, 4));
 
-        match.nextMove(new Position(6, 4),
-                        new Position(6, 3));
-
-        match.nextMove(new Position(7, 4),
-                        new Position(4, 7));
-
         assertTrue(match.isGameFinished());
+        assertTrue(match.getWinner().isPresent());
         assertEquals(Side.BLACK, match.getWinner().get().getY());
+    }
+
+    @Test
+    void emptyPosition() {
+        final Game match = createGame();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> match.nextMove(new Position(4, 4), 
+                        new Position(4, 3)));
+    }
+
+    @Test
+    void enemyPieceSelected() {
+        final Game match = createGame();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> match.nextMove(new Position(1, 1), 
+                        new Position(1, 2)));
+    }
+
+    @Test
+    void notValidPositionSelected() {
+        final Game match = createGame();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> match.nextMove(new Position(1, 1), 
+                        new Position(1, 4)));
     }
 }
