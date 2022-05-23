@@ -33,20 +33,6 @@ class ChessboardTest {
     }
 
     @Test
-    void tryIllegalMove() {
-        final Chessboard board = chessboardFct.createNormalCB();
-
-        assertTrue(board.getPieceOnPosition(new Position(0, 6)).isPresent());
-        assertFalse(board.getPieceOnPosition(new Position(0, 4)).isPresent());
-        board.move(new Position(0, 6), new Position(0, 4));
-        assertFalse(board.getPieceOnPosition(new Position(0, 6)).isPresent());
-        assertTrue(board.getPieceOnPosition(new Position(0, 4)).isPresent());
-
-       // assertThrows(PositionNotFoundException.class, 
-            //    () -> board.move(new Position(0, 4), new Position(0, 2)));
-    }
-
-    @Test
     void checkIfKill() {
         final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
                                             pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
@@ -78,10 +64,29 @@ class ChessboardTest {
     }
 
     @Test
-    void tryIllegalPosition() {
+    void tryRepetiveMoves() {
         final Chessboard board = chessboardFct.createNormalCB();
+        board.move(new Position(6, 6), 
+                    new Position(6, 4));
 
-       // assertThrows(PieceNotFoundException.class, 
-           //     () -> board.move(new Position(0, 4), new Position(0, 2)));
+        board.move(new Position(4, 1),
+                    new Position(4, 3));
+
+        board.move(new Position(5, 6), 
+                new Position(5, 4));
+
+        board.move(new Position(3, 0),
+                new Position(4, 1));
+
+        board.move(new Position(4, 1),
+                    new Position(7, 4));
+
+        List<Position> first = board.getPieceOnPosition(new Position(6, 4)).get().getAllPossiblePositions(board);
+        List<Position> queen = board.getAllPosition(board.getPieceOnPosition(new Position(6, 4)).get());
+
+        assertTrue(board.getPieceOnPosition(new Position(6, 4)).get().getAllPossiblePositions(board).contains(new Position(6, 3)));
+        assertTrue(board.getAllPosition(board.getPieceOnPosition(new Position(6, 4)).get()).contains(new Position(6, 3)));
+        assertTrue(board.getPieceOnPosition(new Position(7, 4)).get().getAllPossiblePositions(board).contains(new Position(4, 7)));
+        assertTrue(board.getAllPosition(board.getPieceOnPosition(new Position(7, 4)).get()).contains(new Position(4, 0)));
     }
 }

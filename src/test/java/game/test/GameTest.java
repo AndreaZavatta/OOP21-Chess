@@ -46,6 +46,12 @@ class GameTest {
         match.nextMove(new Position(3, 0),
                         new Position(7, 4));
 
+        match.nextMove(new Position(6, 4),
+                        new Position(6, 3));
+
+        match.nextMove(new Position(7, 4),
+                        new Position(4, 7));
+
         assertTrue(match.isGameFinished());
         assertEquals(Side.BLACK, match.getWinner().get().getY());
     }
