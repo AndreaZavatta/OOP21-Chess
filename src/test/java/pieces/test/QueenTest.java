@@ -77,4 +77,26 @@ class QueenTest {
         final List<Position> l = List.of();
         assertEquals(l, queen.getAllPossiblePositions(chessboard));
     }
+
+    @Test
+    void testQueenMove() {
+        final List<Piece> list = new ArrayList<>();
+        final List<Position> l = List.of(new Position(1, 1), new Position(1, 0), new Position(2, 0), new Position(0, 1));
+        final List<Position> l1 = List.of(new Position(2, 1), new Position(0, 1), new Position(2, 0), new Position(0, 0), new Position(1, 1));
+
+        final Piece queen = factory.createPiece(Name.QUEEN, new Position(0, 0), Side.BLACK);
+        final Piece queen1 = factory.createPiece(Name.QUEEN, new Position(1, 1), Side.WHITE);
+        final Piece queen2 = factory.createPiece(Name.QUEEN, new Position(2, 0), Side.WHITE);
+        final Piece queen3 = factory.createPiece(Name.QUEEN, new Position(0, 1), Side.WHITE);
+        final Piece queen4 = factory.createPiece(Name.QUEEN, new Position(2, 1), Side.WHITE);
+
+        list.add(queen);
+        list.add(queen3);
+        list.add(queen2);
+        list.add(queen1);
+        list.add(queen4);
+        assertEquals(l, queen.getAllPossiblePositions(board.createTestCB(list)));
+        queen.setPosition(new Position(1, 0));
+        assertEquals(l1, queen.getAllPossiblePositions(board.createTestCB(list)));
+    }
 }
