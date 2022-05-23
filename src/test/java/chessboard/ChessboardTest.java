@@ -2,7 +2,6 @@ package chessboard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -80,9 +79,6 @@ class ChessboardTest {
 
         board.move(new Position(4, 1),
                     new Position(7, 4));
-
-        List<Position> first = board.getPieceOnPosition(new Position(6, 4)).get().getAllPossiblePositions(board);
-        List<Position> queen = board.getAllPosition(board.getPieceOnPosition(new Position(6, 4)).get());
 
         assertTrue(board.getPieceOnPosition(new Position(6, 4)).get().getAllPossiblePositions(board).contains(new Position(6, 3)));
         assertTrue(board.getAllPosition(board.getPieceOnPosition(new Position(6, 4)).get()).contains(new Position(6, 3)));
