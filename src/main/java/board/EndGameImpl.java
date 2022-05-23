@@ -30,8 +30,9 @@ public class EndGameImpl implements EndGame {
                     return false;
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
 
@@ -41,7 +42,7 @@ public class EndGameImpl implements EndGame {
         final List<Piece> attackedColor = getAttackedSide(side, chessboard);
 
         for (final Piece piece : attackedColor) {
-            if (!cannotShield(chessboard, controls, piece)) {
+            if (cannotShield(chessboard, controls, piece)) {
                 return false;
             }
         }
