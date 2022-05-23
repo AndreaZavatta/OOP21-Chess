@@ -9,11 +9,10 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import piece.utils.Position;
 
@@ -71,37 +70,50 @@ public class BoardController {
                 pane.getChildren().add(r);
             }
         }
-        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
-        lastX = c.getCenterX();
-        lastY = c.getCenterY();
-        final Image im = new Image("/pieces/images/blackPawn.png");
-        c.setFill(new ImagePattern(im));
+        //        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
+        //        lastX = c.getCenterX();
+        //        lastY = c.getCenterY();
+                final Image im = new Image("/pieces/images/blackPawn.png", TILE_SIZE, TILE_SIZE, true, false);
+        //        c.setFill(new ImagePattern(im));
+        //        c.setOnMouseDragged(x -> dragged(x, c));
+        //        c.setOnMouseReleased(event -> released(c));
+        //        c.setOnMouseClicked(x -> {
+        //            lastX = c.getCenterX();
+        //            lastY = c.getCenterY();
+        //        });
+        final ImageView c = new ImageView(im);
+//        c.setFitHeight(TILE_SIZE);
+//        c.setFitWidth(TILE_SIZE);
+//        c.setPreserveRatio(true);
+        c.setX(TILE_SIZE * 1);
+        c.setY(TILE_SIZE * 0);
+
         c.setOnMouseDragged(x -> dragged(x, c));
         c.setOnMouseReleased(event -> released(c));
         c.setOnMouseClicked(x -> {
-            lastX = c.getCenterX();
-            lastY = c.getCenterY();
+            lastX = c.getX();
+            lastY = c.getY();
         });
         pane.getChildren().add(c);
     }
 
-    private void dragged(final MouseEvent event, final Circle p) {
-        p.setCenterX(event.getX());
-        p.setCenterY(event.getY());
+    private void dragged(final MouseEvent event, final ImageView p) {
+        p.setX(event.getX());
+        p.setY(event.getY());
     }
 
-    private void released(final Circle p) {
-        final int x = (int) p.getCenterX() / TILE_SIZE;
-        final int y = (int) p.getCenterY() / TILE_SIZE;
+    private void released(final ImageView p) {
+        final int x = (int) (p.getX() / TILE_SIZE);
+        final int y = (int) (p.getY() / TILE_SIZE);
         final Position finalPosition = new Position(x, y);
         if (map.containsKey(finalPosition)) {
-            p.setCenterX(TILE_SIZE / 2 + TILE_SIZE * x);
-            p.setCenterY(TILE_SIZE / 2 + TILE_SIZE * y);
+            p.setX(TILE_SIZE * x);
+            p.setY(TILE_SIZE * y);
             System.out.println(finalPosition);
         } else {
             System.out.println("Posizione errata");
-            p.setCenterX(lastX);
-            p.setCenterY(lastY);
+            p.setX(lastX);
+            p.setY(lastY);
         }
         lightRectangle(finalPosition);
         //return finalPosition;
