@@ -26,7 +26,7 @@ public class EndGameImpl implements EndGame {
 
         if (controlCheck(side, chessboard, controls)) {
             for (final Piece shield : attackedColor) {
-                if (!canShield(chessboard, controls, shield)) {
+                if (canShield(chessboard, controls, shield)) {
                     return false;
                 }
             }
