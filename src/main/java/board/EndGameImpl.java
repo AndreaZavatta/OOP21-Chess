@@ -72,6 +72,11 @@ public class EndGameImpl implements EndGame {
         return true;
     }
 
+    @Override
+    public boolean isDraw(final Side side, final Chessboard chessboard) {
+        return isDrawByInsufficientfMaterial(chessboard) || isDrawByRepetition(chessboard) || isStalemate(side, chessboard);
+    }
+
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getColor().equals(side))
