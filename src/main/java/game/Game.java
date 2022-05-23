@@ -2,7 +2,9 @@ package game;
 
 import java.util.Optional;
 
+import pair.Pair;
 import piece.utils.Position;
+import piece.utils.Side;
 import user.User;
 
 /**
@@ -23,7 +25,7 @@ public interface Game {
      * 
      * @return the winner one
      */
-    Optional<User> getWinner();
+    Optional<Pair<User, Side>> getWinner();
 
     /**
      * 
