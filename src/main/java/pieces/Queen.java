@@ -33,6 +33,7 @@ public class Queen extends AbstractPiece {
 
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
+        this.updatePosition();
         return Stream.concat(bishop.getAllPossiblePositions(board).stream(), 
                 rook.getAllPossiblePositions(board).stream()).collect(Collectors.toList());
     }
@@ -40,6 +41,11 @@ public class Queen extends AbstractPiece {
     @Override
     public int getValue() {
         return QUEEN_VALUE;
+    }
+
+    private void updatePosition() {
+        this.bishop.setPosition(this.getPosition());
+        this.rook.setPosition(this.getPosition());
     }
 
 }
