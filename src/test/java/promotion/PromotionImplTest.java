@@ -1,9 +1,5 @@
 package promotion;
 
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +14,7 @@ import pieces.PieceFactoryImpl;
 
 class PromotionImplTest {
 
-    private final Promotion prom = new PromotionImpl();
+    //private final Promotion prom = new PromotionImpl();
     private final PieceFactory factory = new PieceFactoryImpl();
     //private final ChessboardFactory board = new ChessboardFactoryImpl();
 
@@ -27,9 +23,9 @@ class PromotionImplTest {
         final List<Piece> list = new ArrayList<>();
         final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 6), Side.WHITE);
         list.add(pawn);
-        assertFalse(prom.checkForPromotion(list));
+        //assertFalse(prom.checkForPromotion(list));
         pawn.setPosition(new Position(0, 0));
-        assertTrue(prom.checkForPromotion(list));
+        //assertTrue(prom.checkForPromotion(list));
     }
 
 }
