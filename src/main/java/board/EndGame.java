@@ -40,4 +40,11 @@ public interface EndGame {
      */
     boolean isDrawByRepetition(Chessboard chessboard);
 
+    /**
+     * @param side
+     * @param chessboard
+     * @return true if the match ends with a draw.
+     */
+    boolean isDraw(Side side, Chessboard chessboard);
+
 }
