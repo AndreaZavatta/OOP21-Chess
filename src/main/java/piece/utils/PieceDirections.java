@@ -59,6 +59,16 @@ public enum PieceDirections {
                     Position.createNumericPosition(-1, +2), Position.createNumericPosition(+1, +2),
                     Position.createNumericPosition(MTWO, -1), Position.createNumericPosition(MTWO, +1));
         }
+    },
+    /**
+     * The queen directions.
+     */
+    QUEEN_DIR {
+        @Override
+        public List<Position> directions() {
+            return Stream.concat(BISHOP_DIR.directions().stream(), ROOK_DIR.directions().stream())
+                    .collect(Collectors.toUnmodifiableList());
+        }
     };
 
     private static final int MTWO = -2;
