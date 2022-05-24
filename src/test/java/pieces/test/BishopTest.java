@@ -14,6 +14,7 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import piece.utils.Side;
 import piece.utils.Name;
+import piece.utils.Numbers;
 import piece.utils.Position;
 import pieces.Piece;
 import pieces.PieceFactory;
@@ -27,10 +28,10 @@ class BishopTest {
     @Test
     void testNormalMovement() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(5, 6), new Position(6, 7), new Position(3, 4),
-                new Position(2, 3), new Position(1, 2), new Position(0, 1), new Position(5, 4), 
-                new Position(6, 3), new Position(7, 2), new Position(3, 6), new Position(2, 7));
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 5), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(5, 6), Position.createNumericPosition(6, 7), Position.createNumericPosition(3, 4),
+                Position.createNumericPosition(2, 3), Position.createNumericPosition(1, 2), Position.createNumericPosition(0, 1), Position.createNumericPosition(5, 4), 
+                Position.createNumericPosition(6, 3), Position.createNumericPosition(7, 2), Position.createNumericPosition(3, 6), Position.createNumericPosition(2, 7));
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 5), Side.WHITE);
         list.add(bishop);
         assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
     }
@@ -42,11 +43,11 @@ class BishopTest {
         //                new Position(2, 3), new Position(1, 2), new Position(0, 1), new Position(5, 4), 
         //                new Position(6, 3), new Position(7, 2), new Position(3, 6), new Position(2, 7));
 
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 5), Side.WHITE);
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(5, 6), Side.WHITE);
-        final Piece rook1 = factory.createPiece(Name.ROOK, new Position(3, 4), Side.WHITE);
-        final Piece rook2 = factory.createPiece(Name.ROOK, new Position(5, 4), Side.WHITE);
-        final Piece rook3 = factory.createPiece(Name.ROOK, new Position(3, 6), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 5), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(5, 6), Side.WHITE);
+        final Piece rook1 = factory.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), Side.WHITE);
+        final Piece rook2 = factory.createPiece(Name.ROOK, Position.createNumericPosition(5, 4), Side.WHITE);
+        final Piece rook3 = factory.createPiece(Name.ROOK, Position.createNumericPosition(3, 6), Side.WHITE);
         list.add(bishop);
         list.add(rook3);
         list.add(rook2);
@@ -61,15 +62,15 @@ class BishopTest {
     @Test
     void testWithAlliesAndPositionAvailable() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(5, 6), new Position(3, 4),
-                new Position(5, 4), new Position(3, 6));
+        final List<Position> l = List.of(Position.createNumericPosition(5, 6), Position.createNumericPosition(3, 4),
+                Position.createNumericPosition(5, 4), Position.createNumericPosition(3, 6));
 
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 5), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 5), Side.WHITE);
 
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(6, 7), Side.WHITE);
-        final Piece rook1 = factory.createPiece(Name.ROOK, new Position(2, 7), Side.WHITE);
-        final Piece rook2 = factory.createPiece(Name.ROOK, new Position(2, 3), Side.WHITE);
-        final Piece rook3 = factory.createPiece(Name.ROOK, new Position(6, 3), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(6, 7), Side.WHITE);
+        final Piece rook1 = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 7), Side.WHITE);
+        final Piece rook2 = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 3), Side.WHITE);
+        final Piece rook3 = factory.createPiece(Name.ROOK, Position.createNumericPosition(6, 3), Side.WHITE);
         list.add(bishop);
         list.add(rook3);
         list.add(rook2);
@@ -81,11 +82,11 @@ class BishopTest {
     @Test
     void test2WithAlliesAndPositionAvailable() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(1, 1));
+        final List<Position> l = List.of(Position.createNumericPosition(1, 1));
 
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(0, 0), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(0, 0), Side.WHITE);
 
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(2, 2), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 2), Side.WHITE);
         list.add(bishop);
         list.add(rook);
         assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
@@ -94,10 +95,10 @@ class BishopTest {
     @Test
     void testWithEnemy() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(1, 1), new Position(2, 2));
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(0, 0), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(1, 1), Position.createNumericPosition(2, 2));
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(0, 0), Side.WHITE);
 
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(2, 2), Side.BLACK);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 2), Side.BLACK);
         list.add(bishop);
         list.add(rook);
         assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
@@ -106,14 +107,14 @@ class BishopTest {
     @Test
     void test2WithEnemy() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(2, 2), new Position(0, 0), 
-                new Position(2, 0), new Position(0, 2));
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(1, 1), Side.BLACK);
+        final List<Position> l = List.of(Position.createNumericPosition(2, 2), Position.createNumericPosition(0, 0), 
+                Position.createNumericPosition(2, 0), Position.createNumericPosition(0, 2));
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(1, 1), Side.BLACK);
 
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(0, 0), Side.WHITE);
-        final Piece rook1 = factory.createPiece(Name.ROOK, new Position(2, 2), Side.WHITE);
-        final Piece rook2 = factory.createPiece(Name.ROOK, new Position(2, 0), Side.WHITE);
-        final Piece rook3 = factory.createPiece(Name.ROOK, new Position(0, 2), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(0, 0), Side.WHITE);
+        final Piece rook1 = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 2), Side.WHITE);
+        final Piece rook2 = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 0), Side.WHITE);
+        final Piece rook3 = factory.createPiece(Name.ROOK, Position.createNumericPosition(0, 2), Side.WHITE);
         list.add(bishop);
         list.add(rook3);
         list.add(rook2);
@@ -126,7 +127,7 @@ class BishopTest {
     void testBlackOnNormalBoard() {
         final Chessboard chessboard = board.createNormalCB();
         final List<Piece> list = chessboard.getAllPieces();
-        final Piece bishop = list.stream().filter(x -> x.getPosition().equals(new Position(2, 0)) 
+        final Piece bishop = list.stream().filter(x -> x.getPosition().equals(Position.createNumericPosition(2, 0)) 
                 && x.getName().equals(Name.BISHOP)).findFirst().get();
         final List<Position> l = List.of();
         assertEquals(l, bishop.getAllPossiblePositions(chessboard));
