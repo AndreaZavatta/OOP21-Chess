@@ -8,14 +8,16 @@ import piece.utils.Side;
 import java.util.List;
 import java.util.stream.Collectors;
 import pieces.Piece;
+import java.io.Serializable;
 
 /**
  * 
  * Implementation of EndGame Interface's methods.
  *
  */
-public class EndGameImpl implements EndGame {
+public class EndGameImpl implements EndGame, Serializable {
 
+    private static final long serialVersionUID = 8138985175091153307L;
     private final ControlCheck controls = new ControlCheckImpl(); 
 
 
