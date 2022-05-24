@@ -1,7 +1,5 @@
 package piece.utils;
 
-import java.util.stream.Collectors;
-
 import board.Chessboard;
 import pieces.Piece;
 
@@ -22,15 +20,7 @@ public final class ControlsUtility {
      * @return true if the position in occupied by an enemy, false otherwise.
      */
     public static boolean checkEnemy(final Piece piece, final Position position, final Chessboard board) {
-        final Side s = board.getAllPieces().stream()
-                .filter(x -> x.getPosition().equals(position))
-                .map(x -> x.getColor())
-                .findFirst().get();
-        return board.getAllPieces().stream()
-                .filter(x -> !piece.getColor().equals(s))
-                .map(Piece::getPosition)
-                .collect(Collectors.toList())
-                .contains(position);
+        return board.getPieceOnPosition(position).map(p -> !p.getSide().equals(piece.getSide())).orElse(false);
     }
 
     /**
@@ -41,7 +31,7 @@ public final class ControlsUtility {
      * @return true if there is a piece in the specified position, false otherwise.
      */
     public static boolean checkPiece(final Piece piece, final Position position, final Chessboard board) {
-        return board.getAllPieces().stream().map(Piece::getPosition).collect(Collectors.toList()).contains(position);
+        return board.getPieceOnPosition(position).isPresent();
     }
 
     /**

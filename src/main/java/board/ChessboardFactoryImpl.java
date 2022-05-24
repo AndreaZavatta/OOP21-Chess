@@ -62,7 +62,7 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         final List<Piece> copy = new ArrayList<>();
         final PieceFactory piece = new PieceFactoryImpl();
         originalList.stream()
-            .forEach(x -> copy.add(piece.createPiece(x.getName(), x.getPosition(), x.getColor())));
+            .forEach(x -> copy.add(piece.createPiece(x.getName(), x.getPosition(), x.getSide())));
         return copy;
     }
 }

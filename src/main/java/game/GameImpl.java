@@ -47,7 +47,7 @@ public class GameImpl implements Game, Serializable {
         final Optional<Piece> attacker = chessboard.getPieceOnPosition(firstPos);
         if (chessboard.getPieceOnPosition(firstPos).isEmpty()) {
             throw new IllegalArgumentException("Empty position selected.");
-        } else if (attacker.isPresent() && !attacker.get().getColor().equals(turnManager.getUserTurn())) {
+        } else if (attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())) {
             throw new IllegalArgumentException("Cannot select enemy pieces.");
         } else if (!chessboard.getAllPosition(attacker.get()).contains(finalPos)) {
             throw new IllegalArgumentException("Not valid position selected.");

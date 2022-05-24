@@ -23,7 +23,7 @@ public class ControlCheckImpl implements ControlCheck {
     }
 
     private boolean isMoveInCheck(final Chessboard chessboard, final Piece piece, final Position pos) {
-        return isInCheck(simulateMove(chessboard, piece, pos), piece.getColor());
+        return isInCheck(simulateMove(chessboard, piece, pos), piece.getSide());
     }
     private Chessboard simulateMove(final Chessboard chessboard, final Piece piece, final Position destPos) {
         final ChessboardImpl chessboardCopy = copyChessboard(chessboard);
@@ -43,7 +43,7 @@ public class ControlCheckImpl implements ControlCheck {
     @Override
     public boolean isInCheck(final Chessboard chessboard, final Side color) {
         return chessboard.getAllPieces().stream()
-                .filter(x -> !x.getColor().equals(color))
+                .filter(x -> !x.getSide().equals(color))
                 .anyMatch(x -> canEatKing(chessboard, x));
     }
 
@@ -53,7 +53,7 @@ public class ControlCheckImpl implements ControlCheck {
     }
     private Position getEnemyKingPosition(final Chessboard chessboard, final Piece piece) {
         return chessboard.getAllPieces().stream()
-                .filter(x -> !x.getColor().equals(piece.getColor()))
+                .filter(x -> !x.getSide().equals(piece.getSide()))
                 .filter(x -> x.getName().equals(KING))
                 .findFirst()
                 .map(Piece::getPosition)

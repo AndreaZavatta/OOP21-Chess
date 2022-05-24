@@ -42,7 +42,7 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public Side getColor() {
+    public Side getSide() {
         return this.color;
     }
 

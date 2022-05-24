@@ -23,6 +23,10 @@ class FenBuilderTest {
     private static List<Piece> list = new ArrayList<Piece>();
     @Test
     void testInitialPosition() {
-        assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", fenBuilder.halfMove("0 1").activeColor(WHITE).build(boardFactory.createNormalCB()));
+        assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", 
+                fenBuilder.halfMoveClock(0)
+                .fullMoveNumber(1)
+                .activeColor(WHITE)
+                .build(boardFactory.createNormalCB()));
     }
 }

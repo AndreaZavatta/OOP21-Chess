@@ -60,7 +60,7 @@ public class EndGameImpl implements EndGame, Serializable {
 
     private boolean checkIfRemainingPiecesCauseStalemate(final Side side, final Chessboard chessboard) {
         final List<Piece> alive = chessboard.getAllPieces().stream()
-                .filter(x -> x.getColor() == side)
+                .filter(x -> x.getSide() == side)
                 .collect(Collectors.toList());
         if (alive.size() > 2) {
             return false;
@@ -82,7 +82,7 @@ public class EndGameImpl implements EndGame, Serializable {
 
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
-                .filter(x -> x.getColor().equals(side))
+                .filter(x -> x.getSide().equals(side))
                 .collect(Collectors.toList());
     }
 
