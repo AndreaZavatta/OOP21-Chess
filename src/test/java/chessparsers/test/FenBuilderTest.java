@@ -40,12 +40,6 @@ class FenBuilderTest {
                                    pieceFact.createPiece(ROOK, createNewPosition("a1"), WHITE),
                                    pieceFact.createPiece(KING, createNewPosition("d2"), WHITE));
         var board = boardFactory.createTestCB(list);
-        System.out.println(fenBuilder.fullMoveNumber(1)
-                .activeColor(WHITE)
-                .blackCastledKingside()
-                .whiteCastledKingside()
-                .whiteCastledQueenside()
-                .build(board));
         assertEquals("r3k2b/8/8/8/8/8/3K4/R7 w q - 0 1", 
                 fenBuilder.fullMoveNumber(1)
                 .activeColor(WHITE)
