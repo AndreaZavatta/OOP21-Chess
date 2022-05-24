@@ -27,8 +27,8 @@ class ChessboardTest {
     void creationChessboard() {
         final Chessboard board = chessboardFct.createNormalCB();
         assertEquals(32, board.getAllPieces().size());
-        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Side.WHITE)).count());
-        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getColor().equals(Side.BLACK)).count());
+        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getSide().equals(Side.WHITE)).count());
+        assertEquals(16, board.getAllPieces().stream().filter(x -> x.getSide().equals(Side.BLACK)).count());
     }
 
     @Test

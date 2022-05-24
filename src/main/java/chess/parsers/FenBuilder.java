@@ -95,7 +95,7 @@ public class FenBuilder implements Fen {
     }
     private String pieceRapresentation(final Piece piece) {
         var notation = piece.getName().notation();
-        return piece.getColor().equals(Side.BLACK) ? notation.toLowerCase() : notation;
+        return piece.getSide().equals(Side.BLACK) ? notation.toLowerCase() : notation;
     }
     private String fenPiece(final Chessboard chessboard) {
         StringBuilder str = new StringBuilder();

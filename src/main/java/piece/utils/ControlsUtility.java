@@ -20,7 +20,7 @@ public final class ControlsUtility {
      * @return true if the position in occupied by an enemy, false otherwise.
      */
     public static boolean checkEnemy(final Piece piece, final Position position, final Chessboard board) {
-        return board.getPieceOnPosition(position).map(p -> !p.getColor().equals(piece.getColor())).orElse(false);
+        return board.getPieceOnPosition(position).map(p -> !p.getSide().equals(piece.getSide())).orElse(false);
     }
 
     /**

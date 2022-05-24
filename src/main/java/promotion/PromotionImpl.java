@@ -40,12 +40,12 @@ public class PromotionImpl implements Promotion {
      */
     @Override
     public Piece changePiece(final Name name, final Piece piece) {
-        return factory.createPiece(name, piece.getPosition(), piece.getColor());
+        return factory.createPiece(name, piece.getPosition(), piece.getSide());
     }
 
     private Optional<Piece> checkColor(final Side side, final List<Piece> pieceList, final int position) {
         return pieceList.stream()
-                .filter(x -> x.getColor().equals(side))
+                .filter(x -> x.getSide().equals(side))
                 .filter(x -> x.getPosition().getY() == position)
                 .filter(x -> x.getName().equals(Name.PAWN))
                 .findFirst();

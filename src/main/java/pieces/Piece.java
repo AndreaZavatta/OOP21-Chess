@@ -30,9 +30,9 @@ public interface Piece {
     Position getPosition();
     /**
      * 
-     * @return the color of the piece.
+     * @return the side (color) of the piece.
      */
-    Side getColor();
+    Side getSide();
     /**
      * 
      * @return the value of the piece.
