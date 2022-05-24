@@ -26,14 +26,14 @@ class QueenTest {
     @Test
     void testQueenAllPositionsClearBoard() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(5, 5), new Position(6, 6), new Position(7, 7),
-                new Position(3, 3), new Position(2, 2), new Position(1, 1), new Position(0, 0), 
-                new Position(5, 3), new Position(6, 2), new Position(7, 1), new Position(3, 5), 
-                new Position(2, 6), new Position(1, 7), new Position(5, 4), new Position(6, 4), 
-                new Position(7, 4), new Position(3, 4), new Position(2, 4), new Position(1, 4), 
-                new Position(0, 4), new Position(4, 5), new Position(4, 6), new Position(4, 7), 
-                new Position(4, 3), new Position(4, 2), new Position(4, 1), new Position(4, 0));
-        final Piece queen = factory.createPiece(Name.QUEEN, new Position(4, 4), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(5, 5), Position.createNumericPosition(6, 6), Position.createNumericPosition(7, 7),
+                Position.createNumericPosition(3, 3), Position.createNumericPosition(2, 2), Position.createNumericPosition(1, 1), Position.createNumericPosition(0, 0), 
+                Position.createNumericPosition(5, 3), Position.createNumericPosition(6, 2), Position.createNumericPosition(7, 1), Position.createNumericPosition(3, 5), 
+                Position.createNumericPosition(2, 6), Position.createNumericPosition(1, 7), Position.createNumericPosition(5, 4), Position.createNumericPosition(6, 4), 
+                Position.createNumericPosition(7, 4), Position.createNumericPosition(3, 4), Position.createNumericPosition(2, 4), Position.createNumericPosition(1, 4), 
+                Position.createNumericPosition(0, 4), Position.createNumericPosition(4, 5), Position.createNumericPosition(4, 6), Position.createNumericPosition(4, 7), 
+                Position.createNumericPosition(4, 3), Position.createNumericPosition(4, 2), Position.createNumericPosition(4, 1), Position.createNumericPosition(4, 0));
+        final Piece queen = factory.createPiece(Name.QUEEN, Position.createNumericPosition(4, 4), Side.WHITE);
         list.add(queen);
         assertEquals(l, queen.getAllPossiblePositions(board.createTestCB(list)));
     }
@@ -42,10 +42,10 @@ class QueenTest {
     void testQueenCantMove() {
         final List<Piece> list = new ArrayList<>();
         final List<Position> l = List.of();
-        final Piece queen = factory.createPiece(Name.QUEEN, new Position(0, 0), Side.BLACK);
-        final Piece queen1 = factory.createPiece(Name.QUEEN, new Position(1, 1), Side.BLACK);
-        final Piece queen2 = factory.createPiece(Name.QUEEN, new Position(1, 0), Side.BLACK);
-        final Piece queen3 = factory.createPiece(Name.QUEEN, new Position(0, 1), Side.BLACK);
+        final Piece queen = factory.createPiece(Name.QUEEN, Position.createNumericPosition(0, 0), Side.BLACK);
+        final Piece queen1 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(1, 1), Side.BLACK);
+        final Piece queen2 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(1, 0), Side.BLACK);
+        final Piece queen3 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(0, 1), Side.BLACK);
         list.add(queen);
         list.add(queen3);
         list.add(queen2);
@@ -56,11 +56,11 @@ class QueenTest {
     @Test
     void testQueenCanMoveOnlyEat() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(1, 1), new Position(1, 0), new Position(0, 1));
-        final Piece queen = factory.createPiece(Name.QUEEN, new Position(0, 0), Side.BLACK);
-        final Piece queen1 = factory.createPiece(Name.QUEEN, new Position(1, 1), Side.WHITE);
-        final Piece queen2 = factory.createPiece(Name.QUEEN, new Position(1, 0), Side.WHITE);
-        final Piece queen3 = factory.createPiece(Name.QUEEN, new Position(0, 1), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(1, 1), Position.createNumericPosition(1, 0), Position.createNumericPosition(0, 1));
+        final Piece queen = factory.createPiece(Name.QUEEN, Position.createNumericPosition(0, 0), Side.BLACK);
+        final Piece queen1 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(1, 1), Side.WHITE);
+        final Piece queen2 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(1, 0), Side.WHITE);
+        final Piece queen3 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(0, 1), Side.WHITE);
         list.add(queen);
         list.add(queen3);
         list.add(queen2);
@@ -72,7 +72,7 @@ class QueenTest {
     void testQueenOnRealBoardStart() {
         final Chessboard chessboard = board.createNormalCB();
         final List<Piece> list = chessboard.getAllPieces();
-        final Piece queen = list.stream().filter(x -> x.getPosition().equals(new Position(3, 0)) 
+        final Piece queen = list.stream().filter(x -> x.getPosition().equals(Position.createNumericPosition(3, 0)) 
                 && x.getName().equals(Name.QUEEN)).findFirst().get();
         final List<Position> l = List.of();
         assertEquals(l, queen.getAllPossiblePositions(chessboard));
@@ -81,14 +81,14 @@ class QueenTest {
     @Test
     void testQueenMove() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(1, 1), new Position(1, 0), new Position(2, 0), new Position(0, 1));
-        final List<Position> l1 = List.of(new Position(2, 1), new Position(0, 1), new Position(2, 0), new Position(0, 0), new Position(1, 1));
+        final List<Position> l = List.of(Position.createNumericPosition(1, 1), Position.createNumericPosition(1, 0), Position.createNumericPosition(2, 0), Position.createNumericPosition(0, 1));
+        final List<Position> l1 = List.of(Position.createNumericPosition(2, 1), Position.createNumericPosition(0, 1), Position.createNumericPosition(2, 0), Position.createNumericPosition(0, 0), Position.createNumericPosition(1, 1));
 
-        final Piece queen = factory.createPiece(Name.QUEEN, new Position(0, 0), Side.BLACK);
-        final Piece queen1 = factory.createPiece(Name.QUEEN, new Position(1, 1), Side.WHITE);
-        final Piece queen2 = factory.createPiece(Name.QUEEN, new Position(2, 0), Side.WHITE);
-        final Piece queen3 = factory.createPiece(Name.QUEEN, new Position(0, 1), Side.WHITE);
-        final Piece queen4 = factory.createPiece(Name.QUEEN, new Position(2, 1), Side.WHITE);
+        final Piece queen = factory.createPiece(Name.QUEEN, Position.createNumericPosition(0, 0), Side.BLACK);
+        final Piece queen1 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(1, 1), Side.WHITE);
+        final Piece queen2 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(2, 0), Side.WHITE);
+        final Piece queen3 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(0, 1), Side.WHITE);
+        final Piece queen4 = factory.createPiece(Name.QUEEN, Position.createNumericPosition(2, 1), Side.WHITE);
 
         list.add(queen);
         list.add(queen3);
@@ -96,7 +96,7 @@ class QueenTest {
         list.add(queen1);
         list.add(queen4);
         assertEquals(l, queen.getAllPossiblePositions(board.createTestCB(list)));
-        queen.setPosition(new Position(1, 0));
+        queen.setPosition(Position.createNumericPosition(1, 0));
         assertEquals(l1, queen.getAllPossiblePositions(board.createTestCB(list)));
     }
 }
