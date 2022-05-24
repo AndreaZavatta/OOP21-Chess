@@ -7,7 +7,7 @@ import java.util.Objects;
  * A standard Position class, with getters, hashCode, equals, and toString.
 
  */
-public class Position {
+public final class Position {
 
     private final int x;
     private final int y;
@@ -16,20 +16,30 @@ public class Position {
      * @param x the x value.
      * @param y the y value.
      */
-    public Position(final int x, final int y) {
+    private Position(final int x, final int y) {
         super();
         this.x = x;
         this.y = y;
     }
-//    /**
-//     * 
-//     * @param x
-//     * @param y
-//     * @return a
-//     */
-//    public static Position createNewPosition(final String position) {
-//        return new Position(x, y);
-//    }
+    /**
+     * Static factory method to create a new position from a string.
+     * 
+     * @param position the string associated to the numeric position
+     * @return new position
+     */
+    public static Position createNewPosition(final String position) {
+        return new Position(fromCharToInt(position.charAt(0)), -Character.getNumericValue(position.charAt(1)) + 8);
+    }
+    /**
+     * Static factory method to create a numeric position.
+     * 
+     * @param x the x value
+     * @param y the y value
+     * @return a new position
+     */
+    public static Position createNumericPosition(final int x, final int y) {
+        return new Position(x, y);
+    }
     /**
      * 
      * @return the x variable.
@@ -81,16 +91,8 @@ public class Position {
         final char a = 'a';
         return (char) (a + x);
     }
-    /**
-     * 
-     * @param position
-     * @return new position
-     */
-    public static Position createNewPosition(final String position) {
-        return new Position(fromCharToInt(position.charAt(0)), -Character.getNumericValue(position.charAt(1)) + 8);
-    }
 
     private static int fromCharToInt(final char firstLetter) {
-        return (int) firstLetter - (int) 'a';
+        return firstLetter - 'a';
     }
 }
