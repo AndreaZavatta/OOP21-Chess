@@ -3,6 +3,7 @@ package pieces;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import board.Chessboard;
 import piece.utils.Position;
@@ -46,21 +47,27 @@ public final class Pawn extends AbstractPiece {
     }
 
     private void goEat(final Chessboard board, final List<Position> list) {
-        for (final var pos : PieceDirections.PAWN_DIR.directions()) {
-            final Position p = ControlsUtility.getNewPosition(this, pos, this.getDirection(this.getColor()));
-            if (ControlsUtility.checkPosition(this, p, board) 
-                    && ControlsUtility.checkPiece(this, p, board) 
-                    && ControlsUtility.checkEnemy(this, p, board)) {
-                list.add(p);
-            }
-        }
+        //        for (final var pos : PieceDirections.PAWN_DIR.directions()) {
+        //            final Position p = ControlsUtility.getNewPosition(this, pos, this.getDirection(this.getColor()));
+        //            if (ControlsUtility.checkPosition(this, p, board) 
+        //                    && ControlsUtility.checkPiece(this, p, board) 
+        //                    && ControlsUtility.checkEnemy(this, p, board)) {
+        //                list.add(p);
+        //            }
+        //        }
+        list.addAll(PieceDirections.PAWN_DIR.directions().stream()
+                .map(p -> ControlsUtility.getNewPosition(this, p, this.getDirection(this.getColor())))
+                .filter(p -> ControlsUtility.checkPosition(this, p, board) 
+                        && ControlsUtility.checkPiece(this, p, board) 
+                        && ControlsUtility.checkEnemy(this, p, board))
+                .collect(Collectors.toUnmodifiableList()));
     }
 
     private void goFoward(final Chessboard board, final List<Position> list, final int lenght) {
         final Position p = ControlsUtility.getNewPosition(this, 
                 Position.createNumericPosition(0, lenght), this.getDirection(this.getColor()));
         if (ControlsUtility.checkPosition(this, p, board) 
-                    && !ControlsUtility.checkPiece(this, p, board)) {
+                && !ControlsUtility.checkPiece(this, p, board)) {
             list.add(p);
         } else {
             dontgo = true;
