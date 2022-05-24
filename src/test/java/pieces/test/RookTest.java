@@ -26,10 +26,20 @@ class RookTest {
     @Test
     void testRookAllPosition() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(Position.createNumericPosition(1, 0), Position.createNumericPosition(2, 0), Position.createNumericPosition(3, 0), 
-                Position.createNumericPosition(4, 0), Position.createNumericPosition(5, 0), Position.createNumericPosition(6, 0), Position.createNumericPosition(7, 0), 
-                Position.createNumericPosition(0, 1), Position.createNumericPosition(0, 2), Position.createNumericPosition(0, 3), Position.createNumericPosition(0, 4), 
-                Position.createNumericPosition(0, 5), Position.createNumericPosition(0, 6), Position.createNumericPosition(0, 7));
+        final List<Position> l = List.of(Position.createNumericPosition(1, 0),
+                Position.createNumericPosition(2, 0),
+                Position.createNumericPosition(3, 0), 
+                Position.createNumericPosition(4, 0),
+                Position.createNumericPosition(5, 0),
+                Position.createNumericPosition(6, 0),
+                Position.createNumericPosition(7, 0), 
+                Position.createNumericPosition(0, 1),
+                Position.createNumericPosition(0, 2),
+                Position.createNumericPosition(0, 3),
+                Position.createNumericPosition(0, 4), 
+                Position.createNumericPosition(0, 5),
+                Position.createNumericPosition(0, 6),
+                Position.createNumericPosition(0, 7));
         final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(0, 0), Side.WHITE);
         list.add(rook);
         assertEquals(l, rook.getAllPossiblePositions(board.createTestCB(list)));
@@ -38,7 +48,8 @@ class RookTest {
     @Test
     void testCanEatAllPositionsRook() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(Position.createNumericPosition(1, 0), Position.createNumericPosition(0, 1));
+        final List<Position> l = List.of(Position.createNumericPosition(1, 0),
+                Position.createNumericPosition(0, 1));
         final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(0, 0), Side.WHITE);
         final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(1, 0), Side.BLACK);
         final Piece pawn1 = factory.createPiece(Name.PAWN, Position.createNumericPosition(0, 1), Side.BLACK);

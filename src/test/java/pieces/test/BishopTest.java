@@ -28,9 +28,17 @@ class BishopTest {
     @Test
     void testNormalMovement() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(Position.createNumericPosition(5, 6), Position.createNumericPosition(6, 7), Position.createNumericPosition(3, 4),
-                Position.createNumericPosition(2, 3), Position.createNumericPosition(1, 2), Position.createNumericPosition(0, 1), Position.createNumericPosition(5, 4), 
-                Position.createNumericPosition(6, 3), Position.createNumericPosition(7, 2), Position.createNumericPosition(3, 6), Position.createNumericPosition(2, 7));
+        final List<Position> l = List.of(Position.createNumericPosition(5, 6),
+                Position.createNumericPosition(6, 7),
+                Position.createNumericPosition(3, 4),
+                Position.createNumericPosition(2, 3),
+                Position.createNumericPosition(1, 2),
+                Position.createNumericPosition(0, 1),
+                Position.createNumericPosition(5, 4), 
+                Position.createNumericPosition(6, 3),
+                Position.createNumericPosition(7, 2),
+                Position.createNumericPosition(3, 6),
+                Position.createNumericPosition(2, 7));
         final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 5), Side.WHITE);
         list.add(bishop);
         assertEquals(l, bishop.getAllPossiblePositions(board.createTestCB(list)));
@@ -62,8 +70,10 @@ class BishopTest {
     @Test
     void testWithAlliesAndPositionAvailable() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(Position.createNumericPosition(5, 6), Position.createNumericPosition(3, 4),
-                Position.createNumericPosition(5, 4), Position.createNumericPosition(3, 6));
+        final List<Position> l = List.of(Position.createNumericPosition(5, 6),
+                Position.createNumericPosition(3, 4),
+                Position.createNumericPosition(5, 4),
+                Position.createNumericPosition(3, 6));
 
         final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 5), Side.WHITE);
 
@@ -95,7 +105,8 @@ class BishopTest {
     @Test
     void testWithEnemy() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(Position.createNumericPosition(1, 1), Position.createNumericPosition(2, 2));
+        final List<Position> l = List.of(Position.createNumericPosition(1, 1),
+                Position.createNumericPosition(2, 2));
         final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(0, 0), Side.WHITE);
 
         final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(2, 2), Side.BLACK);
@@ -107,8 +118,10 @@ class BishopTest {
     @Test
     void test2WithEnemy() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(Position.createNumericPosition(2, 2), Position.createNumericPosition(0, 0), 
-                Position.createNumericPosition(2, 0), Position.createNumericPosition(0, 2));
+        final List<Position> l = List.of(Position.createNumericPosition(2, 2),
+                Position.createNumericPosition(0, 0), 
+                Position.createNumericPosition(2, 0),
+                Position.createNumericPosition(0, 2));
         final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(1, 1), Side.BLACK);
 
         final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(0, 0), Side.WHITE);
