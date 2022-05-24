@@ -71,9 +71,9 @@ class FenBuilderTest {
         board.move(createNewPosition("e7"), createNewPosition("e5"));
         board.move(createNewPosition("g2"), createNewPosition("g4"));
         board.move(createNewPosition("d8"), createNewPosition("h4"));
-        assertEquals("rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 1", 
-                fenBuilder.activeColor(BLACK)
-                .build(board));
+        assertEquals("rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1", 
+                fenBuilder.activeColor(WHITE).build(board));
+        
     }
     @Test
     void testPhilidorPosition() {
