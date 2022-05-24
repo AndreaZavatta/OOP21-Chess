@@ -28,23 +28,23 @@ public class FenBuilder implements Fen {
         return this;
     }
     @Override
-    public Fen blackKingCastledQueenside() {
-        blackCastlingQueenside = false;
-        return this;
-    }
-    @Override
-    public Fen blackQueenCastledQueenside() {
+    public Fen blackCastledKingside() {
         blackCastlingKingside = false;
         return this;
     }
     @Override
-    public Fen whiteKingCastledQueenside() {
-        whiteCastlingQueenside = false;
+    public Fen blackCastledQueenside() {
+        blackCastlingQueenside = false;
         return this;
     }
     @Override
-    public Fen whiteQueenCastledQueenside() {
+    public Fen whiteCastledKingside() {
         whiteCastlingKingside = false;
+        return this;
+    }
+    @Override
+    public Fen whiteCastledQueenside() {
+        whiteCastlingQueenside = false;
         return this;
     }
     @Override
@@ -73,9 +73,21 @@ public class FenBuilder implements Fen {
         }
         res.append(calculateInitRowPawn(rowPiece));
         res.append(pieceRapresentation(rowPiece.get(0)));
-        for (int i = 1; i < chessboard.getxBorder() + 1; i++) {
-            res.append(calculatePawnBetweenFromPieces(rowPiece.get(i), rowPiece.get(i - 1)));
+        int temp2 = 1;
+        int pawnInteger;
+        for (int i = 1; temp2 <= chessboard.getxBorder(); i++) {
+            if(rowPiece.size() == i) {
+                pawnInteger = 7 - rowPiece.get(i-1).getPosition().getX();
+                String pawnString = pawnInteger != 0 ? Integer.toString(pawnInteger) : ""; 
+                res.append(pawnString);
+                break;
+            }else {
+                pawnInteger = calculatePawnBetweenFromPieces(rowPiece.get(i), rowPiece.get(i - 1));
+                String pawnString = pawnInteger != 0 ? Integer.toString(pawnInteger) : ""; 
+                res.append(pawnString);
+            }
             res.append(pieceRapresentation(rowPiece.get(i)));
+            temp2 += pawnInteger + 1;
         }
 
         return res.toString();
@@ -83,10 +95,10 @@ public class FenBuilder implements Fen {
     private String calculateInitRowPawn(final List<Piece> rowPiece) {
         return rowPiece.get(0).getPosition().getX() != 0 ? Integer.toString(rowPiece.get(0).getPosition().getX())  : "";
     }
-    private String calculatePawnBetweenFromPieces(final Piece piece1, final Piece piece2) {
-        String res = "";
+    private int calculatePawnBetweenFromPieces(final Piece piece1, final Piece piece2) {
+        int res = 0;
         if (differenceX(piece1, piece2) != 1) {
-            res = Integer.toString(differenceX(piece1, piece2));
+            res = differenceX(piece1, piece2) - 1;
         }
         return res;
     }
