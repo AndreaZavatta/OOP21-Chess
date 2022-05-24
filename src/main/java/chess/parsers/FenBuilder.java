@@ -43,8 +43,32 @@ public class FenBuilder implements Fen {
         return this;
     }
     private String fromRowToString(final int row, final Chessboard chessboard) {
-        List<Piece> rowPiece = chessboard.getAllPieces().stream().filter(x -> x.getPosition().getY() == row).collect(Collectors.toList());
-        return "";
+        StringBuilder res = new StringBuilder();
+        List<Piece> rowPiece = chessboard.getAllPieces().stream()
+                .filter(x -> x.getPosition().getY() == row)
+                .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
+                .collect(Collectors.toList());
+        res.append(calculateInitRowPawn(rowPiece));
+        res.append(pieceRapresentation(rowPiece.get(0)));
+        for (int i = 1; i < chessboard.getxBorder() + 1; i++) {
+            res.append(calculatePawnBetweenFromPieces(rowPiece.get(i), rowPiece.get(i - 1)));
+            res.append(pieceRapresentation(rowPiece.get(i)));
+        }
+
+        return res.toString();
+    }
+    private String calculateInitRowPawn(final List<Piece> rowPiece) {
+        return rowPiece.get(0).getPosition().getX() != 0 ? Integer.toString(rowPiece.get(0).getPosition().getX())  : "";
+    }
+    private String calculatePawnBetweenFromPieces(final Piece piece1, final Piece piece2) {
+        String res = "";
+        if (differenceX(piece1, piece2) != 1) {
+            res = Integer.toString(differenceX(piece1, piece2));
+        }
+        return res;
+    }
+    private int differenceX(final Piece piece1, final Piece piece2) {
+        return piece1.getPosition().getX() - piece2.getPosition().getX();
     }
     private String pieceRapresentation(final Piece piece) {
         var notation = piece.getName().notation();
