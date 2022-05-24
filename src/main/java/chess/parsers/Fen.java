@@ -14,19 +14,32 @@ public interface Fen {
      * @param side
      * @return Fen
      */
-    Fen side(Side side);
+
+    Fen activeColor(Side side);
 
     /**
      * 
      * @return Fen
      */
-    Fen castlingQueenside();
+    Fen whiteKingCastledQueenside();
 
     /**
      * 
      * @return Fen
      */
-    Fen castlingKingside();
+    Fen whiteQueenCastledQueenside();
+
+    /**
+     * 
+     * @return Fen
+     */
+    Fen blackQueenCastledQueenside();
+
+    /**
+     * 
+     * @return Fen
+     */
+    Fen blackKingCastledQueenside();
 
     /**
      * 
@@ -40,7 +53,7 @@ public interface Fen {
      * @param halfMove
      * @return Fen
      */
-    Fen halfMove(int halfMove);
+    Fen halfMove(String halfMove);
 
     /**
      * 
@@ -48,5 +61,9 @@ public interface Fen {
      * @return String
      */
     String build(Chessboard chessboard);
+
+
+
+
 
 }
