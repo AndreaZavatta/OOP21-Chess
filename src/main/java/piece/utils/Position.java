@@ -81,4 +81,16 @@ public class Position {
         final char a = 'a';
         return (char) (a + x);
     }
+    /**
+     * 
+     * @param position
+     * @return new position
+     */
+    public static Position createNewPosition(final String position) {
+        return new Position(fromCharToInt(position.charAt(0)), -Character.getNumericValue(position.charAt(1)) + 8);
+    }
+
+    private static int fromCharToInt(final char firstLetter) {
+        return (int) firstLetter - (int) 'a';
+    }
 }
