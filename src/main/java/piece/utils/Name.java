@@ -11,7 +11,7 @@ public enum Name {
     PAWN {
         @Override
         public String notation() {
-            return "";
+            return "P";
         }
     },
     /**
