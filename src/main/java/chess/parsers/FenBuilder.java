@@ -1,6 +1,7 @@
 package chess.parsers;
 import board.Chessboard;
 import piece.utils.Side;
+import pieces.Piece;
 
 /**
  * 
@@ -14,32 +15,36 @@ public class FenBuilder implements Fen {
     private int halfMove = 0;
 
     @Override
-    public Fen setSide(final Side side) {
+    public Fen side(final Side side) {
         this.side = side;
         return this;
     }
     @Override
-    public Fen setCastlingQueenside() {
+    public Fen castlingQueenside() {
         castlingQueenside = true;
         return this;
     }
     @Override
-    public Fen setCastlingKingside() {
+    public Fen castlingKingside() {
         castlingKingside = true;
         return this;
     }
     @Override
-    public Fen setEnpassant(final String str) {
+    public Fen enpassant(final String str) {
         enPassant = str;
         return this;
     }
     @Override
-    public Fen setHalfMove(final int halfMove) {
+    public Fen halfMove(final int halfMove) {
         this.halfMove = halfMove;
         return this;
     }
     private String fromRowToString(final int row, final Chessboard chessboard) {
         return "";
+    }
+    private String pieceRapresentation(final Piece piece) {
+        var temp = piece.getName().notation();
+        return piece.getColor().equals(Side.BLACK) ? temp : temp.toUpperCase();
     }
     private String fenPiece(final Chessboard chessboard) {
         StringBuilder str = new StringBuilder();
