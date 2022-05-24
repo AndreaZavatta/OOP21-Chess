@@ -28,8 +28,8 @@ class PawnTest {
     @Test
     void testNormalMovementWhitePawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(0, 5), new Position(0, 4));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 6), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(0, 5), Position.createNumericPosition(0, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(0, 6), Side.WHITE);
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
@@ -40,8 +40,8 @@ class PawnTest {
     @Test
     void testNormalMovementBlackPawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(0, 1), new Position(0, 2));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 0), Side.BLACK);
+        final List<Position> l = List.of(Position.createNumericPosition(0, 1), Position.createNumericPosition(0, 2));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(0, 0), Side.BLACK);
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
@@ -52,8 +52,8 @@ class PawnTest {
     @Test
     void testOnePositionMovementWhitePawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(2, 1));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(2, 1));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(2, 2), Side.WHITE);
         list.add(pawn);
         assertFalse(pawn.isMoved());
         pawn.setPosition(pawn.getPosition());
@@ -64,8 +64,8 @@ class PawnTest {
     @Test
     void testOnePositionMovementBlackPawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(2, 3));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
+        final List<Position> l = List.of(Position.createNumericPosition(2, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(2, 2), Side.BLACK);
         list.add(pawn);
         assertFalse(pawn.isMoved());
         pawn.setPosition(pawn.getPosition());
@@ -76,10 +76,10 @@ class PawnTest {
     @Test
     void testGoFowardTwoTilesAndCanEatLeftAndRightBlackPawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(3, 3), new Position(1, 3), new Position(2, 3), new Position(2, 4));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.WHITE);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(1, 3), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(3, 3), Position.createNumericPosition(1, 3), Position.createNumericPosition(2, 3), Position.createNumericPosition(2, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(2, 2), Side.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(3, 3), Side.WHITE);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, Position.createNumericPosition(1, 3), Side.WHITE);
         list.add(pawn);
         list.add(bishop1);
         list.add(bishop);
@@ -92,10 +92,10 @@ class PawnTest {
     @Test
     void testGoFowardTwoTilesAndCanEatLeftAndRightWhitePawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(4, 4), new Position(6, 4), new Position(5, 4), new Position(5, 3));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(5, 5), Side.WHITE);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 4), Side.BLACK);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(6, 4), Side.BLACK);
+        final List<Position> l = List.of(Position.createNumericPosition(4, 4), Position.createNumericPosition(6, 4), Position.createNumericPosition(5, 4), Position.createNumericPosition(5, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(5, 5), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 4), Side.BLACK);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, Position.createNumericPosition(6, 4), Side.BLACK);
         list.add(pawn);
         list.add(bishop1);
         list.add(bishop);
@@ -108,10 +108,10 @@ class PawnTest {
     @Test
     void testGoFowardOneTileAndCanEatLeftAndRightWhitePawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(4, 4), new Position(6, 4), new Position(5, 4));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(5, 5), Side.WHITE);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 4), Side.BLACK);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(6, 4), Side.BLACK);
+        final List<Position> l = List.of(Position.createNumericPosition(4, 4), Position.createNumericPosition(6, 4), Position.createNumericPosition(5, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(5, 5), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 4), Side.BLACK);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, Position.createNumericPosition(6, 4), Side.BLACK);
         list.add(pawn);
         list.add(bishop1);
         list.add(bishop);
@@ -124,10 +124,10 @@ class PawnTest {
     @Test
     void testGoFowardOneTileAndCanEatLeftAndRightBlackPawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(3, 3), new Position(1, 3), new Position(2, 3));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.WHITE);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(1, 3), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(3, 3), Position.createNumericPosition(1, 3), Position.createNumericPosition(2, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(2, 2), Side.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(3, 3), Side.WHITE);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, Position.createNumericPosition(1, 3), Side.WHITE);
         list.add(pawn);
         list.add(bishop1);
         list.add(bishop);
@@ -140,10 +140,10 @@ class PawnTest {
     @Test
     void testGoFowardTwoTilesAndCantEatBlackPawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(2, 3), new Position(2, 4));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(2, 2), Side.BLACK);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.BLACK);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(1, 3), Side.BLACK);
+        final List<Position> l = List.of(Position.createNumericPosition(2, 3), Position.createNumericPosition(2, 4));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(2, 2), Side.BLACK);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(3, 3), Side.BLACK);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, Position.createNumericPosition(1, 3), Side.BLACK);
         list.add(pawn);
         list.add(bishop1);
         list.add(bishop);
@@ -156,10 +156,10 @@ class PawnTest {
     @Test
     void testGoFowardTwoTilesAndCantEatWhitePawn() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(5, 4), new Position(5, 3));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(5, 5), Side.WHITE);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(4, 4), Side.WHITE);
-        final Piece bishop1 = factory.createPiece(Name.BISHOP, new Position(6, 4), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(5, 4), Position.createNumericPosition(5, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(5, 5), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(4, 4), Side.WHITE);
+        final Piece bishop1 = factory.createPiece(Name.BISHOP, Position.createNumericPosition(6, 4), Side.WHITE);
         list.add(pawn);
         list.add(bishop1);
         list.add(bishop);
@@ -173,7 +173,7 @@ class PawnTest {
     void testBlackPawnOnEdgeNoPositionPossible() {
         final List<Piece> list = new ArrayList<>();
         final List<Position> l = List.of();
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(7, 7), Side.BLACK);
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(7, 7), Side.BLACK);
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
@@ -185,7 +185,7 @@ class PawnTest {
     void testWhitePawnOnEdgeNoPositionPossible() {
         final List<Piece> list = new ArrayList<>();
         final List<Position> l = List.of();
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 0), Side.WHITE);
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(0, 0), Side.WHITE);
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
         assertFalse(pawn.isMoved());
@@ -197,12 +197,12 @@ class PawnTest {
     void testBlackPawnSurrounded() {
         final List<Piece> list = new ArrayList<>();
         final List<Position> l = List.of();
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(4, 4), Side.WHITE);
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(4, 3), Side.WHITE);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.WHITE);
-        final Piece queen = factory.createPiece(Name.QUEEN, new Position(5, 3), Side.WHITE);
-        final Piece knight = factory.createPiece(Name.KNIGHT, new Position(4, 5), Side.WHITE);
-        final Piece pawn2 = factory.createPiece(Name.PAWN, new Position(4, 2), Side.WHITE);
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(4, 4), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(4, 3), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(3, 3), Side.WHITE);
+        final Piece queen = factory.createPiece(Name.QUEEN, Position.createNumericPosition(5, 3), Side.WHITE);
+        final Piece knight = factory.createPiece(Name.KNIGHT, Position.createNumericPosition(4, 5), Side.WHITE);
+        final Piece pawn2 = factory.createPiece(Name.PAWN, Position.createNumericPosition(4, 2), Side.WHITE);
         list.add(queen);
         list.add(knight);
         list.add(bishop);
@@ -219,8 +219,8 @@ class PawnTest {
     void testBlackPawnBlocked() {
         final List<Piece> list = new ArrayList<>();
         final List<Position> l = List.of();
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(4, 4), Side.WHITE);
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(4, 3), Side.WHITE);
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(4, 4), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(4, 3), Side.WHITE);
         list.add(rook);
         list.add(pawn);
         assertEquals(l, pawn.getAllPossiblePositions(board.createTestCB(list)));
@@ -232,9 +232,9 @@ class PawnTest {
     @Test
     void testBlackPawnCantGoTwoTiles() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(4, 3));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(4, 4), Side.WHITE);
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(4, 2), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(4, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(4, 4), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(4, 2), Side.WHITE);
         list.add(rook);
         list.add(pawn);
         assertFalse(pawn.isMoved());
@@ -246,13 +246,13 @@ class PawnTest {
     @Test
     void testBlackPawnSurroundedCanEatBothSide() {
         final List<Piece> list = new ArrayList<>();
-        final List<Position> l = List.of(new Position(3, 3), new Position(5, 3));
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(4, 4), Side.WHITE);
-        final Piece rook = factory.createPiece(Name.ROOK, new Position(4, 3), Side.WHITE);
-        final Piece bishop = factory.createPiece(Name.BISHOP, new Position(3, 3), Side.BLACK);
-        final Piece queen = factory.createPiece(Name.QUEEN, new Position(5, 3), Side.BLACK);
-        final Piece knight = factory.createPiece(Name.KNIGHT, new Position(4, 5), Side.WHITE);
-        final Piece pawn2 = factory.createPiece(Name.PAWN, new Position(4, 2), Side.WHITE);
+        final List<Position> l = List.of(Position.createNumericPosition(3, 3), Position.createNumericPosition(5, 3));
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(4, 4), Side.WHITE);
+        final Piece rook = factory.createPiece(Name.ROOK, Position.createNumericPosition(4, 3), Side.WHITE);
+        final Piece bishop = factory.createPiece(Name.BISHOP, Position.createNumericPosition(3, 3), Side.BLACK);
+        final Piece queen = factory.createPiece(Name.QUEEN, Position.createNumericPosition(5, 3), Side.BLACK);
+        final Piece knight = factory.createPiece(Name.KNIGHT, Position.createNumericPosition(4, 5), Side.WHITE);
+        final Piece pawn2 = factory.createPiece(Name.PAWN, Position.createNumericPosition(4, 2), Side.WHITE);
         list.add(queen);
         list.add(knight);
         list.add(bishop);
@@ -269,12 +269,12 @@ class PawnTest {
     void testBlackPawnOnNormalBoard() {
         final Chessboard chessboard = board.createNormalCB();
         final List<Piece> list = chessboard.getAllPieces();
-        final Piece pawn = list.stream().filter(x -> x.getPosition().equals(new Position(1, 1)) 
+        final Piece pawn = list.stream().filter(x -> x.getPosition().equals(Position.createNumericPosition(1, 1)) 
                 && x.getName().equals(Name.PAWN)).findFirst().get();
-        final List<Position> l = List.of(new Position(1, 2), new Position(1, 3));
+        final List<Position> l = List.of(Position.createNumericPosition(1, 2), Position.createNumericPosition(1, 3));
         assertEquals(l, pawn.getAllPossiblePositions(chessboard));
-        pawn.setPosition(new Position(1, 2));
+        pawn.setPosition(Position.createNumericPosition(1, 2));
         assertTrue(pawn.isMoved());
-        assertEquals(List.of(new Position(1, 3)), pawn.getAllPossiblePositions(chessboard));
+        assertEquals(List.of(Position.createNumericPosition(1, 3)), pawn.getAllPossiblePositions(chessboard));
     }
 }
