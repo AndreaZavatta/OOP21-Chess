@@ -189,7 +189,10 @@ public class MoveBuilder implements Move {
     }
 
     private void addPieceNotation(final StringBuilder str) {
-        str.append(nameNotation());
+        if (!piece.get().getName().notation().equals("P")) {
+            str.append(nameNotation());
+        }
+
     }
 
     private void addDestination(final StringBuilder str) {
