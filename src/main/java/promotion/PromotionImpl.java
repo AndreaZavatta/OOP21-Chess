@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import piece.utils.Name;
+import piece.utils.Numbers;
 import piece.utils.Side;
 import pieces.Piece;
 import pieces.PieceFactory;
@@ -18,22 +19,24 @@ public class PromotionImpl implements Promotion {
     private final PieceFactory factory = new PieceFactoryImpl();
 
     /**
+     * This method checks if there is a pawn that can be promoted.
      * 
-     * @param pieceList
-     * @return a
+     * @param pieceList the piece list
+     * @return an optional of Piece, or null if there is no pawn to be promoted
      */
     @Override
     public Optional<Piece> checkForPromotion(final List<Piece> pieceList) {
         if (checkColor(Side.BLACK, pieceList, 0).isPresent()) {
             return checkColor(Side.BLACK, pieceList, 0);
         }
-        return Optional.empty();
+        return checkColor(Side.WHITE, pieceList, Numbers.SEVEN);
     }
     /**
+     * This method creates a new piece.
      * 
-     * @param name
-     * @param piece
-     * @return a
+     * @param name the name of the new piece
+     * @param piece the old piece
+     * @return a new piece with the old piece position and color
      */
     @Override
     public Piece changePiece(final Name name, final Piece piece) {
