@@ -2,6 +2,8 @@ package chess.parsers;
 
 import static piece.utils.Name.KING;
 import static piece.utils.Name.QUEEN;
+import static piece.utils.Side.BLACK;
+import static piece.utils.Side.WHITE;
 import java.util.List;
 import java.util.stream.Collectors;
 import board.Chessboard;
@@ -62,57 +64,31 @@ public class FenBuilder implements Fen {
         this.fullMoveNumber = fullMove;
         return this;
     }
+
     private String fromRowToString(final int row, final Chessboard chessboard) {
         StringBuilder res = new StringBuilder();
         List<Piece> rowPiece = chessboard.getAllPieces().stream()
                 .filter(x -> x.getPosition().getY() == row)
                 .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
                 .collect(Collectors.toList());
-        if (rowPiece.isEmpty()) {
-            return Integer.toString(chessboard.getyBorder() + 1);
+
+        int xPrec = 0;
+        for (Piece piece : rowPiece) {
+           int diff = piece.getPosition().getX() - xPrec;
+           if (diff > 0) {
+               res.append(diff);
+           }
+           String notation = piece.getName().notation();
+           res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase() : notation );
+           xPrec = piece.getPosition().getX() + 1;
         }
-        res.append(calculateInitRowPawn(rowPiece));
-        res.append(pieceRapresentation(rowPiece.get(0)));
-        int temp2 = 1;
-        int pawnInteger = 0;
-        for (int i = 1; temp2 <= chessboard.getxBorder(); i++) {
-            if (isLastPieceOfRow(chessboard, rowPiece, i-1) && i != chessboard.getxBorder()) {
-                pawnInteger = chessboard.getxBorder() - rowPiece.get(i - 1).getPosition().getX();
-                String pawnString = pawnInteger != 0 ? Integer.toString(pawnInteger) : ""; 
-                res.append(pawnString);
-                break;
-            } else {
-                pawnInteger = calculatePawnBetweenFromPieces(rowPiece.get(i), rowPiece.get(i - 1));
-                String pawnString = pawnInteger != 0 ? Integer.toString(pawnInteger) : ""; 
-                res.append(pawnString);
-            }
-            res.append(pieceRapresentation(rowPiece.get(i)));
-            temp2 += pawnInteger + 1;
+        if (xPrec < chessboard.getxBorder() + 1) {
+            res.append(chessboard.getxBorder() + 1 - xPrec);
         }
 
         return res.toString();
     }
 
-    private boolean isLastPieceOfRow(final Chessboard chessboard, List<Piece> rowPiece, int i) {
-        return rowPiece.get(i) == rowPiece.get(rowPiece.size() - 1) ;
-    }
-    private String calculateInitRowPawn(final List<Piece> rowPiece) {
-        return rowPiece.get(0).getPosition().getX() != 0 ? Integer.toString(rowPiece.get(0).getPosition().getX())  : "";
-    }
-    private int calculatePawnBetweenFromPieces(final Piece piece1, final Piece piece2) {
-        int res = 0;
-        if (differenceX(piece1, piece2) != 1) {
-            res = differenceX(piece1, piece2) - 1;
-        }
-        return res;
-    }
-    private int differenceX(final Piece piece1, final Piece piece2) {
-        return piece1.getPosition().getX() - piece2.getPosition().getX();
-    }
-    private String pieceRapresentation(final Piece piece) {
-        var notation = piece.getName().notation();
-        return piece.getSide().equals(Side.BLACK) ? notation.toLowerCase() : notation;
-    }
     private String fenPiece(final Chessboard chessboard) {
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < chessboard.getyBorder() + 1; i++) {
