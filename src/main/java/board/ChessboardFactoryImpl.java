@@ -27,7 +27,7 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
         final List<Piece> chessOnBoard = this.createPawns(Numbers.SIX, Side.WHITE);
         chessOnBoard.addAll(this.createBackLine(Numbers.SEVEN, Side.WHITE));
         chessOnBoard.addAll(this.createPawns(Numbers.ONE, Side.BLACK));
-        chessOnBoard.addAll(this.createBackLine(Numbers.SEVEN, Side.BLACK));
+        chessOnBoard.addAll(this.createBackLine(Numbers.ZERO, Side.BLACK));
         return new ChessboardImpl(chessOnBoard, Numbers.SEVEN, Numbers.SEVEN);
     }
 

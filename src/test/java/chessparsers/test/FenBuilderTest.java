@@ -9,11 +9,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import chess.parsers.Fen;
 import chess.parsers.FenBuilder;
-import piece.utils.Position;
 import pieces.Piece;
 import pieces.PieceFactory;
 import pieces.PieceFactoryImpl;
@@ -27,7 +27,7 @@ class FenBuilderTest {
     @Test
     void testInitialPosition() {
         assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", 
-                fenBuilder.halfMoveClock(0)
+                fenBuilder
                 .activeColor(WHITE)
                 .build(boardFactory.createNormalCB()));
     }
@@ -39,7 +39,7 @@ class FenBuilderTest {
                 pieceFact.createPiece(BISHOP, createNewPosition("h8"), BLACK),
                 pieceFact.createPiece(ROOK, createNewPosition("a1"), WHITE),
                 pieceFact.createPiece(KING, createNewPosition("d2"), WHITE));
-        var board = boardFactory.createTestCB(list);
+        Chessboard board = boardFactory.createTestCB(list);
         assertEquals("r3k2b/8/8/8/8/8/3K4/R7 w q - 0 1", 
                 fenBuilder.activeColor(WHITE)
                 .blackCastledKingside()
@@ -54,7 +54,7 @@ class FenBuilderTest {
                 pieceFact.createPiece(PAWN, createNewPosition("a2"), BLACK),
                 pieceFact.createPiece(KING, createNewPosition("f2"), WHITE),
                 pieceFact.createPiece(PAWN, createNewPosition("h4"), WHITE));
-        var board = boardFactory.createTestCB(list);
+        Chessboard board = boardFactory.createTestCB(list);
         assertEquals("8/8/8/1k6/7P/8/p4K2/8 b - - 0 1", 
                 fenBuilder.activeColor(BLACK)
                 .blackCastledKingside()
@@ -63,5 +63,16 @@ class FenBuilderTest {
                 .whiteCastledQueenside()
                 .build(board));
 
+    }
+    @Test
+    void testFoolMate() {
+        Chessboard board = boardFactory.createNormalCB();
+        board.move(createNewPosition("f2"), createNewPosition("f3"));
+        board.move(createNewPosition("e7"), createNewPosition("e5"));
+        board.move(createNewPosition("g2"), createNewPosition("g4"));
+        board.move(createNewPosition("d8"), createNewPosition("h4"));
+        assertEquals("rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 1", 
+                fenBuilder.activeColor(BLACK)
+                .build(board));
     }
 }
