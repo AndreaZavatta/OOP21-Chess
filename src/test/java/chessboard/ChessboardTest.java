@@ -33,56 +33,60 @@ class ChessboardTest {
 
     @Test
     void checkIfKill() {
-        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
-                                            pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
-                                            pieceFct.createPiece(Name.ROOK, new Position(0, 7), Side.WHITE),
-                                            pieceFct.createPiece(Name.KING, new Position(7, 7), Side.WHITE));
+        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, Position.createNewPosition("a8"), Side.BLACK),
+                                            pieceFct.createPiece(Name.KING, Position.createNewPosition("b7"), Side.BLACK),
+                                            pieceFct.createPiece(Name.ROOK, Position.createNewPosition("h8"), Side.WHITE),
+                                            pieceFct.createPiece(Name.KING, Position.createNewPosition("h1"), Side.WHITE));
         final Chessboard board = chessboardFct.createTestCB(pieces);
 
-        board.move(new Position(0, 7), new Position(0, 0));
-        assertEquals(board.getPieceOnPosition(new Position(0, 0)).get(), 
-                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.WHITE));
+        board.move(Position.createNewPosition("h8"), Position.createNewPosition("a8"));
+        assertEquals(board.getPieceOnPosition(Position.createNewPosition("a8")).get(), 
+                    pieceFct.createPiece(Name.ROOK, Position.createNewPosition("a8"), Side.WHITE));
         assertFalse(board.getAllPieces().contains(
-                    pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK)));
+                    pieceFct.createPiece(Name.ROOK, Position.createNewPosition("a8"), Side.BLACK)));
     }
 
     @Test
     void checkBoardBorders() {
-        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, new Position(0, 0), Side.BLACK),
-                                            pieceFct.createPiece(Name.KING, new Position(1, 1), Side.BLACK),
-                                            pieceFct.createPiece(Name.ROOK, new Position(0, 7), Side.WHITE),
-                                            pieceFct.createPiece(Name.KING, new Position(7, 7), Side.WHITE),
-                                            pieceFct.createPiece(Name.PAWN, new Position(5, 0), Side.WHITE));
+        final List<Piece> pieces = List.of(pieceFct.createPiece(Name.ROOK, Position.createNewPosition("a8"), Side.BLACK),
+                                            pieceFct.createPiece(Name.KING, Position.createNewPosition("b7"), Side.BLACK),
+                                            pieceFct.createPiece(Name.ROOK, Position.createNewPosition("a1"), Side.WHITE),
+                                            pieceFct.createPiece(Name.KING, Position.createNewPosition("h1"), Side.WHITE),
+                                            pieceFct.createPiece(Name.PAWN, Position.createNewPosition("f8"), Side.WHITE));
         final Chessboard board = chessboardFct.createTestCB(pieces);
 
-        assertFalse(board.getPieceOnPosition(new Position(5, 0)).get()
-                .getAllPossiblePositions(board).contains(new Position(5, -1)));
+        assertFalse(board.getPieceOnPosition(Position.createNewPosition("f8")).get()
+                .getAllPossiblePositions(board).contains(Position.createNumericPosition(5, -1)));
 
-        assertFalse(board.getPieceOnPosition(new Position(0, 0)).get()
-                .getAllPossiblePositions(board).contains(new Position(0, 8)));
+        assertFalse(board.getPieceOnPosition(Position.createNewPosition("a8")).get()
+                .getAllPossiblePositions(board).contains(Position.createNumericPosition(0, 8)));
     }
 
     @Test
     void tryRepetiveMoves() {
         final Chessboard board = chessboardFct.createNormalCB();
-        board.move(new Position(6, 6), 
-                    new Position(6, 4));
+        board.move(Position.createNewPosition("g2"), 
+                Position.createNewPosition("g4"));
 
-        board.move(new Position(4, 1),
-                    new Position(4, 3));
+        board.move(Position.createNewPosition("e7"),
+                Position.createNewPosition("e5"));
 
-        board.move(new Position(5, 6), 
-                new Position(5, 4));
+        board.move(Position.createNewPosition("f2"), 
+                Position.createNewPosition("f4"));
 
-        board.move(new Position(3, 0),
-                new Position(4, 1));
+        board.move(Position.createNewPosition("d8"),
+                Position.createNewPosition("e7"));
 
-        board.move(new Position(4, 1),
-                    new Position(7, 4));
+        board.move(Position.createNewPosition("e7"),
+                Position.createNewPosition("h4"));
 
-        assertTrue(board.getPieceOnPosition(new Position(6, 4)).get().getAllPossiblePositions(board).contains(new Position(6, 3)));
-        assertTrue(board.getAllPosition(board.getPieceOnPosition(new Position(6, 4)).get()).contains(new Position(6, 3)));
-        assertTrue(board.getPieceOnPosition(new Position(7, 4)).get().getAllPossiblePositions(board).contains(new Position(4, 7)));
-        assertTrue(board.getAllPosition(board.getPieceOnPosition(new Position(7, 4)).get()).contains(new Position(4, 0)));
+        assertTrue(board.getPieceOnPosition(Position.createNewPosition("g4")).get().getAllPossiblePositions(board)
+                        .contains(Position.createNewPosition("g5")));
+        assertFalse(board.getAllPosition(board.getPieceOnPosition(Position.createNewPosition("g4")).get())
+                        .contains(Position.createNewPosition("g5")));
+        assertTrue(board.getPieceOnPosition(Position.createNewPosition("h4")).get().getAllPossiblePositions(board)
+                        .contains(Position.createNewPosition("e1")));
+        assertTrue(board.getAllPosition(board.getPieceOnPosition(Position.createNewPosition("h4")).get())
+                        .contains(Position.createNewPosition("e1")));
     }
 }

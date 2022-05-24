@@ -35,17 +35,17 @@ class GameTest {
     void gameEnded() {
         final Game match = createGame();
 
-        match.nextMove(new Position(6, 6), 
-                        new Position(6, 4));
-        match.nextMove(new Position(4, 1),
-                        new Position(4, 3));
-        match.nextMove(new Position(5, 6), 
-                        new Position(5, 4));
+        match.nextMove(Position.createNewPosition("g2"), 
+                    Position.createNewPosition("g4"));
+        match.nextMove(Position.createNewPosition("e7"),
+                    Position.createNewPosition("e5"));
+        match.nextMove(Position.createNewPosition("f2"), 
+                    Position.createNewPosition("f4"));
 
         assertFalse(match.isGameFinished());
 
-        match.nextMove(new Position(3, 0),
-                        new Position(7, 4));
+        match.nextMove(Position.createNewPosition("d8"),
+                    Position.createNewPosition("h4"));
 
         assertTrue(match.isGameFinished());
         assertTrue(match.getWinner().isPresent());
@@ -57,8 +57,8 @@ class GameTest {
         final Game match = createGame();
 
         assertThrows(IllegalArgumentException.class,
-                () -> match.nextMove(new Position(4, 4), 
-                        new Position(4, 3)));
+                () -> match.nextMove(Position.createNewPosition("e4"), 
+                        Position.createNewPosition("e5")));
     }
 
     @Test
@@ -66,8 +66,8 @@ class GameTest {
         final Game match = createGame();
 
         assertThrows(IllegalArgumentException.class,
-                () -> match.nextMove(new Position(1, 1), 
-                        new Position(1, 2)));
+                () -> match.nextMove(Position.createNewPosition("b7"), 
+                        Position.createNewPosition("b6")));
     }
 
     @Test
@@ -75,7 +75,12 @@ class GameTest {
         final Game match = createGame();
 
         assertThrows(IllegalArgumentException.class,
-                () -> match.nextMove(new Position(1, 1), 
-                        new Position(1, 4)));
+                () -> match.nextMove(Position.createNewPosition("b7"), 
+                        Position.createNewPosition("b4")));
+    }
+
+    @Test
+    void draw() {
+        //TODO
     }
 }
