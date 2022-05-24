@@ -74,14 +74,14 @@ public class FenBuilder implements Fen {
         res.append(calculateInitRowPawn(rowPiece));
         res.append(pieceRapresentation(rowPiece.get(0)));
         int temp2 = 1;
-        int pawnInteger;
+        int pawnInteger = 0;
         for (int i = 1; temp2 <= chessboard.getxBorder(); i++) {
-            if(rowPiece.size() == i) {
-                pawnInteger = 7 - rowPiece.get(i-1).getPosition().getX();
+            if (isLastPieceOfRow(chessboard, rowPiece, i-1) && i != chessboard.getxBorder()) {
+                pawnInteger = chessboard.getxBorder() - rowPiece.get(i - 1).getPosition().getX();
                 String pawnString = pawnInteger != 0 ? Integer.toString(pawnInteger) : ""; 
                 res.append(pawnString);
                 break;
-            }else {
+            } else {
                 pawnInteger = calculatePawnBetweenFromPieces(rowPiece.get(i), rowPiece.get(i - 1));
                 String pawnString = pawnInteger != 0 ? Integer.toString(pawnInteger) : ""; 
                 res.append(pawnString);
@@ -91,6 +91,11 @@ public class FenBuilder implements Fen {
         }
 
         return res.toString();
+    }
+    
+    
+    private boolean isLastPieceOfRow(final Chessboard chessboard, List<Piece> rowPiece, int i) {
+        return rowPiece.get(i) == rowPiece.get(rowPiece.size() - 1) ;
     }
     private String calculateInitRowPawn(final List<Piece> rowPiece) {
         return rowPiece.get(0).getPosition().getX() != 0 ? Integer.toString(rowPiece.get(0).getPosition().getX())  : "";
