@@ -1,162 +1,42 @@
-/**
- * 
- */
 package piece.utils;
 
 /**
- * This enum is only needed to remove magic numbers.
+ * This class is only needed to remove magic numbers.
  */
-public enum Numbers {
+public final class Numbers {
     /**
-     * 
+     * the number 7.
      */
-    A {
-        @Override
-        public int getValue() {
-            return SEVENS;
-        }
-    },
+    public static final int SEVEN = 7;
     /**
-     * 
+     * the number 6.
      */
-    B {
-        @Override
-        public int getValue() {
-            return SIXES;
-        }
-    },
+    public static final int SIXE = 6;
     /**
-     * 
+     * the number 5.
      */
-    C {
-        @Override
-        public int getValue() {
-            return FIVES;
-        }
-    },
+    public static final int FIVE = 5;
     /**
-     * 
+     * the number 4.
      */
-    D {
-        @Override
-        public int getValue() {
-            return 4;
-        }
-    },
+    public static final int FOUR = 4;
     /**
-     * 
+     * the number 3.
      */
-    E {
-        @Override
-        public int getValue() {
-            return 3;
-        }
-    },
+    public static final int THREE = 3;
     /**
-     * 
+     * the number 2.
      */
-    F {
-        @Override
-        public int getValue() {
-            return 2;
-        }
-    },
+    public static final int TWO = 2;
     /**
-     * 
+     * the number 1.
      */
-    G {
-        @Override
-        public int getValue() {
-            return 1;
-        }
-    },
+    public static final int ONE = 1;
     /**
-     * 
+     * the number 0.
      */
-    H {
-        @Override
-        public int getValue() {
-            return 0;
-        }
-    },
-    /**
-     * 
-     */
-    ONE {
-        @Override
-        public int getValue() {
-            return 0;
-        }
-    },
-    /**
-     * 
-     */
-    TWO {
-        @Override
-        public int getValue() {
-            return 1;
-        }
-    },
-    /**
-     * 
-     */
-    THREE {
-        @Override
-        public int getValue() {
-            return 2;
-        }
-    },
-    /**
-     * 
-     */
-    FOUR {
-        @Override
-        public int getValue() {
-            return 3;
-        }
-    },
-    /**
-     * 
-     */
-    FIVE {
-        @Override
-        public int getValue() {
-            return 4;
-        }
-    },
-    /**
-     * 
-     */
-    SIX {
-        @Override
-        public int getValue() {
-            return FIVES;
-        }
-    },
-    /**
-     * 
-     */
-    SEVEN {
-        @Override
-        public int getValue() {
-            return SIXES;
-        }
-    },
-    /**
-     * 
-     */
-    EIGHT {
-        @Override
-        public int getValue() {
-            return SEVENS;
-        }
-    };
+    public static final int ZERO = 0;
 
-    private static final int SEVENS = 7;
-    private static final int SIXES = 6;
-    private static final int FIVES = 5;
-    /**
-     * @return the associate value
-     */
-    public abstract int getValue();
+    private Numbers() {
+    }
 }
