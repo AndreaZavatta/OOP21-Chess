@@ -75,4 +75,21 @@ class FenBuilderTest {
                 fenBuilder.activeColor(BLACK)
                 .build(board));
     }
+    @Test
+    void testPhilidorPosition() {
+        List<Piece> list = 
+                List.of(pieceFact.createPiece(KING, createNewPosition("f4"), BLACK),
+                pieceFact.createPiece(PAWN, createNewPosition("e4"), BLACK),
+                pieceFact.createPiece(ROOK, createNewPosition("h2"), BLACK),
+                pieceFact.createPiece(ROOK, createNewPosition("a3"), WHITE),
+                pieceFact.createPiece(KING, createNewPosition("e1"), WHITE));
+        Chessboard board = boardFactory.createTestCB(list);
+        assertEquals("8/8/8/8/4pk2/R7/7r/4K3 b - - 0 1", 
+                fenBuilder.activeColor(BLACK)
+                .blackCastledKingside()
+                .blackCastledQueenside()
+                .whiteCastledKingside()
+                .whiteCastledQueenside()
+                .build(board));
+    }
 }
