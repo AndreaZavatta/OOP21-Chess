@@ -21,25 +21,25 @@ public interface Fen {
      * 
      * @return Fen
      */
-    Fen whiteKingCastledQueenside();
+    Fen whiteCastledKingside();
 
     /**
      * 
      * @return Fen
      */
-    Fen whiteQueenCastledQueenside();
+    Fen whiteCastledQueenside();
 
     /**
      * 
      * @return Fen
      */
-    Fen blackQueenCastledQueenside();
+    Fen blackCastledKingside();
 
     /**
      * 
      * @return Fen
      */
-    Fen blackKingCastledQueenside();
+    Fen blackCastledQueenside();
 
     /**
      * 
