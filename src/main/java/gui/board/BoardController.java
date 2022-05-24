@@ -51,7 +51,7 @@ public class BoardController {
             for (int j = 0; j < HEIGHT; j++) {
                 final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
-                map.put(new Position(i, j), r);
+                map.put(Position.createNumericPosition(i, j), r);
                 if (count % 2 == 0) {
                     r.setFill(Color.GREEN);
                 } else {
@@ -87,7 +87,6 @@ public class BoardController {
 //        c.setPreserveRatio(true);
         c.setX(TILE_SIZE * 1);
         c.setY(TILE_SIZE * 0);
-
         c.setOnMouseDragged(x -> dragged(x, c));
         c.setOnMouseReleased(event -> released(c));
         c.setOnMouseClicked(x -> {
@@ -105,7 +104,7 @@ public class BoardController {
     private void released(final ImageView p) {
         final int x = (int) (p.getX() / TILE_SIZE);
         final int y = (int) (p.getY() / TILE_SIZE);
-        final Position finalPosition = new Position(x, y);
+        final Position finalPosition = Position.createNumericPosition(x, y);
         if (map.containsKey(finalPosition)) {
             p.setX(TILE_SIZE * x);
             p.setY(TILE_SIZE * y);
