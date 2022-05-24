@@ -14,33 +14,33 @@ public interface Fen {
      * @param side
      * @return Fen
      */
-    Fen setSide(Side side);
+    Fen side(Side side);
 
     /**
      * 
      * @return Fen
      */
-    Fen setCastlingQueenside();
+    Fen castlingQueenside();
 
     /**
      * 
      * @return Fen
      */
-    Fen setCastlingKingside();
+    Fen castlingKingside();
 
     /**
      * 
      * @param str
      * @return Fen
      */
-    Fen setEnpassant(String str);
+    Fen enpassant(String str);
 
     /**
      * 
      * @param halfMove
      * @return Fen
      */
-    Fen setHalfMove(int halfMove);
+    Fen halfMove(int halfMove);
 
     /**
      * 
