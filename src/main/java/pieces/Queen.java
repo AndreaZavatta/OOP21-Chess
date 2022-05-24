@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import board.Chessboard;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;
+import piece.utils.PieceDirections;
 
 /**
  * A Queen class that extends AbstractPiece abstract class.
@@ -16,8 +18,7 @@ import piece.utils.Name;
 public class Queen extends AbstractPiece {
 
     private static final int QUEEN_VALUE = 9;
-    private final Bishop bishop;
-    private final Rook rook;
+
 
     /**
      * A Queen piece constructor.
@@ -27,15 +28,12 @@ public class Queen extends AbstractPiece {
      */
     protected Queen(final Position position, final Side color) {
         super(Name.QUEEN, position, color);
-        this.bishop = new Bishop(position, color);
-        this.rook = new Rook(position, color);
     }
 
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
-        this.updatePosition();
-        return Stream.concat(bishop.getAllPossiblePositions(board).stream(), 
-                rook.getAllPossiblePositions(board).stream()).collect(Collectors.toList());
+        return Collections.
+                unmodifiableList(this.getBasicMoves().doubleIteration(PieceDirections.QUEEN_DIR, board, this));
     }
 
     @Override
@@ -43,9 +41,5 @@ public class Queen extends AbstractPiece {
         return QUEEN_VALUE;
     }
 
-    private void updatePosition() {
-        this.bishop.setPosition(this.getPosition());
-        this.rook.setPosition(this.getPosition());
-    }
 
 }
