@@ -21,10 +21,10 @@ class PromotionImplTest {
     @Test
     void test() {
         final List<Piece> list = new ArrayList<>();
-        final Piece pawn = factory.createPiece(Name.PAWN, new Position(0, 6), Side.WHITE);
+        final Piece pawn = factory.createPiece(Name.PAWN, Position.createNumericPosition(0, 6), Side.WHITE);
         list.add(pawn);
         //assertFalse(prom.checkForPromotion(list));
-        pawn.setPosition(new Position(0, 0));
+        pawn.setPosition(Position.createNumericPosition(0, 0));
         //assertTrue(prom.checkForPromotion(list));
     }
 
