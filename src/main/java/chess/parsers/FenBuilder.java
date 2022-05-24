@@ -19,7 +19,8 @@ public class FenBuilder implements Fen {
     private boolean whiteCastlingQueenside = true;
     private boolean whiteCastlingKingside = true;
     private String enPassant = "-";
-    private String halfMove = "";
+    private int halfMoveClock = 0;
+    private int fullMoveNumber = 0;
 
     @Override
     public Fen activeColor(final Side side) {
@@ -52,8 +53,13 @@ public class FenBuilder implements Fen {
         return this;
     }
     @Override
-    public Fen halfMove(final String halfMove) {
-        this.halfMove = halfMove;
+    public Fen halfMoveClock(final int halfMove) {
+        this.halfMoveClock = halfMove;
+        return this;
+    }
+    @Override
+    public Fen fullMoveNumber(final int fullMove) {
+        this.fullMoveNumber = fullMove;
         return this;
     }
     private String fromRowToString(final int row, final Chessboard chessboard) {
@@ -128,6 +134,9 @@ public class FenBuilder implements Fen {
                 .append(" ")
                 .append(enPassant)
                 .append(" ")
-                .append(halfMove).toString();
+                .append(Integer.toString(halfMoveClock))
+                .append(" ")
+                .append(Integer.toString(fullMoveNumber))
+                .toString();
     }
 }

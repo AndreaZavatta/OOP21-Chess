@@ -49,11 +49,19 @@ public interface Fen {
     Fen enpassant(String str);
 
     /**
+     * The Halfmove Clock takes care of enforcing the fifty-move rule.
+     * This counter is reset after captures or pawn moves, and incremented otherwise
      * 
      * @param halfMove
      * @return Fen
      */
-    Fen halfMove(String halfMove);
+    Fen halfMoveClock(int halfMove);
+    /**
+     * 
+     * @param fullMoveNumber
+     * @return Fen
+     */
+    Fen fullMoveNumber(int fullMoveNumber);
 
     /**
      * 
