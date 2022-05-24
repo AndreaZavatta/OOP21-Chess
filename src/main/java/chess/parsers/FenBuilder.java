@@ -67,11 +67,7 @@ public class FenBuilder implements Fen {
 
     private String fromRowToString(final int row, final Chessboard chessboard) {
         StringBuilder res = new StringBuilder();
-        List<Piece> rowPiece = chessboard.getAllPieces().stream()
-                .filter(x -> x.getPosition().getY() == row)
-                .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
-                .collect(Collectors.toList());
-
+        List<Piece> rowPiece = getPieceByRow(row, chessboard);
         int xPrec = 0;
         for (Piece piece : rowPiece) {
            int diff = piece.getPosition().getX() - xPrec;
@@ -79,7 +75,7 @@ public class FenBuilder implements Fen {
                res.append(diff);
            }
            String notation = piece.getName().notation();
-           res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase() : notation );
+           res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase() : notation);
            xPrec = piece.getPosition().getX() + 1;
         }
         if (xPrec < chessboard.getxBorder() + 1) {
@@ -87,6 +83,12 @@ public class FenBuilder implements Fen {
         }
 
         return res.toString();
+    }
+    private List<Piece> getPieceByRow(final int row, final Chessboard chessboard) {
+        return chessboard.getAllPieces().stream()
+                .filter(x -> x.getPosition().getY() == row)
+                .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
+                .collect(Collectors.toList());
     }
 
     private String fenPiece(final Chessboard chessboard) {
@@ -126,9 +128,9 @@ public class FenBuilder implements Fen {
                 .append(" ")
                 .append(enPassant)
                 .append(" ")
-                .append(Integer.toString(halfMoveClock))
+                .append(halfMoveClock)
                 .append(" ")
-                .append(Integer.toString(fullMoveNumber))
+                .append(fullMoveNumber)
                 .toString();
     }
 }
