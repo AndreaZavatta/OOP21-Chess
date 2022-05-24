@@ -1,7 +1,5 @@
 package piece.utils;
 
-import java.util.stream.Collectors;
-
 import board.Chessboard;
 import pieces.Piece;
 
