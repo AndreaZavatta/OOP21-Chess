@@ -1,6 +1,5 @@
 package promotion;
 
-import javafx.fxml.FXML;
 import piece.utils.Name;
 import pieces.Piece;
 /**
@@ -17,19 +16,27 @@ public class PawnPromotionController {
     public PawnPromotionController(final Piece piece) {
         this.piece = piece;
     }
-    @FXML
+    /**
+     * @FXML
+     */
     public void replaceToQueen() {
         promotion.changePiece(Name.QUEEN, piece);
     }
-    @FXML
+    /**
+     * @FXML
+     */
     public void replaceToBishop() {
         promotion.changePiece(Name.BISHOP, piece);
     }
-    @FXML
+    /**
+     * @FXML
+     */
     public void replaceToRook() {
         promotion.changePiece(Name.ROOK, piece);
     }
-    @FXML
+    /**
+     * @FXML
+     */
     public void replaceToKnight() {
         promotion.changePiece(Name.KNIGHT, piece);
     }
