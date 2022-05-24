@@ -25,23 +25,20 @@ public final class ControlsUtility {
 
     /**
      * This method checks if in the given position there is a piece.
-     * @param piece the piece you are calculating the possible positions.
      * @param position the position you are checking.
      * @param board the current board.
      * @return true if there is a piece in the specified position, false otherwise.
      */
-    public static boolean checkPiece(final Piece piece, final Position position, final Chessboard board) {
+    public static boolean checkPiece(final Position position, final Chessboard board) {
         return board.getPieceOnPosition(position).isPresent();
     }
 
     /**
      * This method checks if the given position is in the board.
-     * @param board the current board.
-     * @param piece the piece you are calculating the possible positions.
      * @param position the position you are checking.
      * @return true if the position is in the board, false otherwise.
      */
-    public static boolean checkPosition(final Piece piece, final Position position, final Chessboard board) {
+    public static boolean checkPosition(final Position position) {
         return position.getX() < 8 && position.getX() >= 0 
                 && position.getY() < 8 && position.getY() >= 0;
     }

@@ -29,14 +29,14 @@ public class BasicMovesImpl implements BasicMoves {
     public List<Position> singleIteration(final PieceDirections directions, final Chessboard board, final Piece piece) {
         return directions.directions().stream()
                 .map(p -> ControlsUtility.getNewPosition(piece, p, 1))
-                .filter(p -> ControlsUtility.checkPosition(piece, p, board))
-                .filter(p -> !ControlsUtility.checkPiece(piece, p, board) || ControlsUtility.checkEnemy(piece, p, board))
+                .filter(p -> ControlsUtility.checkPosition(p))
+                .filter(p -> !ControlsUtility.checkPiece(p, board) || ControlsUtility.checkEnemy(piece, p, board))
                 .collect(Collectors.toUnmodifiableList());
     }
 
     private boolean isMovementValid(final Piece piece, final int length, final Position direction, final Chessboard board) {
         final Position p = ControlsUtility.getNewPosition(piece, direction, length);
-        if (!ControlsUtility.checkPosition(piece, p, board)) {
+        if (!ControlsUtility.checkPosition(p)) {
             return false;
         }
         final Position previousPosition = ControlsUtility.getNewPosition(piece, direction, length - 1);
@@ -44,6 +44,6 @@ public class BasicMovesImpl implements BasicMoves {
         if (ControlsUtility.checkEnemy(piece, previousPosition, board)) {
             return false;
         }
-        return !(ControlsUtility.checkPiece(piece, p, board) && !ControlsUtility.checkEnemy(piece, p, board));
+        return !(ControlsUtility.checkPiece(p, board) && !ControlsUtility.checkEnemy(piece, p, board));
     }
 }
