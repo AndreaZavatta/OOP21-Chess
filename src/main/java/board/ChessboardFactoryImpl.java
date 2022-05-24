@@ -24,7 +24,7 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
 
     @Override
     public Chessboard createNormalCB() {
-        final List<Piece> chessOnBoard = this.createPawns(Numbers.SIXE, Side.WHITE);
+        final List<Piece> chessOnBoard = this.createPawns(Numbers.SIX, Side.WHITE);
         chessOnBoard.addAll(this.createBackLine(Numbers.SEVEN, Side.WHITE));
         chessOnBoard.addAll(this.createPawns(Numbers.ONE, Side.BLACK));
         chessOnBoard.addAll(this.createBackLine(Numbers.SEVEN, Side.BLACK));

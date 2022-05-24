@@ -11,7 +11,7 @@ public final class Numbers {
     /**
      * the number 6.
      */
-    public static final int SIXE = 6;
+    public static final int SIX = 6;
     /**
      * the number 5.
      */
