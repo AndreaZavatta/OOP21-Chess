@@ -12,7 +12,6 @@ import chess.parsers.Move;
 import chess.parsers.MoveBuilder;
 import exceptions.IllegalMoveException;
 import piece.utils.Name;
-import piece.utils.Position;
 import pieces.Piece;
 import pieces.PieceFactory;
 import pieces.PieceFactoryImpl;
@@ -36,16 +35,12 @@ class MoveBuilderTest {
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
    private Chessboard chessboard;
-   private static List<Piece> list;
+   private static List<Piece> list = new ArrayList<Piece>();
    /**
  * @throws IllegalMoveException 
     * 
     */
 
-   @BeforeEach
-   void init() {
-       list = new ArrayList<Piece>();
-   }
    @Test
    void testPawnAdvancementMove() {
        initPawnAdvancementMove();
