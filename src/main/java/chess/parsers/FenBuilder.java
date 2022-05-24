@@ -69,7 +69,7 @@ public class FenBuilder implements Fen {
                 .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
                 .collect(Collectors.toList());
         if (rowPiece.isEmpty()) {
-            return "8";
+            return Integer.toString(chessboard.getyBorder() + 1);
         }
         res.append(calculateInitRowPawn(rowPiece));
         res.append(pieceRapresentation(rowPiece.get(0)));
