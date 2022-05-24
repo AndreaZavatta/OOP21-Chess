@@ -1,4 +1,7 @@
 package chess.parsers;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import board.Chessboard;
 import piece.utils.Side;
 import pieces.Piece;
@@ -40,11 +43,12 @@ public class FenBuilder implements Fen {
         return this;
     }
     private String fromRowToString(final int row, final Chessboard chessboard) {
+        List<Piece> rowPiece = chessboard.getAllPieces().stream().filter(x -> x.getPosition().getY() == row).collect(Collectors.toList());
         return "";
     }
     private String pieceRapresentation(final Piece piece) {
-        var temp = piece.getName().notation();
-        return piece.getColor().equals(Side.BLACK) ? temp : temp.toUpperCase();
+        var notation = piece.getName().notation();
+        return piece.getColor().equals(Side.BLACK) ? notation.toLowerCase() : notation;
     }
     private String fenPiece(final Chessboard chessboard) {
         StringBuilder str = new StringBuilder();
