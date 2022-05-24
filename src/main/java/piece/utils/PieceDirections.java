@@ -15,7 +15,7 @@ public enum PieceDirections {
     PAWN_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(new Position(+1, +1), new Position(-1, +1));
+            return List.of(Position.createNumericPosition(+1, +1), Position.createNumericPosition(-1, +1));
         }
     },
     /**
@@ -34,8 +34,8 @@ public enum PieceDirections {
     ROOK_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(new Position(+1, 0), new Position(-1, 0), 
-                    new Position(0, +1), new Position(0, -1));
+            return List.of(Position.createNumericPosition(+1, 0), Position.createNumericPosition(-1, 0), 
+                    Position.createNumericPosition(0, +1), Position.createNumericPosition(0, -1));
         }
     },
     /**
@@ -44,8 +44,8 @@ public enum PieceDirections {
     BISHOP_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(new Position(+1, +1), new Position(-1, -1),
-                    new Position(+1, -1), new Position(-1, +1));
+            return List.of(Position.createNumericPosition(+1, +1), Position.createNumericPosition(-1, -1),
+                    Position.createNumericPosition(+1, -1), Position.createNumericPosition(-1, +1));
         }
     },
     /**
@@ -54,10 +54,10 @@ public enum PieceDirections {
     KNIGHT_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(new Position(-1, MTWO), new Position(+1, MTWO),
-                    new Position(+2, -1), new Position(+2, +1),
-                    new Position(-1, +2), new Position(+1, +2),
-                    new Position(MTWO, -1), new Position(MTWO, +1));
+            return List.of(Position.createNumericPosition(-1, MTWO), Position.createNumericPosition(+1, MTWO),
+                    Position.createNumericPosition(+2, -1), Position.createNumericPosition(+2, +1),
+                    Position.createNumericPosition(-1, +2), Position.createNumericPosition(+1, +2),
+                    Position.createNumericPosition(MTWO, -1), Position.createNumericPosition(MTWO, +1));
         }
     };
 

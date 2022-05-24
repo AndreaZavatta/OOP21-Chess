@@ -64,7 +64,7 @@ public final class ControlsUtility {
      * @return the new position.
      */
     public static Position getNewPosition(final Piece piece, final Position direction, final int multiplier) {
-        return new Position(piece.getPosition().getX() + (direction.getX() * multiplier),
+        return Position.createNumericPosition(piece.getPosition().getX() + (direction.getX() * multiplier),
                 piece.getPosition().getY() + (direction.getY() * multiplier));
     }
 }
