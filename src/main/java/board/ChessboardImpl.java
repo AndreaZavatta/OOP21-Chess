@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import piece.utils.Name;
 import piece.utils.Position;
 import pieces.Piece;
+import promotion.Promotion;
+import promotion.PromotionImpl;
 
     /**
      * 
@@ -17,11 +20,13 @@ class ChessboardImpl implements Chessboard {
     private final List<Piece> piecesList;
     private final int xBorder;
     private final int yBorder;
+    private final Promotion promotion;
 
     ChessboardImpl(final List<Piece> piecesList, final int yBorder, final int xBorder) {
         this.piecesList = piecesList;
         this.xBorder = xBorder;
         this.yBorder = yBorder;
+        this.promotion = new PromotionImpl();
     }
 
     @Override
@@ -33,7 +38,6 @@ class ChessboardImpl implements Chessboard {
     public void move(final Position actualPos, final Position finalPos) {
         final Piece attacker = this.getPieceOnPosition(actualPos).get();
         this.moveWithoutChecks(attacker, finalPos);
-
     }
 
     public int getxBorder() {
@@ -50,6 +54,7 @@ class ChessboardImpl implements Chessboard {
                                             .collect(Collectors.joining(" | "));
     }
 
+    @Override
     public Optional<Piece> getPieceOnPosition(final Position selectedPos) {
         return piecesList.stream()
                 .filter(t -> t.getPosition().equals(selectedPos))
@@ -60,6 +65,14 @@ class ChessboardImpl implements Chessboard {
     public List<Position> getAllPosition(final Piece attacker) {
         final ControlCheck movesController = new ControlCheckImpl();
         return movesController.controlledMoves(this, attacker);
+    }
+
+    @Override
+    public void promotion(final Name namePiece) {
+        final Piece oldPiece = promotion.checkForPromotion(piecesList).get();
+        final Piece newPiece = promotion.changePiece(namePiece, oldPiece);
+        this.piecesList.remove(oldPiece);
+        this.piecesList.add(newPiece);
     }
 
     private boolean canKill(final Position targetPos) {
