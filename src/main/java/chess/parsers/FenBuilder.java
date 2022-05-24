@@ -20,7 +20,7 @@ public class FenBuilder implements Fen {
     private boolean whiteCastlingKingside = true;
     private String enPassant = "-";
     private int halfMoveClock = 0;
-    private int fullMoveNumber = 0;
+    private int fullMoveNumber = 1;
 
     @Override
     public Fen activeColor(final Side side) {
@@ -92,8 +92,7 @@ public class FenBuilder implements Fen {
 
         return res.toString();
     }
-    
-    
+
     private boolean isLastPieceOfRow(final Chessboard chessboard, List<Piece> rowPiece, int i) {
         return rowPiece.get(i) == rowPiece.get(rowPiece.size() - 1) ;
     }
