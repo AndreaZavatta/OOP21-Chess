@@ -14,7 +14,10 @@ class PositionTest {
         //final Position pos = new Position(1, 2);
         final Position pos1 = new Position(1, 1);
         final String a = "ciao";
-
+        final Position pos = Position.createNewPosition("a8");
+        final Position pos2 = Position.createNewPosition("e4");
+        System.out.println(pos.getX() + " " +  pos.getY());
+        System.out.println(pos2.getX() + " " + pos2.getY());
         //assertFalse(pos1.equals(pos));
         assertNotEquals(pos1, a);
     }
