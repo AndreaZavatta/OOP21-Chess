@@ -13,6 +13,7 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import piece.utils.Side;
 import piece.utils.Name;
+import piece.utils.Numbers;
 import piece.utils.Position;
 import pieces.Piece;
 import pieces.PieceFactory;
@@ -56,10 +57,10 @@ class ChessboardTest {
         final Chessboard board = chessboardFct.createTestCB(pieces);
 
         assertFalse(board.getPieceOnPosition(Position.createNewPosition("f8")).get()
-                .getAllPossiblePositions(board).contains(Position.createNumericPosition(5, -1)));
+                .getAllPossiblePositions(board).contains(Position.createNumericPosition(Numbers.FIVE, -1)));
 
         assertFalse(board.getPieceOnPosition(Position.createNewPosition("a8")).get()
-                .getAllPossiblePositions(board).contains(Position.createNumericPosition(0, 8)));
+                .getAllPossiblePositions(board).contains(Position.createNumericPosition(Numbers.ZERO, 8)));
     }
 
     @Test
