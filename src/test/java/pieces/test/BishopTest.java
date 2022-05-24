@@ -14,7 +14,6 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import piece.utils.Side;
 import piece.utils.Name;
-import piece.utils.Numbers;
 import piece.utils.Position;
 import pieces.Piece;
 import pieces.PieceFactory;
