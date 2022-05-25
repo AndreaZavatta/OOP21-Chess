@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserHandlerController">
    <children>
-      <Button layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="494.0" layoutY="332.0" mnemonicParsing="false" onAction="#startGame" prefHeight="33.0" prefWidth="121.0" styleClass="startGame" text="Start game" />
+      <TextField layoutX="178.0" layoutY="104.0" />
+      <TextField layoutX="178.0" layoutY="166.0" />
    </children>
 </Pane>
