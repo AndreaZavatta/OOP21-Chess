@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +32,14 @@ public final class Start extends Application {
         final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/MainMenu.fxml"));
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
 
+//        final ImageView imv = new ImageView();
+
+//        Image image = new Image("/resources/media/LamaChess.png");
+//        imv.setImage(image);
+
+//        imv.fitWidthProperty().bind(center.widthProperty());
+//        imv.fitHeightProperty().bind(center.heightProperty());
+        
         startstage.setScene(scene);
         startstage.setTitle("L.A.M.A. Chess");
         startstage.setResizable(true);
