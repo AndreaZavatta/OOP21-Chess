@@ -16,7 +16,7 @@ import piece.utils.PieceDirections;
  * A Pawn class that extends AbstractPiece abstract class.
  *
  */
-public final class Pawn extends AbstractPiece {
+public class Pawn extends AbstractPiece {
 
     private static final int PAWN_VALUE = 1;
     private boolean dontgo;

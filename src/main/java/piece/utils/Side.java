@@ -11,5 +11,5 @@ public enum Side {
     /**
      * White piece color.
      */
-    WHITE;
+    WHITE
 }
