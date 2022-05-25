@@ -2,8 +2,7 @@ package exceptions;
 
     /**
      * 
-     * This exception is launched when you have to check
-     * if a position is in a list.
+     * This exception is launched ...?
      *
      */
 public class PageNotFound extends Exception {
