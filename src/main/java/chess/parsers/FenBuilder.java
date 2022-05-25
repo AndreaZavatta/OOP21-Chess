@@ -3,9 +3,12 @@ package chess.parsers;
 import static piece.utils.Name.KING;
 import static piece.utils.Name.QUEEN;
 import static piece.utils.Side.BLACK;
+
+import board.Chessboard;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import board.Chessboard;
 import piece.utils.Side;
 import pieces.Piece;
 
@@ -85,7 +88,7 @@ public class FenBuilder implements Fen {
     private List<Piece> getPiecesByRow(final int row, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getPosition().getY() == row)
-                .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
+                .sorted(Comparator.comparingInt((Piece x) -> x.getPosition().getX()))
                 .collect(Collectors.toList());
     }
 
