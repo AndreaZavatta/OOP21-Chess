@@ -27,6 +27,9 @@
             <Font name="Courier New Bold" size="25.0" />
          </font>
       </Text>
-      <Button layoutX="399.0" layoutY="185.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="92.0" styleClass="startTutorialButton" stylesheets="@../stylesheets/style.css" text="Start the Tutorial" />
+      <Button layoutX="407.0" layoutY="179.0" mnemonicParsing="false" onAction="#openSlide" prefHeight="113.0" prefWidth="163.0" styleClass="startTutorialButton" stylesheets="@../stylesheets/style.css" text="Start the Tutorial">
+         <font>
+            <Font name="Courier New" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

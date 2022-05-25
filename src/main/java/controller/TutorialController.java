@@ -65,7 +65,7 @@ public class TutorialController {
 
     @FXML
     void showPiece(final ActionEvent event) {
-        Button caller = (Button) event.getSource();
+        final Button caller = (Button) event.getSource();
         System.out.println(caller.getId());
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/"+ caller.getId()+".fxml"));
