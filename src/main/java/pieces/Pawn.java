@@ -34,9 +34,9 @@ public final class Pawn extends AbstractPiece {
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list = new ArrayList<>();
         goEat(board, list);
-        goFoward(board, list, 1);
+        goForward(board, list, 1);
         if (!this.isMoved() && !dontgo) {
-            goFoward(board, list, 2);
+            goForward(board, list, 2);
         }
         return Collections.unmodifiableList(list);
     }
@@ -63,7 +63,7 @@ public final class Pawn extends AbstractPiece {
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    private void goFoward(final Chessboard board, final List<Position> list, final int lenght) {
+    private void goForward(final Chessboard board, final List<Position> list, final int lenght) {
         final Position p = ControlsUtility
                 .getNewPosition(this, Position.createNumericPosition(0, lenght), this.getDirection(this.getSide()));
         if (ControlsUtility.checkPosition(p) 

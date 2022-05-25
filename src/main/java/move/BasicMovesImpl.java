@@ -29,7 +29,7 @@ public class BasicMovesImpl implements BasicMoves {
     public List<Position> singleIteration(final PieceDirections directions, final Chessboard board, final Piece piece) {
         return directions.directions().stream()
                 .map(p -> ControlsUtility.getNewPosition(piece, p, 1))
-                .filter(p -> ControlsUtility.checkPosition(p))
+                .filter(ControlsUtility::checkPosition)
                 .filter(p -> !ControlsUtility.checkPiece(p, board) || ControlsUtility.checkEnemy(piece, p, board))
                 .collect(Collectors.toUnmodifiableList());
     }
