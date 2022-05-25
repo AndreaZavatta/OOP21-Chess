@@ -12,18 +12,13 @@ import user.User;
 import user.UserImpl;
 
 class SerializationTest {
-    private Game game;
-    private JsonSerializer serializer = null;
-    void init() {
-        User user1 = new UserImpl("Andrea");
-        User user2 = new UserImpl("Marco");
-        game = new GameImpl(new Pair<>(user1, BLACK), new Pair<>(user2, WHITE));
-        serializer = new JsonSerializerImpl<GameImpl>(GameImpl.class);
-    }
     @Test
     void test() {
         //TODO
-        init();
+        final User user1 = new UserImpl("Andrea");
+        final User user2 = new UserImpl("Marco");
+        final Game game = new GameImpl(new Pair<>(user1, BLACK), new Pair<>(user2, WHITE));
+        final JsonSerializer serializer = new JsonSerializerImpl<>(GameImpl.class);
         System.out.println(serializer.serialize(game));
     }
 

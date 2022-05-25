@@ -34,7 +34,7 @@ class MoveBuilderTest {
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
    private Chessboard chessboard;
-   private static final List<Piece> list = new ArrayList<Piece>();
+   private static final List<Piece> List = new ArrayList<>();
    /**
  * @throws IllegalMoveException
     * 
@@ -48,10 +48,10 @@ class MoveBuilderTest {
        assertEquals("d4", moveBuilder.toString());
    }
    private void initPawnAdvancementMove() {
-       list.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testPromotionMove() {
@@ -62,10 +62,10 @@ class MoveBuilderTest {
        assertEquals("b8=Q", moveBuilder.toString());
    }
    private void initPromotionMove() {
-       list.add(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("e3"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("e3"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testDrawOffer() {
@@ -81,11 +81,11 @@ class MoveBuilderTest {
        assertEquals("Qb3+", moveBuilder.toString());
    }
    private void initTestCheckMove() {
-       list.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
-       list.add(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
+       List.add(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testCheckmate() {
@@ -96,12 +96,12 @@ class MoveBuilderTest {
        assertEquals("Qcb3#", moveBuilder.toString());
    }
    private void initTestCheckmate() {
-       list.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
-       list.add(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE));
-       list.add(pieceFact.createPiece(QUEEN, createNewPosition("a4"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("a8"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
+       List.add(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE));
+       List.add(pieceFact.createPiece(QUEEN, createNewPosition("a4"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("a8"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testPawnCaptureMove() {
@@ -112,11 +112,11 @@ class MoveBuilderTest {
        assertEquals("dxe3", moveBuilder.toString());
    }
    private void initPawnCaptureMove() {
-       list.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
-       list.add(pieceFact.createPiece(PAWN, createNewPosition("e3"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
+       List.add(pieceFact.createPiece(PAWN, createNewPosition("e3"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testKingsideCastling() {
@@ -136,11 +136,11 @@ class MoveBuilderTest {
        assertEquals("Bf2", moveBuilder.toString());
    }
    private void initBishopTest() {
-       list.add(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE));
-       list.add(pieceFact.createPiece(BISHOP, createNewPosition("e5"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE));
+       List.add(pieceFact.createPiece(BISHOP, createNewPosition("e5"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
 }
    @Test
    void testDisambiguousMoveSameRow() {
@@ -151,11 +151,11 @@ class MoveBuilderTest {
    }
 
    private void initTestDisambiguousMoveSameRow() {
-       list.add(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE));
-       list.add(pieceFact.createPiece(KNIGHT, createNewPosition("f4"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE));
+       List.add(pieceFact.createPiece(KNIGHT, createNewPosition("f4"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testDisambiguousMoveSameRowAndCol() {
@@ -165,12 +165,12 @@ class MoveBuilderTest {
        assertEquals("Qd4e4", moveBuilder.toString());
    }
    private void initTestDisambiguousMoveSameRowAndCol() {
-       list.add(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE));
-       list.add(pieceFact.createPiece(QUEEN, createNewPosition("f4"), WHITE));
-       list.add(pieceFact.createPiece(QUEEN, createNewPosition("d5"), WHITE));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       list.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(list);
+       List.add(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE));
+       List.add(pieceFact.createPiece(QUEEN, createNewPosition("f4"), WHITE));
+       List.add(pieceFact.createPiece(QUEEN, createNewPosition("d5"), WHITE));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(List);
    }
    @Test
    void testIllegalMoveExceptionDestinationNotFound() {
