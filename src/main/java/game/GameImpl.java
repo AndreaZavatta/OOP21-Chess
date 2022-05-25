@@ -26,7 +26,7 @@ public class GameImpl implements Game, Serializable {
     private Pair<User, Side> winner;
     private boolean isFinished;
     private final transient Chessboard chessboard;
-    private final EndGame controller;
+    private final EndGame gameController;
     private final Turn turnManager;
 
     /**
@@ -38,7 +38,7 @@ public class GameImpl implements Game, Serializable {
         this.isFinished = false; 
         this.winner = null;
         this.chessboard = new ChessboardFactoryImpl().createNormalCB();
-        this.controller = new EndGameImpl();
+        this.gameController = new EndGameImpl();
         this.turnManager = new TurnImpl(player1, player2);
     }
 
@@ -55,10 +55,10 @@ public class GameImpl implements Game, Serializable {
 
         chessboard.move(firstPos, finalPos);
         turnManager.turnIncrement();
-        if (controller.isCheckmate(turnManager.getUserTurn(), chessboard)) {
+        if (gameController.isCheckmate(turnManager.getUserTurn(), chessboard)) {
             winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
             isFinished = true;
-        } //else if (controller.isDraw(turnManager.getUserTurn(), chessboard)) {
+        } //else if (gameController.isDraw(turnManager.getUserTurn(), chessboard)) {
             //isFinished = true;
         //}
     }
