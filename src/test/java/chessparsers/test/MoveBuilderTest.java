@@ -34,9 +34,9 @@ class MoveBuilderTest {
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
    private Chessboard chessboard;
-   private static List<Piece> list = new ArrayList<Piece>();
+   private static final List<Piece> list = new ArrayList<Piece>();
    /**
- * @throws IllegalMoveException 
+ * @throws IllegalMoveException
     * 
     */
 
