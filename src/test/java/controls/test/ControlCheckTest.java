@@ -26,9 +26,9 @@ import pieces.PieceFactoryImpl;
 
 class ControlCheckTest {
     private Chessboard chessboard;
-    private static ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
-    private static PieceFactory pieceFactory  = new PieceFactoryImpl();
-    private static ControlCheck control  = new ControlCheckImpl();
+    private static final ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
+    private static final PieceFactory pieceFactory  = new PieceFactoryImpl();
+    private static final ControlCheck control  = new ControlCheckImpl();
 
     @Test
     void testKingNotFoundException() {
@@ -88,19 +88,19 @@ class ControlCheckTest {
     @Test
     void ableToMoveToCoverCheckTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, createNewPosition("c6"), BLACK);
-        final Piece blackKinght = pieceFactory.createPiece(KNIGHT, createNewPosition("e3"), BLACK);
+        final Piece blackKnight = pieceFactory.createPiece(KNIGHT, createNewPosition("e3"), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, createNewPosition("c3"), WHITE);
-        chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackKinght, whiteRook));
-        final List<Position> pos = control.controlledMoves(chessboard, blackKinght);
+        chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackKnight, whiteRook));
+        final List<Position> pos = control.controlledMoves(chessboard, blackKnight);
         assertEquals(pos, List.of(createNewPosition("c4")));
     }
     @Test
     void ableToMoveToCoverCheckOrToEatTrue() {
         final Piece blackKing = pieceFactory.createPiece(KING, createNewPosition("c6"), BLACK);
-        final Piece blackKinght = pieceFactory.createPiece(KNIGHT, createNewPosition("e4"), BLACK);
+        final Piece blackKnight = pieceFactory.createPiece(KNIGHT, createNewPosition("e4"), BLACK);
         final Piece whiteRook = pieceFactory.createPiece(ROOK, createNewPosition("c3"), WHITE);
-        chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackKinght, whiteRook));
-        final List<Position> pos = control.controlledMoves(chessboard, blackKinght);
+        chessboard = chessboardFactory.createTestCB(List.of(blackKing, blackKnight, whiteRook));
+        final List<Position> pos = control.controlledMoves(chessboard, blackKnight);
         assertTrue(pos.containsAll(List.of(createNewPosition("c5"), createNewPosition("c3"))));
     }
     @Test
