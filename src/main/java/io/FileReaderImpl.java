@@ -29,7 +29,7 @@ public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
 
 
     @Override
-    public T readFile() throws IOException, ClassNotFoundException {
+    public T readFile() throws IOException {
             final FileInputStream file = new FileInputStream(cd + fs + fileName);
             try (BufferedReader in = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
                     return jDeserializer.deserialize(composeString(in));
