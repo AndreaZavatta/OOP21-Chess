@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class EndGameImpl implements EndGame, Serializable {
 
     private static final long serialVersionUID = 8138985175091153307L;
-    private final ControlCheck controls = new ControlCheckImpl(); 
+    private final transient ControlCheck controls = new ControlCheckImpl(); 
 
 
     @Override
