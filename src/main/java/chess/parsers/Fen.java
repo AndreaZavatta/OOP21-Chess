@@ -21,32 +21,32 @@ public interface Fen {
      * 
      * @return Fen
      */
-    Fen whiteCastledKingside();
+    Fen whiteCastledKingSide();
 
     /**
      * 
      * @return Fen
      */
-    Fen whiteCastledQueenside();
+    Fen whiteCastledQueenSide();
 
     /**
      * 
      * @return Fen
      */
-    Fen blackCastledKingside();
+    Fen blackCastledKingSide();
 
     /**
      * 
      * @return Fen
      */
-    Fen blackCastledQueenside();
+    Fen blackCastledQueenSide();
 
     /**
      * 
      * @param str
      * @return Fen
      */
-    Fen enpassant(String str);
+    Fen enPassant(String str);
 
     /**
      * The Halfmove Clock takes care of enforcing the fifty-move rule.

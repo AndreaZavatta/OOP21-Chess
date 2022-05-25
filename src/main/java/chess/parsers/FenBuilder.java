@@ -3,7 +3,6 @@ package chess.parsers;
 import static piece.utils.Name.KING;
 import static piece.utils.Name.QUEEN;
 import static piece.utils.Side.BLACK;
-import static piece.utils.Side.WHITE;
 import java.util.List;
 import java.util.stream.Collectors;
 import board.Chessboard;
@@ -16,10 +15,10 @@ import pieces.Piece;
  */
 public class FenBuilder implements Fen {
     private Side side = null;
-    private boolean blackCastlingQueenside = true;
-    private boolean blackCastlingKingside = true;
-    private boolean whiteCastlingQueenside = true;
-    private boolean whiteCastlingKingside = true;
+    private boolean blackCastlingQueenSide = true;
+    private boolean blackCastlingKingSide = true;
+    private boolean whiteCastlingQueenSide = true;
+    private boolean whiteCastlingKingSide = true;
     private String enPassant = "-";
     private int halfMoveClock = 0;
     private int fullMoveNumber = 1;
@@ -30,27 +29,27 @@ public class FenBuilder implements Fen {
         return this;
     }
     @Override
-    public Fen blackCastledKingside() {
-        blackCastlingKingside = false;
+    public Fen blackCastledKingSide() {
+        blackCastlingKingSide = false;
         return this;
     }
     @Override
-    public Fen blackCastledQueenside() {
-        blackCastlingQueenside = false;
+    public Fen blackCastledQueenSide() {
+        blackCastlingQueenSide = false;
         return this;
     }
     @Override
-    public Fen whiteCastledKingside() {
-        whiteCastlingKingside = false;
+    public Fen whiteCastledKingSide() {
+        whiteCastlingKingSide = false;
         return this;
     }
     @Override
-    public Fen whiteCastledQueenside() {
-        whiteCastlingQueenside = false;
+    public Fen whiteCastledQueenSide() {
+        whiteCastlingQueenSide = false;
         return this;
     }
     @Override
-    public Fen enpassant(final String str) {
+    public Fen enPassant(final String str) {
         enPassant = str;
         return this;
     }
@@ -67,24 +66,23 @@ public class FenBuilder implements Fen {
 
     private String fromRowToString(final int row, final Chessboard chessboard) {
         StringBuilder res = new StringBuilder();
-        List<Piece> rowPiece = getPieceByRow(row, chessboard);
-        int xPrec = 0;
+        List<Piece> rowPiece = getPiecesByRow(row, chessboard);
+        int previousPiece = 0;
         for (Piece piece : rowPiece) {
-           int diff = piece.getPosition().getX() - xPrec;
+           int diff = piece.getPosition().getX() - previousPiece;
            if (diff > 0) {
                res.append(diff);
            }
            String notation = piece.getName().notation();
            res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase() : notation);
-           xPrec = piece.getPosition().getX() + 1;
+           previousPiece = piece.getPosition().getX() + 1;
         }
-        if (xPrec < chessboard.getxBorder() + 1) {
-            res.append(chessboard.getxBorder() + 1 - xPrec);
+        if (previousPiece < chessboard.getxBorder() + 1) {
+            res.append(chessboard.getxBorder() + 1 - previousPiece);
         }
-
         return res.toString();
     }
-    private List<Piece> getPieceByRow(final int row, final Chessboard chessboard) {
+    private List<Piece> getPiecesByRow(final int row, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getPosition().getY() == row)
                 .sorted((Piece x, Piece y) -> Integer.compare(x.getPosition().getX(), y.getPosition().getX()))
@@ -104,33 +102,29 @@ public class FenBuilder implements Fen {
     }
 
     private String getCastling() {
-        if (!blackCastlingQueenside && !blackCastlingKingside && !whiteCastlingQueenside && !whiteCastlingKingside) {
+        if (!blackCastlingQueenSide && !blackCastlingKingSide && !whiteCastlingQueenSide && !whiteCastlingKingSide) {
             return "-";
         }
        return getCastlingSupport();
     }
     private String getCastlingSupport() {
-        StringBuilder res = new StringBuilder();
-        res.append(whiteCastlingKingside ? KING.notation() : "");
-        res.append(whiteCastlingQueenside ? QUEEN.notation() : "");
-        res.append(blackCastlingKingside ? KING.notation().toLowerCase() : "");
-        res.append(blackCastlingQueenside ? QUEEN.notation().toLowerCase() : "");
-        return res.toString();
+        return  (whiteCastlingKingSide ? KING.notation() : "") +
+                (whiteCastlingQueenSide ? QUEEN.notation() : "") +
+                (blackCastlingKingSide ? KING.notation().toLowerCase() : "") +
+                (blackCastlingQueenSide ? QUEEN.notation().toLowerCase() : "");
     }
     @Override
     public String build(final Chessboard chessboard) {
-        StringBuilder res = new StringBuilder();
-        return res.append(fenPiece(chessboard))
-                .append(" ")
-                .append(getActiveColor())
-                .append(" ")
-                .append(getCastling())
-                .append(" ")
-                .append(enPassant)
-                .append(" ")
-                .append(halfMoveClock)
-                .append(" ")
-                .append(fullMoveNumber)
-                .toString();
+        return fenPiece(chessboard) +
+                " " +
+                getActiveColor() +
+                " " +
+                getCastling() +
+                " " +
+                enPassant +
+                " " +
+                halfMoveClock +
+                " " +
+                fullMoveNumber;
     }
 }
