@@ -28,7 +28,7 @@ public class MoveBuilder implements Move {
     private boolean check = false;
     private boolean checkmate = false;
     private boolean capture = false;
-    private boolean kingsideCastling = false;
+    private boolean kingSideCastling = false;
     private boolean queenSideCastling = false;
     private boolean column = false;
     private boolean row = false;
@@ -54,7 +54,7 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move kingSideCastling() {
-        this.kingsideCastling = true;
+        this.kingSideCastling = true;
         return this;
     }
 
@@ -114,7 +114,7 @@ public class MoveBuilder implements Move {
         return this;
     }
     private boolean isCastling() {
-        return kingsideCastling || queenSideCastling;
+        return kingSideCastling || queenSideCastling;
     }
     /*
      * function that check if there is the same piece in the same row or column that can go in the same destination
@@ -157,7 +157,7 @@ public class MoveBuilder implements Move {
         StringBuilder str = new StringBuilder();
         if (drawOffer) {
             return "(=)";
-        } else if (kingsideCastling) {
+        } else if (kingSideCastling) {
             return "0-0";
         } else if (queenSideCastling) {
             return "0-0-0";

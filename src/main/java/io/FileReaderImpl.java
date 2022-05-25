@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
  * @param <T>
  */
 public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
-    private final JsonDeserializer<T> jdeserializer;
+    private final JsonDeserializer<T> jDeserializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
     private final String cd =  System.getProperty("user.dir");
@@ -24,7 +24,7 @@ public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
      */
     public FileReaderImpl(final String fileName, final Class<T> className) {
             this.fileName = fileName;
-            jdeserializer = new JsonDeserializerImpl<>(className);
+            jDeserializer = new JsonDeserializerImpl<>(className);
     }
 
 
@@ -32,7 +32,7 @@ public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
     public T readFile() throws IOException, ClassNotFoundException {
             final FileInputStream file = new FileInputStream(cd + fs + fileName);
             try (BufferedReader in = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
-                    return jdeserializer.deserialize(composeString(in));
+                    return jDeserializer.deserialize(composeString(in));
             }
     }
 

@@ -9,7 +9,7 @@ import com.google.gson.Gson;
  * @param <T>
  */
 public class JsonDeserializerImpl<T extends Serializable> implements JsonDeserializer<T> {
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private final Class<T> className;
     /**
      * 

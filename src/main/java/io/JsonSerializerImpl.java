@@ -8,7 +8,7 @@ import com.google.gson.Gson;
  * @param <T>
  */
 public class JsonSerializerImpl<T extends Serializable> implements JsonSerializer {
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private final Class<T> className;
     /**
      * 
