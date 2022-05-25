@@ -18,11 +18,14 @@ import piece.utils.Position;
 import pieces.Piece;
 import pieces.PieceFactory;
 import pieces.PieceFactoryImpl;
+import promotion.Promotion;
+import promotion.PromotionImpl;
 
 class ChessboardTest {
 
     private final PieceFactory pieceFct = new PieceFactoryImpl();
     private final ChessboardFactory chessboardFct = new ChessboardFactoryImpl();
+    private final Promotion promotionController = new PromotionImpl();
 
     @Test
     void creationChessboard() {
@@ -89,5 +92,22 @@ class ChessboardTest {
                         .contains(Position.createNewPosition("e1")));
         assertTrue(board.getAllPosition(board.getPieceOnPosition(Position.createNewPosition("h4")).get())
                         .contains(Position.createNewPosition("e1")));
+    }
+
+    @Test
+    void checkPromotion() {
+        final Chessboard board = chessboardFct.createTestCB(
+                            List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.WHITE),
+                                  pieceFct.createPiece(Name.KING, Position.createNewPosition("h1"), Side.BLACK),
+                                  pieceFct.createPiece(Name.PAWN, Position.createNewPosition("a7"), Side.WHITE)));
+
+        board.move(Position.createNewPosition("a7"), Position.createNewPosition("a8"));
+        assertTrue(promotionController.checkForPromotion(board.getAllPieces()).isPresent());
+        assertEquals(pieceFct.createPiece(Name.PAWN, Position.createNewPosition("a8"), Side.WHITE),
+                    promotionController.checkForPromotion(board.getAllPieces()).get());
+
+        board.promotion(Name.QUEEN);
+        assertEquals(pieceFct.createPiece(Name.QUEEN, Position.createNewPosition("a8"), Side.WHITE),
+                board.getPieceOnPosition(Position.createNewPosition("a8")).get());
     }
 }
