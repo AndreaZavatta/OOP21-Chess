@@ -21,9 +21,9 @@ import static piece.utils.Name.PAWN;
  */
 public class MoveBuilder implements Move {
     private final ControlCheck controls = new ControlCheckImpl();
-    private Optional<Piece> piece = Optional.empty();
-    private Optional<Position> destination = Optional.empty();
-    private Optional<Name> promotion = Optional.empty();
+    private Piece piece = null;
+    private Position destination = null;
+    private Name promotion = null;
     private boolean drawOffer = false;
     private boolean check = false;
     private boolean checkmate = false;
@@ -36,13 +36,13 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move piece(final Piece piece) {
-        this.piece = Optional.ofNullable(piece);
+        this.piece = piece;
         return this;
     }
 
     @Override
     public Move destination(final Position destination) {
-        this.destination = Optional.ofNullable(destination);
+        this.destination = destination;
         return this;
     }
 
@@ -66,7 +66,7 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move promotion(final Name piece) {
-        this.promotion = Optional.ofNullable(piece);
+        this.promotion = piece;
         return this;
     }
 
@@ -102,7 +102,7 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
-        if ((!drawOffer && !isCastling() && (piece.isEmpty() || destination.isEmpty()))) {
+        if ((!drawOffer && !isCastling() && (piece == null || destination == null))) {
             throw new IllegalMoveException();
         }
         List<Piece> pieces = verifyDualityOnDestPos(chessboard);
@@ -129,23 +129,23 @@ public class MoveBuilder implements Move {
     }
     private Optional<Piece> findPiecesFunction(final List<Piece> pieces, final ToIntFunction<Piece> func) {
         return pieces.stream()
-        .filter(x -> (Objects.equals(func.applyAsInt(x), (func.applyAsInt(piece.get())))))
+        .filter(x -> (Objects.equals(func.applyAsInt(x), (func.applyAsInt(piece)))))
         .findAny();
     }
 
     private List<Piece> verifyDualityOnDestPos(final Chessboard chessboard) {
         return getPiecesSameType(chessboard)
                 .stream()
-                .filter(x -> controls.controlledMoves(chessboard, x).contains(destination.get()))
+                .filter(x -> controls.controlledMoves(chessboard, x).contains(destination))
                 .collect(Collectors.toList());
     }
 
     private List<Piece> getPiecesSameType(final Chessboard chessboard) {
         return Optional.ofNullable(chessboard)
         .map(x -> x.getAllPieces().stream()
-        .filter(y -> !y.equals(piece.get()))
-        .filter(y -> y.getName().equals(piece.get().getName()))
-        .filter(y -> !y.equals(piece.get())).collect(Collectors.toList()))
+        .filter(y -> !y.equals(piece))
+        .filter(y -> y.getName().equals(piece.getName()))
+        .filter(y -> !y.equals(piece)).collect(Collectors.toList()))
         .orElse(List.of());
 
     }
@@ -174,34 +174,34 @@ public class MoveBuilder implements Move {
 
     private void addDepartureY(final StringBuilder str) {
         if (row) {
-            str.append(piece.get().getPosition().getY());
+            str.append(piece.getPosition().getY());
         }
     }
 
     private void addDepartureX(final StringBuilder str) {
         if (column || isPawnCapture()) {
-            str.append(piece.get().getPosition().getCharX());
+            str.append(piece.getPosition().getCharX());
         }
     }
 
     private boolean isPawnCapture() {
-        return piece.get().getName().equals(PAWN) && capture;
+        return piece.getName().equals(PAWN) && capture;
     }
 
     private void addPieceNotation(final StringBuilder str) {
-        if (!piece.get().getName().notation().equals("P")) {
+        if (!piece.getName().notation().equals("P")) {
             str.append(nameNotation());
         }
 
     }
 
     private void addDestination(final StringBuilder str) {
-        str.append(destination.get());
+        str.append(destination);
     }
 
     private void addPromotion(final StringBuilder str) {
-        if (promotion.isPresent()) {
-            str.append("=" + promotion.get().notation());
+        if (promotion != null) {
+            str.append("=").append(promotion.notation());
         }
     }
 
@@ -221,7 +221,6 @@ public class MoveBuilder implements Move {
 
 
     private String nameNotation() {
-        return piece.get().getName().notation();
+        return piece.getName().notation();
     }
-
 }
