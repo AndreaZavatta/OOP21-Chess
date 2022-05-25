@@ -15,33 +15,33 @@ public interface Move {
      * set the moved Piece.
      * @param piece
      * 
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move piece(Piece piece);
 
     /**
      * 
      * @param destination
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move destination(Position destination);
 
     /**
      * setter for field.
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move capture();
 
     /**
      * setter for field.
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move kingSideCastling();
 
 
     /**
      * setter for field.
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move queenSideCastling();
 
@@ -49,40 +49,40 @@ public interface Move {
     /**
      * setter for field.
      * @param piece
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move promotion(Name piece);
 
 
     /**
      * setter for field.
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move drawOffer();
 
 
     /**
      * setter for field.
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move check();
 
 
     /**
      * setter for field.
-     * @return this to join the pattern builder
+     * @return Move to join the pattern builder
      */
     Move checkmate();
 
     /**
-     * 
-     * @return Move
+     * setter for field.
+     * @return Move to join the pattern builder
      */
     Move row();
 
     /**
-     * 
-     * @return Move
+     * setter for field.
+     * @return Move to join the pattern builder
      */
     Move column();
     /**
