@@ -2,7 +2,6 @@ package board;
 
 import piece.utils.Side;
 
-
 /**
  * 
  * This Interface models and handles all the possible ways a chess game can end with.
