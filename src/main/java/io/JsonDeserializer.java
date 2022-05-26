@@ -9,7 +9,7 @@ import java.io.Serializable;
 public interface JsonDeserializer<T extends Serializable> {
     /**
      * this method is used to convert a string formatted in json to a generic object.
-     * @param str
+     * @param str the string formatted in json to convert
      * @return T
      */
         T deserialize(String str);
