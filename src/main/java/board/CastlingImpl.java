@@ -25,24 +25,24 @@ public class CastlingImpl implements Castling {
 
     private boolean isCastlePossible(final Chessboard chessboard, final Piece rook, final Piece king) {
 
-        //conferma pezzi
+        // we're working with the correct pieces;
         if (!king.getName().equals(Name.KING) || !rook.getName().equals(Name.ROOK)) {
             return false;
         }
 
-        // re e torre interessata non mossi
+        // the pieces must not have been moved;
         if (king.isMoved() || rook.isMoved()) {
             return false;
         }
 
         final var positions = horizontalPositionsBetweenPieces(rook, king);
 
-        // la lista deve contenere posizioni non occupate
+        // the list must contain only non-occupied positions;
         if (positions.stream().anyMatch(p -> chessboard.getPieceOnPosition(p).isPresent())) {
             return false;
         }
 
-        // lista delle case attraversate dal re 
+        // filter the previous list and get the positions the king has to go through
         return !(positions.stream()
                 .filter(p -> Math.abs(king.getPosition().getX() - p.getX()) <= 2)
                 .anyMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide())));
@@ -69,5 +69,4 @@ public class CastlingImpl implements Castling {
         }
         return IntStream.range(minX + 1, maxX).mapToObj(x -> Position.createNumericPosition(x, y)).collect(Collectors.toUnmodifiableList());
     }
-
 }
