@@ -19,14 +19,6 @@ import javafx.stage.Stage;
 public class TutorialController {
 
     @FXML
-    private Button pawn;
-    private Button bishop;
-    private Button knight;
-    private Button rook;
-    private Button queen;
-    private Button king;
-
-    @FXML
     void openSlide(final ActionEvent event) {
 
         try {
