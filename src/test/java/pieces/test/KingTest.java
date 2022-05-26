@@ -28,5 +28,7 @@ class KingTest {
         list.add(king);
         list.add(rook);
         assertTrue(king.getAllPossiblePositions(board.createTestCB(list)).contains(Position.createNewPosition("g1")));
+        king.setPosition(king.getPosition());
+        assertFalse(king.getAllPossiblePositions(board.createTestCB(list)).contains(Position.createNewPosition("g1")));
     }
 }
