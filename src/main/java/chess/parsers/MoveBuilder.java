@@ -108,9 +108,6 @@ public class MoveBuilder implements Move {
         final List<Piece> pieces = verifyDualityOnDestPos(chessboard);
         findPiecesSameRow(pieces).ifPresent(x -> column());
         findPiecesSameColumn(pieces).ifPresent(x -> row());
-        if (row && column) {
-            row();
-        }
         return this;
     }
     private boolean isCastling() {

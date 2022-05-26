@@ -13,7 +13,7 @@ public interface Move {
 
     /**
      * set the moved Piece.
-     * @param piece
+     * @param piece the piece moved
      * 
      * @return Move to join the pattern builder
      */
@@ -21,33 +21,33 @@ public interface Move {
 
     /**
      * 
-     * @param destination
+     * @param destination the destination of the piece moved
      * @return Move to join the pattern builder
      */
     Move destination(Position destination);
 
     /**
-     * setter for field.
+     * set this is a capture move
      * @return Move to join the pattern builder
      */
     Move capture();
 
     /**
-     * setter for field.
+     * set this is a king side castling move
      * @return Move to join the pattern builder
      */
     Move kingSideCastling();
 
 
     /**
-     * setter for field.
+     * set this is a queen side castling move
      * @return Move to join the pattern builder
      */
     Move queenSideCastling();
 
 
     /**
-     * setter for field.
+     * set this is a promotion move
      * @param piece
      * @return Move to join the pattern builder
      */
@@ -55,38 +55,40 @@ public interface Move {
 
 
     /**
-     * setter for field.
+     * set this is a draw offer
      * @return Move to join the pattern builder
      */
     Move drawOffer();
 
 
     /**
-     * setter for field.
+     * set this move puts the king in check
      * @return Move to join the pattern builder
      */
     Move check();
 
 
     /**
-     * setter for field.
+     * that this move puts the king in checkmate
      * @return Move to join the pattern builder
      */
     Move checkmate();
 
     /**
-     * setter for field.
+     * set there is a piece of the same type and color and in the same row of departure
+     * that can go in the same destination position.
      * @return Move to join the pattern builder
      */
     Move row();
 
     /**
-     * setter for field.
+     ** set there is a piece of the same type and color and in the same row of departure
+     ** that can go in the same destination position.
      * @return Move to join the pattern builder
      */
     Move column();
     /**
-     * @param chessboard
+     * @param chessboard the chessboard on which the move is made
      * @return a string that represent a move
      */
     Move build(Chessboard chessboard) throws IllegalMoveException;
