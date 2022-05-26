@@ -53,7 +53,7 @@ public interface Fen {
      * The halfmove Clock takes care of enforcing the fifty-move rule.
      * This counter is reset after captures or pawn moves, and incremented otherwise
      * 
-     * @param halfMove
+     * @param halfMove the counter
      * @return Fen
      */
     Fen halfMoveClock(int halfMove);
