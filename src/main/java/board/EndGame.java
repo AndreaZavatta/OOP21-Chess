@@ -31,7 +31,7 @@ public interface EndGame {
      * @param chessboard
      * @return true if the match ends in Stalemate due to insufficiency of material.
      */
-    boolean isDrawByInsufficientfMaterial(Chessboard chessboard);
+    boolean isDrawByInsufficientMaterial(Chessboard chessboard);
 
     /**
      * 
