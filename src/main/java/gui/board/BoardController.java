@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import piece.utils.Numbers;
 import piece.utils.Position;
@@ -66,16 +67,22 @@ public class BoardController {
         //            lastX = c.getCenterX();
         //            lastY = c.getCenterY();
         //        });
-        final ImageView c = new ImageView(im);
+        //final ImageView c = new ImageView(im);
         lastX = TILE_SIZE * Numbers.ONE;
         lastY = TILE_SIZE * Numbers.ZERO;
-        c.setX(lastX);
-        c.setY(lastY);
-        mapImagePosition.put(c, Position.createNumericPosition((int) lastX, (int) lastY));
-        //c.setOnMouseDragged(x -> dragged(x, c));
-        c.setOnDragDetected(x -> dragged(x, c));
-        c.setOnMouseReleased(event -> released(c));
-        pane.getChildren().add(c);
+
+        final Rectangle r = new Rectangle(TILE_SIZE, TILE_SIZE);
+        r.setFill(new ImagePattern(im));
+        r.setX(lastX);
+        r.setY(lastY);
+
+
+        //c.setX(lastX);
+        //c.setY(lastY);
+        //mapImagePosition.put(c, Position.createNumericPosition((int) lastX, (int) lastY));
+        r.setOnMouseDragged(x -> dragged(x, r));
+        r.setOnMouseReleased(event -> released(r));
+        pane.getChildren().add(r);
     }
 
     private void createChessboard() {
@@ -111,14 +118,14 @@ public class BoardController {
     //    p.setY(event.getY());
     //}
 
-    private void dragged(final MouseEvent event, final ImageView p) {
-        p.setX(event.getX());
-        p.setY(event.getY());
+    private void dragged(final MouseEvent event, final Rectangle p) {
+        p.setX(event.getX() - (double) TILE_SIZE / 2);
+        p.setY(event.getY() - (double) TILE_SIZE / 2);
     }
 
-    private void released(final ImageView p) {
-        final int x = (int) (p.getX() / TILE_SIZE);
-        final int y = (int) (p.getY() / TILE_SIZE);
+    private void released(final Rectangle p) {
+        final int x = (int) ((p.getX() + TILE_SIZE / 2) / TILE_SIZE);
+        final int y = (int) ((p.getY() + TILE_SIZE / 2) / TILE_SIZE);
         final Position finalPosition = Position.createNumericPosition(x, y);
         if (mapPositionRectangle.containsKey(finalPosition)) {
             lastX = TILE_SIZE * x;
@@ -127,7 +134,7 @@ public class BoardController {
             p.setY(lastY);
             System.out.println(finalPosition);
         } else {
-            System.out.println("Posizione errata");
+            System.out.println("Wrong position");
             p.setX(lastX);
             p.setY(lastY);
         }
