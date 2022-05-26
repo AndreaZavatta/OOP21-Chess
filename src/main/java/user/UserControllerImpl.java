@@ -12,7 +12,7 @@ public class UserControllerImpl extends UserImpl implements UserController {
 
     private static final long serialVersionUID = -2758032167630487732L;
 
-    private final Image img;
+    private final transient Image img;
 
     /**
      * 
@@ -28,5 +28,4 @@ public class UserControllerImpl extends UserImpl implements UserController {
     public Image getImage() {
         return this.img;
     }
-
 }
