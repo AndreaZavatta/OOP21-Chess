@@ -33,7 +33,8 @@ public class BoardController {
     private final Chessboard board = factory.createNormalCB();
 
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<ImageView, Position> mapImagePosition = new HashMap<>();
+    private final Map<Rectangle, Position> mapRectanglePosition = new HashMap<>();
+    //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo
     private double lastX;
     private double lastY;
     /**
@@ -52,22 +53,12 @@ public class BoardController {
     @FXML
     void initialize() {
         this.createChessboard();
-        this.createPieces();
+        //this.createPieces();
+        this.createGuiPiece();
     }
 
     private void createPieces() {
-        //        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
-        //        lastX = c.getCenterX();
-        //        lastY = c.getCenterY();
         final Image im = new Image("/pieces/images/blackPawn.png", TILE_SIZE, TILE_SIZE, true, false);
-        //        c.setFill(new ImagePattern(im));
-        //        c.setOnMouseDragged(x -> dragged(x, c));
-        //        c.setOnMouseReleased(event -> released(c));
-        //        c.setOnMouseClicked(x -> {
-        //            lastX = c.getCenterX();
-        //            lastY = c.getCenterY();
-        //        });
-        //final ImageView c = new ImageView(im);
         lastX = TILE_SIZE * Numbers.ONE;
         lastY = TILE_SIZE * Numbers.ZERO;
 
@@ -85,6 +76,18 @@ public class BoardController {
         pane.getChildren().add(r);
     }
 
+    private void createGuiPiece() {
+        final GuiPiece g = new GuiPiece(TILE_SIZE, TILE_SIZE, "/pieces/images/blackPawn.png");
+        final Rectangle r = g.getRectangle();
+        lastX = Numbers.FOUR;
+        lastY = Numbers.FOUR;
+        g.setX(lastX);
+        g.setY(lastY);
+        r.setOnMouseDragged(x -> dragged(x, r));
+        r.setOnMouseReleased(x -> released(r));
+
+        pane.getChildren().add(g.getRectangle());
+    }
     private void createChessboard() {
         int count = 0;
         for (int i = 0; i < WIDTH; i++) {
@@ -112,11 +115,6 @@ public class BoardController {
             }
         }
     }
-
-    //private void dragged(final DragEvent event, final ImageView p){
-    //    p.setX(event.getX());
-    //    p.setY(event.getY());
-    //}
 
     private void dragged(final MouseEvent event, final Rectangle p) {
         p.setX(event.getX() - (double) TILE_SIZE / 2);
