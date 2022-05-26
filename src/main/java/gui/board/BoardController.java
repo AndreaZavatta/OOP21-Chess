@@ -54,7 +54,7 @@ public class BoardController {
         this.createPieces();
     }
 
-    private void createPieces(){
+    private void createPieces() {
         //        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
         //        lastX = c.getCenterX();
         //        lastY = c.getCenterY();
@@ -67,20 +67,18 @@ public class BoardController {
         //            lastY = c.getCenterY();
         //        });
         final ImageView c = new ImageView(im);
-//        c.setFitHeight(TILE_SIZE);
-//        c.setFitWidth(TILE_SIZE);
-//        c.setPreserveRatio(true);
         lastX = TILE_SIZE * Numbers.ONE;
         lastY = TILE_SIZE * Numbers.ZERO;
         c.setX(lastX);
         c.setY(lastY);
         mapImagePosition.put(c, Position.createNumericPosition((int) lastX, (int) lastY));
-        c.setOnMouseDragged(x -> dragged(x, c));
+        //c.setOnMouseDragged(x -> dragged(x, c));
+        c.setOnDragDetected(x -> dragged(x, c));
         c.setOnMouseReleased(event -> released(c));
         pane.getChildren().add(c);
     }
 
-    private void createChessboard(){
+    private void createChessboard() {
         int count = 0;
         for (int i = 0; i < WIDTH; i++) {
             count++;
@@ -107,6 +105,11 @@ public class BoardController {
             }
         }
     }
+
+    //private void dragged(final DragEvent event, final ImageView p){
+    //    p.setX(event.getX());
+    //    p.setY(event.getY());
+    //}
 
     private void dragged(final MouseEvent event, final ImageView p) {
         p.setX(event.getX());
