@@ -11,7 +11,7 @@ public interface FileReader<T extends Serializable> {
         /**
          * a method for reading from files. 
          * @return T
-         * @throws IOException
+         * @throws IOException if reading to file is not done correctly
          */
         T readFile() throws IOException;
 

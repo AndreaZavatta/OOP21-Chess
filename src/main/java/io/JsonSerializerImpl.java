@@ -12,7 +12,7 @@ public class JsonSerializerImpl<T extends Serializable> implements JsonSerialize
     private final Class<T> className;
     /**
      * 
-     * @param className
+     * @param className the name of the class to be serialized
      */
     public JsonSerializerImpl(final Class<T> className) {
             this.className = Objects.requireNonNull(className);

@@ -14,7 +14,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import piece.utils.Numbers;
 import piece.utils.Position;
+import pieces.Piece;
 
 /**
  * Controller class for Board.fxml.
@@ -23,11 +25,14 @@ import piece.utils.Position;
 public class BoardController {
     @FXML
     private Pane pane = new Pane();
+    @FXML
+    private Pane anchorPane = new Pane();
 
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
 
-    private final Map<Position, Rectangle> map = new HashMap<>();
+    private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
+    private final Map<ImageView, Position> mapImagePosition = new HashMap<>();
     private double lastX;
     private double lastY;
     /**
@@ -45,13 +50,44 @@ public class BoardController {
 
     @FXML
     void initialize() {
+        this.createChessboard();
+        this.createPieces();
+    }
+
+    private void createPieces(){
+        //        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
+        //        lastX = c.getCenterX();
+        //        lastY = c.getCenterY();
+        final Image im = new Image("/pieces/images/blackPawn.png", TILE_SIZE, TILE_SIZE, true, false);
+        //        c.setFill(new ImagePattern(im));
+        //        c.setOnMouseDragged(x -> dragged(x, c));
+        //        c.setOnMouseReleased(event -> released(c));
+        //        c.setOnMouseClicked(x -> {
+        //            lastX = c.getCenterX();
+        //            lastY = c.getCenterY();
+        //        });
+        final ImageView c = new ImageView(im);
+//        c.setFitHeight(TILE_SIZE);
+//        c.setFitWidth(TILE_SIZE);
+//        c.setPreserveRatio(true);
+        lastX = TILE_SIZE * Numbers.ONE;
+        lastY = TILE_SIZE * Numbers.ZERO;
+        c.setX(lastX);
+        c.setY(lastY);
+        mapImagePosition.put(c, Position.createNumericPosition((int) lastX, (int) lastY));
+        c.setOnMouseDragged(x -> dragged(x, c));
+        c.setOnMouseReleased(event -> released(c));
+        pane.getChildren().add(c);
+    }
+
+    private void createChessboard(){
         int count = 0;
         for (int i = 0; i < WIDTH; i++) {
             count++;
             for (int j = 0; j < HEIGHT; j++) {
                 final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
-                map.put(Position.createNumericPosition(i, j), r);
+                mapPositionRectangle.put(Position.createNumericPosition(i, j), r);
                 if (count % 2 == 0) {
                     r.setFill(Color.GREEN);
                 } else {
@@ -70,30 +106,6 @@ public class BoardController {
                 pane.getChildren().add(r);
             }
         }
-        //        final Circle c = new Circle(TILE_SIZE / 2 + TILE_SIZE * 0, TILE_SIZE / 2 + TILE_SIZE * 0, 40);
-        //        lastX = c.getCenterX();
-        //        lastY = c.getCenterY();
-                final Image im = new Image("/pieces/images/blackPawn.png", TILE_SIZE, TILE_SIZE, true, false);
-        //        c.setFill(new ImagePattern(im));
-        //        c.setOnMouseDragged(x -> dragged(x, c));
-        //        c.setOnMouseReleased(event -> released(c));
-        //        c.setOnMouseClicked(x -> {
-        //            lastX = c.getCenterX();
-        //            lastY = c.getCenterY();
-        //        });
-        final ImageView c = new ImageView(im);
-//        c.setFitHeight(TILE_SIZE);
-//        c.setFitWidth(TILE_SIZE);
-//        c.setPreserveRatio(true);
-        c.setX(TILE_SIZE * 1);
-        c.setY(TILE_SIZE * 0);
-        c.setOnMouseDragged(x -> dragged(x, c));
-        c.setOnMouseReleased(event -> released(c));
-        c.setOnMouseClicked(x -> {
-            lastX = c.getX();
-            lastY = c.getY();
-        });
-        pane.getChildren().add(c);
     }
 
     private void dragged(final MouseEvent event, final ImageView p) {
@@ -105,9 +117,11 @@ public class BoardController {
         final int x = (int) (p.getX() / TILE_SIZE);
         final int y = (int) (p.getY() / TILE_SIZE);
         final Position finalPosition = Position.createNumericPosition(x, y);
-        if (map.containsKey(finalPosition)) {
-            p.setX(TILE_SIZE * x);
-            p.setY(TILE_SIZE * y);
+        if (mapPositionRectangle.containsKey(finalPosition)) {
+            lastX = TILE_SIZE * x;
+            lastY = TILE_SIZE * y;
+            p.setX(lastX);
+            p.setY(lastY);
             System.out.println(finalPosition);
         } else {
             System.out.println("Posizione errata");
@@ -119,8 +133,9 @@ public class BoardController {
     }
 
     private void lightRectangle(final Position finalPosition) {
-        if (board.getAllPieces().stream().map(g -> g.getPosition()).collect(Collectors.toList()).contains(finalPosition)) {
-            map.get(finalPosition).setFill(Color.BLUE);
+        if (board.getAllPieces().stream()
+                .map(Piece::getPosition).collect(Collectors.toList()).contains(finalPosition)) {
+            mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
         }
     }
 }
