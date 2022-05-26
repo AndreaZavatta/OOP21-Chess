@@ -19,17 +19,21 @@ import pieces.Rook;
  */
 public class CastlingImpl implements Castling {
 
-    @Override
-    public boolean canCastleLeft(final Chessboard chessboard, final Piece king) {
-        return chessboard.getPieceOnPosition(Position.createNumericPosition(Numbers.ZERO, king.getPosition().getY())).map(r -> canCastle(chessboard, r, king)).orElse(false); 
-    }
+
 
     @Override
-    public boolean canCastleRight(final Chessboard chessboard, final Piece king) {
-        return chessboard.getPieceOnPosition(Position.createNumericPosition(Numbers.SEVEN, king.getPosition().getY())).map(r -> canCastle(chessboard, r, king)).orElse(false); 
+    public boolean canCastle(final Chessboard chessboard, final Side side, final int xPos) {
+        final var king = chessboard.getAllPieces().stream()
+                .filter(x -> x.getName().equals(Name.KING))
+                .filter(x -> x.getSide().equals(side))
+                .findFirst()
+                .get();
+        return chessboard.getPieceOnPosition(Position.createNumericPosition(xPos, king.getPosition().getY()))
+                .map(r -> isCastlePossible(chessboard, r, king))
+                .orElse(false); 
     }
 
-    private boolean canCastle(final Chessboard chessboard, final Piece rook, final Piece king) {
+    private boolean isCastlePossible(final Chessboard chessboard, final Piece rook, final Piece king) {
 
         //conferma pezzi
         if (!king.getName().equals(Name.KING) || !rook.getName().equals(Name.ROOK)) {

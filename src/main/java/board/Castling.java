@@ -1,26 +1,19 @@
 package board;
 
-import pieces.Piece;
+import piece.utils.Side;
 
 /**
  * This interface handles all Castling opportunities.
  */
 public interface Castling {
 
-   /**
-    * 
-    * @param chessboard
-    * @param king
-    * @return true when it is possible to Castle on the left side of the king
-    */
-    boolean canCastleLeft(Chessboard chessboard, Piece king);
-
     /**
      * 
      * @param chessboard
-     * @param king
-     * @return true when it is possible to Castle on the right side of the king
+     * @param side
+     * @param xPos
+     * @return true when it is possible to Castle on the given side of the king
      */
-    boolean canCastleRight(Chessboard chessboard, Piece king);
+    boolean canCastle(Chessboard chessboard, Side side, int xPos);
 
 }
