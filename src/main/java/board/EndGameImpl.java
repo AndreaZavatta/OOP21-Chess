@@ -18,8 +18,7 @@ import java.io.Serializable;
 public class EndGameImpl implements EndGame, Serializable {
 
     private static final long serialVersionUID = 8138985175091153307L;
-    private final transient ControlCheck controls = new ControlCheckImpl(); 
-
+    private final transient ControlCheck controls = new ControlCheckImpl();
 
     @Override
     public boolean isCheckmate(final Side side, final Chessboard chessboard) {
@@ -37,7 +36,6 @@ public class EndGameImpl implements EndGame, Serializable {
         return false;
     }
 
-
     @Override
     public boolean isStalemate(final Side side, final Chessboard chessboard) {
 
@@ -51,9 +49,8 @@ public class EndGameImpl implements EndGame, Serializable {
         return true;
     }
 
-
     @Override
-    public boolean isDrawByInsufficientfMaterial(final Chessboard chessboard) {
+    public boolean isDrawByInsufficientMaterial(final Chessboard chessboard) {
 
         return checkIfRemainingPiecesCauseStalemate(BLACK, chessboard) && checkIfRemainingPiecesCauseStalemate(WHITE, chessboard);
     }
@@ -65,9 +62,7 @@ public class EndGameImpl implements EndGame, Serializable {
         if (alive.size() > 2) {
             return false;
         } 
-        return alive.stream().filter(x -> x.getName() == KNIGHT || x.getName() == BISHOP)
-                .findAny()
-                .isPresent();
+        return alive.stream().anyMatch(x -> x.getName() == KNIGHT || x.getName() == BISHOP);
     }
 
     @Override
@@ -77,7 +72,7 @@ public class EndGameImpl implements EndGame, Serializable {
 
     @Override
     public boolean isDraw(final Side side, final Chessboard chessboard) {
-        return isDrawByInsufficientfMaterial(chessboard) || isDrawByRepetition(chessboard) || isStalemate(side, chessboard);
+        return isDrawByInsufficientMaterial(chessboard) || isDrawByRepetition(chessboard) || isStalemate(side, chessboard);
     }
 
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
