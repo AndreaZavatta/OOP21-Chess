@@ -33,8 +33,9 @@ public class BoardController {
     private final Chessboard board = factory.createNormalCB();
 
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<Rectangle, Position> mapRectanglePosition = new HashMap<>();
-    //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo
+    private final Map<GuiPiece, Position> mapRectanglePosition = new HashMap<>();
+    //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
+
     private double lastX;
     private double lastY;
     /**
@@ -53,27 +54,7 @@ public class BoardController {
     @FXML
     void initialize() {
         this.createChessboard();
-        //this.createPieces();
         this.createGuiPiece();
-    }
-
-    private void createPieces() {
-        final Image im = new Image("/pieces/images/blackPawn.png", TILE_SIZE, TILE_SIZE, true, false);
-        lastX = TILE_SIZE * Numbers.ONE;
-        lastY = TILE_SIZE * Numbers.ZERO;
-
-        final Rectangle r = new Rectangle(TILE_SIZE, TILE_SIZE);
-        r.setFill(new ImagePattern(im));
-        r.setX(lastX);
-        r.setY(lastY);
-
-
-        //c.setX(lastX);
-        //c.setY(lastY);
-        //mapImagePosition.put(c, Position.createNumericPosition((int) lastX, (int) lastY));
-        r.setOnMouseDragged(x -> dragged(x, r));
-        r.setOnMouseReleased(event -> released(r));
-        pane.getChildren().add(r);
     }
 
     private void createGuiPiece() {
@@ -83,11 +64,13 @@ public class BoardController {
         lastY = Numbers.FOUR;
         g.setX(lastX);
         g.setY(lastY);
+        mapRectanglePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
         r.setOnMouseDragged(x -> dragged(x, r));
-        r.setOnMouseReleased(x -> released(r));
+        r.setOnMouseReleased(x -> released(g));
 
         pane.getChildren().add(g.getRectangle());
     }
+    
     private void createChessboard() {
         int count = 0;
         for (int i = 0; i < WIDTH; i++) {
@@ -121,16 +104,17 @@ public class BoardController {
         p.setY(event.getY() - (double) TILE_SIZE / 2);
     }
 
-    private void released(final Rectangle p) {
-        final int x = (int) ((p.getX() + TILE_SIZE / 2) / TILE_SIZE);
-        final int y = (int) ((p.getY() + TILE_SIZE / 2) / TILE_SIZE);
+    private void released(final GuiPiece p) {
+        final int x = (int) ((p.getRectangle().getX() + TILE_SIZE / 2) / TILE_SIZE);
+        final int y = (int) ((p.getRectangle().getY() + TILE_SIZE / 2) / TILE_SIZE);
         final Position finalPosition = Position.createNumericPosition(x, y);
         if (mapPositionRectangle.containsKey(finalPosition)) {
-            lastX = TILE_SIZE * x;
-            lastY = TILE_SIZE * y;
+            lastX = x;
+            lastY = y;
             p.setX(lastX);
             p.setY(lastY);
             System.out.println(finalPosition);
+            mapRectanglePosition.put(p, finalPosition);
         } else {
             System.out.println("Wrong position");
             p.setX(lastX);
