@@ -1,6 +1,7 @@
 package board;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,7 +20,19 @@ import pieces.Rook;
  */
 public class CastlingImpl implements Castling {
 
-
+    public Optional<Position> canCastle1(final Chessboard chessboard, final Side side, final int xPos) {
+        final var king = chessboard.getAllPieces().stream()
+                .filter(x -> x.getName().equals(Name.KING))
+                .filter(x -> x.getSide().equals(side))
+                .findFirst()
+                .get();
+        if (chessboard.getPieceOnPosition(Position.createNumericPosition(xPos, king.getPosition().getY()))
+                .map(r -> isCastlePossible(chessboard, r, king))
+                .orElse(false)) {
+            return Optional.of(king.getPosition());
+        }
+        return Optional.empty();
+    }
 
     @Override
     public boolean canCastle(final Chessboard chessboard, final Side side, final int xPos) {
