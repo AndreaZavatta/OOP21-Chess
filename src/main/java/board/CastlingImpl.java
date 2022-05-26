@@ -10,8 +10,8 @@ import piece.utils.Side;
 import pieces.Piece;
 
 /**
- * 
- * 
+ *
+ * Implementation of Castling Interface's methods.
  *
  */
 public class CastlingImpl implements Castling {
