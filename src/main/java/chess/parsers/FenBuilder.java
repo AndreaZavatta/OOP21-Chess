@@ -8,6 +8,7 @@ import board.Chessboard;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import piece.utils.Side;
 import pieces.Piece;
@@ -17,13 +18,13 @@ import pieces.Piece;
  *
  */
 public class FenBuilder implements Fen {
-    private Side side = null;
+    private Side side;
     private boolean blackCastlingQueenSide = true;
     private boolean blackCastlingKingSide = true;
     private boolean whiteCastlingQueenSide = true;
     private boolean whiteCastlingKingSide = true;
     private String enPassant = "-";
-    private int halfMoveClock = 0;
+    private int halfMoveClock;
     private int fullMoveNumber = 1;
 
     @Override
@@ -68,16 +69,16 @@ public class FenBuilder implements Fen {
     }
 
     private String fromRowToString(final int row, final Chessboard chessboard) {
-        StringBuilder res = new StringBuilder();
-        List<Piece> rowPiece = getPiecesByRow(row, chessboard);
+        final StringBuilder res = new StringBuilder();
+        final List<Piece> rowPiece = getPiecesByRow(row, chessboard);
         int previousPiece = 0;
-        for (Piece piece : rowPiece) {
-           int diff = piece.getPosition().getX() - previousPiece;
+        for (final Piece piece : rowPiece) {
+           final int diff = piece.getPosition().getX() - previousPiece;
            if (diff > 0) {
                res.append(diff);
            }
-           String notation = piece.getName().notation();
-           res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase() : notation);
+           final String notation = piece.getName().notation();
+           res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation);
            previousPiece = piece.getPosition().getX() + 1;
         }
         if (previousPiece < chessboard.getxBorder() + 1) {
@@ -93,15 +94,15 @@ public class FenBuilder implements Fen {
     }
 
     private String fenPiece(final Chessboard chessboard) {
-        StringBuilder str = new StringBuilder();
+        final StringBuilder str = new StringBuilder();
         for (int i = 0; i < chessboard.getyBorder() + 1; i++) {
-            str.append(fromRowToString(i, chessboard)).append("/");
+            str.append(fromRowToString(i, chessboard)).append('/');
         }
         str.deleteCharAt(str.length() - 1);
         return str.toString();
     }
-    private String getActiveColor() {
-        return side.equals(Side.BLACK) ? "b" : "w";
+    private Character getActiveColor() {
+        return side.equals(BLACK) ? 'b' : 'w';
     }
 
     private String getCastling() {
@@ -111,23 +112,23 @@ public class FenBuilder implements Fen {
        return getCastlingSupport();
     }
     private String getCastlingSupport() {
-        return  (whiteCastlingKingSide ? KING.notation() : "") +
-                (whiteCastlingQueenSide ? QUEEN.notation() : "") +
-                (blackCastlingKingSide ? KING.notation().toLowerCase() : "") +
-                (blackCastlingQueenSide ? QUEEN.notation().toLowerCase() : "");
+        return  (whiteCastlingKingSide ? KING.notation() : "")
+                + (whiteCastlingQueenSide ? QUEEN.notation() : "")
+                + (blackCastlingKingSide ? KING.notation().toLowerCase(Locale.ROOT) : "")
+                + (blackCastlingQueenSide ? QUEEN.notation().toLowerCase(Locale.ROOT) : "");
     }
     @Override
     public String build(final Chessboard chessboard) {
-        return fenPiece(chessboard) +
-                " " +
-                getActiveColor() +
-                " " +
-                getCastling() +
-                " " +
-                enPassant +
-                " " +
-                halfMoveClock +
-                " " +
-                fullMoveNumber;
+        return fenPiece(chessboard)
+                + " "
+                + getActiveColor()
+                + " "
+                + getCastling()
+                + " "
+                + enPassant
+                + " "
+                + halfMoveClock
+                + " "
+                + fullMoveNumber;
     }
 }
