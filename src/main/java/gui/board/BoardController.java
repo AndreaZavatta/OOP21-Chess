@@ -24,7 +24,7 @@ public class BoardController {
     @FXML
     private Pane pane = new Pane();
     @FXML
-    private Pane anchorPane = new Pane();
+    private final Pane anchorPane = new Pane();
 
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();

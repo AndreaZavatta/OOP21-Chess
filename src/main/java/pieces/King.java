@@ -7,7 +7,11 @@ import java.util.List;
 import board.Castling;
 import board.CastlingImpl;
 import board.Chessboard;
-import piece.utils.*;
+import piece.utils.Name;
+import piece.utils.Numbers;
+import piece.utils.PieceDirections;
+import piece.utils.Position;
+import piece.utils.Side;
 
 /**
  * A King class that extends AbstractPiece abstract class.
