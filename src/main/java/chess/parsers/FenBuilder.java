@@ -10,6 +10,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+
+import piece.utils.Position;
 import piece.utils.Side;
 import pieces.Piece;
 
@@ -53,8 +55,8 @@ public class FenBuilder implements Fen {
         return this;
     }
     @Override
-    public Fen enPassant(final String str) {
-        enPassant = str;
+    public Fen enPassant(final String pos) {
+        enPassant = pos;
         return this;
     }
     @Override
