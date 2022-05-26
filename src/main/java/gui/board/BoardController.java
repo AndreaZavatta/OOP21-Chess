@@ -8,12 +8,9 @@ import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import piece.utils.Numbers;
 import piece.utils.Position;
@@ -33,7 +30,7 @@ public class BoardController {
     private final Chessboard board = factory.createNormalCB();
 
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<GuiPiece, Position> mapRectanglePosition = new HashMap<>();
+    private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
 
     private double lastX;
@@ -64,13 +61,13 @@ public class BoardController {
         lastY = Numbers.FOUR;
         g.setX(lastX);
         g.setY(lastY);
-        mapRectanglePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
+        mapGuiPiecePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
         r.setOnMouseDragged(x -> dragged(x, r));
         r.setOnMouseReleased(x -> released(g));
 
         pane.getChildren().add(g.getRectangle());
     }
-    
+
     private void createChessboard() {
         int count = 0;
         for (int i = 0; i < WIDTH; i++) {
@@ -114,7 +111,7 @@ public class BoardController {
             p.setX(lastX);
             p.setY(lastY);
             System.out.println(finalPosition);
-            mapRectanglePosition.put(p, finalPosition);
+            mapGuiPiecePosition.put(p, finalPosition);
         } else {
             System.out.println("Wrong position");
             p.setX(lastX);
