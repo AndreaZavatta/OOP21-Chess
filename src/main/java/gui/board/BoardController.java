@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -47,6 +48,11 @@ public class BoardController {
     void initialize() {
         this.createChessboard();
         this.createGuiPiece();
+    }
+
+    @FXML
+    void askForDraw(ActionEvent event) {
+        //TODO
     }
 
     private void createGuiPiece() {
