@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Pawn">
          <font>
             <Font name="Courier New Bold" size="50.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="288.0" fitWidth="397.0" layoutX="14.0" layoutY="85.0" preserveRatio="true">
+         <image>
+            <Image url="@../../pieces/gif/pawn.gif" />
+         </image>
+      </ImageView>
+      <Text layoutX="321.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pawns can only move forwards and only one square at a time. However, only on their first move, thay can move forward two squares. Pawns capture one square diagonally in a forwards direction." textAlignment="JUSTIFY" wrappingWidth="240.0390625">
+         <font>
+            <Font name="Courier New Bold" size="16.0" />
          </font>
       </Text>
    </children>

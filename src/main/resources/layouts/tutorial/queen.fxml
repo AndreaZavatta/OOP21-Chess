@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Queen">
          <font>
             <Font name="Courier New Bold" size="50.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="283.0" fitWidth="343.0" layoutX="14.0" layoutY="82.0" preserveRatio="true">
+         <image>
+            <Image url="@../../pieces/gif/queen.gif" />
+         </image>
+      </ImageView>
+      <Text layoutX="303.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queens can move diagonally, horizontally and vertically any number of squares. This freedom of movement makes the Queen the most powerful piece!" textAlignment="JUSTIFY" wrappingWidth="283.0">
+         <font>
+            <Font name="Courier New Bold" size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="303.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Piece value: 9">
+         <font>
+            <Font name="Courier New Bold Italic" size="20.0" />
          </font>
       </Text>
    </children>
