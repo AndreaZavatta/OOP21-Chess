@@ -60,14 +60,10 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <AnchorPane layoutX="357.0" layoutY="161.0" prefHeight="120.0" prefWidth="213.0">
-         <children>
-            <Text layoutX="6.0" layoutY="12.48779296875" strokeType="OUTSIDE" strokeWidth="0.0" text="At the start, each player controls sixteen pieces (either the white or the black ones): one king, one queen, two rooks, two bishops, two knights, and eight pawns." textAlignment="JUSTIFY" wrappingWidth="212.66668701171875" AnchorPane.bottomAnchor="0.0625" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-5.333353678385407" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Courier New Bold" size="15.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
+      <Text layoutX="353.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="At the start, each player controls sixteen pieces (either the white or the black ones): one king, one queen, two rooks, two bishops, two knights, and eight pawns. Click on the buttons to learn about them!" textAlignment="JUSTIFY" wrappingWidth="227.1146240234375">
+         <font>
+            <Font name="Courier New Bold" size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
