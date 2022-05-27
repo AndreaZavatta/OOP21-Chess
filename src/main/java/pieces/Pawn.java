@@ -70,5 +70,4 @@ public class Pawn extends AbstractPiece {
     private int getDirection(final Side color) {
         return color.equals(Side.BLACK) ? +1 : -1;
     }
-
 }

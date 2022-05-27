@@ -17,7 +17,6 @@ import pieces.PieceFactoryImpl;
 public class PromotionImpl implements Promotion {
 
     private final PieceFactory factory = new PieceFactoryImpl();
-
     /**
      * This method checks if there is a pawn that can be promoted.
      * 

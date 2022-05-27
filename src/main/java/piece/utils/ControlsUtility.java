@@ -11,7 +11,6 @@ public final class ControlsUtility {
 
     private ControlsUtility() {
     }
-
     /**
      * This method checks if in the given position there is an enemy piece.
      * @param piece the piece you are calculating the possible positions.
@@ -22,7 +21,6 @@ public final class ControlsUtility {
     public static boolean checkEnemy(final Piece piece, final Position position, final Chessboard board) {
         return board.getPieceOnPosition(position).map(p -> !p.getSide().equals(piece.getSide())).orElse(false);
     }
-
     /**
      * This method checks if in the given position there is a piece.
      * @param position the position you are checking.
@@ -32,7 +30,6 @@ public final class ControlsUtility {
     public static boolean checkPiece(final Position position, final Chessboard board) {
         return board.getPieceOnPosition(position).isPresent();
     }
-
     /**
      * This method checks if the given position is in the board.
      * @param position the position you are checking.
@@ -42,7 +39,6 @@ public final class ControlsUtility {
         return position.getX() < 8 && position.getX() >= 0 
                 && position.getY() < 8 && position.getY() >= 0;
     }
-
     /**
      * This method, given a direction and a multiplier, returns a new position.
      * @param piece the piece you are calculating the possible positions.

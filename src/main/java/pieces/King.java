@@ -35,11 +35,9 @@ public class King extends AbstractPiece {
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         final List<Position> list =
                 new ArrayList<>(this.getBasicMoves().singleIteration(PieceDirections.KING_DIR, board, this));
-        //castle on left king side
         if (castle.canCastle(board, this, Numbers.ZERO)) {
             list.add(castleKingPosition(-Numbers.TWO));
         }
-        //castle on right king side
         if (castle.canCastle(board, this, Numbers.SEVEN)) {
             list.add(castleKingPosition(Numbers.TWO));
         }

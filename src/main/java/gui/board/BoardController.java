@@ -23,14 +23,11 @@ import pieces.Piece;
 public class BoardController {
     @FXML
     private Pane pane = new Pane();
-
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
-
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
     private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
-
     private double lastX;
     private double lastY;
     /**
@@ -62,7 +59,6 @@ public class BoardController {
         mapGuiPiecePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
         r.setOnMouseDragged(x -> dragged(x, r));
         r.setOnMouseReleased(x -> released(g));
-
         pane.getChildren().add(g.getRectangle());
     }
 

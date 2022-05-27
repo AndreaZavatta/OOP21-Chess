@@ -15,7 +15,6 @@ import piece.utils.PieceDirections;
 public class Bishop extends AbstractPiece {
 
     private static final int BISHOP_VALUE = 3;
-
     /**
      * A Bishop piece constructor.
      * 
