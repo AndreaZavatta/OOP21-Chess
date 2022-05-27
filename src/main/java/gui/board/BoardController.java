@@ -26,6 +26,8 @@ import pieces.Piece;
 public class BoardController {
     @FXML
     private Pane pane = new Pane();
+    @FXML
+    private Pane anchorPane = new Pane();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
@@ -50,6 +52,7 @@ public class BoardController {
     void initialize() {
         this.createChessboard();
         this.createGuiPiece();
+        anchorPane.setStyle("-fx-background-color: #FEE440");
     }
 
     @FXML
