@@ -50,6 +50,16 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#goOn" opacity="0.5" prefHeight="40.0" prefWidth="40.0" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#goBack" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
       <AnchorPane layoutX="357.0" layoutY="161.0" prefHeight="120.0" prefWidth="213.0">
          <children>
             <Text layoutX="6.0" layoutY="12.48779296875" strokeType="OUTSIDE" strokeWidth="0.0" text="At the start, each player controls sixteen pieces (either the white or the black ones): one king, one queen, two rooks, two bishops, two knights, and eight pawns." textAlignment="JUSTIFY" wrappingWidth="212.66668701171875" AnchorPane.bottomAnchor="0.0625" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-5.333353678385407" AnchorPane.topAnchor="0.0">
@@ -59,15 +69,5 @@
             </Text>
          </children>
       </AnchorPane>
-      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#goOn" opacity="0.5" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#goBack" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
    </children>
 </AnchorPane>
