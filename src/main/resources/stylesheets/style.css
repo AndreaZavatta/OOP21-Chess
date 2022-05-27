@@ -28,6 +28,12 @@
     -fx-opacity: 0.5;
 }
 
-.chessButton  {
+.startGame {
+    -fx-background-color: coral;
     -fx-opacity: 1;
+}
+
+.imageButton {
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
 }
