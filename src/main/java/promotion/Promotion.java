@@ -10,7 +10,6 @@ import pieces.Piece;
  *
  */
 public interface Promotion {
-
     /**
      * This method checks if there is a pawn on the highest or lowest row 
      * of the board.
@@ -28,5 +27,4 @@ public interface Promotion {
      * @return a new piece with the position and side from the old piece
      */
     Piece changePiece(Name name, Piece piece);
-
 }

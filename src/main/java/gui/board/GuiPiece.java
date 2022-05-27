@@ -11,7 +11,6 @@ import static gui.board.BoardController.TILE_SIZE;
  *
  */
 public class GuiPiece {
-
     private double x;
     private double y;
     private final Rectangle rectangle;
@@ -69,7 +68,6 @@ public class GuiPiece {
     public double getY() {
         return y;
     }
-
     /**
      *
      * @return the rectangle

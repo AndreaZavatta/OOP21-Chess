@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -23,14 +24,11 @@ import pieces.Piece;
 public class BoardController {
     @FXML
     private Pane pane = new Pane();
-
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
-
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
     private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
-
     private double lastX;
     private double lastY;
     /**
@@ -52,6 +50,11 @@ public class BoardController {
         this.createGuiPiece();
     }
 
+    @FXML
+    void askForDraw(ActionEvent event) {
+        //TODO
+    }
+
     private void createGuiPiece() {
         final GuiPiece g = new GuiPiece(TILE_SIZE, TILE_SIZE, "/pieces/images/blackPawn.png");
         final Rectangle r = g.getRectangle();
@@ -62,7 +65,6 @@ public class BoardController {
         mapGuiPiecePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
         r.setOnMouseDragged(x -> dragged(x, r));
         r.setOnMouseReleased(x -> released(g));
-
         pane.getChildren().add(g.getRectangle());
     }
 
