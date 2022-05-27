@@ -42,7 +42,7 @@ public class CastlingImpl implements Castling {
             return false;
         }
 
-        // filter the previous list and get the positions the king has to go through
+        // filter the previous list and get the positions the king has to go through;
         return !(positions.stream()
                 .filter(p -> Math.abs(king.getPosition().getX() - p.getX()) <= 2)
                 .anyMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide())));
