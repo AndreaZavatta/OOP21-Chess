@@ -11,9 +11,8 @@ public interface FileReader<T extends Serializable> {
         /**
          * a method for reading from files. 
          * @return T
-         * @throws IOException
-         * @throws ClassNotFoundException
+         * @throws IOException if reading to file is not done correctly
          */
-        T readFile() throws IOException, ClassNotFoundException;
+        T readFile() throws IOException;
 
 }

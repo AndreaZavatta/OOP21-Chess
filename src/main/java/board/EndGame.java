@@ -2,7 +2,6 @@ package board;
 
 import piece.utils.Side;
 
-
 /**
  * 
  * This Interface models and handles all the possible ways a chess game can end with.
@@ -31,7 +30,7 @@ public interface EndGame {
      * @param chessboard
      * @return true if the match ends in Stalemate due to insufficiency of material.
      */
-    boolean isDrawByInsufficientfMaterial(Chessboard chessboard);
+    boolean isDrawByInsufficientMaterial(Chessboard chessboard);
 
     /**
      * 

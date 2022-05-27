@@ -12,7 +12,6 @@ import pieces.Piece;
  *
  */
 public interface BasicMoves {
-
     /**
      * This method is used by the Rook and Bishop in order to 
      * return the list of possible position. It's called doubleIteration
@@ -24,7 +23,6 @@ public interface BasicMoves {
      * @return a list of position the piece can go to.
      */
     List<Position> doubleIteration(PieceDirections directions, Chessboard board, Piece piece);
-
     /**
      * This method is used by the King and Knight in order to 
      * return the list of possible position. It's called singleIteration
@@ -37,5 +35,4 @@ public interface BasicMoves {
      * @return a list of position the piece can go to.
      */
     List<Position> singleIteration(PieceDirections directions, Chessboard board, Piece piece);
-
 }

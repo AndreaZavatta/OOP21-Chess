@@ -16,8 +16,6 @@ import piece.utils.PieceDirections;
 public class Queen extends AbstractPiece {
 
     private static final int QUEEN_VALUE = 9;
-
-
     /**
      * A Queen piece constructor.
      * 
@@ -38,6 +36,4 @@ public class Queen extends AbstractPiece {
     public int getValue() {
         return QUEEN_VALUE;
     }
-
-
 }

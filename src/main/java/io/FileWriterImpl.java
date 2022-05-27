@@ -19,8 +19,8 @@ public class FileWriterImpl<T extends Serializable> implements FileWriter<T> {
     private final String cd =  System.getProperty("user.dir");
     /**
      * 
-     * @param fileName
-     * @param className
+     * @param fileName the name of the file in which to write the object
+     * @param className the name of the class to be serialized
      */
     public FileWriterImpl(final String fileName, final Class<T> className) {
             this.fileName = fileName;

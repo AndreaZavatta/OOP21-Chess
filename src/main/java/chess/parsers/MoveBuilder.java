@@ -21,17 +21,17 @@ import static piece.utils.Name.PAWN;
  */
 public class MoveBuilder implements Move {
     private final ControlCheck controls = new ControlCheckImpl();
-    private Piece piece = null;
-    private Position destination = null;
-    private Name promotion = null;
-    private boolean drawOffer = false;
-    private boolean check = false;
-    private boolean checkmate = false;
-    private boolean capture = false;
-    private boolean kingSideCastling = false;
-    private boolean queenSideCastling = false;
-    private boolean column = false;
-    private boolean row = false;
+    private Piece piece;
+    private Position destination;
+    private Name promotion;
+    private boolean drawOffer;
+    private boolean check;
+    private boolean checkmate;
+    private boolean capture;
+    private boolean kingSideCastling;
+    private boolean queenSideCastling;
+    private boolean column;
+    private boolean row;
 
 
     @Override
@@ -102,15 +102,12 @@ public class MoveBuilder implements Move {
 
     @Override
     public Move build(final Chessboard chessboard) throws IllegalMoveException {
-        if ((!drawOffer && !isCastling() && (piece == null || destination == null))) {
+        if (!drawOffer && !isCastling() && (piece == null || destination == null)) {
             throw new IllegalMoveException();
         }
-        List<Piece> pieces = verifyDualityOnDestPos(chessboard);
+        final List<Piece> pieces = verifyDualityOnDestPos(chessboard);
         findPiecesSameRow(pieces).ifPresent(x -> column());
         findPiecesSameColumn(pieces).ifPresent(x -> row());
-        if (row && column) {
-            row();
-        }
         return this;
     }
     private boolean isCastling() {
@@ -129,7 +126,7 @@ public class MoveBuilder implements Move {
     }
     private Optional<Piece> findPiecesFunction(final List<Piece> pieces, final ToIntFunction<Piece> func) {
         return pieces.stream()
-        .filter(x -> (Objects.equals(func.applyAsInt(x), (func.applyAsInt(piece)))))
+        .filter(x -> Objects.equals(func.applyAsInt(x), func.applyAsInt(piece)))
         .findAny();
     }
 
@@ -153,8 +150,8 @@ public class MoveBuilder implements Move {
      * 
      * @return the string representation of the move
      */
+    @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
         if (drawOffer) {
             return "(=)";
         } else if (kingSideCastling) {
@@ -162,6 +159,7 @@ public class MoveBuilder implements Move {
         } else if (queenSideCastling) {
             return "0-0-0";
         }
+        final StringBuilder str = new StringBuilder();
         addPieceNotation(str);
         addDepartureX(str);
         addDepartureY(str);
@@ -189,7 +187,7 @@ public class MoveBuilder implements Move {
     }
 
     private void addPieceNotation(final StringBuilder str) {
-        if (!piece.getName().notation().equals("P")) {
+        if (!"P".contentEquals(piece.getName().notation())) {
             str.append(nameNotation());
         }
 
@@ -201,21 +199,21 @@ public class MoveBuilder implements Move {
 
     private void addPromotion(final StringBuilder str) {
         if (promotion != null) {
-            str.append("=").append(promotion.notation());
+            str.append('=').append(promotion.notation());
         }
     }
 
     private void addCheckConditions(final StringBuilder str) {
         if (check) {
-            str.append("+");
+            str.append('+');
         } else if (checkmate) {
-            str.append("#");
+            str.append('#');
         }
     }
 
     private void addCapture(final StringBuilder str) {
         if (capture) {
-            str.append("x");
+            str.append('x');
         }
     }
 

@@ -47,6 +47,12 @@ dependencies {
     //compile group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
     //api("com.google.code.gson:gson:2.8.6")
     implementation("com.google.code.gson:gson:2.9.0")
+    // a dependency on Jackson Databind
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.8.9")
+
+    // and a dependency on vert.x
+    implementation("io.vertx:vertx-core:3.5.3")
+
 }
 
 tasks.withType<JavaCompile> {

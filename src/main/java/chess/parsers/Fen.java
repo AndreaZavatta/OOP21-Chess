@@ -1,6 +1,7 @@
 package chess.parsers;
 
 import board.Chessboard;
+import piece.utils.Position;
 import piece.utils.Side;
 /**
  * an Interface for represent a 
@@ -11,61 +12,61 @@ public interface Fen {
 
     /**
      * 
-     * @param side
+     * @param side the color that must move to this position on the chessboard.
      * @return Fen
      */
 
     Fen activeColor(Side side);
 
     /**
-     * 
+     * set white king castled kingSide
      * @return Fen
      */
     Fen whiteCastledKingSide();
 
     /**
-     * 
+     * set white king castled queen side
      * @return Fen
      */
     Fen whiteCastledQueenSide();
 
     /**
-     * 
+     * set black king castled king side
      * @return Fen
      */
     Fen blackCastledKingSide();
 
     /**
-     * 
+     * set black king castled queen side
      * @return Fen
      */
     Fen blackCastledQueenSide();
 
     /**
-     * 
-     * @param str
+     * set
+     * @param pos set the position where the pawn can be captured by en passant
      * @return Fen
      */
-    Fen enPassant(String str);
+    Fen enPassant(String pos);
 
     /**
-     * The Halfmove Clock takes care of enforcing the fifty-move rule.
+     * The halfmove Clock takes care of enforcing the fifty-move rule.
      * This counter is reset after captures or pawn moves, and incremented otherwise
      * 
-     * @param halfMove
+     * @param halfMove the counter
      * @return Fen
      */
     Fen halfMoveClock(int halfMove);
     /**
      * 
-     * @param fullMoveNumber
+     * @param fullMoveNumber is the number of semi moves until then
      * @return Fen
      */
     Fen fullMoveNumber(int fullMoveNumber);
 
     /**
      * 
-     * @param chessboard
+     * @param chessboard the chessboard you want to parse
      * @return String
      */
     String build(Chessboard chessboard);

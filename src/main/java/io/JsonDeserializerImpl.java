@@ -13,7 +13,7 @@ public class JsonDeserializerImpl<T extends Serializable> implements JsonDeseria
     private final Class<T> className;
     /**
      * 
-     * @param className
+     * @param className the name of the class to be deserialized
      */
     public JsonDeserializerImpl(final Class<T> className) {
             this.className = Objects.requireNonNull(className);

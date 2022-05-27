@@ -12,7 +12,7 @@ import piece.utils.PieceDirections;
  * A Knight class that extends AbstractPiece abstract class.
  *
  */
-public final class Knight extends AbstractPiece {
+public class Knight extends AbstractPiece {
 
     private static final int KNIGHT_VALUE = 3;
     /**

@@ -15,7 +15,6 @@ import piece.utils.PieceDirections;
 public class Rook extends AbstractPiece {
 
     private static final int ROOK_VALUE = 5;
-
     /**
      * A Rook piece constructor.
      * 

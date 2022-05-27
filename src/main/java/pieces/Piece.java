@@ -48,5 +48,4 @@ public interface Piece {
      * @param position the new Position
      */
     void setPosition(Position position);
-
 }

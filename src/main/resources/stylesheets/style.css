@@ -2,7 +2,7 @@
     -fx-background-color: linear-gradient(to bottom, red, crimson);
 }
 
-.button {
+.changePageButton {
     -fx-background-color: coral;
     -fx-opacity: 0;
     -fx-pref-height: 40;
@@ -18,13 +18,13 @@
 .startTutorialButton {
     -fx-background-color: coral;
     -fx-opacity: 1;
-    /* -fx-font-family: Courier New; */
+    -fx-font-family: Courier New;
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
     -fx-pref-height: 80;
     -fx-pref-width: 150;    
 }
 
-.button:hover {
+.changePageButton:hover {
     -fx-opacity: 0.5;
 }
 
@@ -36,5 +36,4 @@
 .imageButton {
     -fx-pref-height: 40;
     -fx-pref-width: 40;
-    -fx-opacity: 1;
 }

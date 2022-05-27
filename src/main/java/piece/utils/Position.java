@@ -28,7 +28,8 @@ public final class Position {
      * @return new position
      */
     public static Position createNewPosition(final String position) {
-        return new Position(fromCharToInt(position.charAt(0)), -Character.getNumericValue(position.charAt(1)) + 8);
+        return new Position(fromCharToInt(position.charAt(0)),
+                -Character.getNumericValue(position.charAt(1)) + 8);
     }
     /**
      * Static factory method to create a numeric position.

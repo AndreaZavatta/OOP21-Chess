@@ -17,7 +17,6 @@ import pieces.PieceFactoryImpl;
 public class PromotionImpl implements Promotion {
 
     private final PieceFactory factory = new PieceFactoryImpl();
-
     /**
      * This method checks if there is a pawn that can be promoted.
      * 
@@ -26,10 +25,10 @@ public class PromotionImpl implements Promotion {
      */
     @Override
     public Optional<Piece> checkForPromotion(final List<Piece> pieceList) {
-        if (checkColor(Side.BLACK, pieceList, 0).isPresent()) {
-            return checkColor(Side.BLACK, pieceList, 0);
+        if (checkColor(Side.WHITE, pieceList, 0).isPresent()) {
+            return checkColor(Side.WHITE, pieceList, 0);
         }
-        return checkColor(Side.WHITE, pieceList, Numbers.SEVEN);
+        return checkColor(Side.BLACK, pieceList, Numbers.SEVEN);
     }
     /**
      * This method creates a new piece.

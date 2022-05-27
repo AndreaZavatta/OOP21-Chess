@@ -19,8 +19,8 @@ public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
 
     /**
      * 
-     * @param fileName
-     * @param className
+     * @param fileName the name of the file in which to save the object
+     * @param className the name of the class to be deserialized
      */
     public FileReaderImpl(final String fileName, final Class<T> className) {
             this.fileName = fileName;
@@ -29,7 +29,7 @@ public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
 
 
     @Override
-    public T readFile() throws IOException, ClassNotFoundException {
+    public T readFile() throws IOException {
             final FileInputStream file = new FileInputStream(cd + fs + fileName);
             try (BufferedReader in = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
                     return jDeserializer.deserialize(composeString(in));
