@@ -20,22 +20,22 @@
             <Font name="Courier New Bold" size="40.0" />
          </font>
       </Text>
-      <Button fx:id="king" layoutX="171.0" layoutY="346.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♔">
+      <Button fx:id="king" layoutX="172.0" layoutY="346.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♔">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="knight" layoutX="249.0" layoutY="73.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♞">
+      <Button fx:id="knight" layoutX="249.0" layoutY="72.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♞">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="queen" layoutX="132.0" layoutY="346.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♕">
+      <Button fx:id="queen" layoutX="133.0" layoutY="346.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♕">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="bishop" layoutX="93.0" layoutY="74.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♝">
+      <Button fx:id="bishop" layoutX="94.0" layoutY="72.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♝">
          <font>
             <Font size="16.0" />
          </font>
@@ -45,7 +45,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="rook" layoutX="288.0" layoutY="73.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♜">
+      <Button fx:id="rook" layoutX="288.0" layoutY="72.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♜">
          <font>
             <Font size="16.0" />
          </font>
