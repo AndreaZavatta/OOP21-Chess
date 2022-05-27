@@ -9,6 +9,8 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -65,6 +67,8 @@ public class BoardController {
         mapGuiPiecePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
         r.setOnMouseDragged(x -> dragged(x, r));
         r.setOnMouseReleased(x -> released(g));
+        r.setOnMouseEntered(x -> setEffect(Color.RED, r));
+        r.setOnMouseExited(x -> removeEffect(r));
         pane.getChildren().add(g.getRectangle());
     }
 
@@ -77,20 +81,14 @@ public class BoardController {
                         TILE_SIZE, TILE_SIZE);
                 mapPositionRectangle.put(Position.createNumericPosition(i, j), r);
                 if (count % 2 == 0) {
-                    r.setFill(Color.GREEN);
+                    r.setFill(Color.rgb(233, 0, 255));
                 } else {
-                    r.setFill(Color.BEIGE);
+                    r.setFill(Color.rgb(115, 162, 19));
                 }
                 count++;
                 r.setStroke(Color.BLACK);
-                r.setOnMouseEntered(x -> {
-                    r.setStroke(Color.RED);
-                    r.setStrokeWidth(4);
-                });
-                r.setOnMouseExited(x -> {
-                    r.setStrokeWidth(1);
-                    r.setStroke(Color.BLACK);
-                });
+                r.setOnMouseEntered(x -> setEffect(Color.YELLOW, r));
+                r.setOnMouseExited(x -> removeEffect(r));
                 pane.getChildren().add(r);
             }
         }
@@ -124,7 +122,20 @@ public class BoardController {
     private void lightRectangle(final Position finalPosition) {
         if (board.getAllPieces().stream()
                 .map(Piece::getPosition).collect(Collectors.toList()).contains(finalPosition)) {
-            mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
+            //mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
         }
+    }
+
+    private void setEffect(Color color, Rectangle rectangle) {
+        InnerShadow shadow = new InnerShadow();
+        shadow.setBlurType(BlurType.GAUSSIAN);
+        shadow.setRadius(Numbers.SEVEN);
+        shadow.setChoke(0.8);
+        shadow.setColor(color);
+        rectangle.setEffect(shadow);
+    }
+
+    private void removeEffect(Rectangle rectangle) {
+        rectangle.setEffect(null);
     }
 }
