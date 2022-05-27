@@ -15,7 +15,8 @@ public enum PieceDirections {
     PAWN_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(Position.createNumericPosition(+1, +1), Position.createNumericPosition(-1, +1));
+            return List.of(Position.createNumericPosition(+1, +1),
+                    Position.createNumericPosition(-1, +1));
         }
     },
     /**
@@ -34,8 +35,10 @@ public enum PieceDirections {
     ROOK_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(Position.createNumericPosition(+1, 0), Position.createNumericPosition(-1, 0), 
-                    Position.createNumericPosition(0, +1), Position.createNumericPosition(0, -1));
+            return List.of(Position.createNumericPosition(+1, 0),
+                    Position.createNumericPosition(-1, 0),
+                    Position.createNumericPosition(0, +1),
+                    Position.createNumericPosition(0, -1));
         }
     },
     /**
@@ -44,8 +47,10 @@ public enum PieceDirections {
     BISHOP_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(Position.createNumericPosition(+1, +1), Position.createNumericPosition(-1, -1),
-                    Position.createNumericPosition(+1, -1), Position.createNumericPosition(-1, +1));
+            return List.of(Position.createNumericPosition(+1, +1),
+                    Position.createNumericPosition(-1, -1),
+                    Position.createNumericPosition(+1, -1),
+                    Position.createNumericPosition(-1, +1));
         }
     },
     /**
@@ -54,10 +59,14 @@ public enum PieceDirections {
     KNIGHT_DIR {
         @Override
         public List<Position> directions() {
-            return List.of(Position.createNumericPosition(-1, MTWO), Position.createNumericPosition(+1, MTWO),
-                    Position.createNumericPosition(+2, -1), Position.createNumericPosition(+2, +1),
-                    Position.createNumericPosition(-1, +2), Position.createNumericPosition(+1, +2),
-                    Position.createNumericPosition(MTWO, -1), Position.createNumericPosition(MTWO, +1));
+            return List.of(Position.createNumericPosition(-1, MINUS_TWO),
+                    Position.createNumericPosition(+1, MINUS_TWO),
+                    Position.createNumericPosition(+2, -1),
+                    Position.createNumericPosition(+2, +1),
+                    Position.createNumericPosition(-1, +2),
+                    Position.createNumericPosition(+1, +2),
+                    Position.createNumericPosition(MINUS_TWO, -1),
+                    Position.createNumericPosition(MINUS_TWO, +1));
         }
     },
     /**
@@ -71,7 +80,7 @@ public enum PieceDirections {
         }
     };
 
-    private static final int MTWO = -2;
+    private static final int MINUS_TWO = -2;
     /**
      * 
      * @return the directions a piece can go to.

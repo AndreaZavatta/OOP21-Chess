@@ -16,7 +16,8 @@ import pieces.Piece;
 public class BasicMovesImpl implements BasicMoves {
 
     @Override
-    public List<Position> doubleIteration(final PieceDirections directions, final Chessboard board, final Piece piece) {
+    public List<Position> doubleIteration(final PieceDirections directions, final Chessboard board,
+                                          final Piece piece) {
         return directions.directions().stream()
                 .flatMap(d -> 
                     IntStream.range(1, 8)
@@ -26,7 +27,8 @@ public class BasicMovesImpl implements BasicMoves {
     }
 
     @Override
-    public List<Position> singleIteration(final PieceDirections directions, final Chessboard board, final Piece piece) {
+    public List<Position> singleIteration(final PieceDirections directions, final Chessboard board,
+                                          final Piece piece) {
         return directions.directions().stream()
                 .map(p -> ControlsUtility.getNewPosition(piece, p, 1))
                 .filter(ControlsUtility::checkPosition)
@@ -34,7 +36,8 @@ public class BasicMovesImpl implements BasicMoves {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private boolean isMovementValid(final Piece piece, final int length, final Position direction, final Chessboard board) {
+    private boolean isMovementValid(final Piece piece, final int length, final Position direction,
+                                    final Chessboard board) {
         final Position p = ControlsUtility.getNewPosition(piece, direction, length);
         if (!ControlsUtility.checkPosition(p)) {
             return false;

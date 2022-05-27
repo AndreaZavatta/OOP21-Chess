@@ -47,14 +47,6 @@ public class Pawn extends AbstractPiece {
     }
 
     private void goEat(final Chessboard board, final List<Position> list) {
-        //        for (final var pos : PieceDirections.PAWN_DIR.directions()) {
-        //            final Position p = ControlsUtility.getNewPosition(this, pos, this.getDirection(this.getColor()));
-        //            if (ControlsUtility.checkPosition(this, p, board) 
-        //                    && ControlsUtility.checkPiece(this, p, board) 
-        //                    && ControlsUtility.checkEnemy(this, p, board)) {
-        //                list.add(p);
-        //            }
-        //        }
         list.addAll(PieceDirections.PAWN_DIR.directions().stream()
                 .map(p -> ControlsUtility.getNewPosition(this, p, this.getDirection(this.getSide())))
                 .filter(p -> ControlsUtility.checkPosition(p) 
@@ -65,7 +57,8 @@ public class Pawn extends AbstractPiece {
 
     private void goForward(final Chessboard board, final List<Position> list, final int lenght) {
         final Position p = ControlsUtility
-                .getNewPosition(this, Position.createNumericPosition(0, lenght), this.getDirection(this.getSide()));
+                .getNewPosition(this, Position.createNumericPosition(0, lenght),
+                        this.getDirection(this.getSide()));
         if (ControlsUtility.checkPosition(p) 
                 && !ControlsUtility.checkPiece(p, board)) {
             list.add(p);
