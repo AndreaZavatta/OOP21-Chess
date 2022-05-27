@@ -10,11 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -28,9 +28,30 @@ public class UserHandlerController {
     private TextField userName1 = new TextField();
     @FXML
     private TextField userName2 = new TextField();
-    @FXML 
-    private final Pane pane = new Pane();
+    @FXML
+    private Button choiseMaleUser1 = new Button();
+    @FXML
+    private Button choiseFemaleUser1 = new Button();
+    @FXML
+    private Button choiseMaleUser2 = new Button();
+    @FXML
+    private Button choiseFemaleUser2 = new Button();
     private final Alert alert = new Alert(AlertType.NONE);
+    private Image imgUser1 = new Image("user/images/MaleLama.png");
+    private Image imgUser2 = new Image("user/images/MaleLama.png");
+
+    @FXML
+    void initialize() {
+        final Image maleImg = new Image("user/images/MaleLama.png");
+        final Image femaleImg = new Image("user/images/FemaleLama.png");
+        final ImageView viewMale = new ImageView(maleImg);
+        final ImageView viewFemale = new ImageView(femaleImg);
+
+      //  choiseMaleUser1.setGraphic(viewMale);
+     //   choiseMaleUser2.setGraphic(viewMale);
+      //  choiseFemaleUser1.setGraphic(viewFemale);
+      //  choiseFemaleUser2.setGraphic(viewFemale);
+    }
 
     @FXML
     void backToMenu(final ActionEvent event) {
@@ -69,6 +90,16 @@ public class UserHandlerController {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    @FXML
+    void setImageMaleUser1(final ActionEvent event) {
+        imgUser1 = new Image("user/images/MaleLama.png");
+    }
+
+    @FXML
+    void setImageMaleUser2(final ActionEvent event) {
+        imgUser2 = new Image("user/images/MaleLama.png");
     }
 
     private String getUserName(final TextField userName) {
