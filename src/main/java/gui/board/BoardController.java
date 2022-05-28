@@ -129,10 +129,8 @@ public class BoardController {
                         TILE_SIZE, TILE_SIZE);
                 mapPositionRectangle.put(Position.createNumericPosition(i, j), r);
                 if (count % 2 == 0) {
-                    //r.setFill(Color.rgb(233, 0, 255));
                     r.setFill(Color.valueOf("#feb"));
                 } else {
-                    //r.setFill(Color.rgb(115, 162, 19));
                     r.setFill(Color.valueOf("#582"));
                 }
                 count++;
