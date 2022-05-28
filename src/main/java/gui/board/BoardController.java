@@ -13,8 +13,10 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import piece.utils.Numbers;
 import piece.utils.Position;
 import pieces.Piece;
@@ -28,6 +30,10 @@ public class BoardController {
     private Pane pane = new Pane();
     @FXML
     private Pane anchorPane = new Pane();
+    @FXML
+    private Pane bottomPane = new Pane();
+    @FXML
+    private Pane leftPane = new Pane();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
@@ -52,12 +58,33 @@ public class BoardController {
     void initialize() {
         this.createChessboard();
         this.createGuiPiece();
-        anchorPane.setStyle("-fx-background-color: #FEE440");
+        anchorPane.setStyle("-fx-background-color: #2F4F4F");
+        this.createBoxes();
     }
 
     @FXML
     void askForDraw(ActionEvent event) {
         //TODO
+    }
+
+    private void createBoxes(){
+        for(int i = 0; i < WIDTH; i++){
+            final Text leftText = new Text(String.valueOf(8-i));
+            final Text bottomText = new Text(Character.toString(65 + i));
+            leftText.setY(TILE_SIZE * i + TILE_SIZE / 2.0);
+            leftText.setX(5);
+            bottomText.setX(TILE_SIZE * i + TILE_SIZE / 2.0);
+            bottomText.setY(15);
+            setTextOptions(leftText);
+            setTextOptions(bottomText);
+            bottomPane.getChildren().add(bottomText);
+            leftPane.getChildren().add(leftText);
+        }
+    }
+
+    private void setTextOptions(final Text text) {
+        text.setStyle("-fx-font: 18 arial;");
+        text.setFill(Color.WHITE);
     }
 
     private void createGuiPiece() {
@@ -84,9 +111,11 @@ public class BoardController {
                         TILE_SIZE, TILE_SIZE);
                 mapPositionRectangle.put(Position.createNumericPosition(i, j), r);
                 if (count % 2 == 0) {
-                    r.setFill(Color.rgb(233, 0, 255));
+                    //r.setFill(Color.rgb(233, 0, 255));
+                    r.setFill(Color.valueOf("#feb"));
                 } else {
-                    r.setFill(Color.rgb(115, 162, 19));
+                    //r.setFill(Color.rgb(115, 162, 19));
+                    r.setFill(Color.valueOf("#582"));
                 }
                 count++;
                 r.setStroke(Color.BLACK);
