@@ -10,11 +10,9 @@ import pair.Pair;
 import piece.utils.Side;
 import user.User;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class TurnImpl implements Turn, Serializable {
+class TurnImpl implements Turn {
 
     private static final long serialVersionUID = -8909627808592630582L;
-
-
     private int turn;
     private final Pair<User, Side> player1;
     private final Pair<User, Side> player2;

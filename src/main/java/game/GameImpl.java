@@ -24,7 +24,7 @@ import user.User;
  *
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class GameImpl implements Game, Serializable {
+public class GameImpl implements Game {
 
     private static final long serialVersionUID = -5387039618669465656L;
 

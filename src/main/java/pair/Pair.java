@@ -1,9 +1,5 @@
 package pair;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.beans.ConstructorProperties;
-import java.io.Serializable;
 
 /**
  * 
@@ -12,7 +8,7 @@ import java.io.Serializable;
  * @param <X>
  * @param <Y>
  */
-public class Pair<X extends Serializable, Y extends Serializable> implements Serializable {
+public class Pair<X, Y> {
 
     private static final long serialVersionUID = 8065526709210920611L;
 

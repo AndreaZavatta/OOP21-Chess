@@ -2,14 +2,13 @@ package user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
 
 /**
  * 
  * contain information about user during the game.
  *
  */
-public class UserImpl implements User, Serializable {
+public class UserImpl implements User {
 
     private static final long serialVersionUID = 5552078593645290172L;
 
@@ -18,10 +17,10 @@ public class UserImpl implements User, Serializable {
     private boolean isWinner;
 
     /**
-     * 
-     * @param name
+     *
      */
-    public UserImpl(final String name) {
+
+    public UserImpl(@JsonProperty("name") final String name) {
         super();
         this.name = name;
         this.isWinner = false;

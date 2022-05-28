@@ -15,7 +15,7 @@ import java.io.Serializable;
  * Implementation of EndGame Interface's methods.
  *
  */
-public class EndGameImpl implements EndGame, Serializable {
+public class EndGameImpl implements EndGame {
 
     private static final long serialVersionUID = 8138985175091153307L;
     private final transient ControlCheck controls = new ControlCheckImpl();

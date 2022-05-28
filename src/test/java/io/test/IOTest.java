@@ -35,19 +35,10 @@ class IOTest {
 
     @BeforeAll
     static void init(){
-        map.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
-                .registerModule(new Jdk8Module())
+        map.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false).registerModule(new Jdk8Module())
                 .registerModule(new ParameterNamesModule());
     }
-    @Test
-    void test() {
-        //TODO
-        final User user1 = new UserImpl("Andrea");
-        final User user2 = new UserImpl("Marco");
-        final Game game = new GameImpl(new Pair<>(user1, BLACK), new Pair<>(user2, WHITE));
-        final JsonSerializer serializer = new JsonSerializerImpl<>(GameImpl.class);
-        System.out.println(serializer.serialize(game));
-    }
+
     @Test
     void serializeRook() throws IOException {
         final Rook rook = (Rook) fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
