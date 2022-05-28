@@ -18,7 +18,7 @@ class TurnImpl implements Turn, Serializable {
     private int turn;
     private final Pair<User, Side> player1;
     private final Pair<User, Side> player2;
-    @ConstructorProperties({"player1", "player2"})
+
     TurnImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
         super();
         this.turn = 1;

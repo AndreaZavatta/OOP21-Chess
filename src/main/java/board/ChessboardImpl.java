@@ -28,7 +28,7 @@ import promotion.PromotionImpl;
     private final int yBorder;
     private final Promotion promotion;
 
-    @ConstructorProperties({"piecesList", "yBorder", "xBorder"})
+
     ChessboardImpl(final List<Piece> piecesList, final int yBorder, final int xBorder) {
         this.piecesList = piecesList;
         this.xBorder = xBorder;

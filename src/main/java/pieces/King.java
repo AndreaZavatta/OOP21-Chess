@@ -32,7 +32,7 @@ public class King extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    @ConstructorProperties({"position", "color"})
+
     protected King(final Position position, final Side color) {
         super(Name.KING, position, color);
     }

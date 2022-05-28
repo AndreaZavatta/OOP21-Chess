@@ -28,7 +28,7 @@ public class Pawn extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    @ConstructorProperties({"position", "color"})
+
     protected Pawn(final Position position, final Side color) {
         super(Name.PAWN, position, color);
     }

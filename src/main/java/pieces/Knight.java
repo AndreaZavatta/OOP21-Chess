@@ -23,7 +23,7 @@ public class Knight extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    @ConstructorProperties({"position", "color"})
+
     protected Knight(final Position position, final Side color) {
         super(Name.KNIGHT, position, color);
     }

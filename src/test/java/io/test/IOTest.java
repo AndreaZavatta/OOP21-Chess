@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import game.Game;
@@ -34,8 +35,9 @@ class IOTest {
 
     @BeforeAll
     static void init(){
-        map.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        map.registerModule(new Jdk8Module());
+        map.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+                .registerModule(new Jdk8Module())
+                .registerModule(new ParameterNamesModule());
     }
     @Test
     void test() {

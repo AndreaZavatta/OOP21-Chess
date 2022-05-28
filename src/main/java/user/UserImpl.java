@@ -21,7 +21,7 @@ public class UserImpl implements User, Serializable {
      * 
      * @param name
      */
-    public UserImpl(@JsonProperty("name") final String name) {
+    public UserImpl(final String name) {
         super();
         this.name = name;
         this.isWinner = false;

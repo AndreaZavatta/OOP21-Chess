@@ -23,7 +23,7 @@ public final class Position {
      * @param x the x value.
      * @param y the y value.
      */
-    @ConstructorProperties({"x", "y"})
+
     private Position(final int x, final int y) {
         super();
         this.x = x;

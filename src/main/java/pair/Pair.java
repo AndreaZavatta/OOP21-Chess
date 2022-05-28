@@ -24,7 +24,7 @@ public class Pair<X extends Serializable, Y extends Serializable> implements Ser
      * @param x
      * @param y
      */
-    @ConstructorProperties({"x","y"})
+
     public Pair(final X x, final Y y) {
         this.x = x;
         this.y = y;

@@ -23,7 +23,7 @@ public class Bishop extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    @ConstructorProperties({"position", "color"})
+
     protected Bishop(final Position position, final Side color) {
         super(Name.BISHOP, position, color);
     }
