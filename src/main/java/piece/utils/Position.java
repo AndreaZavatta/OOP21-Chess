@@ -1,5 +1,10 @@
 package piece.utils;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 /**
@@ -7,6 +12,7 @@ import java.util.Objects;
  * A standard Position class, with getters, hashCode, equals, and toString.
 
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public final class Position {
 
     private final int x;
@@ -16,7 +22,8 @@ public final class Position {
      * @param x the x value.
      * @param y the y value.
      */
-    private Position(final int x, final int y) {
+
+    private Position(@JsonProperty("x") final int x,@JsonProperty("y") final int y) {
         super();
         this.x = x;
         this.y = y;
@@ -59,6 +66,7 @@ public final class Position {
      * 
      * @return the letter corresponding to the position.
      */
+    @JsonIgnore
     public char getCharX() {
         return this.convertFromNumberToLetter();
     }

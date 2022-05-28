@@ -7,11 +7,14 @@ import java.util.List;
 import board.Castling;
 import board.CastlingImpl;
 import board.Chessboard;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import piece.utils.Name;
 import piece.utils.Numbers;
 import piece.utils.PieceDirections;
 import piece.utils.Position;
 import piece.utils.Side;
+
 
 /**
  * A King class that extends AbstractPiece abstract class.
@@ -19,6 +22,7 @@ import piece.utils.Side;
  */
 public class King extends AbstractPiece {
 
+    @JsonIgnore
     private final Castling castle = new CastlingImpl();
     private static final int KING_VALUE = 0;
     /**
@@ -27,7 +31,8 @@ public class King extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected King(final Position position, final Side color) {
+    protected King(@JsonProperty("position") final Position position,
+                   @JsonProperty("color") final Side color) {
         super(Name.KING, position, color);
     }
 

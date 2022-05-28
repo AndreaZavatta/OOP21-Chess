@@ -7,6 +7,9 @@ import board.Chessboard;
 import board.ChessboardFactoryImpl;
 import board.EndGame;
 import board.EndGameImpl;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import pair.Pair;
 import piece.utils.Position;
 import piece.utils.Side;
@@ -19,14 +22,18 @@ import user.User;
  * it manage a match user vs user.
  *
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class GameImpl implements Game, Serializable {
 
     private static final long serialVersionUID = -5387039618669465656L;
 
+
     private Pair<User, Side> winner;
+    @JsonProperty("gameFinished")
     private boolean isFinished;
-    private final transient Chessboard chessboard;
-    private final EndGame gameController;
+    private final Chessboard chessboard;
+    private final transient EndGame gameController;
+    @JsonIgnore
     private final Turn turnManager;
 
     /**
@@ -34,7 +41,7 @@ public class GameImpl implements Game, Serializable {
      * @param player1
      * @param player2
      */
-    public GameImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
+    public GameImpl(@JsonProperty("player1") final Pair<User, Side> player1, @JsonProperty("player2") final Pair<User, Side> player2) {
         this.isFinished = false; 
         this.winner = null;
         this.chessboard = new ChessboardFactoryImpl().createNormalCB();

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;
@@ -22,7 +23,8 @@ public class Queen extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Queen(final Position position, final Side color) {
+    protected Queen(@JsonProperty("position") final Position position,
+                    @JsonProperty("color") final Side color) {
         super(Name.QUEEN, position, color);
     }
 

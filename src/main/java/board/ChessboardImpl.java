@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import piece.utils.Name;
 import piece.utils.Position;
 import pieces.Piece;
@@ -16,18 +19,23 @@ import promotion.PromotionImpl;
      * a normal chessboard.
      *
      */
-class ChessboardImpl implements Chessboard {
+
+    class ChessboardImpl implements Chessboard {
+        @JsonProperty("allPieces")
     private final List<Piece> piecesList;
     private final int xBorder;
     private final int yBorder;
     private final Promotion promotion;
 
-    ChessboardImpl(final List<Piece> piecesList, final int yBorder, final int xBorder) {
+    ChessboardImpl(@JsonProperty("piecesList") final List<Piece> piecesList,
+                   @JsonProperty("yBorder") final int yBorder,
+                   @JsonProperty("xBorder") final int xBorder) {
         this.piecesList = piecesList;
         this.xBorder = xBorder;
         this.yBorder = yBorder;
         this.promotion = new PromotionImpl();
     }
+
 
     @Override
     public List<Piece> getAllPieces() {

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
+import com.fasterxml.jackson.annotation.*;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;
@@ -12,7 +13,9 @@ import piece.utils.PieceDirections;
  * A Rook class that extends AbstractPiece abstract class.
  *
  */
+
 public class Rook extends AbstractPiece {
+
 
     private static final int ROOK_VALUE = 5;
     /**
@@ -21,7 +24,9 @@ public class Rook extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Rook(final Position position, final Side color) {
+
+    protected Rook(@JsonProperty("position") final Position position,
+                   @JsonProperty("color") final Side color) {
         super(Name.ROOK, position, color);
     }
 
@@ -31,6 +36,7 @@ public class Rook extends AbstractPiece {
                 .unmodifiableList(this.getBasicMoves().doubleIteration(PieceDirections.ROOK_DIR, board, this));
     }
 
+    @JsonIgnore
     @Override
     public int getValue() {
         return ROOK_VALUE;

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import board.Chessboard;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.ControlsUtility;
@@ -26,7 +27,8 @@ public class Pawn extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Pawn(final Position position, final Side color) {
+    protected Pawn(@JsonProperty("position") final Position position,
+                   @JsonProperty("color") final Side color) {
         super(Name.PAWN, position, color);
     }
 

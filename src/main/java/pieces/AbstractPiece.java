@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import board.Chessboard;
+import com.fasterxml.jackson.annotation.*;
 import move.BasicMoves;
 import move.BasicMovesImpl;
 import piece.utils.Position;
@@ -13,18 +14,21 @@ import piece.utils.Name;
  * An abstract class that implements the Piece interface.
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public abstract class AbstractPiece implements Piece {
     private final Name name;
     private Position position;
-    private final Side color;
+    private Side color;
+    @JsonProperty("moved")
     private boolean isMoved;
+    @JsonIgnore
     private final BasicMoves basicMoves;
-
-    AbstractPiece(final Name name, final Position position, final Side color) {
+    
+    AbstractPiece( final Name name, final Position position, final Side color) {
         this.name = name;
         this.position = position;
         this.color = color;
-        this.isMoved = false;
         this.basicMoves = new BasicMovesImpl();
     }
 
@@ -41,6 +45,7 @@ public abstract class AbstractPiece implements Piece {
         return this.position;
     }
 
+
     @Override
     public Side getSide() {
         return this.color;
@@ -48,6 +53,7 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public abstract int getValue();
+
 
     @Override
     public boolean isMoved() {

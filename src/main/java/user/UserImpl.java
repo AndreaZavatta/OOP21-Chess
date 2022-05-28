@@ -1,5 +1,7 @@
 package user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -12,13 +14,14 @@ public class UserImpl implements User, Serializable {
     private static final long serialVersionUID = 5552078593645290172L;
 
     private final String name;
+    @JsonProperty("gameWinner")
     private boolean isWinner;
 
     /**
      * 
      * @param name
      */
-    public UserImpl(final String name) {
+    public UserImpl(@JsonProperty("name") final String name) {
         super();
         this.name = name;
         this.isWinner = false;

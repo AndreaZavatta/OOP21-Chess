@@ -1,5 +1,7 @@
 package pair;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -21,7 +23,8 @@ public class Pair<X extends Serializable, Y extends Serializable> implements Ser
      * @param x
      * @param y
      */
-    public Pair(final X x, final Y y) {
+    public Pair(@JsonProperty("x") final X x,
+                @JsonProperty("y") final Y y) {
         this.x = x;
         this.y = y;
     }
