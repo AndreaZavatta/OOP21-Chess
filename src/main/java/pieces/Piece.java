@@ -3,6 +3,9 @@ package pieces;
 import java.util.List;
 
 import board.Chessboard;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import piece.utils.Side;
 import piece.utils.Name;
 import piece.utils.Position;
@@ -11,6 +14,18 @@ import piece.utils.Position;
  * A standard interface for a Piece object.
  *
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = King.class, name = "King"),
+        @JsonSubTypes.Type(value = Bishop.class, name = "Bishop"),
+        @JsonSubTypes.Type(value = Knight.class, name = "Knight"),
+        @JsonSubTypes.Type(value = Pawn.class, name = "Pawn"),
+        @JsonSubTypes.Type(value = Queen.class, name = "Queen"),
+        @JsonSubTypes.Type(value = Rook.class, name = "Rook")
+})
 public interface Piece {
     /**
      * 
@@ -48,4 +63,5 @@ public interface Piece {
      * @param position the new Position
      */
     void setPosition(Position position);
+
 }

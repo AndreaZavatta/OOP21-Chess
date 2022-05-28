@@ -3,6 +3,7 @@ package board;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import piece.utils.Name;
 import piece.utils.Position;
 import pieces.Piece;
@@ -11,6 +12,7 @@ import pieces.Piece;
      * Interface for a simple chessboard. 
      *
      */
+    @JsonDeserialize(as = ChessboardImpl.class)
 public interface Chessboard {
 
     /**
