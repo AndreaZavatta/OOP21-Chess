@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -24,33 +24,32 @@ import javafx.stage.Stage;
  *
  */
 public class UserHandlerController {
-    @FXML
-    private TextField userName1 = new TextField();
-    @FXML
-    private TextField userName2 = new TextField();
-    @FXML
-    private Button choiseMaleUser1 = new Button();
-    @FXML
-    private Button choiseFemaleUser1 = new Button();
-    @FXML
-    private Button choiseMaleUser2 = new Button();
-    @FXML
-    private Button choiseFemaleUser2 = new Button();
+    @FXML private TextField userName1 = new TextField();
+    @FXML private TextField userName2 = new TextField();
+    @FXML private Button choiseMaleUser1 = new Button();
+    @FXML private Button choiseFemaleUser1 = new Button();
+    @FXML private Button choiseMaleUser2 = new Button();
+    @FXML private Button choiseFemaleUser2 = new Button();
     private final Alert alert = new Alert(AlertType.NONE);
     private Image imgUser1 = new Image("user/images/MaleLama.png");
     private Image imgUser2 = new Image("user/images/MaleLama.png");
+    private List<Button> buttonList = List.of(choiseMaleUser1, choiseFemaleUser1,
+                                                choiseMaleUser2, choiseFemaleUser2);
 
     @FXML
     void initialize() {
-        final Image maleImg = new Image("user/images/MaleLama.png");
-        final Image femaleImg = new Image("user/images/FemaleLama.png");
-        final ImageView viewMale = new ImageView(maleImg);
-        final ImageView viewFemale = new ImageView(femaleImg);
+        final Image maleImg = new Image("user/images/MaleLama.png", 40, 40, false, false);
+        final Image femaleImg = new Image("user/images/FemaleLama.png", 40, 40, false, false);
+        final ImageView viewMale1 = new ImageView(maleImg);
+        final ImageView viewMale2 = new ImageView(maleImg);
+        final ImageView viewFemale1 = new ImageView(femaleImg);
+        final ImageView viewFemale2 = new ImageView(femaleImg);
 
-      //  choiseMaleUser1.setGraphic(viewMale);
-     //   choiseMaleUser2.setGraphic(viewMale);
-      //  choiseFemaleUser1.setGraphic(viewFemale);
-      //  choiseFemaleUser2.setGraphic(viewFemale);
+        choiseMaleUser1.setGraphic(viewMale1);
+        choiseMaleUser2.setGraphic(viewMale2);
+        choiseFemaleUser1.setGraphic(viewFemale1);
+        choiseFemaleUser2.setGraphic(viewFemale2);
+        update();
     }
 
     @FXML
@@ -95,11 +94,13 @@ public class UserHandlerController {
     @FXML
     void setImageMaleUser1(final ActionEvent event) {
         imgUser1 = new Image("user/images/MaleLama.png");
+        update();
     }
 
     @FXML
     void setImageMaleUser2(final ActionEvent event) {
         imgUser2 = new Image("user/images/MaleLama.png");
+        update();
     }
 
     private String getUserName(final TextField userName) {
@@ -108,5 +109,10 @@ public class UserHandlerController {
 
     private Image getUserImage(final Image img) {
         return img;
+    }
+
+    private void update() {
+        buttonList.forEach(x -> x.setDisable(true));
+        System.out.println("ciao");
     }
 }
