@@ -33,7 +33,6 @@ public class GameImpl implements Game, Serializable {
     private boolean isFinished;
     private final Chessboard chessboard;
     private final transient EndGame gameController;
-    @JsonIgnore
     private final Turn turnManager;
 
     /**

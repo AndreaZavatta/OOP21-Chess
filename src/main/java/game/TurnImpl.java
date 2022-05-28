@@ -2,30 +2,37 @@ package game;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import pair.Pair;
 import piece.utils.Side;
 import user.User;
-
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class TurnImpl implements Turn, Serializable {
 
     private static final long serialVersionUID = -8909627808592630582L;
+
 
     private int turn;
     private final Pair<User, Side> player1;
     private final Pair<User, Side> player2;
 
-    TurnImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
+    TurnImpl(@JsonProperty("player1") final Pair<User, Side> player1,
+             @JsonProperty("player2") final Pair<User, Side> player2) {
         super();
         this.turn = 1;
         this.player1 = player1;
         this.player2 = player2;
     }
 
+
     @Override
     public int getTurn() {
         return this.turn;
     }
 
+    @JsonIgnore
     @Override
     public Side getUserTurn() {
         return Math.abs(turn % 2) == 1 ? Side.WHITE : Side.BLACK;
