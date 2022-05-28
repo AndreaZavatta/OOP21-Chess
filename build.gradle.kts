@@ -49,7 +49,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.0")
     // a dependency on Jackson Databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.8.9")
-
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.3")
     // and a dependency on vert.x
     implementation("io.vertx:vertx-core:3.5.3")
 
