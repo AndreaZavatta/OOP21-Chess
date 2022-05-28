@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import piece.utils.Numbers;
 import piece.utils.Position;
 import pieces.Piece;
+import user.UserController;
 
 /**
  * Controller class for Board.fxml.
@@ -34,11 +35,17 @@ public class BoardController {
     private Pane bottomPane = new Pane();
     @FXML
     private Pane leftPane = new Pane();
+    @FXML
+    private Text blackPlayer = new Text();
+    @FXML
+    private Text whitePlayer = new Text();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
     private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
+    private final UserController whiteUser;
+    private final UserController blackUser;
     private double lastX;
     private double lastY;
     /**
@@ -54,17 +61,28 @@ public class BoardController {
      */
     public static final int HEIGHT = 8;
 
+    public BoardController(final UserController whiteUser, final UserController blackUser) {
+        this.whiteUser = whiteUser;
+        this.blackUser = blackUser;
+    }
+
     @FXML
     void initialize() {
         this.createChessboard();
         this.createGuiPiece();
         anchorPane.setStyle("-fx-background-color: #2F4F4F");
         this.createBoxes();
+        //this.createPlayers();
     }
 
     @FXML
     void askForDraw(ActionEvent event) {
         //TODO
+    }
+
+    private void createPlayers(){
+        //this.blackPlayer.setText(blackUser.getName());
+        //this.whitePlayer.setText(whiteUser.getName());
     }
 
     private void createBoxes(){

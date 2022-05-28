@@ -17,8 +17,8 @@
       </Pane>
       <Button layoutX="50.0" layoutY="700.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#askForDraw" prefHeight="50.0" prefWidth="120.0" text="Patta" />
       <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="900.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="620.0" AnchorPane.leftAnchor="900.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="100.0" />
-      <Text layoutX="1047.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Black" />
+      <Text fx:id="blackPlayer" layoutX="1047.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="900.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="1047.0" layoutY="675.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Black" />
+      <Text fx:id="whitePlayer" layoutX="1047.0" layoutY="675.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>
