@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.beans.ConstructorProperties;
 import java.util.Objects;
 
 /**
@@ -22,8 +23,8 @@ public final class Position {
      * @param x the x value.
      * @param y the y value.
      */
-
-    private Position(@JsonProperty("x") final int x,@JsonProperty("y") final int y) {
+    @ConstructorProperties({"x", "y"})
+    private Position(final int x, final int y) {
         super();
         this.x = x;
         this.y = y;

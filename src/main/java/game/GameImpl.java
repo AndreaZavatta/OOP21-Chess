@@ -1,5 +1,6 @@
 package game;
 
+import java.beans.ConstructorProperties;
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -40,7 +41,8 @@ public class GameImpl implements Game, Serializable {
      * @param player1
      * @param player2
      */
-    public GameImpl(@JsonProperty("player1") final Pair<User, Side> player1, @JsonProperty("player2") final Pair<User, Side> player2) {
+    @ConstructorProperties({"player1", "player2"})
+    public GameImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
         this.isFinished = false; 
         this.winner = null;
         this.chessboard = new ChessboardFactoryImpl().createNormalCB();

@@ -1,5 +1,6 @@
 package game;
 
+import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -17,9 +18,8 @@ class TurnImpl implements Turn, Serializable {
     private int turn;
     private final Pair<User, Side> player1;
     private final Pair<User, Side> player2;
-
-    TurnImpl(@JsonProperty("player1") final Pair<User, Side> player1,
-             @JsonProperty("player2") final Pair<User, Side> player2) {
+    @ConstructorProperties({"player1", "player2"})
+    TurnImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
         super();
         this.turn = 1;
         this.player1 = player1;

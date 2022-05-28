@@ -1,5 +1,6 @@
 package pieces;
 
+import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,8 +28,8 @@ public class Pawn extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected Pawn(@JsonProperty("position") final Position position,
-                   @JsonProperty("color") final Side color) {
+    @ConstructorProperties({"position", "color"})
+    protected Pawn(final Position position, final Side color) {
         super(Name.PAWN, position, color);
     }
 

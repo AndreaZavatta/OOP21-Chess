@@ -1,5 +1,6 @@
 package board;
 
+import java.beans.ConstructorProperties;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,9 +28,8 @@ import promotion.PromotionImpl;
     private final int yBorder;
     private final Promotion promotion;
 
-    ChessboardImpl(@JsonProperty("piecesList") final List<Piece> piecesList,
-                   @JsonProperty("yBorder") final int yBorder,
-                   @JsonProperty("xBorder") final int xBorder) {
+    @ConstructorProperties({"piecesList", "yBorder", "xBorder"})
+    ChessboardImpl(final List<Piece> piecesList, final int yBorder, final int xBorder) {
         this.piecesList = piecesList;
         this.xBorder = xBorder;
         this.yBorder = yBorder;

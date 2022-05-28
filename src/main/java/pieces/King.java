@@ -1,5 +1,6 @@
 package pieces;
 
+import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,8 +32,8 @@ public class King extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-    protected King(@JsonProperty("position") final Position position,
-                   @JsonProperty("color") final Side color) {
+    @ConstructorProperties({"position", "color"})
+    protected King(final Position position, final Side color) {
         super(Name.KING, position, color);
     }
 
