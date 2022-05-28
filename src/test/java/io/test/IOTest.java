@@ -5,8 +5,11 @@ import board.ChessboardFactoryImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import io.JsonDeserializer;
+import io.JsonDeserializerImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import game.Game;
@@ -98,6 +101,28 @@ class IOTest {
         final Game game2 = map.readValue(json, GameImpl.class);
         var json2 = map.writeValueAsString(game2);
         System.out.println(json2);
+    }
+    @Test
+    void testSerializer() throws JsonProcessingException{
+        JsonSerializer jSerializer = new JsonSerializerImpl();
+        User user = new UserImpl("andrea");
+        User user2 = new UserImpl("giacomo");
+        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
+        var json = jSerializer.serialize(game);
+        System.out.println(json);
+    }
+    @Test
+    void testDeserializer() throws JsonProcessingException {
+        JsonSerializer jSerializer = new JsonSerializerImpl();
+        JsonDeserializer<GameImpl> jsonDeserializer = new JsonDeserializerImpl<GameImpl>(GameImpl.class);
+        User user = new UserImpl("andrea");
+        User user2 = new UserImpl("giacomo");
+        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
+        var json = jSerializer.serialize(game);
+        var game2 = jsonDeserializer.deserialize(json);
+        System.out.println(game);
+        System.out.println(game2);
+
     }
 
 
