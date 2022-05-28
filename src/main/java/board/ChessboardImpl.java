@@ -102,6 +102,7 @@ import promotion.PromotionImpl;
 
     @Override
     public boolean equals(final Object obj) {
+        //TODO fix this class
         if (this == obj) {
             return true;
         }
