@@ -1,15 +1,16 @@
 package io;
 
-import java.io.Serializable;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.util.Objects;
-import com.google.gson.Gson;
+import static io.JsonUtils.getMapper;
 /**
  * 
  *
  * @param <T>
  */
-public class JsonDeserializerImpl<T extends Serializable> implements JsonDeserializer<T> {
-    private final Gson gson = new Gson();
+public class JsonDeserializerImpl<T> implements JsonDeserializer<T> {
     private final Class<T> className;
     /**
      * 
@@ -19,7 +20,7 @@ public class JsonDeserializerImpl<T extends Serializable> implements JsonDeseria
             this.className = Objects.requireNonNull(className);
     }
     @Override
-    public T deserialize(final String str) {
-            return gson.fromJson(Objects.requireNonNull(str), className);
+    public T deserialize(final String str) throws JsonProcessingException {
+            return getMapper().readValue(str, className);
     }
 }
