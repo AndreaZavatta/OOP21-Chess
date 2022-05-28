@@ -20,14 +20,13 @@ import static piece.utils.Side.WHITE;
 
 import piece.utils.Name;
 import piece.utils.Position;
-import piece.utils.Side;
 import pieces.*;
 import user.User;
 import user.UserImpl;
 
 import java.io.IOException;
 
-class SerializationTest {
+class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
 
     ChessboardFactory ChessboardFact = new ChessboardFactoryImpl();
@@ -77,7 +76,7 @@ class SerializationTest {
         final Piece rook = fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
         var json = map.writeValueAsString(rook);
         System.out.println(json);
-        Rook rook2 = map.readValue(json, Rook.class);
+        Piece rook2 = map.readValue(json, rook.getClass());
         assertEquals(rook, rook2);
     }
 
@@ -86,7 +85,7 @@ class SerializationTest {
         final AbstractPiece queen = (AbstractPiece) fact.createPiece(Name.QUEEN, Position.createNumericPosition(3, 4), BLACK);
         var json = map.writeValueAsString(queen);
         System.out.println(json);
-        Queen queen2 = map.readValue(json, Queen.class);
+        Piece queen2 = map.readValue(json, queen.getClass());
         assertEquals(queen, queen2);
     }
     @Test
@@ -104,6 +103,8 @@ class SerializationTest {
         var json = map.writeValueAsString(game);
         System.out.println(json);
         final Game game2 = map.readValue(json, GameImpl.class);
+        var json2 = map.writeValueAsString(game2);
+        System.out.println(json2);
     }
 
 
