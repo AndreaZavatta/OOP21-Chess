@@ -3,6 +3,7 @@ package board;
 import java.beans.ConstructorProperties;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -92,5 +93,25 @@ import promotion.PromotionImpl;
            this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
         }
         piece.setPosition(targetPos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(piecesList);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ChessboardImpl other = (ChessboardImpl) obj;
+        return Objects.equals(piecesList, other.piecesList);
     }
 }
