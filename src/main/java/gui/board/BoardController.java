@@ -72,7 +72,7 @@ public class BoardController {
         this.createGuiPiece();
         anchorPane.setStyle("-fx-background-color: #2F4F4F");
         this.createBoxes();
-        //this.createPlayers();
+        this.createPlayers();
     }
 
     @FXML
@@ -81,8 +81,8 @@ public class BoardController {
     }
 
     private void createPlayers(){
-        //this.blackPlayer.setText(blackUser.getName());
-        //this.whitePlayer.setText(whiteUser.getName());
+        this.blackPlayer.setText(blackUser.getName());
+        this.whitePlayer.setText(whiteUser.getName());
     }
 
     private void createBoxes(){
