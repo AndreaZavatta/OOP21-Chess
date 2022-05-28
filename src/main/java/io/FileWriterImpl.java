@@ -24,7 +24,7 @@ public class FileWriterImpl<T extends Serializable> implements FileWriter<T> {
      */
     public FileWriterImpl(final String fileName, final Class<T> className) {
             this.fileName = fileName;
-            jSerializer = new JsonSerializerImpl<>(className);
+            jSerializer = new JsonSerializerImpl();
     }
 
     @Override
