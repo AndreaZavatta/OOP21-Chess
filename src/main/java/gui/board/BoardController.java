@@ -49,8 +49,8 @@ public class BoardController {
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
     private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
-    private final UserController whiteUser;
-    private final UserController blackUser;
+    private UserController whiteUser;
+    private UserController blackUser;
     private double lastX;
     private double lastY;
     /**
@@ -66,7 +66,7 @@ public class BoardController {
      */
     public static final int HEIGHT = 8;
 
-    public BoardController(final UserController whiteUser, final UserController blackUser) {
+    public void createPlayers(final UserController whiteUser, final UserController blackUser) {
         this.whiteUser = whiteUser;
         this.blackUser = blackUser;
     }
