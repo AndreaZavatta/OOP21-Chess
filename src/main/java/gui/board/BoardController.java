@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -39,6 +40,10 @@ public class BoardController {
     private Text blackPlayer = new Text();
     @FXML
     private Text whitePlayer = new Text();
+    @FXML
+    private ImageView blackPlayerImage = new ImageView();
+    @FXML
+    private ImageView whitePlayerImage = new ImageView();
     private final ChessboardFactory factory = new ChessboardFactoryImpl();
     private final Chessboard board = factory.createNormalCB();
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
@@ -70,9 +75,9 @@ public class BoardController {
     void initialize() {
         this.createChessboard();
         this.createGuiPiece();
-        anchorPane.setStyle("-fx-background-color: #2F4F4F");
         this.createBoxes();
         this.createPlayers();
+        anchorPane.setStyle("-fx-background-color: #2F4F4F");
     }
 
     @FXML
@@ -83,6 +88,8 @@ public class BoardController {
     private void createPlayers(){
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
+        this.blackPlayerImage.setImage(blackUser.getImage());
+        this.whitePlayerImage.setImage(whiteUser.getImage());
     }
 
     private void createBoxes(){
