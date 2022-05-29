@@ -2,6 +2,7 @@ package game;
 
 import java.beans.ConstructorProperties;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import board.Chessboard;
@@ -79,6 +80,11 @@ public class GameImpl implements Game {
     @Override
     public boolean isGameFinished() {
         return this.isFinished;
+    }
+
+    @Override
+    public List<Piece> getPiecesList() {
+        return this.chessboard.getAllPieces();
     }
 
 }
