@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import gui.board.BoardController;
@@ -36,8 +37,7 @@ public class UserHandlerController {
     private final Alert alert = new Alert(AlertType.NONE);
     private Image imgUser1 = new Image("user/images/MaleLama.png");
     private Image imgUser2 = new Image("user/images/MaleLama.png");
-    private List<Button> buttonList = List.of(chooseMaleUser1, chooseFemaleUser1,
-                                                chooseMaleUser2, chooseFemaleUser2);
+    private List<Button> buttonList = new LinkedList<>();
 
     @FXML
     void initialize() {
@@ -52,7 +52,10 @@ public class UserHandlerController {
         chooseMaleUser2.setGraphic(viewMale2);
         chooseFemaleUser1.setGraphic(viewFemale1);
         chooseFemaleUser2.setGraphic(viewFemale2);
-        update();
+        buttonList.addAll(List.of(chooseMaleUser1, chooseFemaleUser1,
+                    chooseMaleUser2, chooseFemaleUser2));
+        update(chooseFemaleUser1, chooseMaleUser1);
+        update(chooseFemaleUser2, chooseMaleUser2);
     }
 
     @FXML
@@ -88,7 +91,7 @@ public class UserHandlerController {
             final Parent root = (Parent) loader.load();
 
             final BoardController boardContrl = loader.getController();
-            boardContrl.createPlayers(player1, player2);
+            //boardContrl.createPlayers(player1, player2);
 
             final Stage stage = new Stage();
             stage.setTitle("MATCH");
@@ -103,21 +106,33 @@ public class UserHandlerController {
     @FXML
     void setImageMaleUser1(final ActionEvent event) {
         imgUser1 = new Image("user/images/MaleLama.png");
-        update();
+        update(chooseFemaleUser1, chooseMaleUser1);
+    }
+
+    @FXML
+    void setImageFemaleUser1(final ActionEvent event) {
+        imgUser1 = new Image("user/images/MaleLama.png");
+        update(chooseMaleUser1, chooseFemaleUser1);
     }
 
     @FXML
     void setImageMaleUser2(final ActionEvent event) {
         imgUser2 = new Image("user/images/MaleLama.png");
-        update();
+        update(chooseFemaleUser2, chooseMaleUser2);
+    }
+
+    @FXML
+    void setImageFemaleUser2(final ActionEvent event) {
+        imgUser2 = new Image("user/images/MaleLama.png");
+        update(chooseMaleUser2, chooseFemaleUser2);
     }
 
     private String getUserName(final TextField userName) {
         return userName.getText();
     }
 
-    private void update() {
-        buttonList.forEach(x -> x.setDisable(true));
-        System.out.println("ciao");
+    private void update(final Button enableBtn, final Button disableBtn) {
+        enableBtn.setDisable(false);
+        disableBtn.setDisable(true);
     }
 }
