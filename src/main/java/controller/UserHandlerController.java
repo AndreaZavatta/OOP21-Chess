@@ -116,10 +116,6 @@ public class UserHandlerController {
         return userName.getText();
     }
 
-    private Image getUserImage(final Image img) {
-        return img;
-    }
-
     private void update() {
         buttonList.forEach(x -> x.setDisable(true));
         System.out.println("ciao");
