@@ -1,7 +1,6 @@
 package io;
 
 import java.io.IOException;
-import java.util.Collection;
 
 /**
  * 
@@ -15,8 +14,5 @@ public interface JsonFileWriter<T> {
      * @param obj the object to be written to file
      * @throws IOException if writing to file is not done correctly
      */
-        void writeObj(T obj) throws IOException;
-
-        void writeList(Collection<? super T> list) throws IOException;
-
+        void writeFile(Object obj) throws IOException;
 }

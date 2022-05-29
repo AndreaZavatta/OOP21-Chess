@@ -13,6 +13,6 @@ public interface JsonFileReader<T> {
          * @return T
          * @throws IOException if reading to file is not done correctly
          */
-        T readFile() throws IOException;
+        Object readFile() throws IOException;
 
 }
