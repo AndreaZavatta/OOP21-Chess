@@ -25,11 +25,12 @@ import user.User;
 import user.UserImpl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
-
+    JsonSerializer js = new JsonSerializerImpl();
     ChessboardFactory ChessboardFact = new ChessboardFactoryImpl();
     static ObjectMapper map = new ObjectMapper();
 
@@ -120,17 +121,22 @@ class IOTest {
         System.out.println(game);
         System.out.println(game2);
     }
-
-    @Test
-    void testFileWriteGame() throws IOException {
+    void writeGameSupport() throws IOException {
         User user = new UserImpl("andrea");
         User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
         JsonFileWriter<Game> fw = new JsonFileWriterImpl<>("database.txt", GameImpl.class);
-        fw.writeObj(game);
+        fw.writeFile(game);
     }
     @Test
-    void testFileWriteList() throws IOException{
+    void testFileWriteObj() throws IOException {
+        writeGameSupport();
+    }
+    void writeListSupport() throws IOException {
+
+    }
+
+    private List<Game> getGames() {
         User user1 = new UserImpl("andrea");
         User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
@@ -140,9 +146,29 @@ class IOTest {
         final Game game2 = new GameImpl(new Pair<>(user3, WHITE), new Pair<>(user4, BLACK));
 
         List<Game> list = List.of(game, game2);
-        JsonFileWriter<GameImpl> fw = new JsonFileWriterImpl<GameImpl>("database.txt", GameImpl.class);
-        fw.writeList(list);
+        return list;
     }
+
+
+    @Test
+    void testFileReaderObj() throws IOException {
+
+        JsonFileReader<Game> fr = new JsonFileReaderImpl<>("database.txt", GameImpl.class);
+        Game game = (Game) fr.readFile();
+        System.out.println(game);
+    }
+
+    @Test
+    void testFileReaderList() throws IOException {
+        List<Game> list = getGames();
+        JsonFileWriter<GameImpl> fw = new JsonFileWriterImpl<GameImpl>("database.txt", GameImpl.class);
+        fw.writeFile(list);
+        JsonFileReader<Game> fr = new JsonFileReaderImpl<>("database.txt", ArrayList.class);
+        List<?> games = (List<?>) fr.readFile();
+        assertEquals(js.serialize(games), js.serialize(list));
+    }
+
+
 
 
 

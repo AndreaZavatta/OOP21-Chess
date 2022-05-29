@@ -32,20 +32,13 @@ public class JsonFileWriterImpl<T> implements JsonFileWriter<T> {
     }
 
     @Override
-    public void writeObj(final T obj) throws IOException {
+    public void writeFile(final Object obj) throws IOException {
             final FileOutputStream file = new FileOutputStream(cd + fs + fileName);
             try (var a = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8))) {
                 a.write(jSerializer.serialize(obj));
             }
     }
 
-    @Override
-    public void writeList(Collection<? super T> list) throws IOException {
-        final FileOutputStream file = new FileOutputStream(cd + fs + fileName);
-        try (var a = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8))) {
-            a.write(jSerializer.serialize(list));
-        }
-    }
 
 
 
