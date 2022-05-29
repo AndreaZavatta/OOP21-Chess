@@ -4,14 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 /**
  * 
  * 
  * @param <T>
  */
-public class FileReaderImpl<T> implements FileReader<T> {
+public class JsonFileReaderImpl<T> implements JsonFileReader<T> {
     private final JsonDeserializer<T> jDeserializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
@@ -22,7 +21,7 @@ public class FileReaderImpl<T> implements FileReader<T> {
      * @param fileName the name of the file in which to save the object
      * @param className the name of the class to be deserialized
      */
-    public FileReaderImpl(final String fileName, final Class<T> className) {
+    public JsonFileReaderImpl(final String fileName, final Class<T> className) {
             this.fileName = fileName;
             jDeserializer = new JsonDeserializerImpl<>(className);
     }
