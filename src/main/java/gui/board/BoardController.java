@@ -133,19 +133,19 @@ public class BoardController {
         for (int i = 0; i < WIDTH; i++) {
             count++;
             for (int j = 0; j < HEIGHT; j++) {
-                final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
+                final Rectangle chessBoardRectangle = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
-                mapPositionRectangle.put(Position.createNumericPosition(i, j), r);
+                mapPositionRectangle.put(Position.createNumericPosition(i, j), chessBoardRectangle);
                 if (count % 2 == 0) {
-                    r.setFill(Color.valueOf("#feb"));
+                    chessBoardRectangle.setFill(Color.valueOf("#feb"));
                 } else {
-                    r.setFill(Color.valueOf("#582"));
+                    chessBoardRectangle.setFill(Color.valueOf("#582"));
                 }
                 count++;
-                r.setStroke(Color.BLACK);
-                r.setOnMouseEntered(x -> setEffect(Color.YELLOW, r));
-                r.setOnMouseExited(x -> removeEffect(r));
-                pane.getChildren().add(r);
+                chessBoardRectangle.setStroke(Color.BLACK);
+                chessBoardRectangle.setOnMouseEntered(x -> setEffect(Color.YELLOW, chessBoardRectangle));
+                chessBoardRectangle.setOnMouseExited(x -> removeEffect(chessBoardRectangle));
+                pane.getChildren().add(chessBoardRectangle);
             }
         }
     }
