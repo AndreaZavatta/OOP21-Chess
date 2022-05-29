@@ -111,7 +111,7 @@ public class UserHandlerController {
 
     @FXML
     void setImageFemaleUser1(final ActionEvent event) {
-        imgUser1 = new Image("user/images/MaleLama.png");
+        imgUser1 = new Image("user/images/FemaleLama.png");
         update(chooseMaleUser1, chooseFemaleUser1);
     }
 
@@ -123,7 +123,7 @@ public class UserHandlerController {
 
     @FXML
     void setImageFemaleUser2(final ActionEvent event) {
-        imgUser2 = new Image("user/images/MaleLama.png");
+        imgUser2 = new Image("user/images/FemaleLama.png");
         update(chooseMaleUser2, chooseFemaleUser2);
     }
 
