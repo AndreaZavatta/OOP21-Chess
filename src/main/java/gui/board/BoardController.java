@@ -65,13 +65,14 @@ public class BoardController {
      * The height of the board.
      */
     public static final int HEIGHT = 8;
-
+    @FXML
     public void createPlayers(final UserController whiteUser, final UserController blackUser) {
         this.whiteUser = whiteUser;
         this.blackUser = blackUser;
+        this.initialize();
     }
 
-    @FXML
+    //@FXML
     void initialize() {
         this.createChessboard();
         this.createGuiPiece();
