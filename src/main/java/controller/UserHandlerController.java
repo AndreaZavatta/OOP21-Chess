@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import gui.board.BoardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import user.UserController;
+import user.UserControllerImpl;
 
 /**
  * 
@@ -79,8 +82,14 @@ public class UserHandlerController {
             return;
         }
         try {
+            final UserController player1 = new UserControllerImpl(namePlayer1, imgUser1);
+            final UserController player2 = new UserControllerImpl(namePlayer2, imgUser2);
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/Board.fxml"));
             final Parent root = (Parent) loader.load();
+
+            final BoardController boardContrl = loader.getController();
+            boardContrl.createPlayers(player1, player2);
+
             final Stage stage = new Stage();
             stage.setTitle("MATCH");
             stage.setScene(new Scene(root));
