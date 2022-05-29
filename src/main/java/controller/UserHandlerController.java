@@ -29,15 +29,15 @@ import user.UserControllerImpl;
 public class UserHandlerController {
     @FXML private TextField userName1 = new TextField();
     @FXML private TextField userName2 = new TextField();
-    @FXML private Button choiseMaleUser1 = new Button();
-    @FXML private Button choiseFemaleUser1 = new Button();
-    @FXML private Button choiseMaleUser2 = new Button();
-    @FXML private Button choiseFemaleUser2 = new Button();
+    @FXML private Button chooseMaleUser1 = new Button();
+    @FXML private Button chooseFemaleUser1 = new Button();
+    @FXML private Button chooseMaleUser2 = new Button();
+    @FXML private Button chooseFemaleUser2 = new Button();
     private final Alert alert = new Alert(AlertType.NONE);
     private Image imgUser1 = new Image("user/images/MaleLama.png");
     private Image imgUser2 = new Image("user/images/MaleLama.png");
-    private List<Button> buttonList = List.of(choiseMaleUser1, choiseFemaleUser1,
-                                                choiseMaleUser2, choiseFemaleUser2);
+    private List<Button> buttonList = List.of(chooseMaleUser1, chooseFemaleUser1,
+                                                chooseMaleUser2, chooseFemaleUser2);
 
     @FXML
     void initialize() {
@@ -48,10 +48,10 @@ public class UserHandlerController {
         final ImageView viewFemale1 = new ImageView(femaleImg);
         final ImageView viewFemale2 = new ImageView(femaleImg);
 
-        choiseMaleUser1.setGraphic(viewMale1);
-        choiseMaleUser2.setGraphic(viewMale2);
-        choiseFemaleUser1.setGraphic(viewFemale1);
-        choiseFemaleUser2.setGraphic(viewFemale2);
+        chooseMaleUser1.setGraphic(viewMale1);
+        chooseMaleUser2.setGraphic(viewMale2);
+        chooseFemaleUser1.setGraphic(viewFemale1);
+        chooseFemaleUser2.setGraphic(viewFemale2);
         update();
     }
 
