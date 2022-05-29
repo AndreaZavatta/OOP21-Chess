@@ -5,17 +5,13 @@ import board.ChessboardFactoryImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import io.JsonDeserializer;
-import io.JsonDeserializerImpl;
+import io.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
-import io.JsonSerializer;
-import io.JsonSerializerImpl;
 import pair.Pair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,6 +25,7 @@ import user.User;
 import user.UserImpl;
 
 import java.io.IOException;
+import java.util.List;
 
 class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
@@ -122,7 +119,29 @@ class IOTest {
         var game2 = jsonDeserializer.deserialize(json);
         System.out.println(game);
         System.out.println(game2);
+    }
 
+    @Test
+    void testFileWriteGame() throws IOException {
+        User user = new UserImpl("andrea");
+        User user2 = new UserImpl("giacomo");
+        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
+        JsonFileWriter<Game> fw = new JsonFileWriterImpl<>("database.txt", GameImpl.class);
+        fw.writeObj(game);
+    }
+    @Test
+    void testFileWriteList() throws IOException{
+        User user1 = new UserImpl("andrea");
+        User user2 = new UserImpl("giacomo");
+        final Game game = new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
+
+        User user3 = new UserImpl("stefano");
+        User user4 = new UserImpl("giorgio");
+        final Game game2 = new GameImpl(new Pair<>(user3, WHITE), new Pair<>(user4, BLACK));
+
+        List<Game> list = List.of(game, game2);
+        JsonFileWriter<GameImpl> fw = new JsonFileWriterImpl<GameImpl>("database.txt", GameImpl.class);
+        fw.writeList(list);
     }
 
 
