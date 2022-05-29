@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
  * 
  * @param <T>
  */
-public class FileReaderImpl<T extends Serializable> implements FileReader<T> {
+public class FileReaderImpl<T> implements FileReader<T> {
     private final JsonDeserializer<T> jDeserializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");

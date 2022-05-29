@@ -7,7 +7,7 @@ import java.io.Serializable;
  * an iterface for reading from files.
  * @param <T>
  */
-public interface FileReader<T extends Serializable> {
+public interface FileReader<T> {
         /**
          * a method for reading from files. 
          * @return T

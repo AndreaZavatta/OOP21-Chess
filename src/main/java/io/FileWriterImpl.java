@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @param <T>
  */
-public class FileWriterImpl<T extends Serializable> implements FileWriter<T> {
+public class FileWriterImpl<T> implements FileWriter<T> {
 
     private final JsonSerializer jSerializer;
     private final String fileName;
