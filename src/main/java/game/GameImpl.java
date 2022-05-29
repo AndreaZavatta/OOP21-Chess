@@ -82,6 +82,7 @@ public class GameImpl implements Game {
         return this.isFinished;
     }
 
+    @JsonIgnore
     @Override
     public List<Piece> getPiecesList() {
         return this.chessboard.getAllPieces();
