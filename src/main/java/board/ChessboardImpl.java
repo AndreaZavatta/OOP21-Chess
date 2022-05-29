@@ -113,6 +113,6 @@ import promotion.PromotionImpl;
             return false;
         }
         final ChessboardImpl other = (ChessboardImpl) obj;
-        return Objects.equals(piecesList, other.piecesList);
+        return piecesList.containsAll(other.piecesList) && other.piecesList.containsAll(piecesList);
     }
 }
