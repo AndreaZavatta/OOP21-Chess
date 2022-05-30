@@ -2,7 +2,6 @@ package gui.board;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import board.Chessboard;
 import board.ChessboardFactory;
@@ -14,13 +13,11 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import piece.utils.Numbers;
 import piece.utils.Position;
-import pieces.Piece;
 import user.UserController;
 
 /**
@@ -44,8 +41,6 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
-    private final ChessboardFactory factory = new ChessboardFactoryImpl();
-    private final Chessboard board = factory.createNormalCB();
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
     private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
@@ -53,6 +48,8 @@ public class BoardController {
     private UserController blackUser;
     private double lastX;
     private double lastY;
+    private static final int TEXT_DISTANCE = 15;
+    private static final double CHOKE_VALUE = 0.8;
     /**
      * The tile size.
      */
@@ -65,27 +62,30 @@ public class BoardController {
      * The height of the board.
      */
     public static final int HEIGHT = 8;
-    @FXML
+    /**
+     * 
+     * @param whiteUser
+     * @param blackUser
+     */
     public void createPlayers(final UserController whiteUser, final UserController blackUser) {
         this.whiteUser = whiteUser;
         this.blackUser = blackUser;
-        this.initialize();
+        this.createPlayers();
     }
-
-    private void initialize() {
+    @FXML
+    void initialize() {
         this.createChessboard();
         this.createGuiPiece();
         this.createBoxes();
-        this.createPlayers();
         anchorPane.setStyle("-fx-background-color: #2F4F4F");
     }
 
     @FXML
-    void askForDraw(ActionEvent event) {
+    void askForDraw(final ActionEvent event) {
         //TODO
     }
 
-    private void createPlayers(){
+    private void createPlayers() {
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
         blackPlayer.setId("textPlayersBoard");
@@ -93,14 +93,14 @@ public class BoardController {
         this.whitePlayerImage.setImage(whiteUser.getImage());
     }
 
-    private void createBoxes(){
-        for(int i = 0; i < WIDTH; i++){
-            final Text leftText = new Text(String.valueOf(8-i));
+    private void createBoxes() {
+        for (int i = 0; i < WIDTH; i++) {
+            final Text leftText = new Text(String.valueOf(8 - i));
             final Text bottomText = new Text(Character.toString(65 + i));
             leftText.setY(TILE_SIZE * i + TILE_SIZE / 2.0);
-            leftText.setX(5);
+            leftText.setX(Numbers.FIVE);
             bottomText.setX(TILE_SIZE * i + TILE_SIZE / 2.0);
-            bottomText.setY(15);
+            bottomText.setY(TEXT_DISTANCE);
             setTextOptions(leftText);
             setTextOptions(bottomText);
             bottomPane.getChildren().add(bottomText);
@@ -171,27 +171,26 @@ public class BoardController {
             guiPiece.setX(lastX);
             guiPiece.setY(lastY);
         }
-        lightRectangle(finalPosition);
-        pane.getChildren().remove(guiPiece.getRectangle());
+        //lightRectangle(finalPosition);
     }
 
-    private void lightRectangle(final Position finalPosition) {
-        if (board.getAllPieces().stream()
-                .map(Piece::getPosition).collect(Collectors.toList()).contains(finalPosition)) {
-            //mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
-        }
-    }
+//    private void lightRectangle(final Position finalPosition) {
+//        if (board.getAllPieces().stream()
+//                .map(Piece::getPosition).collect(Collectors.toList()).contains(finalPosition)) {
+//            mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
+//        }
+//    }
 
-    private void setEffect(Color color, Rectangle rectangle) {
-        InnerShadow shadow = new InnerShadow();
+    private void setEffect(final Color color, final Rectangle rectangle) {
+        final InnerShadow shadow = new InnerShadow();
         shadow.setBlurType(BlurType.GAUSSIAN);
         shadow.setRadius(Numbers.SEVEN);
-        shadow.setChoke(0.8);
+        shadow.setChoke(CHOKE_VALUE);
         shadow.setColor(color);
         rectangle.setEffect(shadow);
     }
 
-    private void removeEffect(Rectangle rectangle) {
+    private void removeEffect(final Rectangle rectangle) {
         rectangle.setEffect(null);
     }
 }
