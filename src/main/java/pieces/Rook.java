@@ -3,8 +3,9 @@ package pieces;
 import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import board.Chessboard;
-import com.fasterxml.jackson.annotation.*;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;

@@ -5,7 +5,6 @@ import java.util.List;
 import board.Chessboard;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import piece.utils.Side;
 import piece.utils.Name;
 import piece.utils.Position;

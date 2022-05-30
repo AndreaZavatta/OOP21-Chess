@@ -3,8 +3,12 @@ package pieces;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import board.Chessboard;
-import com.fasterxml.jackson.annotation.*;
 import move.BasicMoves;
 import move.BasicMovesImpl;
 import piece.utils.Position;
@@ -18,13 +22,13 @@ import piece.utils.Name;
 public abstract class AbstractPiece implements Piece {
     private final Name name;
     private Position position;
-    private Side color;
+    private final Side color;
     @JsonProperty("moved")
     private boolean isMoved;
     @JsonIgnore
     private final BasicMoves basicMoves;
-    
-    AbstractPiece( final Name name, final Position position, final Side color) {
+
+    AbstractPiece(final Name name, final Position position, final Side color) {
         this.name = name;
         this.position = position;
         this.color = color;
