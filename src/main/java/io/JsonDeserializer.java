@@ -14,5 +14,5 @@ public interface JsonDeserializer<T> {
      * @param str the string formatted in json to convert
      * @return T
      */
-        T deserialize(String str) throws JsonProcessingException;
+        Object deserialize(String str) throws JsonProcessingException;
 }

@@ -80,8 +80,7 @@ public class BoardController {
         this.initialize();
     }
 
-    //@FXML
-    void initialize() {
+    private void initialize() {
         this.createChessboard();
         this.createGuiPiece();
         this.createBoxes();
@@ -97,6 +96,7 @@ public class BoardController {
     private void createPlayers(){
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
+        blackPlayer.setId("textPlayersBoard");
         this.blackPlayerImage.setImage(blackUser.getImage());
         this.whitePlayerImage.setImage(whiteUser.getImage());
     }
@@ -122,18 +122,18 @@ public class BoardController {
     }
 
     private void createGuiPiece() {
-        final GuiPiece g = new GuiPiece(TILE_SIZE, TILE_SIZE, "/pieces/images/blackPawn.png");
-        final Rectangle r = g.getRectangle();
+        final GuiPiece guiPiece = new GuiPiece(TILE_SIZE, TILE_SIZE, "/pieces/images/blackPawn.png");
+        final Rectangle guiPieceRectangle = guiPiece.getRectangle();
         lastX = Numbers.FOUR;
         lastY = Numbers.FOUR;
-        g.setX(lastX);
-        g.setY(lastY);
-        mapGuiPiecePosition.put(g, Position.createNumericPosition((int) lastX, (int) lastY));
-        r.setOnMouseDragged(x -> dragged(x, r));
-        r.setOnMouseReleased(x -> released(g));
-        r.setOnMouseEntered(x -> setEffect(Color.RED, r));
-        r.setOnMouseExited(x -> removeEffect(r));
-        pane.getChildren().add(g.getRectangle());
+        guiPiece.setX(lastX);
+        guiPiece.setY(lastY);
+        mapGuiPiecePosition.put(guiPiece, Position.createNumericPosition((int) lastX, (int) lastY));
+        guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
+        guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
+        guiPieceRectangle.setOnMouseEntered(x -> setEffect(Color.RED, guiPieceRectangle));
+        guiPieceRectangle.setOnMouseExited(x -> removeEffect(guiPieceRectangle));
+        pane.getChildren().add(guiPiece.getRectangle());
     }
 
     private void createChessboard() {
@@ -141,46 +141,46 @@ public class BoardController {
         for (int i = 0; i < WIDTH; i++) {
             count++;
             for (int j = 0; j < HEIGHT; j++) {
-                final Rectangle r = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
+                final Rectangle chessBoardRectangle = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
-                mapPositionRectangle.put(Position.createNumericPosition(i, j), r);
+                mapPositionRectangle.put(Position.createNumericPosition(i, j), chessBoardRectangle);
                 if (count % 2 == 0) {
-                    r.setFill(Color.valueOf("#feb"));
+                    chessBoardRectangle.setFill(Color.valueOf("#feb"));
                 } else {
-                    r.setFill(Color.valueOf("#582"));
+                    chessBoardRectangle.setFill(Color.valueOf("#582"));
                 }
                 count++;
-                r.setStroke(Color.BLACK);
-                r.setOnMouseEntered(x -> setEffect(Color.YELLOW, r));
-                r.setOnMouseExited(x -> removeEffect(r));
-                pane.getChildren().add(r);
+                chessBoardRectangle.setStroke(Color.BLACK);
+                chessBoardRectangle.setOnMouseEntered(x -> setEffect(Color.YELLOW, chessBoardRectangle));
+                chessBoardRectangle.setOnMouseExited(x -> removeEffect(chessBoardRectangle));
+                pane.getChildren().add(chessBoardRectangle);
             }
         }
     }
 
-    private void dragged(final MouseEvent event, final Rectangle p) {
-        p.setX(event.getX() - (double) TILE_SIZE / 2);
-        p.setY(event.getY() - (double) TILE_SIZE / 2);
+    private void dragged(final MouseEvent event, final Rectangle guiPieceRectangle) {
+        guiPieceRectangle.setX(event.getX() - (double) TILE_SIZE / 2);
+        guiPieceRectangle.setY(event.getY() - (double) TILE_SIZE / 2);
     }
 
-    private void released(final GuiPiece p) {
-        final int x = (int) ((p.getRectangle().getX() + TILE_SIZE / 2) / TILE_SIZE);
-        final int y = (int) ((p.getRectangle().getY() + TILE_SIZE / 2) / TILE_SIZE);
+    private void released(final GuiPiece guiPiece) {
+        final int x = (int) ((guiPiece.getRectangle().getX() + TILE_SIZE / 2) / TILE_SIZE);
+        final int y = (int) ((guiPiece.getRectangle().getY() + TILE_SIZE / 2) / TILE_SIZE);
         final Position finalPosition = Position.createNumericPosition(x, y);
         if (mapPositionRectangle.containsKey(finalPosition)) {
             lastX = x;
             lastY = y;
-            p.setX(lastX);
-            p.setY(lastY);
+            guiPiece.setX(lastX);
+            guiPiece.setY(lastY);
             System.out.println(finalPosition);
-            mapGuiPiecePosition.put(p, finalPosition);
+            mapGuiPiecePosition.put(guiPiece, finalPosition);
         } else {
             System.out.println("Wrong position");
-            p.setX(lastX);
-            p.setY(lastY);
+            guiPiece.setX(lastX);
+            guiPiece.setY(lastY);
         }
         lightRectangle(finalPosition);
-        //return finalPosition;
+        pane.getChildren().remove(guiPiece.getRectangle());
     }
 
     private void lightRectangle(final Position finalPosition) {

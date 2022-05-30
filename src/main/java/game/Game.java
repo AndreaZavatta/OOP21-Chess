@@ -1,10 +1,12 @@
 package game;
 
+import java.util.List;
 import java.util.Optional;
 
 import pair.Pair;
 import piece.utils.Position;
 import piece.utils.Side;
+import pieces.Piece;
 import user.User;
 
 /**
@@ -32,4 +34,10 @@ public interface Game {
      * @return if the game is finished
      */
     boolean isGameFinished();
+
+    /**
+     * 
+     * @return list of pieces
+     */
+    List<Piece> getPiecesList();
 }

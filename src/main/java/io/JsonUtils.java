@@ -10,7 +10,8 @@ public class JsonUtils {
         return new ObjectMapper()
                 .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
                 .registerModule(new Jdk8Module())
-                .registerModule(new ParameterNamesModule());
+                .registerModule(new ParameterNamesModule())
+                .enable(SerializationFeature.INDENT_OUTPUT);
 
     }
 }

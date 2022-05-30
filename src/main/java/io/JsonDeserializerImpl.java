@@ -11,16 +11,16 @@ import static io.JsonUtils.getMapper;
  * @param <T>
  */
 public class JsonDeserializerImpl<T> implements JsonDeserializer<T> {
-    private final Class<T> className;
+    private final Class<?> className;
     /**
      * 
      * @param className the name of the class to be deserialized
      */
-    public JsonDeserializerImpl(final Class<T> className) {
+    public JsonDeserializerImpl(final Class<?> className) {
             this.className = Objects.requireNonNull(className);
     }
     @Override
-    public T deserialize(final String str) throws JsonProcessingException {
+    public Object deserialize(final String str) throws JsonProcessingException {
             return getMapper().readValue(str, className);
     }
 }

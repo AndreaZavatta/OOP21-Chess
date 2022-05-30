@@ -5,17 +5,13 @@ import board.ChessboardFactoryImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import io.JsonDeserializer;
-import io.JsonDeserializerImpl;
+import io.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
-import io.JsonSerializer;
-import io.JsonSerializerImpl;
 import pair.Pair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,10 +25,12 @@ import user.User;
 import user.UserImpl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
-
+    JsonSerializer js = new JsonSerializerImpl();
     ChessboardFactory ChessboardFact = new ChessboardFactoryImpl();
     static ObjectMapper map = new ObjectMapper();
 
@@ -122,8 +120,55 @@ class IOTest {
         var game2 = jsonDeserializer.deserialize(json);
         System.out.println(game);
         System.out.println(game2);
+    }
+    void writeGameSupport() throws IOException {
+        User user = new UserImpl("andrea");
+        User user2 = new UserImpl("giacomo");
+        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
+        JsonFileWriter<Game> fw = new JsonFileWriterImpl<>("database.txt", GameImpl.class);
+        fw.writeFile(game);
+    }
+    @Test
+    void testFileWriteObj() throws IOException {
+        writeGameSupport();
+    }
+    void writeListSupport() throws IOException {
 
     }
+
+    private List<Game> getGames() {
+        User user1 = new UserImpl("andrea");
+        User user2 = new UserImpl("giacomo");
+        final Game game = new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
+
+        User user3 = new UserImpl("stefano");
+        User user4 = new UserImpl("giorgio");
+        final Game game2 = new GameImpl(new Pair<>(user3, WHITE), new Pair<>(user4, BLACK));
+
+        List<Game> list = List.of(game, game2);
+        return list;
+    }
+
+
+    @Test
+    void testFileReaderObj() throws IOException {
+
+        JsonFileReader<Game> fr = new JsonFileReaderImpl<>("database.txt", GameImpl.class);
+        Game game = (Game) fr.readFile();
+        System.out.println(game);
+    }
+
+    @Test
+    void testFileReaderList() throws IOException {
+        List<Game> list = getGames();
+        JsonFileWriter<GameImpl> fw = new JsonFileWriterImpl<GameImpl>("database.txt", GameImpl.class);
+        fw.writeFile(list);
+        JsonFileReader<Game> fr = new JsonFileReaderImpl<>("database.txt", ArrayList.class);
+        List<?> games = (List<?>) fr.readFile();
+        assertEquals(js.serialize(games), js.serialize(list));
+    }
+
+
 
 
 
