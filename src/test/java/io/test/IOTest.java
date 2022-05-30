@@ -1,4 +1,8 @@
 package io.test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static model.piece.utils.Side.BLACK;
+import static model.piece.utils.Side.WHITE;
+import static org.junit.jupiter.api.Assertions.fail;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
@@ -14,17 +18,10 @@ import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
 import pair.Pair;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static model.piece.utils.Side.BLACK;
-import static model.piece.utils.Side.WHITE;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import user.User;
 import user.UserImpl;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,32 +123,31 @@ class IOTest {
         User user = new UserImpl("andrea");
         User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
-        JsonFileWriter fw = new JsonFileWriterImpl("database.txt", GameImpl.class);
+        JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
         fw.writeFile(game);
     }
 
     void writeListSupport() throws IOException {
 
     }
-    private Game getGame(){
-        User user1 = new UserImpl("andrea");
-        User user2 = new UserImpl("giacomo");
+    private Game getGame(String firstName, String secondName){
+        User user1 = new UserImpl(firstName);
+        User user2 = new UserImpl(secondName);
         return new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
     }
     private List<Game> getGames() {
-
         User user3 = new UserImpl("stefano");
         User user4 = new UserImpl("giorgio");
         final Game game2 = new GameImpl(new Pair<>(user3, WHITE), new Pair<>(user4, BLACK));
-        return List.of(getGame(), game2);
+        return List.of(getGame("andrea", "giacomo"), getGame("stefano", "giorgio"));
     }
 
 
     @Test
     void testFileReaderObj() {
         try {
-            JsonFileWriter fw = new JsonFileWriterImpl("database.txt", GameImpl.class);
-            fw.writeFile(getGame());
+            JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
+            fw.writeFile(getGame("andrea", "giacomo"));
 
             JsonFileReader fr = new JsonFileReaderImpl("database.txt", GameImpl.class);
             Game game = (Game) fr.readFile();
@@ -165,7 +161,7 @@ class IOTest {
     void testFileReaderList() {
         try {
             List<Game> list = getGames();
-            JsonFileWriter fw = new JsonFileWriterImpl("database.txt", GameImpl.class);
+            JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
             fw.writeFile(list);
 
             JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);

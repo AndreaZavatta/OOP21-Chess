@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * 
  *
- * @param <T>
  */
 public class JsonFileWriterImpl implements JsonFileWriter {
 
@@ -24,9 +23,8 @@ public class JsonFileWriterImpl implements JsonFileWriter {
     /**
      * 
      * @param fileName the name of the file in which to write the object
-     * @param className the name of the class to be serialized
      */
-    public JsonFileWriterImpl(final String fileName, final Class<?> className) {
+    public JsonFileWriterImpl(final String fileName) {
             this.fileName = fileName;
             jSerializer = new JsonSerializerImpl();
     }
