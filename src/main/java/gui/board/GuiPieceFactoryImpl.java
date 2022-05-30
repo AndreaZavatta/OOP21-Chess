@@ -25,5 +25,4 @@ class GuiPieceFactoryImpl implements GuiPieceFactory {
                         : LINK.get(piece.getName()).getBlackPath();
         return new GuiPiece(BoardController.TILE_SIZE, BoardController.TILE_SIZE, path);
     }
-
 }
