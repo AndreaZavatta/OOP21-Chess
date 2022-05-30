@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import application.Start;
 import gui.board.BoardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +29,10 @@ import user.UserControllerImpl;
  *
  */
 public class UserHandlerController {
+
+    private static final String MALE_PATH = "user" + Start.SEPARATOR + "images" + Start.SEPARATOR + "MaleLama.png";
+    private static final String FEMALE_PATH = "user" + Start.SEPARATOR + "images" + Start.SEPARATOR + "FemaleLama.png";
+
     @FXML private TextField userName1 = new TextField();
     @FXML private TextField userName2 = new TextField();
     @FXML private Button chooseMaleUser1 = new Button();
@@ -35,14 +40,14 @@ public class UserHandlerController {
     @FXML private Button chooseMaleUser2 = new Button();
     @FXML private Button chooseFemaleUser2 = new Button();
     private final Alert alert = new Alert(AlertType.NONE);
-    private Image imgUser1 = new Image("user/images/MaleLama.png");
-    private Image imgUser2 = new Image("user/images/MaleLama.png");
+    private Image imgUser1 = new Image(MALE_PATH);
+    private Image imgUser2 = new Image(MALE_PATH);
     private List<Button> buttonList = new LinkedList<>();
 
     @FXML
     void initialize() {
-        final Image maleImg = new Image("user/images/MaleLama.png", 40, 40, false, false);
-        final Image femaleImg = new Image("user/images/FemaleLama.png", 40, 40, false, false);
+        final Image maleImg = new Image(MALE_PATH, 40, 40, false, false);
+        final Image femaleImg = new Image(FEMALE_PATH, 40, 40, false, false);
         final ImageView viewMale1 = new ImageView(maleImg);
         final ImageView viewMale2 = new ImageView(maleImg);
         final ImageView viewFemale1 = new ImageView(femaleImg);
@@ -105,25 +110,25 @@ public class UserHandlerController {
 
     @FXML
     void setImageMaleUser1(final ActionEvent event) {
-        imgUser1 = new Image("user/images/MaleLama.png");
+        imgUser1 = new Image(MALE_PATH);
         update(chooseFemaleUser1, chooseMaleUser1);
     }
 
     @FXML
     void setImageFemaleUser1(final ActionEvent event) {
-        imgUser1 = new Image("user/images/FemaleLama.png");
+        imgUser1 = new Image(FEMALE_PATH);
         update(chooseMaleUser1, chooseFemaleUser1);
     }
 
     @FXML
     void setImageMaleUser2(final ActionEvent event) {
-        imgUser2 = new Image("user/images/MaleLama.png");
+        imgUser2 = new Image(MALE_PATH);
         update(chooseFemaleUser2, chooseMaleUser2);
     }
 
     @FXML
     void setImageFemaleUser2(final ActionEvent event) {
-        imgUser2 = new Image("user/images/FemaleLama.png");
+        imgUser2 = new Image(FEMALE_PATH);
         update(chooseMaleUser2, chooseFemaleUser2);
     }
 
