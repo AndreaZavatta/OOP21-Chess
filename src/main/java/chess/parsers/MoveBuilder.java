@@ -187,7 +187,7 @@ public class MoveBuilder implements Move {
     }
 
     private void addPieceNotation(final StringBuilder str) {
-        if (!"P".contentEquals(piece.getName().notation())) {
+        if (!"P".contentEquals(piece.getName().getChessNotation())) {
             str.append(nameNotation());
         }
 
@@ -199,7 +199,7 @@ public class MoveBuilder implements Move {
 
     private void addPromotion(final StringBuilder str) {
         if (promotion != null) {
-            str.append('=').append(promotion.notation());
+            str.append('=').append(promotion.getChessNotation());
         }
     }
 
@@ -219,6 +219,6 @@ public class MoveBuilder implements Move {
 
 
     private String nameNotation() {
-        return piece.getName().notation();
+        return piece.getName().getChessNotation();
     }
 }

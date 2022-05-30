@@ -7,8 +7,8 @@ import javafx.scene.shape.Rectangle;
 import static gui.board.BoardController.TILE_SIZE;
 
 /**
- * 
- *
+ * The GuiPiece class defines the piece you see on the chessboard.
+ * It contains it's size, location and the Rectangle associated.
  */
 public class GuiPiece {
     private double x;
@@ -17,9 +17,9 @@ public class GuiPiece {
     /**
      * A standard constructor.
      *
-     * @param s the rectangle
-     * @param x the x value
-     * @param y the y value
+     * @param s the rectangle.
+     * @param x the x value.
+     * @param y the y value.
      */
     protected GuiPiece(final double x, final double y, final String s) {
         this.rectangle = new Rectangle(TILE_SIZE, TILE_SIZE);
@@ -32,45 +32,45 @@ public class GuiPiece {
         });
     }
     /**
-     * 
-     * @return the position
+     * A custom toString for the position.
+     * @return the position.
      */
     public String getPosition() {
         return "[x=" + (int) x + ", y=" + (int) y + "]";
     }
     /**
-     *
-     * @param x
+     * A setter for the x value.
+     * @param x the x value.
      */
     public void setX(final double x) {
         this.x = x;
         rectangle.setX(x * TILE_SIZE);
     }
     /**
-     *
-     * @param y
+     * A setter for the y value.
+     * @param y the y value.
      */
     public void setY(final double y) {
         this.y = y;
         rectangle.setY(y * TILE_SIZE);
     }
     /**
-     *
-     * @return the x value
+     * A getter for the x value.
+     * @return the x value.
      */
     public double getX() {
         return x;
     }
     /**
-     *
-     * @return the y value
+     * A getter for the y value.
+     * @return the y value.
      */
     public double getY() {
         return y;
     }
     /**
-     *
-     * @return the rectangle
+     * A getter for the rectangle.
+     * @return the rectangle.
      */
     public Rectangle getRectangle() {
         return this.rectangle;

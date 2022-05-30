@@ -96,7 +96,7 @@ public class UserHandlerController {
             final Parent root = (Parent) loader.load();
 
             final BoardController boardContrl = loader.getController();
-            boardContrl.createPlayers(player1, player2);
+            boardContrl.initializePlayers(player1, player2);
 
             final Stage stage = new Stage();
             stage.setTitle("MATCH");

@@ -1,11 +1,9 @@
 package pieces;
 
-import java.beans.ConstructorProperties;
 import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.Name;
@@ -32,7 +30,7 @@ public class Queen extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         return Collections.
-                unmodifiableList(this.getBasicMoves().doubleIteration(PieceDirections.QUEEN_DIR, board, this));
+                unmodifiableList(this.getBasicMoves().iteratedMove(PieceDirections.QUEEN_DIR, board, this));
     }
 
     @Override

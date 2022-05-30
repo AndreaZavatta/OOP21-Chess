@@ -12,7 +12,6 @@ import piece.utils.Side;
 import piece.utils.Name;
 /**
  * An abstract class that implements the Piece interface.
- *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -45,7 +44,6 @@ public abstract class AbstractPiece implements Piece {
         return this.position;
     }
 
-
     @Override
     public Side getSide() {
         return this.color;
@@ -67,6 +65,7 @@ public abstract class AbstractPiece implements Piece {
     }
 
     /**
+     * A getter for the BasicMove object needed in each piece.
      * @return the basicMoves
      */
     public BasicMoves getBasicMoves() {

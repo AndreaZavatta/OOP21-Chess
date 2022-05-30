@@ -9,21 +9,13 @@ import java.beans.ConstructorProperties;
 import java.util.Objects;
 
 /**
- * 
  * A standard Position class, with getters, hashCode, equals, and toString.
-
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public final class Position {
 
     private final int x;
     private final int y;
-    /**
-     * 
-     * @param x the x value.
-     * @param y the y value.
-     */
-
     private Position(final int x, final int y) {
         super();
         this.x = x;
@@ -32,8 +24,8 @@ public final class Position {
     /**
      * Static factory method to create a new position from a string.
      * 
-     * @param position the string associated to the numeric position
-     * @return new position
+     * @param position the string associated to the numeric position.
+     * @return a new position.
      */
     public static Position createNewPosition(final String position) {
         return new Position(fromCharToInt(position.charAt(0)),
@@ -42,29 +34,29 @@ public final class Position {
     /**
      * Static factory method to create a numeric position.
      * 
-     * @param x the x value
-     * @param y the y value
-     * @return a new position
+     * @param x the x value.
+     * @param y the y value.
+     * @return a new position.
      */
     public static Position createNumericPosition(final int x, final int y) {
         return new Position(x, y);
     }
     /**
-     * 
+     * A getter for the x variable.
      * @return the x variable.
      */
     public int getX() {
         return x;
     }
     /**
-     * 
+     * A getter for the y variable.
      * @return the y variable.
      */
     public int getY() {
         return y;
     }
     /**
-     * 
+     * A getter for the letter corresponding to the x value on the chessboard.
      * @return the letter corresponding to the position.
      */
     @JsonIgnore

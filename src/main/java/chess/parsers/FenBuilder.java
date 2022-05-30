@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import piece.utils.Position;
 import piece.utils.Side;
 import pieces.Piece;
 
@@ -79,7 +78,7 @@ public class FenBuilder implements Fen {
            if (diff > 0) {
                res.append(diff);
            }
-           final String notation = piece.getName().notation();
+           final String notation = piece.getName().getChessNotation();
            res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation);
            previousPiece = piece.getPosition().getX() + 1;
         }
@@ -114,10 +113,10 @@ public class FenBuilder implements Fen {
        return getCastlingSupport();
     }
     private String getCastlingSupport() {
-        return  (whiteCastlingKingSide ? KING.notation() : "")
-                + (whiteCastlingQueenSide ? QUEEN.notation() : "")
-                + (blackCastlingKingSide ? KING.notation().toLowerCase(Locale.ROOT) : "")
-                + (blackCastlingQueenSide ? QUEEN.notation().toLowerCase(Locale.ROOT) : "");
+        return  (whiteCastlingKingSide ? KING.getChessNotation() : "")
+                + (whiteCastlingQueenSide ? QUEEN.getChessNotation() : "")
+                + (blackCastlingKingSide ? KING.getChessNotation().toLowerCase(Locale.ROOT) : "")
+                + (blackCastlingQueenSide ? QUEEN.getChessNotation().toLowerCase(Locale.ROOT) : "");
     }
     @Override
     public String build(final Chessboard chessboard) {

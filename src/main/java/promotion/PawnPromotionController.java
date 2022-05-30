@@ -4,7 +4,6 @@ import piece.utils.Name;
 import pieces.Piece;
 /**
  * Pawn promotion controller class.
- *
  */
 public class PawnPromotionController {
     private final Promotion promotion = new PromotionImpl();

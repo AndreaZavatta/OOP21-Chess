@@ -6,11 +6,9 @@ import piece.utils.Name;
 
 /**
  * A standard interface for a Piece Factory.
- *
  */
 public interface PieceFactory {
     /**
-     * 
      * A standard method to create a Piece. Also used to promote a pawn into another piece.
      * 
      * @param name the name of the piece.

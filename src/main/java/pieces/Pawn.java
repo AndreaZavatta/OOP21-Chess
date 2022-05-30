@@ -1,13 +1,11 @@
 package pieces;
 
-import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import board.Chessboard;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import piece.utils.Position;
 import piece.utils.Side;
 import piece.utils.ControlsUtility;
@@ -16,19 +14,17 @@ import piece.utils.PieceDirections;
 
 /**
  * A Pawn class that extends AbstractPiece abstract class.
- *
  */
 public class Pawn extends AbstractPiece {
 
     private static final int PAWN_VALUE = 1;
-    private boolean dontgo;
+    private boolean dontGo;
     /**
      * A Pawn piece constructor.
      * 
      * @param position the piece position.
      * @param color the piece color.
      */
-
     protected Pawn(final Position position, final Side color) {
         super(Name.PAWN, position, color);
     }
@@ -38,7 +34,7 @@ public class Pawn extends AbstractPiece {
         final List<Position> list = new ArrayList<>();
         goEat(board, list);
         goForward(board, list, 1);
-        if (!this.isMoved() && !dontgo) {
+        if (!this.isMoved() && !dontGo) {
             goForward(board, list, 2);
         }
         return Collections.unmodifiableList(list);
@@ -50,23 +46,23 @@ public class Pawn extends AbstractPiece {
     }
 
     private void goEat(final Chessboard board, final List<Position> list) {
-        list.addAll(PieceDirections.PAWN_DIR.directions().stream()
+        list.addAll(PieceDirections.PAWN_DIR.getDirections().stream()
                 .map(p -> ControlsUtility.getNewPosition(this, p, this.getDirection(this.getSide())))
-                .filter(p -> ControlsUtility.checkPosition(p) 
-                        && ControlsUtility.checkPiece(p, board) 
-                        && ControlsUtility.checkEnemy(this, p, board))
+                .filter(p -> ControlsUtility.checkPositionOnBoard(p)
+                        && ControlsUtility.checkPieceOnPosition(p, board)
+                        && ControlsUtility.checkEnemyOnPosition(this, p, board))
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    private void goForward(final Chessboard board, final List<Position> list, final int lenght) {
+    private void goForward(final Chessboard board, final List<Position> list, final int length) {
         final Position p = ControlsUtility
-                .getNewPosition(this, Position.createNumericPosition(0, lenght),
+                .getNewPosition(this, Position.createNumericPosition(0, length),
                         this.getDirection(this.getSide()));
-        if (ControlsUtility.checkPosition(p) 
-                && !ControlsUtility.checkPiece(p, board)) {
+        if (ControlsUtility.checkPositionOnBoard(p)
+                && !ControlsUtility.checkPieceOnPosition(p, board)) {
             list.add(p);
         } else {
-            dontgo = true;
+            dontGo = true;
         }
     }
 

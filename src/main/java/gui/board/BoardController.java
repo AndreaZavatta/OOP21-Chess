@@ -24,7 +24,6 @@ import user.UserController;
 
 /**
  * Controller class for Board.fxml.
- *
  */
 public class BoardController {
     @FXML
@@ -66,14 +65,14 @@ public class BoardController {
      */
     public static final int HEIGHT = 8;
     /**
-     * 
-     * @param whiteUser
-     * @param blackUser
+     * Initialize the player's textarea and image with the relative text and image.
+     * @param whiteUser the white user.
+     * @param blackUser the black user.
      */
-    public void createPlayers(final UserController whiteUser, final UserController blackUser) {
+    public void initializePlayers(final UserController whiteUser, final UserController blackUser) {
         this.whiteUser = whiteUser;
         this.blackUser = blackUser;
-        this.createPlayers();
+        this.initializePlayers();
         Pair<User, Side> usr1 = new Pair<User, Side>(whiteUser.getUser(), Side.WHITE);
         Pair<User, Side> usr2 = new Pair<User, Side>(blackUser.getUser(), Side.BLACK);
         this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
@@ -93,7 +92,7 @@ public class BoardController {
         //TODO
     }
 
-    private void createPlayers() {
+    private void initializePlayers() {
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
         blackPlayer.setId("textPlayersBoard");

@@ -1,6 +1,5 @@
 package pieces;
 
-import java.beans.ConstructorProperties;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class Rook extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         return Collections
-                .unmodifiableList(this.getBasicMoves().doubleIteration(PieceDirections.ROOK_DIR, board, this));
+                .unmodifiableList(this.getBasicMoves().iteratedMove(PieceDirections.ROOK_DIR, board, this));
     }
 
     @JsonIgnore

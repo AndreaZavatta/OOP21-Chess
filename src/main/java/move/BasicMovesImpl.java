@@ -11,14 +11,13 @@ import piece.utils.Position;
 import pieces.Piece;
 /**
  * Implementation of BasicMoves Interface.
- *
  */
 public class BasicMovesImpl implements BasicMoves {
 
     @Override
-    public List<Position> doubleIteration(final PieceDirections directions, final Chessboard board,
-                                          final Piece piece) {
-        return directions.directions().stream()
+    public List<Position> iteratedMove(final PieceDirections directions, final Chessboard board,
+                                       final Piece piece) {
+        return directions.getDirections().stream()
                 .flatMap(d -> 
                     IntStream.range(1, 8)
                     .takeWhile(i -> isMovementValid(piece, i, d, board))
@@ -27,26 +26,26 @@ public class BasicMovesImpl implements BasicMoves {
     }
 
     @Override
-    public List<Position> singleIteration(final PieceDirections directions, final Chessboard board,
-                                          final Piece piece) {
-        return directions.directions().stream()
+    public List<Position> directMove(final PieceDirections directions, final Chessboard board,
+                                     final Piece piece) {
+        return directions.getDirections().stream()
                 .map(p -> ControlsUtility.getNewPosition(piece, p, 1))
-                .filter(ControlsUtility::checkPosition)
-                .filter(p -> !ControlsUtility.checkPiece(p, board) || ControlsUtility.checkEnemy(piece, p, board))
+                .filter(ControlsUtility::checkPositionOnBoard)
+                .filter(p -> !ControlsUtility.checkPieceOnPosition(p, board) || ControlsUtility.checkEnemyOnPosition(piece, p, board))
                 .collect(Collectors.toUnmodifiableList());
     }
 
     private boolean isMovementValid(final Piece piece, final int length, final Position direction,
                                     final Chessboard board) {
         final Position p = ControlsUtility.getNewPosition(piece, direction, length);
-        if (!ControlsUtility.checkPosition(p)) {
+        if (!ControlsUtility.checkPositionOnBoard(p)) {
             return false;
         }
         final Position previousPosition = ControlsUtility.getNewPosition(piece, direction, length - 1);
 
-        if (ControlsUtility.checkEnemy(piece, previousPosition, board)) {
+        if (ControlsUtility.checkEnemyOnPosition(piece, previousPosition, board)) {
             return false;
         }
-        return !(ControlsUtility.checkPiece(p, board) && !ControlsUtility.checkEnemy(piece, p, board));
+        return !(ControlsUtility.checkPieceOnPosition(p, board) && !ControlsUtility.checkEnemyOnPosition(piece, p, board));
     }
 }

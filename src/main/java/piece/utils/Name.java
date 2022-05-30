@@ -10,7 +10,7 @@ public enum Name {
      */
     PAWN {
         @Override
-        public String notation() {
+        public String getChessNotation() {
             return "P";
         }
     },
@@ -19,7 +19,7 @@ public enum Name {
      */
     QUEEN {
         @Override
-        public String notation() {
+        public String getChessNotation() {
             return "Q";
         }
     },
@@ -28,7 +28,7 @@ public enum Name {
      */
     KING {
   @Override
-        public String notation() {
+        public String getChessNotation() {
             return "K";
         }
     },
@@ -37,7 +37,7 @@ public enum Name {
      */
     KNIGHT {
         @Override
-        public String notation() {
+        public String getChessNotation() {
             return "N";
         }
     },
@@ -46,7 +46,7 @@ public enum Name {
      */
     BISHOP {
         @Override
-        public String notation() {
+        public String getChessNotation() {
             return "B";
         }
     },
@@ -55,13 +55,13 @@ public enum Name {
      */
     ROOK {
         @Override
-        public String notation() {
+        public String getChessNotation() {
             return "R";
         }
     };
     /**
-     * 
+     * A getter for the corresponding letter for the piece.
      * @return the letter representing the piece.
      */
-    public abstract String notation();
+    public abstract String getChessNotation();
 }

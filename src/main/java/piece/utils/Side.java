@@ -1,7 +1,6 @@
 package piece.utils;
 /**
  * A standard enum class for the piece side.
- *
  */
 public enum Side {
     /**

@@ -5,7 +5,6 @@ import pieces.Piece;
 
 /**
  * A piece utility class.
- *
  */
 public final class ControlsUtility {
 
@@ -18,7 +17,7 @@ public final class ControlsUtility {
      * @param board the current board.
      * @return true if the position in occupied by an enemy, false otherwise.
      */
-    public static boolean checkEnemy(final Piece piece, final Position position, final Chessboard board) {
+    public static boolean checkEnemyOnPosition(final Piece piece, final Position position, final Chessboard board) {
         return board.getPieceOnPosition(position).map(p -> !p.getSide().equals(piece.getSide())).orElse(false);
     }
     /**
@@ -27,7 +26,7 @@ public final class ControlsUtility {
      * @param board the current board.
      * @return true if there is a piece in the specified position, false otherwise.
      */
-    public static boolean checkPiece(final Position position, final Chessboard board) {
+    public static boolean checkPieceOnPosition(final Position position, final Chessboard board) {
         return board.getPieceOnPosition(position).isPresent();
     }
     /**
@@ -35,7 +34,7 @@ public final class ControlsUtility {
      * @param position the position you are checking.
      * @return true if the position is in the board, false otherwise.
      */
-    public static boolean checkPosition(final Position position) {
+    public static boolean checkPositionOnBoard(final Position position) {
         return position.getX() < 8 && position.getX() >= 0 
                 && position.getY() < 8 && position.getY() >= 0;
     }
