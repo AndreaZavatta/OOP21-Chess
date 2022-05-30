@@ -184,7 +184,7 @@ public class BoardController {
     }
 
     private void lightRectangle(final Position finalPosition) {
-        if (match.getPiecesList.getAllPieces().stream()
+        if (match.getPiecesList().stream()
                 .map(Piece::getPosition).collect(Collectors.toList()).contains(finalPosition)) {
             //mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
         }
