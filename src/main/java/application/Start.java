@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 
 public final class Start extends Application {
 
+    /**
+     * 
+     */
+    public static final String SEPARATOR = System.getProperty("file.separator");
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 400;
 
@@ -27,7 +31,7 @@ public final class Start extends Application {
      */
     public void start(final Stage stage) throws IOException {
 
-        final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/MainMenu.fxml"));
+        final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts" + SEPARATOR + "MainMenu.fxml"));
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
 
 //        final ImageView imv = new ImageView();
