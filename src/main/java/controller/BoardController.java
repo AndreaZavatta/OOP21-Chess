@@ -1,4 +1,4 @@
-package gui.board;
+package controller;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,10 +1,10 @@
-package gui.board;
+package controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-import static gui.board.BoardController.TILE_SIZE;
+import static controller.BoardController.TILE_SIZE;
 
 /**
  * The GuiPiece class defines the piece you see on the chessboard.

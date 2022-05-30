@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import application.Start;
-import gui.board.BoardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
