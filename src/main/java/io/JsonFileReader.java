@@ -5,9 +5,8 @@ import java.io.IOException;
 /**
  * 
  * an iterface for reading from files.
- * @param <T>
  */
-public interface JsonFileReader<T> {
+public interface JsonFileReader {
         /**
          * a method for reading from files. 
          * @return T

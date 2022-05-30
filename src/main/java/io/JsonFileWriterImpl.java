@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @param <T>
  */
-public class JsonFileWriterImpl<T> implements JsonFileWriter<T> {
+public class JsonFileWriterImpl implements JsonFileWriter {
 
     private final JsonSerializer jSerializer;
     private final String fileName;
@@ -26,7 +26,7 @@ public class JsonFileWriterImpl<T> implements JsonFileWriter<T> {
      * @param fileName the name of the file in which to write the object
      * @param className the name of the class to be serialized
      */
-    public JsonFileWriterImpl(final String fileName, final Class<? extends T> className) {
+    public JsonFileWriterImpl(final String fileName, final Class<?> className) {
             this.fileName = fileName;
             jSerializer = new JsonSerializerImpl();
     }

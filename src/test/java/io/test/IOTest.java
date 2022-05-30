@@ -113,7 +113,7 @@ class IOTest {
     @Test
     void testDeserializer() throws JsonProcessingException {
         JsonSerializer jSerializer = new JsonSerializerImpl();
-        JsonDeserializer<GameImpl> jsonDeserializer = new JsonDeserializerImpl<GameImpl>(GameImpl.class);
+        JsonDeserializer jsonDeserializer = new JsonDeserializerImpl(GameImpl.class);
         User user = new UserImpl("andrea");
         User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
@@ -126,30 +126,34 @@ class IOTest {
         User user = new UserImpl("andrea");
         User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
-        JsonFileWriter<Game> fw = new JsonFileWriterImpl<>("database.txt", GameImpl.class);
+        JsonFileWriter fw = new JsonFileWriterImpl("database.txt", GameImpl.class);
         fw.writeFile(game);
     }
 
     void writeListSupport() throws IOException {
 
     }
-
-    private List<Game> getGames() {
+    private Game getGame(){
         User user1 = new UserImpl("andrea");
         User user2 = new UserImpl("giacomo");
-        final Game game = new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
+        return new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
+    }
+    private List<Game> getGames() {
 
         User user3 = new UserImpl("stefano");
         User user4 = new UserImpl("giorgio");
         final Game game2 = new GameImpl(new Pair<>(user3, WHITE), new Pair<>(user4, BLACK));
-        return List.of(game, game2);
+        return List.of(getGame(), game2);
     }
 
 
     @Test
     void testFileReaderObj() {
         try {
-            JsonFileReader<Game> fr = new JsonFileReaderImpl<>("database.txt", GameImpl.class);
+            JsonFileWriter fw = new JsonFileWriterImpl("database.txt", GameImpl.class);
+            fw.writeFile(getGame());
+
+            JsonFileReader fr = new JsonFileReaderImpl("database.txt", GameImpl.class);
             Game game = (Game) fr.readFile();
             System.out.println(game);
         }catch(IOException ignored){
@@ -161,9 +165,10 @@ class IOTest {
     void testFileReaderList() {
         try {
             List<Game> list = getGames();
-            JsonFileWriter<GameImpl> fw = new JsonFileWriterImpl<GameImpl>("database.txt", GameImpl.class);
+            JsonFileWriter fw = new JsonFileWriterImpl("database.txt", GameImpl.class);
             fw.writeFile(list);
-            JsonFileReader<Game> fr = new JsonFileReaderImpl<>("database.txt", ArrayList.class);
+
+            JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
             List<?> games = (List<?>) fr.readFile();
             assertEquals(js.serialize(games), js.serialize(list));
         }catch (IOException ignored){
