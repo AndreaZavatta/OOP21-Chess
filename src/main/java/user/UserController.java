@@ -14,4 +14,10 @@ public interface UserController extends User {
      * @return user image
      */
     Image getImage();
+
+    /**
+     * 
+     * @return user 
+     */
+    User getUser();
 }

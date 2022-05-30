@@ -28,4 +28,9 @@ public class UserControllerImpl extends UserImpl implements UserController {
     public Image getImage() {
         return this.img;
     }
+
+    @Override
+    public User getUser() {
+        return new UserImpl(super.getName());
+    }
 }

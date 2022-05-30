@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
+import game.Game;
+import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.effect.BlurType;
@@ -18,9 +20,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import pair.Pair;
 import piece.utils.Numbers;
 import piece.utils.Position;
+import piece.utils.Side;
 import pieces.Piece;
+import user.User;
 import user.UserController;
 
 /**
@@ -44,8 +49,7 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
-    private final ChessboardFactory factory = new ChessboardFactoryImpl();
-    private final Chessboard board = factory.createNormalCB();
+    private Game match;
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
     private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
     //probabilmente ti serve una mappa pezzo-rettangolo oppure rettangolo-pezzo (la seconda probably)
@@ -69,6 +73,10 @@ public class BoardController {
     public void createPlayers(final UserController whiteUser, final UserController blackUser) {
         this.whiteUser = whiteUser;
         this.blackUser = blackUser;
+        Pair<User, Side> usr1 = new Pair<User, Side>(whiteUser.getUser(), Side.WHITE);
+        Pair<User, Side> usr2 = new Pair<User, Side>(blackUser.getUser(), Side.BLACK);
+        this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
+                                new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.initialize();
     }
 
@@ -176,7 +184,7 @@ public class BoardController {
     }
 
     private void lightRectangle(final Position finalPosition) {
-        if (board.getAllPieces().stream()
+        if (match.getPiecesList.getAllPieces().stream()
                 .map(Piece::getPosition).collect(Collectors.toList()).contains(finalPosition)) {
             //mapPositionRectangle.get(finalPosition).setFill(Color.BLUE);
         }
