@@ -2,6 +2,11 @@ package gui.board.utils;
 
 import application.Start;
 
+/**
+ * 
+ * Enum for piece image path.
+ *
+ */
 public enum PieceImagePath {
 
     /**
