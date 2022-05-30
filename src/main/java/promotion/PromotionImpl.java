@@ -12,7 +12,6 @@ import pieces.PieceFactoryImpl;
 
 /**
  * The Pawn promotion class.
- *
  */
 public class PromotionImpl implements Promotion {
 
