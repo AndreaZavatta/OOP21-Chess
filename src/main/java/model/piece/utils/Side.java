@@ -1,4 +1,4 @@
-package piece.utils;
+package model.piece.utils;
 /**
  * A standard enum class for the piece side.
  */

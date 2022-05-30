@@ -1,7 +1,7 @@
-package promotion;
+package model.promotion;
 
-import piece.utils.Name;
-import pieces.Piece;
+import model.piece.utils.Name;
+import model.pieces.Piece;
 /**
  * Pawn promotion controller class.
  */

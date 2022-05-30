@@ -1,6 +1,6 @@
 package board;
 
-import piece.utils.Side;
+import model.piece.utils.Side;
 
 /**
  * 

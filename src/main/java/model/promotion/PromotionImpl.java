@@ -1,14 +1,14 @@
-package promotion;
+package model.promotion;
 
 import java.util.List;
 import java.util.Optional;
 
-import piece.utils.Name;
-import piece.utils.Numbers;
-import piece.utils.Side;
-import pieces.Piece;
-import pieces.PieceFactory;
-import pieces.PieceFactoryImpl;
+import model.piece.utils.Name;
+import model.piece.utils.Numbers;
+import model.piece.utils.Side;
+import model.pieces.Piece;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
 
 /**
  * The Pawn promotion class.

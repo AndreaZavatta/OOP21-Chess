@@ -16,9 +16,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import pair.Pair;
-import piece.utils.Numbers;
-import piece.utils.Position;
-import piece.utils.Side;
+import model.piece.utils.Numbers;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
 import user.User;
 import user.UserController;
 

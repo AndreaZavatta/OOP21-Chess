@@ -1,7 +1,7 @@
-package piece.utils;
+package model.piece.utils;
 
 import board.Chessboard;
-import pieces.Piece;
+import model.pieces.Piece;
 
 /**
  * A piece utility class.

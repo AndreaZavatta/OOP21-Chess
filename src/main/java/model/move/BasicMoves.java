@@ -1,11 +1,11 @@
-package move;
+package model.move;
 
 import java.util.List;
 
 import board.Chessboard;
-import piece.utils.PieceDirections;
-import piece.utils.Position;
-import pieces.Piece;
+import model.piece.utils.PieceDirections;
+import model.piece.utils.Position;
+import model.pieces.Piece;
 /**
  * This interface contains methods used by the pieces in order to
  * generate the list of possible positions.

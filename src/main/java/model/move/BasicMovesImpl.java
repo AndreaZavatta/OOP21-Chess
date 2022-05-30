@@ -1,14 +1,14 @@
-package move;
+package model.move;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import board.Chessboard;
-import piece.utils.ControlsUtility;
-import piece.utils.PieceDirections;
-import piece.utils.Position;
-import pieces.Piece;
+import model.piece.utils.ControlsUtility;
+import model.piece.utils.PieceDirections;
+import model.piece.utils.Position;
+import model.pieces.Piece;
 /**
  * Implementation of BasicMoves Interface.
  */

@@ -1,12 +1,12 @@
 package controls.test;
-import static piece.utils.Name.KING;
-import static piece.utils.Name.BISHOP;
-import static piece.utils.Name.ROOK;
-import static piece.utils.Name.KNIGHT;
-import static piece.utils.Name.QUEEN;
-import static piece.utils.Side.BLACK;
-import static piece.utils.Side.WHITE;
-import static piece.utils.Position.createNewPosition;
+import static model.piece.utils.Name.KING;
+import static model.piece.utils.Name.BISHOP;
+import static model.piece.utils.Name.ROOK;
+import static model.piece.utils.Name.KNIGHT;
+import static model.piece.utils.Name.QUEEN;
+import static model.piece.utils.Side.BLACK;
+import static model.piece.utils.Side.WHITE;
+import static model.piece.utils.Position.createNewPosition;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -19,10 +19,10 @@ import board.ChessboardFactoryImpl;
 import board.ControlCheck;
 import board.ControlCheckImpl;
 import exceptions.KingNotFoundException;
-import piece.utils.Position;
-import pieces.Piece;
-import pieces.PieceFactory;
-import pieces.PieceFactoryImpl;
+import model.piece.utils.Position;
+import model.pieces.Piece;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
 
 class ControlCheckTest {
     private Chessboard chessboard;

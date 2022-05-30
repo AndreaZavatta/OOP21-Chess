@@ -1,4 +1,4 @@
-package piece.utils;
+package model.piece.utils;
 
 /**
  * This class is only needed to remove magic numbers.

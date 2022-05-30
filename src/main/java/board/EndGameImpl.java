@@ -1,14 +1,13 @@
 package board;
 
-import static piece.utils.Name.KNIGHT;
-import static piece.utils.Name.BISHOP;
-import static piece.utils.Side.BLACK;
-import static piece.utils.Side.WHITE;
-import piece.utils.Side;
+import static model.piece.utils.Name.KNIGHT;
+import static model.piece.utils.Name.BISHOP;
+import static model.piece.utils.Side.BLACK;
+import static model.piece.utils.Side.WHITE;
+import model.piece.utils.Side;
 import java.util.List;
 import java.util.stream.Collectors;
-import pieces.Piece;
-import java.io.Serializable;
+import model.pieces.Piece;
 
 /**
  * 

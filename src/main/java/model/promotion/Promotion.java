@@ -1,10 +1,10 @@
-package promotion;
+package model.promotion;
 
 import java.util.List;
 import java.util.Optional;
 
-import piece.utils.Name;
-import pieces.Piece;
+import model.piece.utils.Name;
+import model.pieces.Piece;
 /**
  * An interface for the pawn's promotion.
  */

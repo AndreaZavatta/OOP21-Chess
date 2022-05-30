@@ -1,20 +1,17 @@
 package board;
 
-import java.beans.ConstructorProperties;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import piece.utils.Name;
-import piece.utils.Position;
-import pieces.Piece;
-import promotion.Promotion;
-import promotion.PromotionImpl;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
+import model.pieces.Piece;
+import model.promotion.Promotion;
+import model.promotion.PromotionImpl;
 
     /**
      * 

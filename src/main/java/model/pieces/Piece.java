@@ -1,13 +1,13 @@
-package pieces;
+package model.pieces;
 
 import java.util.List;
 
 import board.Chessboard;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import piece.utils.Side;
-import piece.utils.Name;
-import piece.utils.Position;
+import model.piece.utils.Side;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
 
 /**
  * A standard interface for a Piece object.

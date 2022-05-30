@@ -1,13 +1,9 @@
 package game;
 
-import java.beans.ConstructorProperties;
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import pair.Pair;
-import piece.utils.Side;
+import model.piece.utils.Side;
 import user.User;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class TurnImpl implements Turn {

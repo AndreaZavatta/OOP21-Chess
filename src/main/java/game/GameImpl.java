@@ -1,7 +1,5 @@
 package game;
 
-import java.beans.ConstructorProperties;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import pair.Pair;
-import piece.utils.Position;
-import piece.utils.Side;
-import pieces.Piece;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.pieces.Piece;
 import user.User;
 
 /**

@@ -1,9 +1,9 @@
 package chess.parsers;
 import board.Chessboard;
 import exceptions.IllegalMoveException;
-import piece.utils.Name;
-import piece.utils.Position;
-import pieces.Piece;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
+import model.pieces.Piece;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package piece.utils;
+package model.piece.utils;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;

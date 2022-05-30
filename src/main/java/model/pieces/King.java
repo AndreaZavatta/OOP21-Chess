@@ -1,4 +1,4 @@
-package pieces;
+package model.pieces;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,11 +8,11 @@ import board.Castling;
 import board.CastlingImpl;
 import board.Chessboard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import piece.utils.Name;
-import piece.utils.Numbers;
-import piece.utils.PieceDirections;
-import piece.utils.Position;
-import piece.utils.Side;
+import model.piece.utils.Name;
+import model.piece.utils.Numbers;
+import model.piece.utils.PieceDirections;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
 
 /**
  * A King class that extends AbstractPiece abstract class.

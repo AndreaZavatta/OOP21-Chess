@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import io.*;
+import model.pieces.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import game.Game;
@@ -15,12 +16,11 @@ import game.GameImpl;
 import pair.Pair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static piece.utils.Side.BLACK;
-import static piece.utils.Side.WHITE;
+import static model.piece.utils.Side.BLACK;
+import static model.piece.utils.Side.WHITE;
 
-import piece.utils.Name;
-import piece.utils.Position;
-import pieces.*;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
 import user.User;
 import user.UserImpl;
 

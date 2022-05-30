@@ -1,4 +1,4 @@
-package pieces;
+package model.pieces;
 
 import java.util.List;
 import java.util.Objects;
@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import board.Chessboard;
-import move.BasicMoves;
-import move.BasicMovesImpl;
-import piece.utils.Position;
-import piece.utils.Side;
-import piece.utils.Name;
+import model.move.BasicMoves;
+import model.move.BasicMovesImpl;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.piece.utils.Name;
 /**
  * An abstract class that implements the Piece interface.
  */

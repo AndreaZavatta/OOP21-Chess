@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
 import pair.Pair;
-import piece.utils.Position;
-import piece.utils.Side;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
 import user.User;
 import user.UserImpl;
 

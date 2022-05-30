@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import pair.Pair;
-import piece.utils.Position;
-import piece.utils.Side;
-import pieces.Piece;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.pieces.Piece;
 import user.User;
 
 /**

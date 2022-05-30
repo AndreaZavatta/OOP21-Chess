@@ -1,13 +1,13 @@
-package pieces;
+package model.pieces;
 
 import java.util.Collections;
 import java.util.List;
 
 import board.Chessboard;
-import piece.utils.Position;
-import piece.utils.Side;
-import piece.utils.Name;
-import piece.utils.PieceDirections;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.piece.utils.Name;
+import model.piece.utils.PieceDirections;
 
 /**
  * A Knight class that extends AbstractPiece abstract class.

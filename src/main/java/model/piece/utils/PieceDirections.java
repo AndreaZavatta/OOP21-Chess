@@ -1,4 +1,4 @@
-package piece.utils;
+package model.piece.utils;
 
 import java.util.List;
 import java.util.stream.Collectors;

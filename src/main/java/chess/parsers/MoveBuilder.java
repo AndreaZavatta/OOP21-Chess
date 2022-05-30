@@ -9,10 +9,10 @@ import board.Chessboard;
 import board.ControlCheck;
 import board.ControlCheckImpl;
 import exceptions.IllegalMoveException;
-import piece.utils.Name;
-import piece.utils.Position;
-import pieces.Piece;
-import static piece.utils.Name.PAWN;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
+import model.pieces.Piece;
+import static model.piece.utils.Name.PAWN;
 
 /**
  * a MoveBuilder to convert a move to String 

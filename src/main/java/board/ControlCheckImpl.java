@@ -1,12 +1,12 @@
 package board;
 
-import static piece.utils.Name.KING;
-import piece.utils.Side;
+import static model.piece.utils.Name.KING;
+import model.piece.utils.Side;
 import java.util.ArrayList;
 import java.util.List;
-import piece.utils.Position;
+import model.piece.utils.Position;
 import exceptions.KingNotFoundException;
-import pieces.Piece;
+import model.pieces.Piece;
 
 /**
  * 

@@ -2,7 +2,7 @@ package board;
 
 import java.util.List;
 
-import pieces.Piece;
+import model.pieces.Piece;
 
 /**
      * 

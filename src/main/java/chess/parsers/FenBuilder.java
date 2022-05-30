@@ -1,8 +1,8 @@
 package chess.parsers;
 
-import static piece.utils.Name.KING;
-import static piece.utils.Name.QUEEN;
-import static piece.utils.Side.BLACK;
+import static model.piece.utils.Name.KING;
+import static model.piece.utils.Name.QUEEN;
+import static model.piece.utils.Side.BLACK;
 
 import board.Chessboard;
 
@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import piece.utils.Side;
-import pieces.Piece;
+import model.piece.utils.Side;
+import model.pieces.Piece;
 
 /**
  * 

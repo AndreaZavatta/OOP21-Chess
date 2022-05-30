@@ -1,8 +1,8 @@
-package pieces;
+package model.pieces;
 
-import piece.utils.Side;
-import piece.utils.Name;
-import piece.utils.Position;
+import model.piece.utils.Side;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
 /**
  * Implementation of PieceFactory interface.
  */
