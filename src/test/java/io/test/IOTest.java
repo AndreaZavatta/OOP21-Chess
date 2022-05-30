@@ -8,12 +8,8 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import io.*;
 import model.pieces.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
@@ -29,19 +25,15 @@ import java.util.List;
 class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
     JsonSerializer js = new JsonSerializerImpl();
-    ChessboardFactory ChessboardFact = new ChessboardFactoryImpl();
-    static ObjectMapper map = new ObjectMapper();
+    ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
+    ObjectMapper map = JsonUtils.getMapper();
+    JsonFileWriter fw = new JsonFileWriterImpl("database.txt");;
 
-    @BeforeAll
-    static void init(){
-        map.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false).registerModule(new Jdk8Module())
-                .registerModule(new ParameterNamesModule());
-    }
 
     @Test
     void serializeRook() throws IOException {
         final Rook rook = (Rook) fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
-        var json = map.writeValueAsString(rook);
+        final String json = map.writeValueAsString(rook);
         System.out.println(json);
 
     }
@@ -52,7 +44,7 @@ class IOTest {
     }
     @Test
     void serializeChessboard() throws JsonProcessingException {
-        final Chessboard chessboard = ChessboardFact.createNormalCB();
+        final Chessboard chessboard = chessboardFact.createNormalCB();
         System.out.println(map.writeValueAsString(chessboard));
     }
 
@@ -66,79 +58,56 @@ class IOTest {
     @Test
     void deserializeRook() throws IOException {
         final Piece rook = fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
-        var json = map.writeValueAsString(rook);
-        System.out.println(json);
-        Piece rook2 = map.readValue(json, rook.getClass());
+        final String json = map.writeValueAsString(rook);
+        final Piece rook2 = map.readValue(json, rook.getClass());
         assertEquals(rook, rook2);
     }
 
     @Test
     void deserializeAbstractClass() throws JsonProcessingException {
         final AbstractPiece queen = (AbstractPiece) fact.createPiece(Name.QUEEN, Position.createNumericPosition(3, 4), BLACK);
-        var json = map.writeValueAsString(queen);
+        final String json = map.writeValueAsString(queen);
         System.out.println(json);
-        Piece queen2 = map.readValue(json, queen.getClass());
+        final Piece queen2 = map.readValue(json, queen.getClass());
         assertEquals(queen, queen2);
     }
     @Test
     void deserializeChessboard() throws IOException {
-        final Chessboard chessboard = ChessboardFact.createNormalCB();
-        var json = map.writeValueAsString(chessboard);
-        System.out.println(json);
+        final Chessboard chessboard = chessboardFact.createNormalCB();
+        final String json = map.writeValueAsString(chessboard);
         final Chessboard chessboard2 = map.readValue(json, chessboard.getClass());
+        assertEquals(chessboard, chessboard2);
     }
     @Test
     void deserializeGame() throws JsonProcessingException {
-        User user = new UserImpl("andrea");
-        User user2 = new UserImpl("giacomo");
+        final User user = new UserImpl("andrea");
+        final User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
-        var json = map.writeValueAsString(game);
-        System.out.println(json);
+        final String json = map.writeValueAsString(game);
         final Game game2 = map.readValue(json, GameImpl.class);
-        var json2 = map.writeValueAsString(game2);
-        System.out.println(json2);
+        final String json2 = map.writeValueAsString(game2);
+        assertEquals(json, json2);
     }
     @Test
     void testSerializer() throws JsonProcessingException{
-        JsonSerializer jSerializer = new JsonSerializerImpl();
-        User user = new UserImpl("andrea");
-        User user2 = new UserImpl("giacomo");
-        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
-        var json = jSerializer.serialize(game);
+        final String json = js.serialize(getGame("andrea", "giacomo"));
         System.out.println(json);
     }
     @Test
     void testDeserializer() throws JsonProcessingException {
-        JsonSerializer jSerializer = new JsonSerializerImpl();
-        JsonDeserializer jsonDeserializer = new JsonDeserializerImpl(GameImpl.class);
-        User user = new UserImpl("andrea");
-        User user2 = new UserImpl("giacomo");
-        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
-        var json = jSerializer.serialize(game);
-        var game2 = jsonDeserializer.deserialize(json);
-        System.out.println(game);
-        System.out.println(game2);
-    }
-    void writeGameSupport() throws IOException {
-        User user = new UserImpl("andrea");
-        User user2 = new UserImpl("giacomo");
-        final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
-        JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
-        fw.writeFile(game);
+        final JsonDeserializer jsonDeserializer = new JsonDeserializerImpl(GameImpl.class);
+        final Game game = getGame("andrea", "giacomo");
+        final String json = js.serialize(game);
+        final Game game2 = (GameImpl) jsonDeserializer.deserialize(json);
+        assertEquals(game.getPiecesList(), game2.getPiecesList());
     }
 
-    void writeListSupport() throws IOException {
-
-    }
-    private Game getGame(String firstName, String secondName){
-        User user1 = new UserImpl(firstName);
-        User user2 = new UserImpl(secondName);
+    private Game getGame(final String firstName, final String secondName){
+        final User user1 = new UserImpl(firstName);
+        final User user2 = new UserImpl(secondName);
         return new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
     }
     private List<Game> getGames() {
-        User user3 = new UserImpl("stefano");
-        User user4 = new UserImpl("giorgio");
-        final Game game2 = new GameImpl(new Pair<>(user3, WHITE), new Pair<>(user4, BLACK));
         return List.of(getGame("andrea", "giacomo"), getGame("stefano", "giorgio"));
     }
 
@@ -146,12 +115,11 @@ class IOTest {
     @Test
     void testFileReaderObj() {
         try {
-            JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
-            fw.writeFile(getGame("andrea", "giacomo"));
-
-            JsonFileReader fr = new JsonFileReaderImpl("database.txt", GameImpl.class);
-            Game game = (Game) fr.readFile();
-            System.out.println(game);
+            final Game game = getGame("andrea", "giacomo");
+            fw.writeFile(game);
+            final JsonFileReader fr = new JsonFileReaderImpl("database.txt", GameImpl.class);
+            final Game game2 = (Game) fr.readFile();
+            assertEquals(game.getPiecesList(), game2.getPiecesList());
         }catch(IOException ignored){
             fail();
         }
@@ -160,12 +128,10 @@ class IOTest {
     @Test
     void testFileReaderList() {
         try {
-            List<Game> list = getGames();
-            JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
+            final List<Game> list = getGames();
             fw.writeFile(list);
-
-            JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
-            List<?> games = (List<?>) fr.readFile();
+            final JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
+            final List<?> games = (List<?>) fr.readFile();
             assertEquals(js.serialize(games), js.serialize(list));
         }catch (IOException ignored){
             fail();

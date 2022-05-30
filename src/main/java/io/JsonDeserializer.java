@@ -2,7 +2,6 @@ package io;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import java.io.Serializable;
 /**
  * an interface to deserialize in a generic object.
  *

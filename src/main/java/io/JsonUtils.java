@@ -12,6 +12,5 @@ public class JsonUtils {
                 .registerModule(new Jdk8Module())
                 .registerModule(new ParameterNamesModule())
                 .enable(SerializationFeature.INDENT_OUTPUT);
-
     }
 }

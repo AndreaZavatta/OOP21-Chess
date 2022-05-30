@@ -34,7 +34,7 @@ class MoveBuilderTest {
    private final PieceFactory pieceFact = new PieceFactoryImpl();
    private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
    private Chessboard chessboard;
-   private static final List<Piece> List = new ArrayList<>();
+   private static final List<Piece> LIST = new ArrayList<>();
 
    /**
     * 
@@ -42,10 +42,10 @@ class MoveBuilderTest {
 
    @Test
    void testPawnAdvancementMove() {
-       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("d4")));
@@ -54,10 +54,10 @@ class MoveBuilderTest {
 
    @Test
    void testPromotionMove() {
-       List.add(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("e3"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("e3"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE))
                  .promotion(QUEEN)
@@ -72,11 +72,11 @@ class MoveBuilderTest {
    }
    @Test
    void testCheckMove() {
-       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
-       List.add(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
+       LIST.add(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE))
                  .check()
@@ -86,12 +86,12 @@ class MoveBuilderTest {
 
    @Test
    void testCheckmate() {
-       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
-       List.add(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE));
-       List.add(pieceFact.createPiece(QUEEN, createNewPosition("a4"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("a8"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
+       LIST.add(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE));
+       LIST.add(pieceFact.createPiece(QUEEN, createNewPosition("a4"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("a8"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
            wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE))
                     .checkmate()
@@ -101,11 +101,11 @@ class MoveBuilderTest {
 
    @Test
    void testPawnCaptureMove() {
-       List.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
-       List.add(pieceFact.createPiece(PAWN, createNewPosition("e3"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK));
+       LIST.add(pieceFact.createPiece(PAWN, createNewPosition("e3"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK))
                  .capture()
@@ -124,11 +124,11 @@ class MoveBuilderTest {
    }
    @Test
    void testBishopMove() {
-       List.add(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE));
-       List.add(pieceFact.createPiece(BISHOP, createNewPosition("e5"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE));
+       LIST.add(pieceFact.createPiece(BISHOP, createNewPosition("e5"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("f2")));
@@ -137,11 +137,11 @@ class MoveBuilderTest {
 
    @Test
    void testAmbiguousMoveSameRow() {
-       List.add(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE));
-       List.add(pieceFact.createPiece(KNIGHT, createNewPosition("f4"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE));
+       LIST.add(pieceFact.createPiece(KNIGHT, createNewPosition("f4"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("e6")));
@@ -150,12 +150,12 @@ class MoveBuilderTest {
 
    @Test
    void testAmbiguousMoveSameRowAndCol() {
-       List.add(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE));
-       List.add(pieceFact.createPiece(QUEEN, createNewPosition("f4"), WHITE));
-       List.add(pieceFact.createPiece(QUEEN, createNewPosition("d5"), WHITE));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
-       List.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
-       chessboard = boardFactory.createTestCB(List);
+       LIST.add(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE));
+       LIST.add(pieceFact.createPiece(QUEEN, createNewPosition("f4"), WHITE));
+       LIST.add(pieceFact.createPiece(QUEEN, createNewPosition("d5"), WHITE));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("b7"), BLACK));
+       LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
+       chessboard = boardFactory.createTestCB(LIST);
 
        wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("e4")));
