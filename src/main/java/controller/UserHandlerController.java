@@ -67,7 +67,7 @@ public class UserHandlerController {
     void backToMenu(final ActionEvent event) {
         //TODO 
         try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/MainMenu.fxml"));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(Start.SEPARATOR + "layouts" + Start.SEPARATOR + "MainMenu.fxml"));
             final Parent root = (Parent) loader.load();
             final Stage stage = new Stage();
             stage.setTitle("MENU");
@@ -92,7 +92,7 @@ public class UserHandlerController {
         try {
             final UserController player1 = new UserControllerImpl(namePlayer1, imgUser1);
             final UserController player2 = new UserControllerImpl(namePlayer2, imgUser2);
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/Board.fxml"));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(Start.SEPARATOR + "layouts" + Start.SEPARATOR + "Board.fxml"));
             final Parent root = (Parent) loader.load();
 
             final BoardController boardContrl = loader.getController();
