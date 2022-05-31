@@ -178,29 +178,25 @@ public class BoardController {
     private void released(final GuiPiece guiPiece) {
         final int x = (int) ((guiPiece.getRectangle().getX() + TILE_SIZE / 2) / TILE_SIZE);
         final int y = (int) ((guiPiece.getRectangle().getY() + TILE_SIZE / 2) / TILE_SIZE);
-        final Position finalPosition = Position.createNumericPosition(x, y);
-        final Position pos = Position.createNumericPosition((int) guiPiece.getX(), (int) guiPiece.getY());
+        final Position finalPos = Position.createNumericPosition(x, y);
         final Position firstPos = mapGuiPieceToPiece.get(guiPiece).getPosition();
-        if (mapPositionRectangle.containsKey(finalPosition)) {
+        if (mapPositionRectangle.containsKey(finalPos)) {
             try {
-                match.nextMove(pos, finalPosition);
+                match.nextMove(firstPos, finalPos);
             } catch (IllegalArgumentException e) {
-                guiPiece.setX(firstPos.getX());
-                guiPiece.setY(firstPos.getY());
+                updatePositionOnGuiPiece(firstPos, guiPiece);
                 return;
             }
-            guiPiece.setX(finalPosition.getX());
-            guiPiece.setY(finalPosition.getY());
-            if (mapGuiPiecePosition.containsKey(finalPosition)) {
-                final GuiPiece deadPiece = mapGuiPiecePosition.get(finalPosition);
+            updatePositionOnGuiPiece(finalPos, guiPiece);
+            if (mapGuiPiecePosition.containsKey(finalPos)) {
+                final GuiPiece deadPiece = mapGuiPiecePosition.get(finalPos);
                 mapGuiPieceToPiece.remove(deadPiece);
                 pane.getChildren().remove(deadPiece.getRectangle());
             }
-            mapGuiPiecePosition.put(finalPosition, guiPiece);
+            mapGuiPiecePosition.put(finalPos, guiPiece);
             pane.getChildren().removeAll(circles);
         } else {
-            guiPiece.setX(firstPos.getX());
-            guiPiece.setY(firstPos.getY());
+            updatePositionOnGuiPiece(firstPos, guiPiece);
         }
     }
 
@@ -222,22 +218,31 @@ public class BoardController {
         circles.clear();
         final List<Position> possiblePositions = match.getPossiblePiecePositions(mapGuiPieceToPiece.get(guiPiece));
         if (mapGuiPieceToPiece.get(guiPiece).getSide().equals(match.getUserSideTurn())) {
-            possiblePositions.forEach(x -> {
-                final Circle newCircle = new Circle(TILE_SIZE / 2 + TILE_SIZE * x.getX(),
-                                        TILE_SIZE / 2 + TILE_SIZE * x.getY(),
-                                        RADIUS);
-                if (match.getPiecesList().stream().anyMatch(p -> p.getPosition().equals(x))) {
-                    newCircle.setRadius(TILE_SIZE / 2);
-                    newCircle.setStroke(Color.BLACK);
-                    newCircle.setStrokeWidth(TILE_SIZE / STROKEWIDTH);
-                    newCircle.setFill(Color.TRANSPARENT);
-                } else {
-                    newCircle.setFill(Color.BLACK);
-                }
-                newCircle.setOpacity(OPACITY);
-                circles.add(newCircle);
-            });
+            updateCirclesList(possiblePositions);
             pane.getChildren().addAll(circles);
         }
+    }
+
+    private void updateCirclesList(final List<Position> possiblePositions) {
+        possiblePositions.forEach(x -> {
+            final Circle newCircle = new Circle(TILE_SIZE / 2 + TILE_SIZE * x.getX(),
+                                    TILE_SIZE / 2 + TILE_SIZE * x.getY(),
+                                    RADIUS);
+            if (match.getPiecesList().stream().anyMatch(p -> p.getPosition().equals(x))) {
+                newCircle.setRadius(TILE_SIZE / 2);
+                newCircle.setStroke(Color.BLACK);
+                newCircle.setStrokeWidth(TILE_SIZE / STROKEWIDTH);
+                newCircle.setFill(Color.TRANSPARENT);
+            } else {
+                newCircle.setFill(Color.BLACK);
+            }
+            newCircle.setOpacity(OPACITY);
+            circles.add(newCircle);
+        });
+    }
+
+    private void updatePositionOnGuiPiece(final Position pos, final GuiPiece guiPiece) {
+        guiPiece.setX(pos.getX());
+        guiPiece.setY(pos.getY());
     }
 }
