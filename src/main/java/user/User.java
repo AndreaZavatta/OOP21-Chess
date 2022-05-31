@@ -1,5 +1,7 @@
 package user;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * user interface for UserImpl.
  *
  */
+@JsonDeserialize(as = UserImpl.class)
 public interface User extends Serializable {
     /**
      * 

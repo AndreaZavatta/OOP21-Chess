@@ -2,6 +2,7 @@ package chessboard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -11,15 +12,15 @@ import org.junit.jupiter.api.Test;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
-import piece.utils.Side;
-import piece.utils.Name;
-import piece.utils.Numbers;
-import piece.utils.Position;
-import pieces.Piece;
-import pieces.PieceFactory;
-import pieces.PieceFactoryImpl;
-import promotion.Promotion;
-import promotion.PromotionImpl;
+import model.piece.utils.Side;
+import model.piece.utils.Name;
+import model.piece.utils.Numbers;
+import model.piece.utils.Position;
+import model.pieces.Piece;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
+import model.promotion.Promotion;
+import model.promotion.PromotionImpl;
 
 class ChessboardTest {
 
@@ -109,5 +110,42 @@ class ChessboardTest {
         board.promotion(Name.QUEEN);
         assertEquals(pieceFct.createPiece(Name.QUEEN, Position.createNewPosition("a8"), Side.WHITE),
                 board.getPieceOnPosition(Position.createNewPosition("a8")).get());
+    }
+
+    @Test
+    void checkEquals1() {
+        final Chessboard chess1 = chessboardFct.createTestCB(
+                        List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.BLACK),
+                               pieceFct.createPiece(Name.KING, Position.createNewPosition("a2"), Side.WHITE)));
+        final Chessboard chess2 = chessboardFct.createTestCB(
+                        List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.BLACK),
+                                pieceFct.createPiece(Name.KING, Position.createNewPosition("a2"), Side.WHITE)));
+
+        assertEquals(chess1, chess2);
+    }
+
+    @Test
+    void checkEquals2() {
+        final Chessboard chess1 = chessboardFct.createTestCB(
+                        List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.BLACK),
+                               pieceFct.createPiece(Name.KING, Position.createNewPosition("a2"), Side.WHITE)));
+        final Chessboard chess2 = chessboardFct.createTestCB(
+                        List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.BLACK),
+                                pieceFct.createPiece(Name.KING, Position.createNewPosition("a2"), Side.WHITE),
+                                pieceFct.createPiece(Name.BISHOP, Position.createNewPosition("h2"), Side.WHITE)));
+
+        assertNotEquals(chess1, chess2);
+    }
+
+    @Test
+    void checkEquals3() {
+        final Chessboard chess1 = chessboardFct.createTestCB(
+                        List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.BLACK),
+                               pieceFct.createPiece(Name.KING, Position.createNewPosition("a2"), Side.WHITE)));
+        final Chessboard chess2 = chessboardFct.createTestCB(
+                        List.of(pieceFct.createPiece(Name.KING, Position.createNewPosition("a2"), Side.WHITE),
+                                pieceFct.createPiece(Name.KING, Position.createNewPosition("a1"), Side.BLACK)));
+
+        assertEquals(chess1, chess2);
     }
 }

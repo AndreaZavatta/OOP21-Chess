@@ -2,25 +2,30 @@ package board;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import piece.utils.Name;
-import piece.utils.Position;
-import pieces.Piece;
-import promotion.Promotion;
-import promotion.PromotionImpl;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
+import model.pieces.Piece;
+import model.promotion.Promotion;
+import model.promotion.PromotionImpl;
 
     /**
      * 
      * a normal chessboard.
      *
      */
-class ChessboardImpl implements Chessboard {
+
+    class ChessboardImpl implements Chessboard {
+        @JsonProperty("allPieces")
     private final List<Piece> piecesList;
     private final int xBorder;
     private final int yBorder;
     private final Promotion promotion;
+
 
     ChessboardImpl(final List<Piece> piecesList, final int yBorder, final int xBorder) {
         this.piecesList = piecesList;
@@ -28,6 +33,7 @@ class ChessboardImpl implements Chessboard {
         this.yBorder = yBorder;
         this.promotion = new PromotionImpl();
     }
+
 
     @Override
     public List<Piece> getAllPieces() {
@@ -84,5 +90,26 @@ class ChessboardImpl implements Chessboard {
            this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
         }
         piece.setPosition(targetPos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(piecesList);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        //TODO fix this class
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ChessboardImpl other = (ChessboardImpl) obj;
+        return piecesList.containsAll(other.piecesList) && other.piecesList.containsAll(piecesList);
     }
 }

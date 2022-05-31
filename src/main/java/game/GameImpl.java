@@ -1,16 +1,20 @@
 package game;
 
-import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import board.Chessboard;
 import board.ChessboardFactoryImpl;
 import board.EndGame;
 import board.EndGameImpl;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import pair.Pair;
-import piece.utils.Position;
-import piece.utils.Side;
-import pieces.Piece;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.pieces.Piece;
 import user.User;
 
 /**
@@ -19,14 +23,17 @@ import user.User;
  * it manage a match user vs user.
  *
  */
-public class GameImpl implements Game, Serializable {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public class GameImpl implements Game {
 
     private static final long serialVersionUID = -5387039618669465656L;
 
+
     private Pair<User, Side> winner;
+    @JsonProperty("gameFinished")
     private boolean isFinished;
-    private final transient Chessboard chessboard;
-    private final EndGame gameController;
+    private final Chessboard chessboard;
+    private final transient EndGame gameController;
     private final Turn turnManager;
 
     /**
@@ -34,6 +41,7 @@ public class GameImpl implements Game, Serializable {
      * @param player1
      * @param player2
      */
+
     public GameImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
         this.isFinished = false; 
         this.winner = null;
@@ -71,6 +79,16 @@ public class GameImpl implements Game, Serializable {
     @Override
     public boolean isGameFinished() {
         return this.isFinished;
+    }
+
+    @JsonIgnore
+    @Override
+    public List<Piece> getPiecesList() {
+        return this.chessboard.getAllPieces();
+    }
+
+    public List<Position> getPossiblePiecePositions(final Piece piece) {
+        return Collections.unmodifiableList(chessboard.getAllPosition(piece));
     }
 
 }

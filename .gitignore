@@ -5,7 +5,7 @@
 build
 
 bin/
-
+database.txt
 .idea
 
 **/.DS_Store

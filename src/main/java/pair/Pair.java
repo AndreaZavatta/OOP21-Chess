@@ -1,6 +1,5 @@
 package pair;
 
-import java.io.Serializable;
 
 /**
  * 
@@ -9,7 +8,7 @@ import java.io.Serializable;
  * @param <X>
  * @param <Y>
  */
-public class Pair<X extends Serializable, Y extends Serializable> implements Serializable {
+public class Pair<X, Y> {
 
     private static final long serialVersionUID = 8065526709210920611L;
 
@@ -21,6 +20,7 @@ public class Pair<X extends Serializable, Y extends Serializable> implements Ser
      * @param x
      * @param y
      */
+
     public Pair(final X x, final Y y) {
         this.x = x;
         this.y = y;

@@ -1,27 +1,14 @@
 package io;
-import java.io.Serializable;
-import java.util.Objects;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import static io.JsonUtils.getMapper;
 /**
  * 
  *
- * @param <T>
  */
-public class JsonSerializerImpl<T extends Serializable> implements JsonSerializer {
-    private final Gson gson = new Gson();
-    private final Class<T> className;
-    /**
-     * 
-     * @param className the name of the class to be serialized
-     */
-    public JsonSerializerImpl(final Class<T> className) {
-            this.className = Objects.requireNonNull(className);
-    }
+public class JsonSerializerImpl implements JsonSerializer {
     @Override
-    public String serialize(final Object obj) {
-            if (!(obj.getClass().equals(className))) {
-                    throw new IllegalArgumentException();
-            }
-            return gson.toJson(obj);
+    public String serialize(final Object obj) throws JsonProcessingException {
+        return getMapper().writeValueAsString(obj);
     }
 }

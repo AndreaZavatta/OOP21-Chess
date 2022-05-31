@@ -3,12 +3,12 @@ package pieces.test;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import org.junit.jupiter.api.Test;
-import piece.utils.Name;
-import piece.utils.Position;
-import piece.utils.Side;
-import pieces.Piece;
-import pieces.PieceFactory;
-import pieces.PieceFactoryImpl;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.pieces.Piece;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;

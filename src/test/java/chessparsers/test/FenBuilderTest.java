@@ -1,9 +1,10 @@
 package chessparsers.test;
 
+import static model.piece.utils.Name.*;
+import static model.piece.utils.Side.BLACK;
+import static model.piece.utils.Side.WHITE;
 import static org.junit.jupiter.api.Assertions.*;
-import static piece.utils.Name.*;
-import static piece.utils.Side.*;
-import static piece.utils.Position.createNewPosition;
+import static model.piece.utils.Position.createNewPosition;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -13,9 +14,9 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import chess.parsers.Fen;
 import chess.parsers.FenBuilder;
-import pieces.Piece;
-import pieces.PieceFactory;
-import pieces.PieceFactoryImpl;
+import model.pieces.Piece;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
 
 class FenBuilderTest {
 

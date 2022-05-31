@@ -1,10 +1,12 @@
 package game;
 
+import java.util.List;
 import java.util.Optional;
 
 import pair.Pair;
-import piece.utils.Position;
-import piece.utils.Side;
+import model.piece.utils.Position;
+import model.piece.utils.Side;
+import model.pieces.Piece;
 import user.User;
 
 /**
@@ -32,4 +34,17 @@ public interface Game {
      * @return if the game is finished
      */
     boolean isGameFinished();
+
+    /**
+     * 
+     * @return list of pieces
+     */
+    List<Piece> getPiecesList();
+
+    /**
+     * 
+     * @param piece
+     * @return list of possible position of a piece
+     */
+    List<Position> getPossiblePiecePositions(Piece piece);
 }

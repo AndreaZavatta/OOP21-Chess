@@ -1,16 +1,16 @@
 package io;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 /**
  * an interface to deserialize in a generic object.
  *
- * @param <T>
  */
-public interface JsonDeserializer<T extends Serializable> {
+public interface JsonDeserializer {
     /**
      * this method is used to convert a string formatted in json to a generic object.
      * @param str the string formatted in json to convert
      * @return T
      */
-        T deserialize(String str);
+        Object deserialize(String str) throws JsonProcessingException;
 }

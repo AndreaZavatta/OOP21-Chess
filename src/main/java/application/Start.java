@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 
 public final class Start extends Application {
 
+    /**
+     * 
+     */
+    public static final String SEPARATOR = System.getProperty("file.separator");
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 400;
 

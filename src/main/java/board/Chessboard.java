@@ -3,14 +3,16 @@ package board;
 import java.util.List;
 import java.util.Optional;
 
-import piece.utils.Name;
-import piece.utils.Position;
-import pieces.Piece;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import model.piece.utils.Name;
+import model.piece.utils.Position;
+import model.pieces.Piece;
 
     /**
      * Interface for a simple chessboard. 
      *
      */
+    @JsonDeserialize(as = ChessboardImpl.class)
 public interface Chessboard {
 
     /**

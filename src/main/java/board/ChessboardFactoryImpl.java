@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import piece.utils.Side;
-import piece.utils.Name;
-import piece.utils.Numbers;
-import piece.utils.Position;
-import pieces.Piece;
-import pieces.PieceFactory;
-import pieces.PieceFactoryImpl;
+import model.piece.utils.Side;
+import model.piece.utils.Name;
+import model.piece.utils.Numbers;
+import model.piece.utils.Position;
+import model.pieces.Piece;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
 
 /**
      * 

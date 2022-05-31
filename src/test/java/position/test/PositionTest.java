@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import piece.utils.Position;
+import model.piece.utils.Position;
 
 class PositionTest {
 

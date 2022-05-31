@@ -1,1 +1,1 @@
-package board;import pieces.Piece;/** * * This interface models and handles all Castling controls. * */public interface Castling {    boolean canCastle(Chessboard chessboard, Piece king, int xPos);}
+package board;import model.pieces.Piece;/** * * This interface models and handles all Castling controls. * */public interface Castling {    boolean canCastle(Chessboard chessboard, Piece king, int xPos);}

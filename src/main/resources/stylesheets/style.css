@@ -37,6 +37,10 @@
     -fx-pref-width: 40;
 }
 
+.changePageButton:hover {
+    -fx-opacity: 0.5;
+}
+
 .chessButton  {
     -fx-opacity: 1;
     -fx-background-color: gold;
@@ -52,8 +56,16 @@
     -fx-pref-width: 150;    
 }
 
-.changePageButton:hover {
-    -fx-opacity: 0.5;
+.backToChessboard {
+    -fx-background-color: rgb(255, 170, 0);
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
+}
+
+.boardPanes {
+    -fx-background-color: "#2F4F4F";
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-insets: -0.5px;
 }
 
 .startGame {
@@ -139,8 +151,4 @@
 .menu-bar .text {
     -fx-fill: white
 }
-
-
-
-
 

@@ -1,8 +1,7 @@
 package chess.parsers;
 
 import board.Chessboard;
-import piece.utils.Position;
-import piece.utils.Side;
+import model.piece.utils.Side;
 /**
  * an Interface for represent a 
  * position reached during a game of chess.

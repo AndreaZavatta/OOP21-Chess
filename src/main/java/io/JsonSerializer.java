@@ -1,5 +1,7 @@
 package io;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 /**
  * an interface to serialize an object.
  *
@@ -10,5 +12,5 @@ public interface JsonSerializer {
      * @param obj the object that needs to be converted in json string
      * @return String
      */
-        String serialize(Object obj);
+        String serialize(Object obj) throws JsonProcessingException;
 }
