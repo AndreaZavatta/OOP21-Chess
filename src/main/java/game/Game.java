@@ -40,4 +40,11 @@ public interface Game {
      * @return list of pieces
      */
     List<Piece> getPiecesList();
+
+    /**
+     * 
+     * @param piece
+     * @return list of possible position of a piece
+     */
+    List<Position> getPossiblePiecePositions(Piece piece);
 }
