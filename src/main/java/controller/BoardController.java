@@ -221,21 +221,23 @@ public class BoardController {
         pane.getChildren().removeAll(circles);
         circles.clear();
         final List<Position> possiblePositions = match.getPossiblePiecePositions(mapGuiPieceToPiece.get(guiPiece));
-        possiblePositions.forEach(x -> {
-            final Circle newCircle = new Circle(TILE_SIZE / 2 + TILE_SIZE * x.getX(),
-                                    TILE_SIZE / 2 + TILE_SIZE * x.getY(),
-                                    RADIUS);
-            if (match.getPiecesList().stream().anyMatch(p -> p.getPosition().equals(x))) {
-                newCircle.setRadius(TILE_SIZE / 2);
-                newCircle.setStroke(Color.BLACK);
-                newCircle.setStrokeWidth(TILE_SIZE / STROKEWIDTH);
-                newCircle.setFill(Color.TRANSPARENT);
-            } else {
-                newCircle.setFill(Color.BLACK);
-            }
-            newCircle.setOpacity(OPACITY);
-            circles.add(newCircle);
-        });
-        pane.getChildren().addAll(circles);
+        if (mapGuiPieceToPiece.get(guiPiece).getSide().equals(match.getUserSideTurn())) {
+            possiblePositions.forEach(x -> {
+                final Circle newCircle = new Circle(TILE_SIZE / 2 + TILE_SIZE * x.getX(),
+                                        TILE_SIZE / 2 + TILE_SIZE * x.getY(),
+                                        RADIUS);
+                if (match.getPiecesList().stream().anyMatch(p -> p.getPosition().equals(x))) {
+                    newCircle.setRadius(TILE_SIZE / 2);
+                    newCircle.setStroke(Color.BLACK);
+                    newCircle.setStrokeWidth(TILE_SIZE / STROKEWIDTH);
+                    newCircle.setFill(Color.TRANSPARENT);
+                } else {
+                    newCircle.setFill(Color.BLACK);
+                }
+                newCircle.setOpacity(OPACITY);
+                circles.add(newCircle);
+            });
+            pane.getChildren().addAll(circles);
+        }
     }
 }
