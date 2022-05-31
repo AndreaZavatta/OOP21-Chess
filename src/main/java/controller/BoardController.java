@@ -194,6 +194,7 @@ public class BoardController {
                 pane.getChildren().remove(deadPiece.getRectangle());
             }
             mapGuiPiecePosition.put(finalPos, guiPiece);
+            mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
         } else {
             updatePositionOnGuiPiece(firstPos, guiPiece);
