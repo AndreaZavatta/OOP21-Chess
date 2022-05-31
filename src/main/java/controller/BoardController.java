@@ -55,13 +55,11 @@ public class BoardController {
     private ImageView whitePlayerImage = new ImageView();
     private Game match;
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
+    private final Map<Position, GuiPiece> mapGuiPiecePosition = new HashMap<>();
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
-    private double lastX;
-    private double lastY;
 
     /**
      * The tile size.
@@ -140,7 +138,7 @@ public class BoardController {
         guiPiece.setX(piecePos.getX());
         guiPiece.setY(piecePos.getY());
 
-        mapGuiPiecePosition.put(guiPiece, piecePos);
+        mapGuiPiecePosition.put(piecePos, guiPiece);
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
@@ -185,16 +183,16 @@ public class BoardController {
         final Position firstPos = mapGuiPieceToPiece.get(guiPiece).getPosition();
         if (mapPositionRectangle.containsKey(finalPosition)) {
             try {
+                
                 match.nextMove(pos, finalPosition);
             } catch (IllegalArgumentException e) {
                 guiPiece.setX(firstPos.getX());
                 guiPiece.setY(firstPos.getY());
-                //pane.getChildren().remove(circle);
                 return;
             }
             guiPiece.setX(finalPosition.getX());
             guiPiece.setY(finalPosition.getY());
-            mapGuiPiecePosition.put(guiPiece, finalPosition);
+            mapGuiPiecePosition.put(finalPosition, guiPiece);
             pane.getChildren().removeAll(circles);
         } else {
             guiPiece.setX(firstPos.getX());
