@@ -47,4 +47,10 @@ public interface Game {
      * @return list of possible position of a piece
      */
     List<Position> getPossiblePiecePositions(Piece piece);
+
+    /**
+     * 
+     * @return user side turn
+     */
+    Side getUserSideTurn();
 }

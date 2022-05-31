@@ -87,8 +87,14 @@ public class GameImpl implements Game {
         return this.chessboard.getAllPieces();
     }
 
+    @Override
     public List<Position> getPossiblePiecePositions(final Piece piece) {
         return Collections.unmodifiableList(chessboard.getAllPosition(piece));
+    }
+
+    @Override
+    public Side getUserSideTurn() {
+        return turnManager.getUserTurn();
     }
 
 }
