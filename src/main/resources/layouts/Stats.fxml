@@ -48,7 +48,7 @@
       </VBox>
    </top>
    <center>
-      <TextArea id="txtAreaStats" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="txtAreaStats" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
       <HBox BorderPane.alignment="CENTER">
