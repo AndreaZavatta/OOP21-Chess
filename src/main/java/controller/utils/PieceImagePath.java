@@ -39,7 +39,7 @@ public enum PieceImagePath {
      */
     ROOK("blackRook.png", "whiteRook.png");
 
-    private static final String BASIC_PATH = Start.SEPARATOR + "pieces" + Start.SEPARATOR + "images" + Start.SEPARATOR;
+    private static final String BASIC_PATH = "/pieces/images/";
 
     private final String black;
     private final String white;

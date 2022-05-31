@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserHandlerController">
+<Pane minHeight="350.0" minWidth="550.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.UserHandlerController">
    <children>
-      <Button layoutX="444.0" layoutY="333.0" mnemonicParsing="false" onAction="#startGame" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Start game" />
+      <Button layoutX="427.0" layoutY="300.0" mnemonicParsing="false" onAction="#startGame" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Start game" />
       <TextField fx:id="userName1" layoutX="241.0" layoutY="111.0" />
       <TextField fx:id="userName2" layoutX="241.0" layoutY="168.0" />
-      <Button layoutX="61.0" layoutY="333.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Back" />
+      <Button layoutX="53.0" layoutY="300.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Back" />
       <Text fill="WHITE" layoutX="454.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHITE" />
       <Text layoutX="454.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BLACK" />
       <Button fx:id="chooseMaleUser1" layoutX="142.0" layoutY="103.0" mnemonicParsing="false" onAction="#setImageMaleUser1" styleClass="imageButton" stylesheets="@../stylesheets/style.css">

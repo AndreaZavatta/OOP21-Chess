@@ -1,5 +1,6 @@
 package game;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,6 +85,10 @@ public class GameImpl implements Game {
     @Override
     public List<Piece> getPiecesList() {
         return this.chessboard.getAllPieces();
+    }
+
+    public List<Position> getPossiblePiecePositions(final Piece piece) {
+        return Collections.unmodifiableList(chessboard.getAllPosition(piece));
     }
 
 }
