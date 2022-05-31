@@ -5,15 +5,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 /**
  * 
  * 
- * @param <T>
+
  */
-public class JsonFileReaderImpl<T> implements JsonFileReader<T> {
-    private final JsonDeserializer<? extends T> jDeserializer;
+public class JsonFileReaderImpl implements JsonFileReader {
+    private final JsonDeserializer jDeserializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
     private final String cd =  System.getProperty("user.dir");
@@ -25,7 +24,7 @@ public class JsonFileReaderImpl<T> implements JsonFileReader<T> {
      */
     public JsonFileReaderImpl(final String fileName, final Class<?> className) {
             this.fileName = fileName;
-            jDeserializer = new JsonDeserializerImpl<>(className);
+            jDeserializer = new JsonDeserializerImpl(className);
     }
 
 

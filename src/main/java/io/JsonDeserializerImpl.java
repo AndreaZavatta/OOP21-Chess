@@ -8,9 +8,9 @@ import static io.JsonUtils.getMapper;
 /**
  * 
  *
- * @param <T>
+
  */
-public class JsonDeserializerImpl<T> implements JsonDeserializer<T> {
+public class JsonDeserializerImpl implements JsonDeserializer {
     private final Class<?> className;
     /**
      * 

@@ -5,9 +5,8 @@ import java.io.IOException;
 /**
  * 
  * a class to save an object in a file.
- * @param <T>
  */
-public interface JsonFileWriter<T> {
+public interface JsonFileWriter {
 
     /**
      * a method for writing to a file.
