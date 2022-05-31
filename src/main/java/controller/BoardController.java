@@ -183,7 +183,6 @@ public class BoardController {
         final Position firstPos = mapGuiPieceToPiece.get(guiPiece).getPosition();
         if (mapPositionRectangle.containsKey(finalPosition)) {
             try {
-                
                 match.nextMove(pos, finalPosition);
             } catch (IllegalArgumentException e) {
                 guiPiece.setX(firstPos.getX());
@@ -192,6 +191,11 @@ public class BoardController {
             }
             guiPiece.setX(finalPosition.getX());
             guiPiece.setY(finalPosition.getY());
+            if (mapGuiPiecePosition.containsKey(finalPosition)) {
+                final GuiPiece deadPiece = mapGuiPiecePosition.get(finalPosition);
+                mapGuiPieceToPiece.remove(deadPiece);
+                pane.getChildren().remove(deadPiece.getRectangle());
+            }
             mapGuiPiecePosition.put(finalPosition, guiPiece);
             pane.getChildren().removeAll(circles);
         } else {
