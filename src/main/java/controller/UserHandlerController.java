@@ -136,7 +136,7 @@ public class UserHandlerController {
     }
 
     private void update(final Button enableBtn, final Button disableBtn) {
-        enableBtn.setDisable(false);
-        disableBtn.setDisable(true);
+        enableBtn.setStyle("-fx-background-color: red");
+        disableBtn.setStyle("-fx-background-color: brown");
     }
 }
