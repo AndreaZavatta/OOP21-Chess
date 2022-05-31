@@ -20,7 +20,7 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Help" >
+                <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
                   </items>
@@ -31,7 +31,6 @@
                <children>
                   <TextField promptText="name" />
                   <TextField layoutX="10.0" layoutY="10.0" promptText="surname" />
-                  <Region HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#showStats" text="show stats" />
                </children>
                <VBox.margin>
@@ -45,17 +44,19 @@
       <TextArea fx:id="txtAreaStats" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox styleClass="background" stylesheets="@../stylesheets/style.css" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
          <children>
-            <Button mnemonicParsing="false" text="Back" />
+            <Button mnemonicParsing="false" text="show details" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button layoutX="12.0" layoutY="12.0" mnemonicParsing="false" text="Back" />
          </children>
       </HBox>
    </bottom>
    <left>
-      <TableView prefHeight="200.0" prefWidth="240.0" BorderPane.alignment="CENTER" stylesheets="@../stylesheets/style.css" >
+      <TableView prefHeight="200.0" prefWidth="240.0" stylesheets="@../stylesheets/style.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />

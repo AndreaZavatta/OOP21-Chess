@@ -2,6 +2,31 @@
     -fx-background-color: linear-gradient(to bottom, red, crimson);
 }
 
+.text-field{
+    -fx-background-color: rgb(220, 199, 202);
+    -fx-prompt-text-fill: #5e5e5e; // or any color you want
+}
+.text-field .content{
+    -fx-background-color: text-area-background ;
+}
+
+.text-area {
+    text-area-background: rgb(220, 199, 202);
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}
+.button {
+    -fx-background-color: transparent;
+}
+.button:hover {
+    -fx-background-color: #981100;
+}
+.button .text{
+    -fx-fill: white
+}
+
 .changePageButton {
     -fx-background-color: coral;
     -fx-opacity: 0;
@@ -105,5 +130,14 @@
 .table-row-cell .text {
     -fx-fill: white
 }
+.menu-bar{
+    -fx-background-color: linear-gradient(to bottom, #590000, #ff0000);
+}
+.menu-bar .text {
+    -fx-fill: white
+}
+
+
+
 
 
