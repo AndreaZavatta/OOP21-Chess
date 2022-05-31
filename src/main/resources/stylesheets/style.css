@@ -1,17 +1,20 @@
 .background {
     -fx-background-color: linear-gradient(to bottom, red, crimson);
 }
+.menu-bar .menu:hover{
+    -fx-background-color: #280000
+}
 
 .text-field{
-    -fx-background-color: rgb(220, 199, 202);
-    -fx-prompt-text-fill: #5e5e5e; // or any color you want
+    -fx-background-color: rgb(246, 185, 185);
+    -fx-prompt-text-fill: #5e5e5e;
 }
 .text-field .content{
     -fx-background-color: text-area-background ;
 }
 
 .text-area {
-    text-area-background: rgb(220, 199, 202);
+    text-area-background: rgb(246, 185, 185);
 }
 
 .text-area .content {
