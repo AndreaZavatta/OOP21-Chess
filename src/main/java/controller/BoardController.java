@@ -193,9 +193,16 @@ public class BoardController {
                 mapGuiPieceToPiece.remove(deadPiece);
                 pane.getChildren().remove(deadPiece.getRectangle());
             }
+            if (match.isInCheck()) {
+                //TODO
+                blackPlayer.setText("SCACCO");
+            }
             mapGuiPiecePosition.put(finalPos, guiPiece);
             mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
+            if (match.isGameFinished()) {
+                System.out.println("Game Over");
+            }
         } else {
             updatePositionOnGuiPiece(firstPos, guiPiece);
         }
