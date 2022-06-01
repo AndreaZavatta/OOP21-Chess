@@ -41,7 +41,7 @@ public class EndGameImpl implements EndGame {
         final List<Piece> attackedColor = getAttackedSide(side, chessboard);
 
         for (final Piece piece : attackedColor) {
-            if (cannotShield(chessboard, controls, piece)) {
+            if (!cannotShield(chessboard, controls, piece)) {
                 return false;
             }
         }
@@ -50,7 +50,6 @@ public class EndGameImpl implements EndGame {
 
     @Override
     public boolean isDrawByInsufficientMaterial(final Chessboard chessboard) {
-
         return checkIfRemainingPiecesCauseStalemate(BLACK, chessboard) && checkIfRemainingPiecesCauseStalemate(WHITE, chessboard);
     }
 
