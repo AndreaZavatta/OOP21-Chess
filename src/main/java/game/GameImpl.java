@@ -28,7 +28,6 @@ public class GameImpl implements Game {
 
     private static final long serialVersionUID = -5387039618669465656L;
 
-
     private Pair<User, Side> winner;
     @JsonProperty("gameFinished")
     private boolean isFinished;
@@ -97,4 +96,9 @@ public class GameImpl implements Game {
         return turnManager.getUserTurn();
     }
 
+    @Override
+    public boolean isInCheck() {
+        //TODO IS WRONG NOW
+        return gameController.isCheckmate(turnManager.getUserTurn(), chessboard);
+    }
 }

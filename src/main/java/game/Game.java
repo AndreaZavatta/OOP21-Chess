@@ -53,4 +53,10 @@ public interface Game {
      * @return user side turn
      */
     Side getUserSideTurn();
+
+    /**
+     * 
+     * @return true if someone is in check
+     */
+    boolean isInCheck();
 }
