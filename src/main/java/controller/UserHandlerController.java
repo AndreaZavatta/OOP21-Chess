@@ -84,7 +84,8 @@ public class UserHandlerController {
         final String namePlayer2 = this.getUserName(userName2);
         if (namePlayer1.isEmpty() || namePlayer2.isEmpty()) {
             alert.setAlertType(AlertType.ERROR);
-            alert.setContentText("Complete all field");
+            alert.setContentText("");
+            alert.setHeaderText("Complete all field");
             alert.show();
             return;
         }
