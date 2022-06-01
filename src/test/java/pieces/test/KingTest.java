@@ -31,4 +31,20 @@ class KingTest {
         king.setPosition(king.getPosition());
         assertFalse(king.getAllPossiblePositions(board.createTestCB(list)).contains(Position.createNewPosition("g1")));
     }
+
+    @Test
+    void testNormalMoves() {
+        final List<Piece> list = new ArrayList<>();
+        final Piece king = factory.createPiece(Name.KING, Position.createNewPosition("e4"), Side.WHITE);
+        final List<Position> positionsCanGo = List.of(Position.createNewPosition("f4"),
+                Position.createNewPosition("d4"),
+                Position.createNewPosition("e3"),
+                Position.createNewPosition("e5"),
+                Position.createNewPosition("f3"),
+                Position.createNewPosition("d5"),
+                Position.createNewPosition("f5"),
+                Position.createNewPosition("d3"));
+        list.add(king);
+        assertEquals(positionsCanGo, king.getAllPossiblePositions(board.createTestCB(list)));
+    }
 }
