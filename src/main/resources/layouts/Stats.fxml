@@ -46,9 +46,9 @@
    <left>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="370.0" stylesheets="@../stylesheets/style.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="125.0" text="player 1" />
-            <TableColumn prefWidth="125.0" text="player 2" />
-            <TableColumn prefWidth="100.0" text="data" />
+          <TableColumn prefWidth="125.0" text="player 1"  fx:id="firstPlayer"/>
+            <TableColumn prefWidth="125.0" text="player 2" fx:id="secondPlayer"/>
+            <TableColumn prefWidth="100.0" text="data" fx:id="date"/>
         </columns>
       </TableView>
    </left>
