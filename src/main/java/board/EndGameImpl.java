@@ -64,10 +64,10 @@ public class EndGameImpl implements EndGame {
         return alive.stream().anyMatch(x -> x.getName() == KNIGHT || x.getName() == BISHOP);
     }
 
-    @Override
+/*    @Override
     public boolean isDrawByRepetition(final Chessboard chessboard) {
         return true;
-    }
+    }*/
 
     @Override
     public boolean isDraw(final Side side, final Chessboard chessboard) {

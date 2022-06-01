@@ -36,8 +36,8 @@ public interface EndGame {
      * 
      * @param chessboard
      * @return true if the match ends in Stalemate due to moves repetition.
-     */
-    boolean isDrawByRepetition(Chessboard chessboard);
+     *//*
+    boolean isDrawByRepetition(Chessboard chessboard);*/
 
     /**
      * @param side
