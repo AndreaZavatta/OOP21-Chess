@@ -71,7 +71,7 @@ public class EndGameImpl implements EndGame {
 
     @Override
     public boolean isDraw(final Side side, final Chessboard chessboard) {
-        return isDrawByInsufficientMaterial(chessboard) || isDrawByRepetition(chessboard) || isStalemate(side, chessboard);
+        return isDrawByInsufficientMaterial(chessboard) ||/* isDrawByRepetition(chessboard) */ isStalemate(side, chessboard);
     }
 
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
