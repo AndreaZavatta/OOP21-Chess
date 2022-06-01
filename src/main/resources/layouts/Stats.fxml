@@ -13,27 +13,21 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsController">
    <top>
       <VBox BorderPane.alignment="CENTER">
-         <children>
-            <MenuBar>
-              <menus>
-                <Menu mnemonicParsing="false" text="Help" />
-              </menus>
-            </MenuBar>
-            <HBox spacing="10.0">
-               <children>
-                  <TextField fx:id="txtFieldName" promptText="name" />
-                  <TextField fx:id="txtFieldSurname" layoutX="10.0" layoutY="10.0" promptText="surname" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Button id="statsButton" mnemonicParsing="false" onAction="#showStats" text="show stats" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </VBox.margin>
-            </HBox>
-         </children>
+         <MenuBar>
+            <Menu mnemonicParsing="false" text="Help" />
+         </MenuBar>
+         <HBox spacing="10.0">
+            <VBox.margin>
+               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </VBox.margin>
+            <TextField fx:id="txtFieldName" promptText="name" />
+            <TextField fx:id="txtFieldSurname" layoutX="10.0" layoutY="10.0" promptText="surname" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button id="statsButton" mnemonicParsing="false" onAction="#showStats" text="show stats" />
+         </HBox>
       </VBox>
    </top>
    <center>
@@ -44,18 +38,17 @@
          <padding>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
-         <children>
-            <Button id="statsButton" mnemonicParsing="false" text="show details" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button id="statsButton" onAction="#backToMenu" layoutX="12.0" layoutY="12.0" mnemonicParsing="false" text="Back" />
-         </children>
+         <Button id="statsButton" mnemonicParsing="false" text="show details" />
+         <Region HBox.hgrow="ALWAYS" />
+         <Button id="statsButton" layoutX="12.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMenu" text="Back" />
       </HBox>
    </bottom>
    <left>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="370.0" stylesheets="@../stylesheets/style.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="175.0" text="player 1" />
-            <TableColumn prefWidth="175.0" text="player 2" />
+          <TableColumn prefWidth="125.0" text="player 1" />
+            <TableColumn prefWidth="125.0" text="player 2" />
+            <TableColumn prefWidth="100.0" text="data" />
         </columns>
       </TableView>
    </left>
