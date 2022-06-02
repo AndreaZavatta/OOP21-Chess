@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import board.Chessboard;
 import board.ChessboardFactoryImpl;
+import board.ControlCheck;
+import board.ControlCheckImpl;
 import board.EndGame;
 import board.EndGameImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -98,7 +100,12 @@ public class GameImpl implements Game {
 
     @Override
     public boolean isInCheck() {
-        //TODO IS WRONG NOW
-        return gameController.isCheckmate(turnManager.getUserTurn(), chessboard);
+        final ControlCheck control = new ControlCheckImpl();
+        return control.isInCheck(chessboard, getUserSideTurn());
+    }
+
+    @Override
+    public boolean isCastling(final Piece piece, final Position targetPos) {
+        return chessboard.isCastling(piece, targetPos);
     }
 }
