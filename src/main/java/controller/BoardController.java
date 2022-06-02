@@ -195,8 +195,11 @@ public class BoardController {
             }
             if (match.isInCheck()) {
                 //TODO
-                blackPlayer.setText("SCACCO");
+                System.out.println("scacco");
             }
+//            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
+//                
+//            }
             mapGuiPiecePosition.put(finalPos, guiPiece);
             mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
