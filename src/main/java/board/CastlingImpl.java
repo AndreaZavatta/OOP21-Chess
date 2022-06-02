@@ -51,6 +51,7 @@ public class CastlingImpl implements Castling {
     private boolean isPositionUnderAttack(final Chessboard chessboard, final Position position, final Side attackedSide) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getSide().equals(attackedSide))
+                .filter(x -> !x.getName().equals(Name.KING))
                 .anyMatch(p -> p.getAllPossiblePositions(chessboard).contains(position));
     }
 
