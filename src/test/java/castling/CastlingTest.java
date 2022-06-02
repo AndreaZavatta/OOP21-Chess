@@ -23,7 +23,6 @@ public class CastlingTest {
         final Chessboard board = this.board.createNormalCB();
         final Piece whiteKing = factory.createPiece(Name.KING, Position.createNewPosition("e1"), Side.WHITE);
 
-
         board.move(Position.createNewPosition("e2"), Position.createNewPosition("e3"));
         board.move(Position.createNewPosition("e7"), Position.createNewPosition("e6"));
         board.move(Position.createNewPosition("g1"), Position.createNewPosition("h3"));
