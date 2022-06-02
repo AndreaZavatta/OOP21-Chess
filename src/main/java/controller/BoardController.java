@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import board.ControlCheck;
+import board.ControlCheckImpl;
 import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import model.piece.utils.Name;
 import pair.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
@@ -60,7 +63,6 @@ public class BoardController {
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
-
     /**
      * The tile size.
      */
@@ -157,9 +159,9 @@ public class BoardController {
                         TILE_SIZE, TILE_SIZE);
                 mapPositionRectangle.put(Position.createNumericPosition(i, j), chessBoardRectangle);
                 if (count % 2 == 0) {
-                    chessBoardRectangle.setFill(Color.valueOf("#feb"));
-                } else {
                     chessBoardRectangle.setFill(Color.valueOf("#582"));
+                } else {
+                    chessBoardRectangle.setFill(Color.valueOf("#feb"));
                 }
                 count++;
                 chessBoardRectangle.setStroke(Color.BLACK);
@@ -194,7 +196,7 @@ public class BoardController {
                 pane.getChildren().remove(deadPiece.getRectangle());
             }
             if (match.isInCheck()) {
-                //TODO
+                setEffect(Color.RED, getKingUnderCheck().getRectangle());
                 System.out.println("scacco");
             }
 //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
@@ -221,7 +223,9 @@ public class BoardController {
     }
 
     private void removeEffect(final Rectangle rectangle) {
-        rectangle.setEffect(null);
+        //if (!match.isInCheck() && !rectangle.equals(getKingUnderCheck().getRectangle())) {
+            rectangle.setEffect(null);
+        //}
     }
 
     private void showPossiblePositions(final GuiPiece guiPiece) {
@@ -255,5 +259,16 @@ public class BoardController {
     private void updatePositionOnGuiPiece(final Position pos, final GuiPiece guiPiece) {
         guiPiece.setX(pos.getX());
         guiPiece.setY(pos.getY());
+    }
+
+    private GuiPiece getKingUnderCheck() {
+        var king = match.getPiecesList().stream()
+                .filter(a -> a.getName().equals(Name.KING))
+                .filter(a -> a.getSide().equals(match.getUserSideTurn()))
+                .findFirst().get();
+        var pos = king.getPosition();
+        return mapGuiPieceToPiece.keySet().stream()
+                .filter(b -> b.getPosition().equals(pos))
+                .findFirst().get();
     }
 }
