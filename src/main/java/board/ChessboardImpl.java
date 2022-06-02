@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import model.piece.utils.Name;
+import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 import model.promotion.Promotion;
@@ -89,6 +90,15 @@ import model.promotion.PromotionImpl;
         if (this.canKill(targetPos)) {
            this.piecesList.remove(this.getPieceOnPosition(targetPos).get()); 
         }
+        if (isCastling(piece, targetPos)) {
+            if (targetPos.getX() - piece.getPosition().getX() < 0) {
+                final Piece rookLeft = getPieceOnPosition(Position.createNumericPosition(Numbers.ZERO, piece.getPosition().getY())).get();
+                rookLeft.setPosition(Position.createNumericPosition(targetPos.getX() + 1, targetPos.getY()));
+            } else if (targetPos.getX() - piece.getPosition().getX() > 0) {
+                final Piece rookRight = getPieceOnPosition(Position.createNumericPosition(Numbers.SEVEN, piece.getPosition().getY())).get();
+                rookRight.setPosition(Position.createNumericPosition(targetPos.getX() - 1, yBorder));
+            }
+        }
         piece.setPosition(targetPos);
     }
 
@@ -111,5 +121,10 @@ import model.promotion.PromotionImpl;
         }
         final ChessboardImpl other = (ChessboardImpl) obj;
         return piecesList.containsAll(other.piecesList) && other.piecesList.containsAll(piecesList);
+    }
+
+    @Override
+    public boolean isCastling(final Piece piece, final Position targetPos) {
+        return piece.getName().equals(Name.KING) && (targetPos.getX() == piece.getPosition().getX() + 2 || targetPos.getX() == piece.getPosition().getX() - 2);
     }
 }
