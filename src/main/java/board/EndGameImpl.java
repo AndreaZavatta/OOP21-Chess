@@ -41,7 +41,7 @@ public class EndGameImpl implements EndGame {
         final List<Piece> attackedColor = getAttackedSide(side, chessboard);
 
         for (final Piece piece : attackedColor) {
-            if (cannotShield(chessboard, controls, piece)) {
+            if (!cannotShield(chessboard, controls, piece)) {
                 return false;
             }
         }
@@ -50,7 +50,6 @@ public class EndGameImpl implements EndGame {
 
     @Override
     public boolean isDrawByInsufficientMaterial(final Chessboard chessboard) {
-
         return checkIfRemainingPiecesCauseStalemate(BLACK, chessboard) && checkIfRemainingPiecesCauseStalemate(WHITE, chessboard);
     }
 
@@ -64,14 +63,14 @@ public class EndGameImpl implements EndGame {
         return alive.stream().anyMatch(x -> x.getName() == KNIGHT || x.getName() == BISHOP);
     }
 
-    @Override
+/*    @Override
     public boolean isDrawByRepetition(final Chessboard chessboard) {
         return true;
-    }
+    }*/
 
     @Override
     public boolean isDraw(final Side side, final Chessboard chessboard) {
-        return isDrawByInsufficientMaterial(chessboard) || isDrawByRepetition(chessboard) || isStalemate(side, chessboard);
+        return isDrawByInsufficientMaterial(chessboard) /*|| isDrawByRepetition(chessboard)*/ || isStalemate(side, chessboard);
     }
 
     private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
