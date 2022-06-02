@@ -61,6 +61,7 @@ public class Pawn extends AbstractPiece {
         if (ControlsUtility.checkPositionOnBoard(p)
                 && !ControlsUtility.checkPieceOnPosition(p, board)) {
             list.add(p);
+            dontGo = false;
         } else {
             dontGo = true;
         }

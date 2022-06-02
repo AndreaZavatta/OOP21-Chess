@@ -47,4 +47,24 @@ public interface Game {
      * @return list of possible position of a piece
      */
     List<Position> getPossiblePiecePositions(Piece piece);
+
+    /**
+     * 
+     * @return user side turn
+     */
+    Side getUserSideTurn();
+
+    /**
+     * 
+     * @return true if someone is in check
+     */
+    boolean isInCheck();
+
+    /**
+     * 
+     * @param piece
+     * @param targetPos
+     * @return true if king is castling
+     */
+    boolean isCastling(Piece piece, Position targetPos);
 }

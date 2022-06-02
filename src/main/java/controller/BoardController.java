@@ -55,13 +55,11 @@ public class BoardController {
     private ImageView whitePlayerImage = new ImageView();
     private Game match;
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<GuiPiece, Position> mapGuiPiecePosition = new HashMap<>();
+    private final Map<Position, GuiPiece> mapGuiPiecePosition = new HashMap<>();
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
-    private double lastX;
-    private double lastY;
 
     /**
      * The tile size.
@@ -140,7 +138,7 @@ public class BoardController {
         guiPiece.setX(piecePos.getX());
         guiPiece.setY(piecePos.getY());
 
-        mapGuiPiecePosition.put(guiPiece, piecePos);
+        mapGuiPiecePosition.put(piecePos, guiPiece);
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
@@ -180,25 +178,36 @@ public class BoardController {
     private void released(final GuiPiece guiPiece) {
         final int x = (int) ((guiPiece.getRectangle().getX() + TILE_SIZE / 2) / TILE_SIZE);
         final int y = (int) ((guiPiece.getRectangle().getY() + TILE_SIZE / 2) / TILE_SIZE);
-        final Position finalPosition = Position.createNumericPosition(x, y);
-        final Position pos = Position.createNumericPosition((int) guiPiece.getX(), (int) guiPiece.getY());
+        final Position finalPos = Position.createNumericPosition(x, y);
         final Position firstPos = mapGuiPieceToPiece.get(guiPiece).getPosition();
-        if (mapPositionRectangle.containsKey(finalPosition)) {
+        if (mapPositionRectangle.containsKey(finalPos)) {
             try {
-                match.nextMove(pos, finalPosition);
+                match.nextMove(firstPos, finalPos);
             } catch (IllegalArgumentException e) {
-                guiPiece.setX(firstPos.getX());
-                guiPiece.setY(firstPos.getY());
-                //pane.getChildren().remove(circle);
+                updatePositionOnGuiPiece(firstPos, guiPiece);
                 return;
             }
-            guiPiece.setX(finalPosition.getX());
-            guiPiece.setY(finalPosition.getY());
-            mapGuiPiecePosition.put(guiPiece, finalPosition);
+            updatePositionOnGuiPiece(finalPos, guiPiece);
+            if (mapGuiPiecePosition.containsKey(finalPos)) {
+                final GuiPiece deadPiece = mapGuiPiecePosition.get(finalPos);
+                mapGuiPieceToPiece.remove(deadPiece);
+                pane.getChildren().remove(deadPiece.getRectangle());
+            }
+            if (match.isInCheck()) {
+                //TODO
+                System.out.println("scacco");
+            }
+//            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
+//                
+//            }
+            mapGuiPiecePosition.put(finalPos, guiPiece);
+            mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
+            if (match.isGameFinished()) {
+                System.out.println("Game Over");
+            }
         } else {
-            guiPiece.setX(firstPos.getX());
-            guiPiece.setY(firstPos.getY());
+            updatePositionOnGuiPiece(firstPos, guiPiece);
         }
     }
 
@@ -219,6 +228,13 @@ public class BoardController {
         pane.getChildren().removeAll(circles);
         circles.clear();
         final List<Position> possiblePositions = match.getPossiblePiecePositions(mapGuiPieceToPiece.get(guiPiece));
+        if (mapGuiPieceToPiece.get(guiPiece).getSide().equals(match.getUserSideTurn())) {
+            updateCirclesList(possiblePositions);
+            pane.getChildren().addAll(circles);
+        }
+    }
+
+    private void updateCirclesList(final List<Position> possiblePositions) {
         possiblePositions.forEach(x -> {
             final Circle newCircle = new Circle(TILE_SIZE / 2 + TILE_SIZE * x.getX(),
                                     TILE_SIZE / 2 + TILE_SIZE * x.getY(),
@@ -234,6 +250,10 @@ public class BoardController {
             newCircle.setOpacity(OPACITY);
             circles.add(newCircle);
         });
-        pane.getChildren().addAll(circles);
+    }
+
+    private void updatePositionOnGuiPiece(final Position pos, final GuiPiece guiPiece) {
+        guiPiece.setX(pos.getX());
+        guiPiece.setY(pos.getY());
     }
 }
