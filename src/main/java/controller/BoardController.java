@@ -223,9 +223,9 @@ public class BoardController {
     }
 
     private void removeEffect(final Rectangle rectangle) {
-        if (!match.isInCheck() && !rectangle.equals(getKingUnderCheck().getRectangle())) {
+        //if (!match.isInCheck() && !rectangle.equals(getKingUnderCheck().getRectangle())) {
             rectangle.setEffect(null);
-        }
+        //}
     }
 
     private void showPossiblePositions(final GuiPiece guiPiece) {
