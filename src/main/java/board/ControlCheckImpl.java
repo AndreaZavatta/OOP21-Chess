@@ -1,6 +1,8 @@
 package board;
 
 import static model.piece.utils.Name.KING;
+
+import model.piece.utils.Name;
 import model.piece.utils.Side;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,7 @@ public class ControlCheckImpl implements ControlCheck {
     public boolean isInCheck(final Chessboard chessboard, final Side color) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getSide().equals(color))
+                .filter(x -> !x.getName().equals(KING))
                 .anyMatch(x -> canEatKing(chessboard, x));
     }
 

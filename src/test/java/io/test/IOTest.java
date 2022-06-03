@@ -27,9 +27,7 @@ class IOTest {
     JsonSerializer js = new JsonSerializerImpl();
     ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     ObjectMapper map = JsonUtils.getMapper();
-    JsonFileWriter fw = new JsonFileWriterImpl("database.txt");;
-
-
+    JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
     @Test
     void serializeRook() throws IOException {
         final Rook rook = (Rook) fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);

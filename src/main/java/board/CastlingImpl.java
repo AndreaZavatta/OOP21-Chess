@@ -16,11 +16,13 @@ import model.pieces.Piece;
  */
 public class CastlingImpl implements Castling {
 
+    private final ControlCheck kingInCheck = new ControlCheckImpl();
+
     @Override
     public boolean canCastle(final Chessboard chessboard, final Piece king, final int xPos) {
         return chessboard.getPieceOnPosition(Position.createNumericPosition(xPos, king.getPosition().getY()))
                 .map(r -> isCastlePossible(chessboard, r, king))
-                .orElse(false); 
+                .orElse(false);
     }
 
     private boolean isCastlePossible(final Chessboard chessboard, final Piece rook, final Piece king) {
@@ -35,6 +37,10 @@ public class CastlingImpl implements Castling {
             return false;
         }
 
+        if (kingInCheck.isInCheck(chessboard, king.getSide())) {
+            return false;
+        }
+
         final var positions = horizontalPositionsBetweenPieces(rook, king);
 
         // the list must contain only non-occupied positions;
@@ -43,14 +49,15 @@ public class CastlingImpl implements Castling {
         }
 
         // filter the previous list and get the positions the king has to go through;
-        return !(positions.stream()
+        return positions.stream()
                 .filter(p -> Math.abs(king.getPosition().getX() - p.getX()) <= 2)
-                .anyMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide())));
+                .noneMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide()));
     }
 
     private boolean isPositionUnderAttack(final Chessboard chessboard, final Position position, final Side attackedSide) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getSide().equals(attackedSide))
+                .filter(x -> !x.getName().equals(Name.KING))
                 .anyMatch(p -> p.getAllPossiblePositions(chessboard).contains(position));
     }
 
