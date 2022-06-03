@@ -1,11 +1,9 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import game.Game;
 import game.GameImpl;
@@ -54,7 +52,6 @@ public class BoardController {
     private ImageView whitePlayerImage = new ImageView();
     private Game match;
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<Position, GuiPiece> mapGuiPiecePosition = new HashMap<>();
     private final Map<Piece, GuiPiece> mapPieceToGuiPiece = new HashMap<>();
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
@@ -138,7 +135,6 @@ public class BoardController {
         guiPiece.setY(piecePos.getY());
 
         mapPieceToGuiPiece.put(piece, guiPiece);
-        mapGuiPiecePosition.put(piecePos, guiPiece);
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
@@ -189,16 +185,14 @@ public class BoardController {
                 return;
             }
             updateGui();
-            if (mapGuiPiecePosition.containsKey(finalPos)) {
-                final Piece deadPiece = mapPieceToGuiPiece.keySet().stream()
-                                        .filter(p -> p.getPosition().equals(finalPos))
-                                        .filter(p -> p.getSide().equals(match.getUserSideTurn()))
+            if (checkPieceOnPosition(finalPos)) {
+                final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
+                                        .filter(p -> p.getKey().getPosition().equals(finalPos))
+                                        .filter(p -> p.getKey().getSide().equals(match.getUserSideTurn()))
                                         .findFirst()
-                                        .get();
-                final GuiPiece deadGuiPiece = mapPieceToGuiPiece.get(deadPiece);
-                final List<Piece> a = mapPieceToGuiPiece.keySet().stream().filter(p -> p.getPosition().equals(finalPos)).collect(Collectors.toList());
-                System.out.println(deadPiece.getSide() + ", " + deadPiece.getPosition() + ", " + deadPiece.getName());
-                System.out.println(deadGuiPiece);
+                                        .get()
+                                        .getValue();
+                final Piece deadPiece = mapGuiPieceToPiece.get(deadGuiPiece);
                 mapGuiPieceToPiece.remove(deadGuiPiece);
                 mapPieceToGuiPiece.remove(deadPiece);
                 pane.getChildren().remove(deadGuiPiece.getRectangle());
@@ -214,8 +208,6 @@ public class BoardController {
             //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
             //
             //            }
-            mapGuiPiecePosition.put(finalPos, guiPiece);
-            mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
                 System.out.println("Game Over");
@@ -268,7 +260,7 @@ public class BoardController {
     }
 
     private boolean checkPieceOnPosition(final Position pos) {
-        return mapPieceToGuiPiece.keySet().stream().anyMatch(x -> x.getPosition().equals(pos));
+        return mapPieceToGuiPiece.keySet().stream().anyMatch(x -> x.getPosition().equals(pos) && x.getSide().equals(match.getUserSideTurn()));
     }
 
     private void updateGui() {
