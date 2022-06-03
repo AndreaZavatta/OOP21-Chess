@@ -43,14 +43,15 @@ public class CastlingImpl implements Castling {
         }
 
         // filter the previous list and get the positions the king has to go through;
-        return !(positions.stream()
+        return positions.stream()
                 .filter(p -> Math.abs(king.getPosition().getX() - p.getX()) <= 2)
-                .anyMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide())));
+                .noneMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide()));
     }
 
     private boolean isPositionUnderAttack(final Chessboard chessboard, final Position position, final Side attackedSide) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> !x.getSide().equals(attackedSide))
+                .filter(x -> !x.getName().equals(Name.KING))
                 .anyMatch(p -> p.getAllPossiblePositions(chessboard).contains(position));
     }
 

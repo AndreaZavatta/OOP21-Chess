@@ -3,6 +3,7 @@ package controller;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import model.piece.utils.Position;
 
 import static controller.BoardController.TILE_SIZE;
 
@@ -28,15 +29,16 @@ public class GuiPiece {
         this.x = x;
         this.y = y;
         this.rectangle.setOnMouseClicked(a -> {
-            System.out.println(getPosition());
+            System.out.println(getPositionToString());
         });
     }
     /**
      * A custom toString for the position.
      * @return the position.
      */
-    public String getPosition() {
-        return "[x=" + (int) x + ", y=" + (int) y + "]";
+    public String getPositionToString() {
+        return getPosition().toString();
+        //return "[x=" + (int) x + ", y=" + (int) y + "]";
     }
     /**
      * A setter for the x value.
@@ -74,5 +76,9 @@ public class GuiPiece {
      */
     public Rectangle getRectangle() {
         return this.rectangle;
+    }
+
+    public Position getPosition() {
+        return Position.createNumericPosition((int) x, (int) y);
     }
 }

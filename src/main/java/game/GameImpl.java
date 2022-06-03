@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import board.Chessboard;
 import board.ChessboardFactoryImpl;
+import board.ControlCheck;
+import board.ControlCheckImpl;
 import board.EndGame;
 import board.EndGameImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -27,7 +29,6 @@ import user.User;
 public class GameImpl implements Game {
 
     private static final long serialVersionUID = -5387039618669465656L;
-
 
     private Pair<User, Side> winner;
     @JsonProperty("gameFinished")
@@ -87,8 +88,24 @@ public class GameImpl implements Game {
         return this.chessboard.getAllPieces();
     }
 
+    @Override
     public List<Position> getPossiblePiecePositions(final Piece piece) {
         return Collections.unmodifiableList(chessboard.getAllPosition(piece));
     }
 
+    @Override
+    public Side getUserSideTurn() {
+        return turnManager.getUserTurn();
+    }
+
+    @Override
+    public boolean isInCheck() {
+        final ControlCheck control = new ControlCheckImpl();
+        return control.isInCheck(chessboard, getUserSideTurn());
+    }
+
+    @Override
+    public boolean isCastling(final Piece piece, final Position targetPos) {
+        return chessboard.isCastling(piece, targetPos);
+    }
 }

@@ -61,4 +61,12 @@ public interface Chessboard {
      * pawn get promoted to a new Piece.
      */
     void promotion(Name namePiece);
+
+    /**
+     * 
+     * @param piece
+     * @param targetPos
+     * @return true if king is castling
+     */
+    boolean isCastling(Piece piece, Position targetPos);
 }

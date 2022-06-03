@@ -148,4 +148,40 @@ class ChessboardTest {
 
         assertEquals(chess1, chess2);
     }
+
+    @Test
+    void tryLongCastling() {
+        final Chessboard chessboard = chessboardFct.createNormalCB();
+
+        chessboard.move(Position.createNewPosition("b2"), Position.createNewPosition("b4"));
+        chessboard.move(Position.createNewPosition("c2"), Position.createNewPosition("c4"));
+        chessboard.move(Position.createNewPosition("d2"), Position.createNewPosition("d4"));
+        chessboard.move(Position.createNewPosition("b1"), Position.createNewPosition("c3"));
+        chessboard.move(Position.createNewPosition("c1"), Position.createNewPosition("b2"));
+        chessboard.move(Position.createNewPosition("d1"), Position.createNewPosition("d2"));
+
+        final Piece king = chessboard.getPieceOnPosition(Position.createNewPosition("e1")).get();
+        assertTrue(chessboard.getAllPosition(king).contains(Position.createNewPosition("c1")));
+
+        chessboard.move(Position.createNewPosition("e1"), Position.createNewPosition("c1"));
+        assertEquals(Name.ROOK, chessboard.getPieceOnPosition(Position.createNewPosition("d1"))
+                                                                            .get().getName());
+    }
+
+    @Test
+    void tryShortCastling() {
+        final Chessboard chessboard = chessboardFct.createNormalCB();
+
+        chessboard.move(Position.createNewPosition("f2"), Position.createNewPosition("f4"));
+        chessboard.move(Position.createNewPosition("g2"), Position.createNewPosition("g4"));
+        chessboard.move(Position.createNewPosition("f1"), Position.createNewPosition("g2"));
+        chessboard.move(Position.createNewPosition("g1"), Position.createNewPosition("f3"));
+
+        final Piece king = chessboard.getPieceOnPosition(Position.createNewPosition("e1")).get();
+        assertTrue(chessboard.getAllPosition(king).contains(Position.createNewPosition("g1")));
+
+        chessboard.move(Position.createNewPosition("e1"), Position.createNewPosition("g1"));
+        assertEquals(Name.ROOK, chessboard.getPieceOnPosition(Position.createNewPosition("f1"))
+                                                                            .get().getName());
+    }
 }
