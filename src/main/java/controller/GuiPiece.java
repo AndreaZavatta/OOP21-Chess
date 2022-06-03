@@ -38,7 +38,6 @@ public class GuiPiece {
      */
     public String getPositionToString() {
         return getPosition().toString();
-        //return "[x=" + (int) x + ", y=" + (int) y + "]";
     }
     /**
      * A setter for the x value.
@@ -83,5 +82,10 @@ public class GuiPiece {
      */
     public Position getPosition() {
         return Position.createNumericPosition((int) x, (int) y);
+    }
+
+    @Override
+    public String toString() {
+        return "GuiPiece :" + getPositionToString();
     }
 }
