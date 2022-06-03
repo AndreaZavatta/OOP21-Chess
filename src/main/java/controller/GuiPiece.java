@@ -77,7 +77,10 @@ public class GuiPiece {
     public Rectangle getRectangle() {
         return this.rectangle;
     }
-
+    /**
+     * A getter for the position.
+     * @return the position from the x and y values.
+     */
     public Position getPosition() {
         return Position.createNumericPosition((int) x, (int) y);
     }
