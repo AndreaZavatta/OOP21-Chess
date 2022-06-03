@@ -17,7 +17,7 @@ public class UserImpl implements User {
     private boolean isWinner;
 
     /**
-     *
+     * @param name
      */
 
     public UserImpl(@JsonProperty("name") final String name) {
@@ -43,6 +43,6 @@ public class UserImpl implements User {
 
     @Override
     public String toString() {
-        return "UserImpl [name=" + name + "]";
+        return name;
     }
 }
