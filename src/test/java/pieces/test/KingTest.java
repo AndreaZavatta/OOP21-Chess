@@ -1,6 +1,5 @@
 package pieces.test;
 
-import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import game.Game;
@@ -55,10 +54,10 @@ class KingTest {
     }
 
     @Test
-    void testMove(){
-        Pair<User, Side> player = new Pair<>(new UserImpl("a"), Side.WHITE);
-        Pair<User, Side> player2 = new Pair<>(new UserImpl("a"), Side.BLACK);
-        Game game = new GameImpl(player,player2);
+    void testMove() {
+        final Pair<User, Side> player = new Pair<>(new UserImpl("a"), Side.WHITE);
+        final Pair<User, Side> player2 = new Pair<>(new UserImpl("a"), Side.BLACK);
+        final Game game = new GameImpl(player, player2);
         //Chessboard chessboard = fenToBoard.getBoard("rnbqkb1r/pppp1ppp/5n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1");
         //chessboard.move(Position.createNewPosition("f8"), Position.createNewPosition("c5"));
         //System.out.println(chessboard);
