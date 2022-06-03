@@ -22,7 +22,7 @@ public class CastlingImpl implements Castling {
     public boolean canCastle(final Chessboard chessboard, final Piece king, final int xPos) {
         return chessboard.getPieceOnPosition(Position.createNumericPosition(xPos, king.getPosition().getY()))
                 .map(r -> isCastlePossible(chessboard, r, king))
-                .orElse(false); 
+                .orElse(false);
     }
 
     private boolean isCastlePossible(final Chessboard chessboard, final Piece rook, final Piece king) {
