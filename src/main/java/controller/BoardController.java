@@ -61,7 +61,7 @@ public class BoardController {
     private ImageView whitePlayerImage = new ImageView();
     private Game match;
     private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<Position, GuiPiece> mapGuiPiecePosition = new HashMap<>();
+    private final Map<Piece, GuiPiece> mapPieceToGuiPiece = new HashMap<>();
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
     private UserController blackUser;
@@ -142,7 +142,7 @@ public class BoardController {
         guiPiece.setX(piecePos.getX());
         guiPiece.setY(piecePos.getY());
 
-        mapGuiPiecePosition.put(piecePos, guiPiece);
+        mapPieceToGuiPiece.put(piece, guiPiece);
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
@@ -189,14 +189,21 @@ public class BoardController {
             try {
                 match.nextMove(firstPos, finalPos);
             } catch (IllegalArgumentException e) {
-                updatePositionOnGuiPiece(firstPos, guiPiece);
+                updateGui();
                 return;
             }
-            updatePositionOnGuiPiece(finalPos, guiPiece);
-            if (mapGuiPiecePosition.containsKey(finalPos)) {
-                final GuiPiece deadPiece = mapGuiPiecePosition.get(finalPos);
-                mapGuiPieceToPiece.remove(deadPiece);
-                pane.getChildren().remove(deadPiece.getRectangle());
+            updateGui();
+            if (checkPieceOnPosition(finalPos)) {
+                final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
+                                        .filter(p -> p.getKey().getPosition().equals(finalPos))
+                                        .filter(p -> p.getKey().getSide().equals(match.getUserSideTurn()))
+                                        .findFirst()
+                                        .get()
+                                        .getValue();
+                final Piece deadPiece = mapGuiPieceToPiece.get(deadGuiPiece);
+                mapGuiPieceToPiece.remove(deadGuiPiece);
+                mapPieceToGuiPiece.remove(deadPiece);
+                pane.getChildren().remove(deadGuiPiece.getRectangle());
             }
             if (match.isInCheck()) {
                 BoardControllerUtils.setEffect(Color.RED, 
@@ -209,15 +216,13 @@ public class BoardController {
             //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
             //
             //            }
-            mapGuiPiecePosition.put(finalPos, guiPiece);
-            mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
                 //System.out.println("Game Over");
                 quitGame();
             }
         } else {
-            updatePositionOnGuiPiece(firstPos, guiPiece);
+            updateGui();
         }
     }
 
@@ -291,5 +296,13 @@ public class BoardController {
     private void updatePositionOnGuiPiece(final Position pos, final GuiPiece guiPiece) {
         guiPiece.setX(pos.getX());
         guiPiece.setY(pos.getY());
+    }
+
+    private boolean checkPieceOnPosition(final Position pos) {
+        return mapPieceToGuiPiece.keySet().stream().anyMatch(x -> x.getPosition().equals(pos) && x.getSide().equals(match.getUserSideTurn()));
+    }
+
+    private void updateGui() {
+        mapPieceToGuiPiece.entrySet().forEach(x -> updatePositionOnGuiPiece(x.getKey().getPosition(), x.getValue()));
     }
 }
