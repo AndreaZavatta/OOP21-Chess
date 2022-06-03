@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import board.ControlCheck;
-import board.ControlCheckImpl;
 import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
@@ -20,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import model.piece.utils.Name;
 import pair.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
@@ -35,7 +32,6 @@ import user.UserController;
 public class BoardController {
 
     private static final int TEXT_DISTANCE = 15;
-    private static final double CHOKE_VALUE = 0.8;
     private static final double OPACITY = 0.4;
     private static final int RADIUS = 15;
     private static final int STROKEWIDTH = 17;
@@ -85,7 +81,7 @@ public class BoardController {
         this.blackUser = blackUser;
         this.initializePlayers();
         this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
-                                new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
+                new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.createGuiPieces();
     }
     @FXML
@@ -144,7 +140,7 @@ public class BoardController {
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
-        guiPieceRectangle.setOnMouseEntered(x -> setEffect(Color.RED, guiPieceRectangle));
+        guiPieceRectangle.setOnMouseEntered(x -> BoardControllerUtils.setEffect(Color.RED, guiPieceRectangle));
         guiPieceRectangle.setOnMouseExited(x -> removeEffect(guiPieceRectangle));
         guiPieceRectangle.setOnMousePressed(x -> showPossiblePositions(guiPiece));
         pane.getChildren().add(guiPiece.getRectangle());
@@ -165,7 +161,7 @@ public class BoardController {
                 }
                 count++;
                 chessBoardRectangle.setStroke(Color.BLACK);
-                chessBoardRectangle.setOnMouseEntered(x -> setEffect(Color.YELLOW, chessBoardRectangle));
+                chessBoardRectangle.setOnMouseEntered(x -> BoardControllerUtils.setEffect(Color.YELLOW, chessBoardRectangle));
                 chessBoardRectangle.setOnMouseExited(x -> removeEffect(chessBoardRectangle));
                 pane.getChildren().add(chessBoardRectangle);
             }
@@ -196,12 +192,14 @@ public class BoardController {
                 pane.getChildren().remove(deadPiece.getRectangle());
             }
             if (match.isInCheck()) {
-                setEffect(Color.RED, getKingUnderCheck().getRectangle());
+                BoardControllerUtils.setEffect(Color.RED, BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
                 System.out.println("scacco");
+            } else {
+                this.removeEffect(BoardControllerUtils.getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
             }
-//            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
-//                
-//            }
+            //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
+            //
+            //            }
             mapGuiPiecePosition.put(finalPos, guiPiece);
             mapGuiPiecePosition.remove(firstPos);
             pane.getChildren().removeAll(circles);
@@ -213,19 +211,22 @@ public class BoardController {
         }
     }
 
-    private void setEffect(final Color color, final Rectangle rectangle) {
-        final InnerShadow shadow = new InnerShadow();
-        shadow.setBlurType(BlurType.GAUSSIAN);
-        shadow.setRadius(Numbers.SEVEN);
-        shadow.setChoke(CHOKE_VALUE);
-        shadow.setColor(color);
-        rectangle.setEffect(shadow);
-    }
+//    private void setEffect(final Color color, final Rectangle rectangle) {
+//        final InnerShadow shadow = new InnerShadow();
+//        shadow.setBlurType(BlurType.GAUSSIAN);
+//        shadow.setRadius(Numbers.SEVEN);
+//        shadow.setChoke(CHOKE_VALUE);
+//        shadow.setColor(color);
+//        rectangle.setEffect(shadow);
+//    }
 
     private void removeEffect(final Rectangle rectangle) {
-        //if (!match.isInCheck() && !rectangle.equals(getKingUnderCheck().getRectangle())) {
+        if (rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
+                && match.isInCheck()) {
+
+        } else {
             rectangle.setEffect(null);
-        //}
+        }
     }
 
     private void showPossiblePositions(final GuiPiece guiPiece) {
@@ -241,8 +242,8 @@ public class BoardController {
     private void updateCirclesList(final List<Position> possiblePositions) {
         possiblePositions.forEach(x -> {
             final Circle newCircle = new Circle(TILE_SIZE / 2 + TILE_SIZE * x.getX(),
-                                    TILE_SIZE / 2 + TILE_SIZE * x.getY(),
-                                    RADIUS);
+                    TILE_SIZE / 2 + TILE_SIZE * x.getY(),
+                    RADIUS);
             if (match.getPiecesList().stream().anyMatch(p -> p.getPosition().equals(x))) {
                 newCircle.setRadius(TILE_SIZE / 2);
                 newCircle.setStroke(Color.BLACK);
@@ -261,14 +262,5 @@ public class BoardController {
         guiPiece.setY(pos.getY());
     }
 
-    private GuiPiece getKingUnderCheck() {
-        var king = match.getPiecesList().stream()
-                .filter(a -> a.getName().equals(Name.KING))
-                .filter(a -> a.getSide().equals(match.getUserSideTurn()))
-                .findFirst().get();
-        var pos = king.getPosition();
-        return mapGuiPieceToPiece.keySet().stream()
-                .filter(b -> b.getPosition().equals(pos))
-                .findFirst().get();
-    }
+
 }
