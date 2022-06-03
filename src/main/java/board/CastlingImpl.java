@@ -16,6 +16,8 @@ import model.pieces.Piece;
  */
 public class CastlingImpl implements Castling {
 
+    private final ControlCheck kingInCheck = new ControlCheckImpl();
+
     @Override
     public boolean canCastle(final Chessboard chessboard, final Piece king, final int xPos) {
         return chessboard.getPieceOnPosition(Position.createNumericPosition(xPos, king.getPosition().getY()))
@@ -32,6 +34,10 @@ public class CastlingImpl implements Castling {
 
         // the pieces must not have been moved;
         if (king.isMoved() || rook.isMoved()) {
+            return false;
+        }
+
+        if (kingInCheck.isInCheck(chessboard, king.getSide())) {
             return false;
         }
 
