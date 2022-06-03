@@ -254,10 +254,8 @@ public class BoardController {
     }
 
     private void removeEffect(final Rectangle rectangle) {
-        if (rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
-                && match.isInCheck()) {
-
-        } else {
+        if (!rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
+               || !match.isInCheck()) {
             rectangle.setEffect(null);
         }
     }
