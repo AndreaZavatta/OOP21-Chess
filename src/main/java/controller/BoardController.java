@@ -9,8 +9,6 @@ import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -161,7 +159,8 @@ public class BoardController {
                 }
                 count++;
                 chessBoardRectangle.setStroke(Color.BLACK);
-                chessBoardRectangle.setOnMouseEntered(x -> BoardControllerUtils.setEffect(Color.YELLOW, chessBoardRectangle));
+                chessBoardRectangle.setOnMouseEntered(x -> 
+                BoardControllerUtils.setEffect(Color.YELLOW, chessBoardRectangle));
                 chessBoardRectangle.setOnMouseExited(x -> removeEffect(chessBoardRectangle));
                 pane.getChildren().add(chessBoardRectangle);
             }
@@ -192,10 +191,12 @@ public class BoardController {
                 pane.getChildren().remove(deadPiece.getRectangle());
             }
             if (match.isInCheck()) {
-                BoardControllerUtils.setEffect(Color.RED, BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
+                BoardControllerUtils.setEffect(Color.RED, 
+                        BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
                 System.out.println("scacco");
             } else {
-                this.removeEffect(BoardControllerUtils.getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
+                this.removeEffect(BoardControllerUtils.
+                        getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
             }
             //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
             //
@@ -210,15 +211,6 @@ public class BoardController {
             updatePositionOnGuiPiece(firstPos, guiPiece);
         }
     }
-
-//    private void setEffect(final Color color, final Rectangle rectangle) {
-//        final InnerShadow shadow = new InnerShadow();
-//        shadow.setBlurType(BlurType.GAUSSIAN);
-//        shadow.setRadius(Numbers.SEVEN);
-//        shadow.setChoke(CHOKE_VALUE);
-//        shadow.setColor(color);
-//        rectangle.setEffect(shadow);
-//    }
 
     private void removeEffect(final Rectangle rectangle) {
         if (rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
