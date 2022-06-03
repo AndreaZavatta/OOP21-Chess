@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +10,21 @@ import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pair.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
@@ -97,7 +106,6 @@ public class BoardController {
     private void initializePlayers() {
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
-        blackPlayer.setId("textPlayersBoard");
         this.blackPlayerImage.setImage(blackUser.getImage());
         this.whitePlayerImage.setImage(whiteUser.getImage());
     }
@@ -200,7 +208,7 @@ public class BoardController {
             if (match.isInCheck()) {
                 BoardControllerUtils.setEffect(Color.RED, 
                         BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
-                System.out.println("scacco");
+                //System.out.println("scacco");
             } else {
                 this.removeEffect(BoardControllerUtils.
                         getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
@@ -210,18 +218,49 @@ public class BoardController {
             //            }
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
-                System.out.println("Game Over");
+                //System.out.println("Game Over");
+                quitGame();
             }
         } else {
             updateGui();
         }
     }
 
-    private void removeEffect(final Rectangle rectangle) {
-        if (rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
-                && match.isInCheck()) {
+    private void quitGame() {
+        final Stage dialog = new Stage();
+        final Button buttonDialog = new Button("Back to main menu");
+        buttonDialog.setOnAction(btnEvent -> backToMainMenu());
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
+        final VBox dialogVbox = new VBox(20);
+        final Text winText = new Text("Player name :" + match.getWinner().get().getX() + " side :"
+                + match.getWinner().get().getY() + " won!!");
+        dialogVbox.getChildren().add(winText);
+        dialogVbox.getChildren().add(buttonDialog);
+        final Scene dialogScene = new Scene(dialogVbox, 400, 200);
+        dialog.setScene(dialogScene);
+        dialog.setOnCloseRequest(ev -> backToMainMenu());
+        dialog.show();
+    }
 
-        } else {
+    private void backToMainMenu() {
+        try {
+            final FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/layouts/MainMenu.fxml"));
+            final Parent root = (Parent) loader.load();
+            final Stage stage = new Stage();
+            stage.setTitle("MENU");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Node) (whitePlayer)).getScene().getWindow().hide();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private void removeEffect(final Rectangle rectangle) {
+        if (!rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
+               || !match.isInCheck()) {
             rectangle.setEffect(null);
         }
     }

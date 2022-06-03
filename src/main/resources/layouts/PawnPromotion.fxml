@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="model.promotion.PawnPromotionController">
    <children>
       <Button fx:id="btnQueen" layoutX="52.0" layoutY="45.0" mnemonicParsing="false" onAction="#replaceToQueen" text="QUEEN" />
       <Button fx:id="btnBishop" layoutX="198.0" layoutY="46.0" mnemonicParsing="false" onAction="#replaceToBishop" text="BISHOP" />
