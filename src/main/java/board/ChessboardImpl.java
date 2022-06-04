@@ -96,7 +96,7 @@ import model.promotion.PromotionImpl;
                 rookLeft.setPosition(Position.createNumericPosition(targetPos.getX() + 1, targetPos.getY()));
             } else if (targetPos.getX() - piece.getPosition().getX() > 0) {
                 final Piece rookRight = getPieceOnPosition(Position.createNumericPosition(Numbers.SEVEN, piece.getPosition().getY())).get();
-                rookRight.setPosition(Position.createNumericPosition(targetPos.getX() - 1, yBorder));
+                rookRight.setPosition(Position.createNumericPosition(targetPos.getX() - 1, targetPos.getY()));
             }
         }
         piece.setPosition(targetPos);
