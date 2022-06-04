@@ -112,9 +112,7 @@ public class BoardController {
         this.blackPlayerImage.setImage(blackUser.getImage());
         this.whitePlayerImage.setImage(whiteUser.getImage());
         this.setTextOptions(blackPlayer);
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setBrightness(-0.5);
-        blackPlayerImage.setEffect(colorAdjust);
+        this.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
     }
 
     private void createBoxes() {
@@ -310,21 +308,25 @@ public class BoardController {
         mapPieceToGuiPiece.entrySet().forEach(x -> updatePositionOnGuiPiece(x.getKey().getPosition(), x.getValue()));
     }
 
-    private void updatePlayers(){
-        if(match.getUserSideTurn().equals(Side.BLACK)){
-            this.setEffectPlayerTurn(whitePlayer, whitePlayerImage);
-            blackPlayerImage.setEffect(null);
+    private void updatePlayers() {
+        if (match.getUserSideTurn().equals(Side.BLACK)){
+            this.setEffectPlayerTurn(blackPlayer, whitePlayerImage);
+            this.removeEffects(whitePlayer, blackPlayerImage);
         } else {
-            this.setEffectPlayerTurn(blackPlayer, blackPlayerImage);
-            whitePlayerImage.setEffect(null);
-
+            this.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
+            this.removeEffects(blackPlayer, whitePlayerImage);
         }
     }
-    private void setEffectPlayerTurn(final Text text, final ImageView image){
+    private void setEffectPlayerTurn(final Text text, final ImageView image) {
         text.setStyle("-fx-font: 20 arial;");
         text.setFill(Color.RED);
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.5);
         image.setEffect(colorAdjust);
+    }
+
+    private void removeEffects(final Text text, final ImageView image) {
+        image.setEffect(null);
+        this.setTextOptions(text);
     }
 }
