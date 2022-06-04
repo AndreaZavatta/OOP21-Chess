@@ -3,8 +3,8 @@ package chessparsers.test;
 import board.Chessboard;
 import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
-import chess.parsers.FenToBoard;
-import chess.parsers.FenToBoardImpl;
+import chess.parsers.FenConverter;
+import chess.parsers.FenConverterImpl;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FenToBoardImplTest {
     PieceFactory pieceFact = new PieceFactoryImpl();
-    FenToBoard fenToBoard = new FenToBoardImpl();
+    FenConverter fenToBoard = new FenConverterImpl();
     ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
 
     @Test

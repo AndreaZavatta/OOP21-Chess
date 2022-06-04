@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import chess.parsers.FenToBoard;
-import chess.parsers.FenToBoardImpl;
+import chess.parsers.FenConverter;
+import chess.parsers.FenConverterImpl;
 import model.piece.utils.Side;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;
@@ -24,7 +24,7 @@ import model.pieces.PieceFactoryImpl;
      */
 public class ChessboardFactoryImpl implements ChessboardFactory {
 
-    private final FenToBoard fenConverter = new FenToBoardImpl();
+    private final FenConverter fenConverter = new FenConverterImpl();
 
     @Override
     public Chessboard createNormalCB() {

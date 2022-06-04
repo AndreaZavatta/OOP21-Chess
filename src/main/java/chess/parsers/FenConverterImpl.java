@@ -5,21 +5,19 @@ import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
-import model.piece.utils.Side;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static java.lang.Character.*;
 import static model.piece.utils.Name.*;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
 
-public class FenToBoardImpl implements FenToBoard {
+public class FenConverterImpl implements FenConverter {
     final PieceFactory pieceFactory = new PieceFactoryImpl();
     public Name fromChessNotationToName(char chessNotation){
         Name ret = null;
