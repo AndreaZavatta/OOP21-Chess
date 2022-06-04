@@ -1,7 +1,6 @@
 package pieces.test;
 
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
+import board.*;
 import game.Game;
 import game.GameImpl;
 import org.junit.jupiter.api.Test;
@@ -30,9 +29,15 @@ class KingTest {
         final List<Piece> list = new ArrayList<>();
         final Piece king = factory.createPiece(Name.KING, Position.createNewPosition("e1"), Side.WHITE);
         final Piece rook = factory.createPiece(Name.ROOK, Position.createNewPosition("h1"), Side.WHITE);
+        final Piece rook2 = factory.createPiece(Name.ROOK, Position.createNewPosition("a1"), Side.WHITE);
+        final Piece enemy = factory.createPiece(Name.BISHOP, Position.createNewPosition("c2"), Side.BLACK);
         list.add(king);
         list.add(rook);
+        list.add(rook2);
+        list.add(enemy);
         assertTrue(king.getAllPossiblePositions(board.createTestCB(list)).contains(Position.createNewPosition("g1")));
+        final ControlCheck a = new ControlCheckImpl();
+        assertTrue(a.controlledMoves(board.createTestCB(list), king).contains(Position.createNewPosition("g1")));
         king.setPosition(king.getPosition());
         assertFalse(king.getAllPossiblePositions(board.createTestCB(list)).contains(Position.createNewPosition("g1")));
     }
@@ -70,5 +75,16 @@ class KingTest {
         game.nextMove(Position.createNewPosition("g8"), Position.createNewPosition("h6"));
         game.nextMove(Position.createNewPosition("f1"), Position.createNewPosition("g2"));
         game.nextMove(Position.createNewPosition("f8"), Position.createNewPosition("g7"));
+    }
+
+    @Test
+    void test() {
+        final Chessboard b = board.createCBToFen("rn2k2r/ppp2ppp/8/8/2B5/1PN1NP2/P1b3PP/R3K2R w - - 0 1");
+        final Piece king = b.getPieceOnPosition(Position.createNewPosition("e1")).get();
+        assertTrue(king.getAllPossiblePositions(b).contains(Position.createNewPosition("g1")));
+        final ControlCheck a = new ControlCheckImpl();
+        assertTrue(a.controlledMoves(b, king).contains(Position.createNewPosition("g1")));
+        assertFalse(a.controlledMoves(b, king).contains(Position.createNewPosition("c1")));
+        assertFalse(king.getAllPossiblePositions(b).contains(Position.createNewPosition("c1")));
     }
 }
