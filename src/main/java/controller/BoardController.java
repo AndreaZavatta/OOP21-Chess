@@ -15,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -106,8 +108,13 @@ public class BoardController {
     private void initializePlayers() {
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
+        this.setTextOptions(whitePlayer);
         this.blackPlayerImage.setImage(blackUser.getImage());
         this.whitePlayerImage.setImage(whiteUser.getImage());
+        this.setTextOptions(blackPlayer);
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        blackPlayerImage.setEffect(colorAdjust);
     }
 
     private void createBoxes() {
@@ -147,7 +154,8 @@ public class BoardController {
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
         guiPieceRectangle.setOnMouseEntered(x -> BoardControllerUtils.setEffect(Color.RED, guiPieceRectangle));
-        guiPieceRectangle.setOnMouseExited(x -> removeEffect(guiPieceRectangle));
+        guiPieceRectangle.setOnMouseExited(x -> BoardControllerUtils
+                .removeEffect(guiPieceRectangle, this.match, this.mapGuiPieceToPiece));
         guiPieceRectangle.setOnMousePressed(x -> showPossiblePositions(guiPiece));
         pane.getChildren().add(guiPiece.getRectangle());
     }
@@ -169,7 +177,8 @@ public class BoardController {
                 chessBoardRectangle.setStroke(Color.BLACK);
                 chessBoardRectangle.setOnMouseEntered(x -> 
                 BoardControllerUtils.setEffect(Color.YELLOW, chessBoardRectangle));
-                chessBoardRectangle.setOnMouseExited(x -> removeEffect(chessBoardRectangle));
+                chessBoardRectangle.setOnMouseExited(x -> BoardControllerUtils
+                        .removeEffect(chessBoardRectangle, this.match, this.mapGuiPieceToPiece));
                 pane.getChildren().add(chessBoardRectangle);
             }
         }
@@ -192,6 +201,7 @@ public class BoardController {
                 updateGui();
                 return;
             }
+            updatePlayers();
             updateGui();
             if (checkPieceOnPosition(finalPos)) {
                 final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
@@ -210,8 +220,9 @@ public class BoardController {
                         BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
                 //System.out.println("scacco");
             } else {
-                this.removeEffect(BoardControllerUtils.
-                        getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
+                BoardControllerUtils.removeEffect(BoardControllerUtils.
+                        getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
+                        this.match, this.mapGuiPieceToPiece);
             }
             //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
             //
@@ -258,13 +269,6 @@ public class BoardController {
         }
     }
 
-    private void removeEffect(final Rectangle rectangle) {
-        if (!rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle()) 
-               || !match.isInCheck()) {
-            rectangle.setEffect(null);
-        }
-    }
-
     private void showPossiblePositions(final GuiPiece guiPiece) {
         pane.getChildren().removeAll(circles);
         circles.clear();
@@ -304,5 +308,23 @@ public class BoardController {
 
     private void updateGui() {
         mapPieceToGuiPiece.entrySet().forEach(x -> updatePositionOnGuiPiece(x.getKey().getPosition(), x.getValue()));
+    }
+
+    private void updatePlayers(){
+        if(match.getUserSideTurn().equals(Side.BLACK)){
+            this.setEffectPlayerTurn(whitePlayer, whitePlayerImage);
+            blackPlayerImage.setEffect(null);
+        } else {
+            this.setEffectPlayerTurn(blackPlayer, blackPlayerImage);
+            whitePlayerImage.setEffect(null);
+
+        }
+    }
+    private void setEffectPlayerTurn(final Text text, final ImageView image){
+        text.setStyle("-fx-font: 20 arial;");
+        text.setFill(Color.RED);
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        image.setEffect(colorAdjust);
     }
 }

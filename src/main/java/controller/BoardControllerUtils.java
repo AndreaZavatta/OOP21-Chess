@@ -65,4 +65,17 @@ public final class BoardControllerUtils {
         shadow.setColor(color);
         rectangle.setEffect(shadow);
     }
+
+    /**
+     *
+     * @param rectangle
+     * @param match
+     * @param mapGuiPieceToPiece
+     */
+    public static void removeEffect(final Rectangle rectangle, final Game match, final Map<GuiPiece, Piece> mapGuiPieceToPiece) {
+        if (!rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle())
+                || !match.isInCheck()) {
+            rectangle.setEffect(null);
+        }
+    }
 }
