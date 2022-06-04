@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import chess.parsers.FenToBoard;
+import chess.parsers.FenToBoardImpl;
 import model.piece.utils.Side;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;
@@ -22,6 +24,8 @@ import model.pieces.PieceFactoryImpl;
      */
 public class ChessboardFactoryImpl implements ChessboardFactory {
 
+    private final FenToBoard fenConverter = new FenToBoardImpl();
+
     @Override
     public Chessboard createNormalCB() {
         final List<Piece> chessOnBoard = this.createPawns(Numbers.SIX, Side.WHITE);
@@ -34,6 +38,11 @@ public class ChessboardFactoryImpl implements ChessboardFactory {
     @Override
     public Chessboard createTestCB(final List<Piece> piecesOnBoard) {
         return new ChessboardImpl(this.createCopyOf(piecesOnBoard), Numbers.SEVEN, Numbers.SEVEN);
+    }
+
+    @Override
+    public Chessboard createCBToFen(final String fenString) {
+        return fenConverter.getBoard(fenString);
     }
 
     private List<Piece> createPawns(final int row, final Side color) {

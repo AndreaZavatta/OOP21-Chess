@@ -23,4 +23,11 @@ public interface ChessboardFactory {
      * @return a custom chessboard for tests
      */
     Chessboard createTestCB(List<Piece> piecesOnBoard);
+
+    /**
+     * 
+     * @param fenString
+     * @return a custom CB from a string
+     */
+    Chessboard createCBToFen(String fenString);
 }
