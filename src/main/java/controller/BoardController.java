@@ -11,12 +11,16 @@ import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -63,7 +67,7 @@ public class BoardController {
     @FXML
     private Pane pane = new Pane();
     @FXML
-    private Pane anchorPane = new Pane();
+    private Pane borderPane = new Pane();
     @FXML
     private Pane bottomPane = new Pane();
     @FXML
@@ -94,7 +98,7 @@ public class BoardController {
     void initialize() {
         this.createChessboard();
         this.createBoardInformation();
-        anchorPane.setStyle("-fx-background-color: #2F4F4F");
+        borderPane.setStyle("-fx-background-color: #2F4F4F");
     }
 
     @FXML
@@ -233,12 +237,14 @@ public class BoardController {
         buttonDialog.setOnAction(btnEvent -> backToMainMenu());
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
-        final VBox dialogVbox = new VBox(20);
+        final VBox dialogVbox = new VBox(50);
         final Text winText = new Text("Player name :" + match.getWinner().get().getX() + " side :"
                 + match.getWinner().get().getY() + " won!!");
+        BoardControllerUtils.setTextOptions(winText);
         dialogVbox.getChildren().add(winText);
         dialogVbox.getChildren().add(buttonDialog);
-        final Scene dialogScene = new Scene(dialogVbox, 400, 200);
+        dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
         dialog.setOnCloseRequest(ev -> backToMainMenu());
         dialog.show();
