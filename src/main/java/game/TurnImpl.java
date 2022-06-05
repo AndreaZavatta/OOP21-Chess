@@ -50,4 +50,9 @@ class TurnImpl implements Turn {
                         ? Side.BLACK
                         : Side.WHITE;
     }
+
+    @Override
+    public Pair<User, User> getUsers() {
+        return new Pair<>(player1.getX(), player2.getX());
+    }
 }
