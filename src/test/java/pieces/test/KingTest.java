@@ -1,9 +1,15 @@
 package pieces.test;
 
-import board.*;
+
 import game.Game;
 import game.GameImpl;
 import org.junit.jupiter.api.Test;
+
+import board.Chessboard;
+import board.ChessboardFactory;
+import board.ChessboardFactoryImpl;
+import board.ControlCheck;
+import board.ControlCheckImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
@@ -14,10 +20,14 @@ import pair.Pair;
 import user.User;
 import user.UserImpl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class KingTest {
 
