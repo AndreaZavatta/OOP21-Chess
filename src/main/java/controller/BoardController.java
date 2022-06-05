@@ -37,12 +37,29 @@ import user.UserController;
  * Controller class for Board.fxml.
  */
 public class BoardController {
-
+    /**
+     * The tile size.
+     */
+    public static final int TILE_SIZE = 600 / 8;
+    /**
+     * The width of the board.
+     */
+    public static final int WIDTH = 8;
+    /**
+     * The height of the board.
+     */
+    public static final int HEIGHT = 8;
     private static final int TEXT_DISTANCE = 15;
     private static final double OPACITY = 0.4;
     private static final int RADIUS = 15;
     private static final int STROKEWIDTH = 17;
-
+    private Game match;
+    private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
+    private final Map<Piece, GuiPiece> mapPieceToGuiPiece = new HashMap<>();
+    private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
+    private UserController whiteUser;
+    private UserController blackUser;
+    private List<Circle> circles = new ArrayList<>();
     @FXML
     private Pane pane = new Pane();
     @FXML
@@ -59,25 +76,7 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
-    private Game match;
-    private final Map<Position, Rectangle> mapPositionRectangle = new HashMap<>();
-    private final Map<Piece, GuiPiece> mapPieceToGuiPiece = new HashMap<>();
-    private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
-    private UserController whiteUser;
-    private UserController blackUser;
-    private List<Circle> circles = new ArrayList<>();
-    /**
-     * The tile size.
-     */
-    public static final int TILE_SIZE = 600 / 8;
-    /**
-     * The width of the board.
-     */
-    public static final int WIDTH = 8;
-    /**
-     * The height of the board.
-     */
-    public static final int HEIGHT = 8;
+
     /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
@@ -302,7 +301,7 @@ public class BoardController {
     }
 
     private void updatePlayers() {
-        if (match.getUserSideTurn().equals(Side.BLACK)){
+        if (match.getUserSideTurn().equals(Side.BLACK)) {
             BoardControllerUtils.setEffectPlayerTurn(blackPlayer, whitePlayerImage);
             BoardControllerUtils.removeEffects(whitePlayer, blackPlayerImage);
         } else {
