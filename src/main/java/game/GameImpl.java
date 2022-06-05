@@ -116,7 +116,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public String getStartDate() {
-        return startDate.toString();
+    public Instant getStartDate() {
+        return startDate;
     }
 }
