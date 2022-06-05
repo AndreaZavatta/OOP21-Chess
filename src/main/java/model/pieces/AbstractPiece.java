@@ -82,22 +82,15 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(color, name, position);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractPiece that = (AbstractPiece) o;
+        return isMoved == that.isMoved && name == that.name && Objects.equals(position, that.position) && color == that.color;
     }
 
     @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AbstractPiece other = (AbstractPiece) obj;
-        return color == other.color && name == other.name && Objects.equals(position, other.position);
+    public int hashCode() {
+        return Objects.hash(name, position, color, isMoved);
     }
 }
