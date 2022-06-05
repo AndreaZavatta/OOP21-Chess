@@ -28,8 +28,6 @@ import user.User;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class GameImpl implements Game {
 
-    private static final long serialVersionUID = -5387039618669465656L;
-
     private Pair<User, Side> winner;
     @JsonProperty("gameFinished")
     private boolean isFinished;
@@ -67,9 +65,9 @@ public class GameImpl implements Game {
         if (gameController.isCheckmate(turnManager.getUserTurn(), chessboard)) {
             winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
             isFinished = true;
-        } //else if (gameController.isDraw(turnManager.getUserTurn(), chessboard)) {
-            //isFinished = true;
-        //}
+        } else if (gameController.isDraw(turnManager.getUserTurn(), chessboard)) {
+            isFinished = true;
+        }
     }
 
     @Override
@@ -107,5 +105,10 @@ public class GameImpl implements Game {
     @Override
     public boolean isCastling(final Piece piece, final Position targetPos) {
         return chessboard.isCastling(piece, targetPos);
+    }
+
+    @Override
+    public Pair<User, User> getUsers() {
+        return turnManager.getUsers();
     }
 }

@@ -18,4 +18,6 @@ interface Turn extends Serializable {
     Pair<User, Side> getPairByColor(Side color);
 
     Side getOppositeColor(Side color);
+
+    Pair<User, User> getUsers();
 }

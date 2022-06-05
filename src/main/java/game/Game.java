@@ -67,4 +67,10 @@ public interface Game {
      * @return true if king is castling
      */
     boolean isCastling(Piece piece, Position targetPos);
+
+    /**
+     * 
+     * @return 2 players of the game
+     */
+    Pair<User, User> getUsers();
 }
