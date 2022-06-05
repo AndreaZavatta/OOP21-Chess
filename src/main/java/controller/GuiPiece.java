@@ -28,9 +28,9 @@ public class GuiPiece {
         rectangle.setFill(new ImagePattern(im));
         this.x = x;
         this.y = y;
-        this.rectangle.setOnMouseClicked(a -> {
+        /*this.rectangle.setOnMouseClicked(a -> {
             System.out.println(getPositionToString());
-        });
+        });*/
     }
     /**
      * A custom toString for the position.
