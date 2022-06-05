@@ -1,5 +1,6 @@
 package game;
 
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,7 @@ import user.User;
 public class GameImpl implements Game {
 
     private Pair<User, Side> winner;
+    private final Instant startDate;
     @JsonProperty("gameFinished")
     private boolean isFinished;
     private final Chessboard chessboard;
@@ -47,6 +49,7 @@ public class GameImpl implements Game {
         this.chessboard = new ChessboardFactoryImpl().createNormalCB();
         this.gameController = new EndGameImpl();
         this.turnManager = new TurnImpl(player1, player2);
+        this.startDate = Instant.now();
     }
 
     @Override
@@ -110,5 +113,10 @@ public class GameImpl implements Game {
     @Override
     public Pair<User, User> getUsers() {
         return turnManager.getUsers();
+    }
+
+    @Override
+    public String getStartDate() {
+        return startDate.toString();
     }
 }

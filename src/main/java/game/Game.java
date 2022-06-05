@@ -73,4 +73,10 @@ public interface Game {
      * @return 2 players of the game
      */
     Pair<User, User> getUsers();
+
+    /**
+     * 
+     * @return game start date
+     */
+    String getStartDate();
 }
