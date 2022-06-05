@@ -15,8 +15,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -88,7 +86,7 @@ public class BoardController {
     public void initializePlayers(final UserController whiteUser, final UserController blackUser) {
         this.whiteUser = whiteUser;
         this.blackUser = blackUser;
-        this.initializePlayers();
+        this.createPlayers();
         this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
                 new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.createGuiPieces();
@@ -96,7 +94,7 @@ public class BoardController {
     @FXML
     void initialize() {
         this.createChessboard();
-        this.createBoxes();
+        this.createBoardInformation();
         anchorPane.setStyle("-fx-background-color: #2F4F4F");
     }
 
@@ -105,17 +103,17 @@ public class BoardController {
         //TODO
     }
 
-    private void initializePlayers() {
+    private void createPlayers() {
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
-        this.setTextOptions(whitePlayer);
+        BoardControllerUtils.setTextOptions(whitePlayer);
         this.blackPlayerImage.setImage(blackUser.getImage());
         this.whitePlayerImage.setImage(whiteUser.getImage());
-        this.setTextOptions(blackPlayer);
-        this.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
+        BoardControllerUtils.setTextOptions(blackPlayer);
+        BoardControllerUtils.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
     }
 
-    private void createBoxes() {
+    private void createBoardInformation() {
         for (int i = 0; i < WIDTH; i++) {
             final Text leftText = new Text(String.valueOf(8 - i));
             final Text bottomText = new Text(Character.toString(65 + i));
@@ -123,16 +121,11 @@ public class BoardController {
             leftText.setX(Numbers.FIVE);
             bottomText.setX(TILE_SIZE * i + TILE_SIZE / 2.0);
             bottomText.setY(TEXT_DISTANCE);
-            setTextOptions(leftText);
-            setTextOptions(bottomText);
+            BoardControllerUtils.setTextOptions(leftText);
+            BoardControllerUtils.setTextOptions(bottomText);
             bottomPane.getChildren().add(bottomText);
             leftPane.getChildren().add(leftText);
         }
-    }
-
-    private void setTextOptions(final Text text) {
-        text.setStyle("-fx-font: 18 arial;");
-        text.setFill(Color.WHITE);
     }
 
     private void createGuiPieces() {
@@ -263,7 +256,7 @@ public class BoardController {
             stage.show();
             ((Node) (whitePlayer)).getScene().getWindow().hide();
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -310,23 +303,11 @@ public class BoardController {
 
     private void updatePlayers() {
         if (match.getUserSideTurn().equals(Side.BLACK)){
-            this.setEffectPlayerTurn(blackPlayer, whitePlayerImage);
-            this.removeEffects(whitePlayer, blackPlayerImage);
+            BoardControllerUtils.setEffectPlayerTurn(blackPlayer, whitePlayerImage);
+            BoardControllerUtils.removeEffects(whitePlayer, blackPlayerImage);
         } else {
-            this.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
-            this.removeEffects(blackPlayer, whitePlayerImage);
+            BoardControllerUtils.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
+            BoardControllerUtils.removeEffects(blackPlayer, whitePlayerImage);
         }
-    }
-    private void setEffectPlayerTurn(final Text text, final ImageView image) {
-        text.setStyle("-fx-font: 20 arial;");
-        text.setFill(Color.RED);
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setBrightness(-0.5);
-        image.setEffect(colorAdjust);
-    }
-
-    private void removeEffects(final Text text, final ImageView image) {
-        image.setEffect(null);
-        this.setTextOptions(text);
     }
 }
