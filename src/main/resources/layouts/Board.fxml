@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane fx:id="borderPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BoardController">
    <center>
       <AnchorPane prefHeight="800.0" prefWidth="800.0" BorderPane.alignment="CENTER">
@@ -31,12 +30,12 @@
       </Button>
    </left>
    <right>
-      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <ImageView fx:id="blackPlayerImage" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="blackPlayer" layoutX="150.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="blackPlayer" layoutX="10.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <ImageView fx:id="whitePlayerImage" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="whitePlayer" layoutX="150.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0" />
+            <Text fx:id="whitePlayer" layoutX="10.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0" />
          </children>
       </Pane>
    </right>
