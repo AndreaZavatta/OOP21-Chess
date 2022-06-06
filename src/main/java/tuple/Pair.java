@@ -1,4 +1,4 @@
-package Tuple;
+package tuple;
 
 import java.io.Serializable;
 

@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import Tuple.Triple;
+import tuple.Triple;
 import user.User;
 
 import java.io.IOException;

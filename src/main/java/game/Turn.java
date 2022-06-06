@@ -3,7 +3,7 @@ package game;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import Tuple.Pair;
+import tuple.Pair;
 import model.piece.utils.Side;
 import user.User;
 @JsonDeserialize(as = TurnImpl.class)

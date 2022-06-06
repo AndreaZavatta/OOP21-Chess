@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import game.Game;
 import game.GameImpl;
-import Tuple.Pair;
+import tuple.Pair;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import user.User;

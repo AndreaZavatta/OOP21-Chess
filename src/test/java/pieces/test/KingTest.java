@@ -16,7 +16,7 @@ import model.piece.utils.Side;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
-import Tuple.Pair;
+import tuple.Pair;
 import user.User;
 import user.UserImpl;
 

@@ -13,7 +13,7 @@ import model.pieces.*;
 import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
-import Tuple.Pair;
+import tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import user.User;
