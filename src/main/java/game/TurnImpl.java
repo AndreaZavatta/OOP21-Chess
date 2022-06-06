@@ -51,6 +51,7 @@ class TurnImpl implements Turn {
                         : Side.WHITE;
     }
 
+    @JsonIgnore
     @Override
     public Pair<User, User> getUsers() {
         return new Pair<>(player1.getX(), player2.getX());
