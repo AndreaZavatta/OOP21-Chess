@@ -14,7 +14,7 @@ import board.EndGameImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;

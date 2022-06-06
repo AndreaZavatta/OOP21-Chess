@@ -29,7 +29,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

@@ -1,5 +1,4 @@
 package controller;
-import game.Game;
 import game.GameImpl;
 import io.JsonFileReader;
 import io.JsonFileReaderImpl;
@@ -15,19 +14,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.piece.utils.Side;
-import pair.Pair;
-import pair.Triple;
+import Tuple.Triple;
 import user.User;
-import user.UserImpl;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StatsController implements Initializable {
 

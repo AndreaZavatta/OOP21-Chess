@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;

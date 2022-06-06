@@ -13,7 +13,7 @@ import model.pieces.*;
 import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import user.User;
@@ -21,9 +21,7 @@ import user.UserImpl;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
