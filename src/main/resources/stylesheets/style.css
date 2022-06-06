@@ -145,6 +145,12 @@
 .table-row-cell .text {
     -fx-fill: white
 }
+
+.table-view .column-header .label {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 7px;
+}
+
 .menu-bar{
     -fx-background-color: linear-gradient(to bottom, #590000, #ff0000);
 }
