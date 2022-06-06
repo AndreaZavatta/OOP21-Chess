@@ -31,7 +31,7 @@ import java.util.stream.Stream;
 
 public class StatsController implements Initializable {
 
-    JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
+    JsonFileReader fr = new JsonFileReaderImpl("database.txt");
 
     private final Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
@@ -49,9 +49,10 @@ public class StatsController implements Initializable {
     @FXML
     private TableView<Triple<User, User, Instant>> tableView = new TableView<>();
 
-        Game game = new GameImpl(new Pair<>(new UserImpl("andrea"), Side.BLACK), new Pair<>(new UserImpl("marco"), Side.WHITE));
-        Game game2 = new GameImpl(new Pair<>(new UserImpl("alessia"), Side.BLACK), new Pair<>(new UserImpl("martina"), Side.WHITE));
-        List<Game> games = List.of(game, game2);
+        //Game game = new GameImpl(new Pair<>(new UserImpl("andrea"), Side.BLACK), new Pair<>(new UserImpl("marco"), Side.WHITE));
+        //Game game2 = new GameImpl(new Pair<>(new UserImpl("alessia"), Side.BLACK), new Pair<>(new UserImpl("martina"), Side.WHITE));
+        //List<Game> games = List.of(game, game2);
+    List<GameImpl> games;
 
 
     public void showStats(){
@@ -62,27 +63,27 @@ public class StatsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-/*
+
+
         try {
-            games = (List<?>) fr.readFile();
+            games = fr.readFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        */
 
-        System.out.println("dopo game");
         firstPlayer.setCellValueFactory(new PropertyValueFactory<>("x"));
         secondPlayer.setCellValueFactory(new PropertyValueFactory<>("y"));
         date.setCellValueFactory(new PropertyValueFactory<>("z"));
-        System.out.println("dopo set cell");
+
         tableView.setItems(observableList());
+
+
         txtFieldName.textProperty().addListener((observableValue, s, s2) -> {
             txtAreaStats.setText(s2);
         });
     }
 
     private ObservableList<Triple<User,User,Instant>> observableList(){
-        System.out.println(List.of(new Triple<>(new UserImpl("andrea"), new UserImpl("romina"),Instant.parse("2017-02-03T10:37:30.00Z"))));
         return  FXCollections.observableArrayList(
                 //Stream.of(games).map(x -> (Game)x).map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toList())
                 games.stream().map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toList())
@@ -102,7 +103,7 @@ public class StatsController implements Initializable {
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
     }
 }
