@@ -1,6 +1,9 @@
 package io;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import game.GameImpl;
+
+import java.util.List;
 
 /**
  * an interface to deserialize in a generic object.
@@ -12,5 +15,5 @@ public interface JsonDeserializer {
      * @param str the string formatted in json to convert
      * @return T
      */
-        Object deserialize(String str) throws JsonProcessingException;
+        List<GameImpl> deserialize(String str) throws JsonProcessingException;
 }

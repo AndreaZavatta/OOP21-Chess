@@ -1,7 +1,10 @@
 package io;
 
+import game.GameImpl;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,16 +21,15 @@ public class JsonFileReaderImpl implements JsonFileReader {
     /**
      * 
      * @param fileName the name of the file in which to save the object
-     * @param className the name of the class to be deserialized
      */
-    public JsonFileReaderImpl(final String fileName, final Class<?> className) {
+    public JsonFileReaderImpl(final String fileName) {
             this.fileName = fileName;
-            jDeserializer = new JsonDeserializerImpl(className);
+            jDeserializer = new JsonDeserializerImpl();
     }
 
 
     @Override
-    public Object readFile() throws IOException {
+    public List<GameImpl> readFile() throws IOException {
             final File file = new File(cd + fs + fileName);
             return jDeserializer.deserialize(composeString(file));
     }
