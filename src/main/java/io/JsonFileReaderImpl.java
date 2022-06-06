@@ -1,10 +1,8 @@
 package io;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 /**
  * 
@@ -30,20 +28,21 @@ public class JsonFileReaderImpl implements JsonFileReader {
 
     @Override
     public Object readFile() throws IOException {
-            final FileInputStream file = new FileInputStream(cd + fs + fileName);
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
-                System.out.println(composeString(in));
-                    return jDeserializer.deserialize(composeString(in));
-            }
+            final File file = new File(cd + fs + fileName);
+            return jDeserializer.deserialize(composeString(file));
     }
 
 
-    private String composeString(final BufferedReader in) throws IOException {
-            final StringBuilder str = new StringBuilder();
-            for (String line = in.readLine(); line != null; line = in.readLine()) {
-                str.append(line);
-            }
-            return str.toString();
+    private String composeString(File file) throws IOException {
+        // pass the path to the file as a parameter
+        Scanner sc = new Scanner(file);
+        StringBuilder str = new StringBuilder();
+
+        while (sc.hasNextLine()) {
+            str.append(sc.nextLine());
+        }
+        return str.toString();
+
     }
 
 }
