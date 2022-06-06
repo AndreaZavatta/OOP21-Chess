@@ -13,12 +13,13 @@ import model.pieces.*;
 import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import user.User;
 import user.UserImpl;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +42,24 @@ class IOTest {
         System.out.println(map.writeValueAsString(rook));
     }
     @Test
+    void testInstant1() throws JsonProcessingException {
+        Instant inst1 = Instant.parse("2017-02-03T11:25:30.00Z");
+        String string = map.writeValueAsString(inst1);
+       Instant inst2 =  map.readValue(string, Instant.class);
+       assertEquals(inst1, inst2);
+    }
+
+    @Test
+    void testInstant2() throws JsonProcessingException {
+        String str = "1654474370.473283800";
+        Instant inst2 =  map.readValue(str, Instant.class);
+        assertEquals(str, map.writeValueAsString(inst2));
+    }
+    @Test
     void serializeChessboard() throws JsonProcessingException {
         final Chessboard chessboard = chessboardFact.createNormalCB();
         System.out.println(map.writeValueAsString(chessboard));
+
     }
 
     @Test
@@ -110,7 +126,7 @@ class IOTest {
     }
 
 
-    @Test
+    //@Test
     void testFileReaderObj() {
         try {
             final Game game = getGame("andrea", "giacomo");
@@ -129,12 +145,27 @@ class IOTest {
             final List<Game> list = getGames();
             fw.writeFile(list);
             final JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
-            final List<?> games = (List<?>) fr.readFile();
-            assertEquals(js.serialize(games), js.serialize(list));
+            fr.readFile();
+
+
         }catch (IOException ignored){
             fail();
         }
     }
+
+    @Test
+    void testReadFile(){
+        try{
+            final List<Game> list = getGames();
+            fw.writeFile(list);
+            JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
+            fr.readFile();
+        } catch (IOException e) {
+            System.out.println("err");
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 

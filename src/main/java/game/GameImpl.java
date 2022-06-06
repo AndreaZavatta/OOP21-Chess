@@ -14,7 +14,7 @@ import board.EndGameImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;
@@ -30,6 +30,7 @@ import user.User;
 public class GameImpl implements Game {
 
     private Pair<User, Side> winner;
+
     private final Instant startDate;
     @JsonProperty("gameFinished")
     private boolean isFinished;
@@ -94,11 +95,13 @@ public class GameImpl implements Game {
         return Collections.unmodifiableList(chessboard.getAllPosition(piece));
     }
 
+    @JsonIgnore
     @Override
     public Side getUserSideTurn() {
         return turnManager.getUserTurn();
     }
 
+    @JsonIgnore
     @Override
     public boolean isInCheck() {
         final ControlCheck control = new ControlCheckImpl();
@@ -110,13 +113,14 @@ public class GameImpl implements Game {
         return chessboard.isCastling(piece, targetPos);
     }
 
+    @JsonIgnore
     @Override
     public Pair<User, User> getUsers() {
         return turnManager.getUsers();
     }
 
     @Override
-    public String getStartDate() {
-        return startDate.toString();
+    public Instant getStartDate() {
+        return startDate;
     }
 }

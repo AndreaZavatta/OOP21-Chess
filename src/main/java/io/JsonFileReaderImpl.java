@@ -1,10 +1,11 @@
 package io;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import game.GameImpl;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * 
@@ -20,29 +21,30 @@ public class JsonFileReaderImpl implements JsonFileReader {
     /**
      * 
      * @param fileName the name of the file in which to save the object
-     * @param className the name of the class to be deserialized
      */
-    public JsonFileReaderImpl(final String fileName, final Class<?> className) {
+    public JsonFileReaderImpl(final String fileName) {
             this.fileName = fileName;
-            jDeserializer = new JsonDeserializerImpl(className);
+            jDeserializer = new JsonDeserializerImpl();
     }
 
 
     @Override
-    public Object readFile() throws IOException {
-            final FileInputStream file = new FileInputStream(cd + fs + fileName);
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
-                    return jDeserializer.deserialize(composeString(in));
-            }
+    public List<GameImpl> readFile() throws IOException {
+            final File file = new File(cd + fs + fileName);
+            return jDeserializer.deserialize(composeString(file));
     }
 
 
-    private String composeString(final BufferedReader in) throws IOException {
-            final StringBuilder str = new StringBuilder();
-            for (String line = in.readLine(); line != null; line = in.readLine()) {
-                str.append(line);
-            }
-            return str.toString();
+    private String composeString(File file) throws IOException {
+        // pass the path to the file as a parameter
+        Scanner sc = new Scanner(file);
+        StringBuilder str = new StringBuilder();
+
+        while (sc.hasNextLine()) {
+            str.append(sc.nextLine());
+        }
+        return str.toString();
+
     }
 
 }

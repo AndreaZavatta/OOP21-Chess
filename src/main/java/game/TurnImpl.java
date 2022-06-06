@@ -2,7 +2,7 @@ package game;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import pair.Pair;
+import Tuple.Pair;
 import model.piece.utils.Side;
 import user.User;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -51,6 +51,7 @@ class TurnImpl implements Turn {
                         : Side.WHITE;
     }
 
+    @JsonIgnore
     @Override
     public Pair<User, User> getUsers() {
         return new Pair<>(player1.getX(), player2.getX());
