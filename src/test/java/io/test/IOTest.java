@@ -19,8 +19,11 @@ import model.piece.utils.Position;
 import user.User;
 import user.UserImpl;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class IOTest {
     PieceFactory fact = new PieceFactoryImpl();
@@ -39,6 +42,20 @@ class IOTest {
     void serializeRookWithInterface() throws JsonProcessingException {
         final Piece rook = fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
         System.out.println(map.writeValueAsString(rook));
+    }
+    @Test
+    void testInstant1() throws JsonProcessingException {
+        Instant inst1 = Instant.parse("2017-02-03T11:25:30.00Z");
+        String string = map.writeValueAsString(inst1);
+       Instant inst2 =  map.readValue(string, Instant.class);
+       assertEquals(inst1, inst2);
+    }
+
+    @Test
+    void testInstant2() throws JsonProcessingException {
+        String str = "1654474370.473283800";
+        Instant inst2 =  map.readValue(str, Instant.class);
+        assertEquals(str, map.writeValueAsString(inst2));
     }
     @Test
     void serializeChessboard() throws JsonProcessingException {
@@ -129,7 +146,9 @@ class IOTest {
             final List<Game> list = getGames();
             fw.writeFile(list);
             final JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
-            final List<?> games = (List<?>) fr.readFile();
+            final List<Game> games = Stream.of(fr.readFile()).map(x -> (GameImpl)x).collect(Collectors.toList()); ;
+            System.out.println(games);
+            System.out.println(list);
             assertEquals(js.serialize(games), js.serialize(list));
         }catch (IOException ignored){
             fail();
