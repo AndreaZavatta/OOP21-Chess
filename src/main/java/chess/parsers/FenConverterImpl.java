@@ -9,6 +9,7 @@ import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 
+import java.lang.annotation.Inherited;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,19 @@ import static java.lang.Character.*;
 import static model.piece.utils.Name.*;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
-
+/**
+ * {@inheritDoc}.
+ */
 public class FenConverterImpl implements FenConverter {
-    final PieceFactory pieceFactory = new PieceFactoryImpl();
-    public Name fromChessNotationToName(char chessNotation){
+    private final PieceFactory pieceFactory = new PieceFactoryImpl();
+    /**
+     * 
+     * @param chessNotation
+     * @return the Name of piece
+     */
+    public Name fromChessNotationToName(final char chessNotation) {
         Name ret = null;
-        switch (chessNotation){
+        switch (chessNotation) {
             case 'R' : ret = ROOK; break;
             case 'B' : ret = BISHOP; break;
             case 'N' : ret = KNIGHT; break;
@@ -33,8 +41,10 @@ public class FenConverterImpl implements FenConverter {
         return ret;
     }
 
-
-    public Chessboard getBoard(String fen){
+    /**
+     * {@inheritDoc}
+     */
+    public Chessboard getBoard(final String fen) {
         String[] fenArray = fen.split(" ");
         final ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
 
@@ -42,12 +52,12 @@ public class FenConverterImpl implements FenConverter {
         int x = 0;
         int y = 0;
         for (Character c : fenArray[0].toCharArray()) {
-            if (isDigit(c)){
+            if (isDigit(c)) {
                 x += getNumericValue(c);
-            } else if (c == '/'){
+            } else if (c == '/') {
                 y++;
                 x = 0;
-            } else { //is Piece
+            } else {
                 addPiece(list, x, y, c);
                 x++;
             }
@@ -55,7 +65,7 @@ public class FenConverterImpl implements FenConverter {
         return chessboardFactory.createTestCB(list);
     }
 
-    private void addPiece(List<Piece> list, int x, int y, Character c) {
+    private void addPiece(final List<Piece> list, final int x, final int y, final Character c) {
         list.add(pieceFactory.createPiece(fromChessNotationToName(toUpperCase(c)), Position.createNumericPosition(x, y), isUpperCase(c) ? WHITE : BLACK));
     }
 }
