@@ -32,6 +32,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
     public Object readFile() throws IOException {
             final FileInputStream file = new FileInputStream(cd + fs + fileName);
             try (BufferedReader in = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
+                System.out.println(composeString(in));
                     return jDeserializer.deserialize(composeString(in));
             }
     }
