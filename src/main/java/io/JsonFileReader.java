@@ -1,7 +1,5 @@
 package io;
-
 import game.GameImpl;
-
 import java.io.IOException;
 import java.util.List;
 

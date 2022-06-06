@@ -2,8 +2,8 @@ package io;
 
 import game.GameImpl;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,15 +35,15 @@ public class JsonFileReaderImpl implements JsonFileReader {
     }
 
 
-    private String composeString(File file) throws IOException {
-        // pass the path to the file as a parameter
-        Scanner sc = new Scanner(file);
-        StringBuilder str = new StringBuilder();
+    private String composeString(final File file) throws IOException {
+        try (Scanner sc = new Scanner(file)) {
+            StringBuilder str = new StringBuilder();
 
-        while (sc.hasNextLine()) {
-            str.append(sc.nextLine());
+            while (sc.hasNextLine()) {
+                str.append(sc.nextLine());
+            }
+            return str.toString();
         }
-        return str.toString();
 
     }
 
