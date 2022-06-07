@@ -45,9 +45,11 @@ public class FenConverterImpl implements FenConverter {
      * {@inheritDoc}
      */
     public Chessboard getBoard(final String fen) {
-        String[] fenArray = fen.split(" ");
-        final ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
+        List<Piece> list = buildList(fen.split(" "));
+        return new ChessboardFactoryImpl().createTestCB(list);
+    }
 
+    private List<Piece> buildList(String[] fenArray) {
         List<Piece> list = new ArrayList<>();
         int x = 0;
         int y = 0;
@@ -62,7 +64,7 @@ public class FenConverterImpl implements FenConverter {
                 x++;
             }
         }
-        return chessboardFactory.createTestCB(list);
+        return list;
     }
 
     private void addPiece(final List<Piece> list, final int x, final int y, final Character c) {

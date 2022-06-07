@@ -38,13 +38,10 @@ public class JsonFileReaderImpl implements JsonFileReader {
     private String composeString(final File file) throws IOException {
         try (Scanner sc = new Scanner(file)) {
             StringBuilder str = new StringBuilder();
-
             while (sc.hasNextLine()) {
                 str.append(sc.nextLine());
             }
             return str.toString();
         }
-
     }
-
 }

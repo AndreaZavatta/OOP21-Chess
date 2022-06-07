@@ -83,7 +83,28 @@ public class StatsController  extends AbstractController implements Initializabl
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
     }
-
+    private Predicate<Game> filter(final String s2) {
+        return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
+    }
+    private ObservableList<Triple<User, User, LocalDate>> observableList(final Predicate<Game> predicate) {
+        return  FXCollections.observableArrayList(database.getTripleFromGame(predicate));
+    }
+    private void writeWinner(final Triple<User, User, LocalDate> newSelection) {
+        if (newSelection != null) {
+            String winner;
+            Optional<Game> game;
+            winner = database.getWinner(newSelection);
+            game = database.getGame(newSelection);
+            game.ifPresentOrElse(x -> writeStatsGamePresent(winner), () -> txtAreaStats.setText("error! game not found"));
+        }
+    }
+    private void writeStatsGamePresent(final String winner) {
+        if (!winner.isEmpty()) {
+            txtAreaStats.setText("the winner is: " + winner);
+        } else {
+            txtAreaStats.setText("the game ended in a draw");
+        }
+    }
     private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
         final TableRow<Triple<User, User, LocalDate>> row = new TableRow<>();
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
@@ -98,32 +119,4 @@ public class StatsController  extends AbstractController implements Initializabl
             txtAreaStats.setText("");
         }
     }
-
-    private Predicate<Game> filter(final String s2) {
-        return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
-    }
-
-    private void writeWinner(final Triple<User, User, LocalDate> newSelection) {
-        if (newSelection != null) {
-            String winner;
-            Optional<Game> game;
-            winner = database.getWinner(newSelection);
-            game = database.getGame(newSelection);
-            game.ifPresentOrElse(x -> writeStatsGamePresent(winner), () -> txtAreaStats.setText("error! game not found"));
-        }
-    }
-
-    private void writeStatsGamePresent(final String winner) {
-            if (!winner.isEmpty()) {
-                txtAreaStats.setText("the winner is: " + winner);
-            } else {
-                txtAreaStats.setText("the game ended in a draw");
-            }
-    }
-
-    private ObservableList<Triple<User, User, LocalDate>> observableList(final Predicate<Game> predicate) {
-        return  FXCollections.observableArrayList(database.getTripleFromGame(predicate));
-    }
-
-
 }

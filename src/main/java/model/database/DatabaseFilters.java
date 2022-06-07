@@ -56,7 +56,6 @@ public class DatabaseFilters {
                 .filter(x -> x.getStartDate().equals(newSelection.getThird())).findFirst();
     }
 
-
     public String getWinner(final Triple<User, User, LocalDate> newSelection) {
         return getGame(newSelection)
                 .flatMap(Game::getWinner)
@@ -64,7 +63,4 @@ public class DatabaseFilters {
                 .map(User::getName)
                 .orElse("");
     }
-
-
-
 }
