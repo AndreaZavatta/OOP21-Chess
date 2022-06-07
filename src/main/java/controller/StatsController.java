@@ -1,12 +1,10 @@
 package controller;
 import game.Game;
-import game.GameImpl;
 import io.JsonFileReader;
 import io.JsonFileReaderImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import tuple.Pair;
 import tuple.Triple;
 import user.User;
@@ -28,8 +25,6 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -56,7 +51,7 @@ public class StatsController implements Initializable {
     @FXML
     private TableView<Triple<User, User, Instant>> tableView = new TableView<>();
 
-    private List<GameImpl> games;
+    private List<Game> games;
 
     /**
      * show stats of user, on click of show stats button.
@@ -78,7 +73,7 @@ public class StatsController implements Initializable {
     }
 
     private Optional<User> getFirstOccurrenceUser(String str){
-    return games.stream().map(GameImpl::getUsers)
+    return games.stream().map(Game::getUsers)
             .flatMap(x -> Stream.of(x.getX(), x.getY()))
             .filter(x -> x.getName().contains(str)).findFirst();
 }
@@ -101,41 +96,57 @@ public class StatsController implements Initializable {
                 .filter(x -> x.getWinner().isEmpty())
                 .count();
     }
+    private List<Game> wrappedRead(){
+        List<Game> games = null;
+        try{
+            games = fr.readFile();
+        } catch (IOException e) {
+            showError();
+        }
+        return games;
+    }
+
+    private void showError() {
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setContentText("");
+        alert.setHeaderText("error! unable to read database");
+        alert.show();
+    }
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        try {
-            games = fr.readFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        games = wrappedRead();
         firstPlayer.setCellValueFactory(new PropertyValueFactory<>("x"));
         secondPlayer.setCellValueFactory(new PropertyValueFactory<>("y"));
         date.setCellValueFactory(new PropertyValueFactory<>("z"));
-        tableView.setItems(observableList((x -> true)));
-
         txtFieldName.textProperty().addListener((observableValue, s, s2) -> tableView.setItems(observableList(filter(s2))));
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            try {
-                writeWinner(newSelection);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        tableView.setRowFactory(tableView2 -> {
-            final TableRow<Triple<User, User, Instant>> row = new TableRow<>();
-            row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-                final int index = row.getIndex();
-                if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)  ) {
-                    tableView.getSelectionModel().clearSelection();
-                    event.consume();
-                    txtAreaStats.setText("");
-                }
+        tableView.setItems(observableList((x -> true)));
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> wrappedWinner(newSelection));
+        tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
 
-            });
-            return row;
-        });
+    }
 
+    private void wrappedWinner(Triple<User, User, Instant> newSelection) {
+        try {
+            writeWinner(newSelection);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private TableRow<Triple<User, User, Instant>> addDeselectionRowEvent() {
+        final TableRow<Triple<User, User, Instant>> row = new TableRow<>();
+        row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
+        return row;
+    }
+
+    private void deselectRow(TableRow<Triple<User, User, Instant>> row, MouseEvent event) {
+        final int index = row.getIndex();
+        if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)  ) {
+            tableView.getSelectionModel().clearSelection();
+            event.consume();
+            txtAreaStats.setText("");
+        }
     }
 
     private Predicate<Game> filter(final String s2) {
@@ -145,7 +156,7 @@ public class StatsController implements Initializable {
     private void writeWinner(final Triple<User, User, Instant> newSelection) throws IOException {
         if (newSelection != null) {
             String winner;
-            Optional<GameImpl> game;
+            Optional<Game> game;
             try {
                 winner = getWinner(newSelection);
                 game = getGame(newSelection);
@@ -164,14 +175,14 @@ public class StatsController implements Initializable {
             }
     }
 
-    private Optional<GameImpl> getGame(final Triple<User, User, Instant> newSelection) throws IOException {
+    private Optional<Game> getGame(final Triple<User, User, Instant> newSelection) throws IOException {
         return fr.readFile().stream().filter(x -> x.getUsers().getX().equals(newSelection.getFirst()))
                 .filter(x -> x.getUsers().getY().equals(newSelection.getSecond()))
                 .filter(x -> x.getStartDate().equals(newSelection.getThird())).findFirst();
     }
     private String getWinner(final Triple<User, User, Instant> newSelection) throws IOException {
         return getGame(newSelection)
-                .flatMap(GameImpl::getWinner)
+                .flatMap(Game::getWinner)
                 .map(Pair::getX)
                 .map(User::getName)
                 .orElse("");
