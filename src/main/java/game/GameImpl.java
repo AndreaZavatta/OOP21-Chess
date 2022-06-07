@@ -12,6 +12,7 @@ import board.ControlCheckImpl;
 import board.EndGame;
 import board.EndGameImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import tuple.Pair;
@@ -30,7 +31,7 @@ import user.User;
 public class GameImpl implements Game {
 
     private Pair<User, Side> winner;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private final Instant startDate;
     @JsonProperty("gameFinished")
     private boolean isFinished;
