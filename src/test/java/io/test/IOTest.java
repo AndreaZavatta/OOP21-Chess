@@ -109,12 +109,13 @@ class IOTest {
     }
     @Test
     void testDeserializer() throws JsonProcessingException {
-        final JsonDeserializer jsonDeserializer = new JsonDeserializerImpl(GameImpl.class);
+        final JsonDeserializer jsonDeserializer = new JsonDeserializerImpl();
         final Game game = getGame("andrea", "giacomo");
         final String json = js.serialize(game);
         final Game game2 = (GameImpl) jsonDeserializer.deserialize(json);
         assertEquals(game.getPiecesList(), game2.getPiecesList());
     }
+
 
     private Game getGame(final String firstName, final String secondName){
         final User user1 = new UserImpl(firstName);
@@ -131,7 +132,7 @@ class IOTest {
         try {
             final Game game = getGame("andrea", "giacomo");
             fw.writeFile(game);
-            final JsonFileReader fr = new JsonFileReaderImpl("database.txt", GameImpl.class);
+            final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
             final Game game2 = (Game) fr.readFile();
             assertEquals(game.getPiecesList(), game2.getPiecesList());
         }catch(IOException ignored){
@@ -144,7 +145,7 @@ class IOTest {
         try {
             final List<Game> list = getGames();
             fw.writeFile(list);
-            final JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
+            final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
             fr.readFile();
 
 
@@ -158,7 +159,7 @@ class IOTest {
         try{
             final List<Game> list = getGames();
             fw.writeFile(list);
-            JsonFileReader fr = new JsonFileReaderImpl("database.txt", ArrayList.class);
+            JsonFileReader fr = new JsonFileReaderImpl("database.txt");
             fr.readFile();
         } catch (IOException e) {
             System.out.println("err");
