@@ -6,6 +6,7 @@ import io.JsonFileReaderImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import tuple.Pair;
 import tuple.Triple;
 import user.User;
@@ -74,7 +77,7 @@ public class StatsController implements Initializable {
         }
     }
 
-private Optional<User> getFirstOccurrenceUser(String str){
+    private Optional<User> getFirstOccurrenceUser(String str){
     return games.stream().map(GameImpl::getUsers)
             .flatMap(x -> Stream.of(x.getX(), x.getY()))
             .filter(x -> x.getName().contains(str)).findFirst();
@@ -101,14 +104,11 @@ private Optional<User> getFirstOccurrenceUser(String str){
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-
-
         try {
             games = fr.readFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         firstPlayer.setCellValueFactory(new PropertyValueFactory<>("x"));
         secondPlayer.setCellValueFactory(new PropertyValueFactory<>("y"));
         date.setCellValueFactory(new PropertyValueFactory<>("z"));
@@ -121,6 +121,19 @@ private Optional<User> getFirstOccurrenceUser(String str){
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+        tableView.setRowFactory(tableView2 -> {
+            final TableRow<Triple<User, User, Instant>> row = new TableRow<>();
+            row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                final int index = row.getIndex();
+                if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)  ) {
+                    tableView.getSelectionModel().clearSelection();
+                    event.consume();
+                    txtAreaStats.setText("");
+                }
+
+            });
+            return row;
         });
 
     }
@@ -169,7 +182,6 @@ private Optional<User> getFirstOccurrenceUser(String str){
     }
 
     private List<Triple<User, User, Instant>> getTripleFromGame(final Predicate<Game> predicate) {
-
         return games.stream().filter(predicate)
                 .map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toUnmodifiableList());
     }
