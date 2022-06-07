@@ -218,9 +218,6 @@ public class BoardController {
                         getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
                         this.match, this.mapGuiPieceToPiece);
             }
-            //            if (match.isCastling(mapGuiPieceToPiece.get(guiPiece), firstPos)) {
-            //
-            //            }
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
                 //System.out.println("Game Over");
