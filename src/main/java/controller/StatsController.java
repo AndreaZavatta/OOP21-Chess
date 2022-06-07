@@ -1,4 +1,5 @@
 package controller;
+import game.Game;
 import game.GameImpl;
 import io.JsonFileReader;
 import io.JsonFileReaderImpl;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import tuple.Pair;
 import tuple.Triple;
 import user.User;
 
@@ -21,18 +23,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * controller for updating stats view.
+ *
+ */
 public class StatsController implements Initializable {
 
-    JsonFileReader fr = new JsonFileReaderImpl("database.txt");
+    private JsonFileReader fr = new JsonFileReaderImpl("database.txt");
 
     private final Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
     private TextField txtFieldName = new TextField();
-    @FXML
-    private TextField txtFieldSurname = new TextField();
     @FXML
     private TextArea txtAreaStats = new TextArea();
     @FXML
@@ -44,20 +50,47 @@ public class StatsController implements Initializable {
     @FXML
     private TableView<Triple<User, User, Instant>> tableView = new TableView<>();
 
-        //Game game = new GameImpl(new Pair<>(new UserImpl("andrea"), Side.BLACK), new Pair<>(new UserImpl("marco"), Side.WHITE));
-        //Game game2 = new GameImpl(new Pair<>(new UserImpl("alessia"), Side.BLACK), new Pair<>(new UserImpl("martina"), Side.WHITE));
-        //List<Game> games = List.of(game, game2);
-    List<GameImpl> games;
+    private List<GameImpl> games;
+
+    /**
+     * show stats of user, on click of show stats button.
+     */
+    public void showStats() {
+        long gameWon = getNumberGameWon(txtFieldName.getText());
+        long gamePlayed = getNumberGamePlayed(txtFieldName.getText());
+        long gameDraw = getNumberGameDraw(txtFieldName.getText());
+        txtAreaStats.setText(txtFieldName.getText() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
+        txtAreaStats.appendText(txtFieldName.getText() + " draw " + (gameDraw * 100 / gamePlayed) + "% of game played\n");
+        txtAreaStats.appendText(txtFieldName.getText() + " lose " + ((gamePlayed - gameDraw - gameWon) * 100 / gamePlayed) + "% of game played");
+    }
 
 
-    public void showStats(){
-        txtAreaStats.setText("here the stats");
-        txtFieldName.setText("il mio nome");
-        txtFieldSurname.setText("il mio cognome");
+
+    private long getNumberGamePlayed(final String str) {
+        return games.stream().filter(x -> x.getUsers().getX().getName()
+                        .equals(str)
+                        || x.getUsers().getY().getName().equals(str))
+                        .count();
+    }
+
+    private long getNumberGameWon(final String str) {
+        return games.stream().filter(x -> x.getUsers().getX().getName()
+                        .equals(str)
+                        || x.getUsers().getY().getName().equals(str))
+                .filter(x -> x.getWinner().isPresent())
+                .filter(x -> x.getWinner().get().getX().getName().equals(str))
+                .count();
+    }
+    private long getNumberGameDraw(final String str) {
+        return games.stream().filter(x -> x.getUsers().getX().getName()
+                        .equals(str)
+                        || x.getUsers().getY().getName().equals(str))
+                .filter(x -> x.getWinner().isEmpty())
+                .count();
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
 
 
         try {
@@ -69,20 +102,66 @@ public class StatsController implements Initializable {
         firstPlayer.setCellValueFactory(new PropertyValueFactory<>("x"));
         secondPlayer.setCellValueFactory(new PropertyValueFactory<>("y"));
         date.setCellValueFactory(new PropertyValueFactory<>("z"));
+        tableView.setItems(observableList((x -> true)));
 
-        tableView.setItems(observableList());
-
-
-        txtFieldName.textProperty().addListener((observableValue, s, s2) -> {
-            txtAreaStats.setText(s2);
+        txtFieldName.textProperty().addListener((observableValue, s, s2) -> tableView.setItems(observableList(filter(s2))));
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            try {
+                writeWinner(newSelection);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
+
     }
 
-    private ObservableList<Triple<User,User,Instant>> observableList(){
-        return  FXCollections.observableArrayList(
-                //Stream.of(games).map(x -> (Game)x).map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toList())
-                games.stream().map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toList())
-        );
+    private Predicate<Game> filter(final String s2) {
+        return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
+    }
+
+    private void writeWinner(final Triple<User, User, Instant> newSelection) throws IOException {
+        if (newSelection != null) {
+            String winner;
+            Optional<GameImpl> game;
+            try {
+                winner = getWinner(newSelection);
+                game = getGame(newSelection);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            game.ifPresentOrElse(x -> writeStatsGamePresent(winner), () -> txtAreaStats.setText("error! game not found"));
+        }
+    }
+
+    private void writeStatsGamePresent(final String winner) {
+            if (!winner.isEmpty()) {
+                txtAreaStats.setText("the winner is: " + winner);
+            } else {
+                txtAreaStats.setText("the game ended in a draw");
+            }
+    }
+
+    private Optional<GameImpl> getGame(final Triple<User, User, Instant> newSelection) throws IOException {
+        return fr.readFile().stream().filter(x -> x.getUsers().getX().equals(newSelection.getFirst()))
+                .filter(x -> x.getUsers().getY().equals(newSelection.getSecond()))
+                .filter(x -> x.getStartDate().equals(newSelection.getThird())).findFirst();
+    }
+    private String getWinner(final Triple<User, User, Instant> newSelection) throws IOException {
+        return getGame(newSelection)
+                .flatMap(GameImpl::getWinner)
+                .map(Pair::getX)
+                .map(User::getName)
+                .orElse("");
+    }
+
+    private ObservableList<Triple<User, User, Instant>> observableList(final Predicate<Game> predicate) {
+        return  FXCollections.observableArrayList(getTripleFromGame(predicate));
+    }
+
+    private List<Triple<User, User, Instant>> getTripleFromGame(final Predicate<Game> predicate) {
+
+        return games.stream().filter(predicate)
+                .map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toUnmodifiableList());
     }
 
 
