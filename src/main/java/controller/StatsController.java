@@ -1,20 +1,16 @@
 package controller;
+import static javafx.scene.control.Alert.AlertType.ERROR;
+
 import game.Game;
 import io.JsonFileReader;
 import io.JsonFileReaderImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import tuple.Pair;
 import tuple.Triple;
 import user.User;
@@ -33,11 +29,9 @@ import java.util.stream.Stream;
  * controller for updating stats view.
  *
  */
-public class StatsController implements Initializable {
+public class StatsController  extends AbstractController implements Initializable{
 
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
-
-    private final Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
     private TextField txtFieldName = new TextField();
     @FXML
@@ -76,7 +70,7 @@ public class StatsController implements Initializable {
     return games.stream().map(Game::getUsers)
             .flatMap(x -> Stream.of(x.getX(), x.getY()))
             .filter(x -> x.getName().contains(str)).findFirst();
-}
+    }
 
     private long getNumberGamePlayed(final User user) {
         return games.stream()
@@ -101,17 +95,14 @@ public class StatsController implements Initializable {
         try{
             games = fr.readFile();
         } catch (IOException e) {
-            showError();
+            showError("error! unable to read database", ERROR);
         }
         return games;
     }
 
-    private void showError() {
-        alert.setAlertType(Alert.AlertType.ERROR);
-        alert.setContentText("");
-        alert.setHeaderText("error! unable to read database");
-        alert.show();
-    }
+
+
+
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -198,19 +189,5 @@ public class StatsController implements Initializable {
     }
 
 
-    @FXML
-    void backToMenu(final ActionEvent event) {
-        //TODO
-        try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/MainMenu.fxml"));
-            final Parent root = (Parent) loader.load();
-            final Stage stage = new Stage();
-            stage.setTitle("MENU");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            System.err.println(e);
-        }
-    }
+
 }
