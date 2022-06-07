@@ -1,5 +1,7 @@
 package user;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -44,5 +46,25 @@ public class UserImpl implements User {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserImpl other = (UserImpl) obj;
+        return Objects.equals(name, other.name);
     }
 }
