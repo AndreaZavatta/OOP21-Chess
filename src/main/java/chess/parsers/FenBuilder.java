@@ -91,7 +91,7 @@ public class FenBuilder implements Fen {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getPosition().getY() == row)
                 .sorted(Comparator.comparingInt((Piece x) -> x.getPosition().getX()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private String fenPiece(final Chessboard chessboard) {

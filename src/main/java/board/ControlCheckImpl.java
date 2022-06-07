@@ -2,7 +2,6 @@ package board;
 
 import static model.piece.utils.Name.KING;
 
-import model.piece.utils.Name;
 import model.piece.utils.Side;
 import java.util.ArrayList;
 import java.util.List;
