@@ -25,8 +25,11 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * controller for updating stats view.
@@ -34,7 +37,7 @@ import java.util.stream.Collectors;
  */
 public class StatsController implements Initializable {
 
-    private JsonFileReader fr = new JsonFileReaderImpl("database.txt");
+    private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
 
     private final Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
@@ -56,35 +59,42 @@ public class StatsController implements Initializable {
      * show stats of user, on click of show stats button.
      */
     public void showStats() {
-        long gameWon = getNumberGameWon(txtFieldName.getText());
-        long gamePlayed = getNumberGamePlayed(txtFieldName.getText());
-        long gameDraw = getNumberGameDraw(txtFieldName.getText());
-        txtAreaStats.setText(txtFieldName.getText() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
-        txtAreaStats.appendText(txtFieldName.getText() + " draw " + (gameDraw * 100 / gamePlayed) + "% of game played\n");
-        txtAreaStats.appendText(txtFieldName.getText() + " lose " + ((gamePlayed - gameDraw - gameWon) * 100 / gamePlayed) + "% of game played");
+        Optional<User> user = getFirstOccurrenceUser(txtFieldName.getText());
+        if(user.isPresent()) {
+            long gameWon = getNumberGameWon(user.get());
+            long gamePlayed = getNumberGamePlayed(user.get());
+            long gameDraw = getNumberGameDraw(user.get());
+
+            txtAreaStats.setText("Name: " + user.get().getName()+ "\n");
+            txtAreaStats.appendText(user.get().getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
+            txtAreaStats.appendText(user.get().getName() + " draw " + (gameDraw * 100 / gamePlayed) + "% of game played\n");
+            txtAreaStats.appendText(user.get().getName() + " lose " + ((gamePlayed - gameDraw - gameWon) * 100 / gamePlayed) + "% of game played");
+        }else{
+            txtAreaStats.setText("name not found!");
+        }
     }
 
+private Optional<User> getFirstOccurrenceUser(String str){
+    return games.stream().map(GameImpl::getUsers)
+            .flatMap(x -> Stream.of(x.getX(), x.getY()))
+            .filter(x -> x.getName().contains(str)).findFirst();
+}
 
-
-    private long getNumberGamePlayed(final String str) {
-        return games.stream().filter(x -> x.getUsers().getX().getName()
-                        .equals(str)
-                        || x.getUsers().getY().getName().equals(str))
-                        .count();
+    private long getNumberGamePlayed(final User user) {
+        return games.stream()
+                .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user)).count();
     }
 
-    private long getNumberGameWon(final String str) {
-        return games.stream().filter(x -> x.getUsers().getX().getName()
-                        .equals(str)
-                        || x.getUsers().getY().getName().equals(str))
+    private long getNumberGameWon(final User user) {
+        return games.stream()
+                .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user))
                 .filter(x -> x.getWinner().isPresent())
-                .filter(x -> x.getWinner().get().getX().getName().equals(str))
+                .filter(x -> x.getWinner().get().getX().equals(user))
                 .count();
     }
-    private long getNumberGameDraw(final String str) {
-        return games.stream().filter(x -> x.getUsers().getX().getName()
-                        .equals(str)
-                        || x.getUsers().getY().getName().equals(str))
+    private long getNumberGameDraw(final User user) {
+        return games.stream()
+                .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user))
                 .filter(x -> x.getWinner().isEmpty())
                 .count();
     }
