@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <MenuBar>
@@ -24,7 +24,6 @@
                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
             </VBox.margin>
             <TextField fx:id="txtFieldName" promptText="name" />
-            <TextField fx:id="txtFieldSurname" layoutX="10.0" layoutY="10.0" promptText="surname" />
             <Region HBox.hgrow="ALWAYS" />
             <Button id="statsButton" mnemonicParsing="false" onAction="#showStats" text="show stats" />
          </HBox>
@@ -38,17 +37,16 @@
          <padding>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
-         <Button id="statsButton" mnemonicParsing="false" text="show details" />
          <Region HBox.hgrow="ALWAYS" />
          <Button id="statsButton" layoutX="12.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMenu" text="Back" />
       </HBox>
    </bottom>
    <left>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="370.0" stylesheets="@../stylesheets/style.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="300.0" prefWidth="500.0" stylesheets="@../stylesheets/style.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="125.0" text="player 1"  fx:id="firstPlayer"/>
-            <TableColumn prefWidth="125.0" text="player 2" fx:id="secondPlayer"/>
-            <TableColumn prefWidth="100.0" text="data" fx:id="date"/>
+          <TableColumn fx:id="firstPlayer" prefWidth="125.0" text="player 1" />
+            <TableColumn fx:id="secondPlayer" prefWidth="125.0" text="player 2" />
+            <TableColumn fx:id="date" minWidth="20.0" prefWidth="200.0" text="data" />
         </columns>
       </TableView>
    </left>
