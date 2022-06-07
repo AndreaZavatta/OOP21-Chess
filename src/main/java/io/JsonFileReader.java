@@ -1,5 +1,6 @@
 package io;
-import game.GameImpl;
+import game.Game;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -10,9 +11,10 @@ import java.util.List;
 public interface JsonFileReader {
         /**
          * a method for reading from files.
+         *
          * @return T
          * @throws IOException if reading to file is not done correctly
          */
-        List<GameImpl> readFile() throws IOException;
+        List<Game> readFile() throws IOException;
 
 }

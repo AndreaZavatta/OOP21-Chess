@@ -1,6 +1,6 @@
 package io;
 
-import game.GameImpl;
+import game.Game;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
 
 
     @Override
-    public List<GameImpl> readFile() throws IOException {
+    public List<Game> readFile() throws IOException {
             final File file = new File(cd + fs + fileName);
             return jDeserializer.deserialize(composeString(file));
     }
