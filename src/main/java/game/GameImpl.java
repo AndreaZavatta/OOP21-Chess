@@ -1,7 +1,9 @@
 package game;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +33,8 @@ import user.User;
 public class GameImpl implements Game {
 
     private Pair<User, Side> winner;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-    private final Instant startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" ,timezone="CEST")
+    private final LocalDate startDate;
     @JsonProperty("gameFinished")
     private boolean isFinished;
     private final Chessboard chessboard;
@@ -51,7 +53,7 @@ public class GameImpl implements Game {
         this.chessboard = new ChessboardFactoryImpl().createNormalCB();
         this.gameController = new EndGameImpl();
         this.turnManager = new TurnImpl(player1, player2);
-        this.startDate = Instant.now();
+        startDate = LocalDate.now();
     }
 
     @Override
@@ -121,7 +123,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public Instant getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 }

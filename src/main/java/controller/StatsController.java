@@ -1,6 +1,5 @@
 package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
-
 import game.Game;
 import io.JsonFileReader;
 import io.JsonFileReaderImpl;
@@ -11,26 +10,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import tuple.Pair;
+import model.database.DatabaseFilters;
 import tuple.Triple;
 import user.User;
-
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * controller for updating stats view.
  *
  */
 public class StatsController  extends AbstractController implements Initializable{
-
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
     @FXML
     private TextField txtFieldName = new TextField();
@@ -41,21 +36,21 @@ public class StatsController  extends AbstractController implements Initializabl
     @FXML
     private TableColumn<User, String> secondPlayer;
     @FXML
-    private TableColumn<Instant, String> date;
+    private TableColumn<LocalDate, String> date;
     @FXML
-    private TableView<Triple<User, User, Instant>> tableView = new TableView<>();
+    private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
 
-    private List<Game> games;
+    private DatabaseFilters database;
 
     /**
      * show stats of user, on click of show stats button.
      */
     public void showStats() {
-        Optional<User> user = getFirstOccurrenceUser(txtFieldName.getText());
+        Optional<User> user = database.getFirstOccurrenceUser(txtFieldName.getText());
         if(user.isPresent()) {
-            long gameWon = getNumberGameWon(user.get());
-            long gamePlayed = getNumberGamePlayed(user.get());
-            long gameDraw = getNumberGameDraw(user.get());
+            long gameWon = database.getNumberGameWon(user.get());
+            long gamePlayed = database.getNumberGamePlayed(user.get());
+            long gameDraw = database.getNumberGameDraw(user.get());
 
             txtAreaStats.setText("Name: " + user.get().getName()+ "\n");
             txtAreaStats.appendText(user.get().getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
@@ -66,30 +61,7 @@ public class StatsController  extends AbstractController implements Initializabl
         }
     }
 
-    private Optional<User> getFirstOccurrenceUser(String str){
-    return games.stream().map(Game::getUsers)
-            .flatMap(x -> Stream.of(x.getX(), x.getY()))
-            .filter(x -> x.getName().contains(str)).findFirst();
-    }
 
-    private long getNumberGamePlayed(final User user) {
-        return games.stream()
-                .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user)).count();
-    }
-
-    private long getNumberGameWon(final User user) {
-        return games.stream()
-                .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user))
-                .filter(x -> x.getWinner().isPresent())
-                .filter(x -> x.getWinner().get().getX().equals(user))
-                .count();
-    }
-    private long getNumberGameDraw(final User user) {
-        return games.stream()
-                .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user))
-                .filter(x -> x.getWinner().isEmpty())
-                .count();
-    }
     private List<Game> wrappedRead(){
         List<Game> games = null;
         try{
@@ -100,38 +72,25 @@ public class StatsController  extends AbstractController implements Initializabl
         return games;
     }
 
-
-
-
-
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        games = wrappedRead();
+        database = new DatabaseFilters(wrappedRead());
         firstPlayer.setCellValueFactory(new PropertyValueFactory<>("x"));
         secondPlayer.setCellValueFactory(new PropertyValueFactory<>("y"));
         date.setCellValueFactory(new PropertyValueFactory<>("z"));
         txtFieldName.textProperty().addListener((observableValue, s, s2) -> tableView.setItems(observableList(filter(s2))));
         tableView.setItems(observableList((x -> true)));
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> wrappedWinner(newSelection));
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
-
     }
 
-    private void wrappedWinner(Triple<User, User, Instant> newSelection) {
-        try {
-            writeWinner(newSelection);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private TableRow<Triple<User, User, Instant>> addDeselectionRowEvent() {
-        final TableRow<Triple<User, User, Instant>> row = new TableRow<>();
+    private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
+        final TableRow<Triple<User, User, LocalDate>> row = new TableRow<>();
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
         return row;
     }
 
-    private void deselectRow(TableRow<Triple<User, User, Instant>> row, MouseEvent event) {
+    private void deselectRow(TableRow<Triple<User, User, LocalDate>> row, MouseEvent event) {
         final int index = row.getIndex();
         if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)  ) {
             tableView.getSelectionModel().clearSelection();
@@ -144,16 +103,12 @@ public class StatsController  extends AbstractController implements Initializabl
         return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
     }
 
-    private void writeWinner(final Triple<User, User, Instant> newSelection) throws IOException {
+    private void writeWinner(final Triple<User, User, LocalDate> newSelection) {
         if (newSelection != null) {
             String winner;
             Optional<Game> game;
-            try {
-                winner = getWinner(newSelection);
-                game = getGame(newSelection);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            winner = database.getWinner(newSelection);
+            game = database.getGame(newSelection);
             game.ifPresentOrElse(x -> writeStatsGamePresent(winner), () -> txtAreaStats.setText("error! game not found"));
         }
     }
@@ -166,28 +121,9 @@ public class StatsController  extends AbstractController implements Initializabl
             }
     }
 
-    private Optional<Game> getGame(final Triple<User, User, Instant> newSelection) throws IOException {
-        return fr.readFile().stream().filter(x -> x.getUsers().getX().equals(newSelection.getFirst()))
-                .filter(x -> x.getUsers().getY().equals(newSelection.getSecond()))
-                .filter(x -> x.getStartDate().equals(newSelection.getThird())).findFirst();
+    private ObservableList<Triple<User, User, LocalDate>> observableList(final Predicate<Game> predicate) {
+        return  FXCollections.observableArrayList(database.getTripleFromGame(predicate));
     }
-    private String getWinner(final Triple<User, User, Instant> newSelection) throws IOException {
-        return getGame(newSelection)
-                .flatMap(Game::getWinner)
-                .map(Pair::getX)
-                .map(User::getName)
-                .orElse("");
-    }
-
-    private ObservableList<Triple<User, User, Instant>> observableList(final Predicate<Game> predicate) {
-        return  FXCollections.observableArrayList(getTripleFromGame(predicate));
-    }
-
-    private List<Triple<User, User, Instant>> getTripleFromGame(final Predicate<Game> predicate) {
-        return games.stream().filter(predicate)
-                .map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toUnmodifiableList());
-    }
-
 
 
 }
