@@ -58,7 +58,7 @@ public final class AbstractController {
         changePage(event, "/layouts/Stats.fxml");
     }
 
-    private void showAlert(final String str, final Alert.AlertType type) {
+    public void showAlert(final String str, final Alert.AlertType type) {
         alert.setAlertType(type);
         alert.setContentText("");
         alert.setHeaderText(str);

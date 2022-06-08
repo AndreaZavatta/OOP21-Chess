@@ -26,7 +26,8 @@ import java.util.function.Predicate;
  * controller for updating stats view.
  *
  */
-public class StatsController  extends AbstractController implements Initializable{
+public class StatsController implements Initializable{
+    private final AbstractController contr = new AbstractController();
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
     @FXML
     private TextField txtFieldName = new TextField();
@@ -113,5 +114,12 @@ public class StatsController  extends AbstractController implements Initializabl
             event.consume();
             txtAreaStats.setText("");
         }
+    }
+    private void showAlert(String str, Alert.AlertType type){
+        contr.showAlert(str, type);
+    }
+    @FXML
+    void backToMainMenu(final Event event){
+        contr.backToMenu(event);
     }
 }
