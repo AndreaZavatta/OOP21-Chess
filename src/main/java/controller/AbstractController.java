@@ -25,11 +25,11 @@ public abstract class AbstractController {
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
-            showError("unable to open menu", ERROR);
+            showAlert("unable to open menu", ERROR);
         }
     }
 
-    void showError(String str, Alert.AlertType type) {
+    void showAlert(String str, Alert.AlertType type) {
         alert.setAlertType(type);
         alert.setContentText("");
         alert.setHeaderText(str);

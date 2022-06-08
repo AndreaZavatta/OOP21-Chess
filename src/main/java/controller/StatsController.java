@@ -67,7 +67,7 @@ public class StatsController  extends AbstractController implements Initializabl
         try{
             games = fr.readFile();
         } catch (IOException e) {
-            showError("error! unable to read database", ERROR);
+            showAlert("error! unable to read database", ERROR);
         }
         return games;
     }
