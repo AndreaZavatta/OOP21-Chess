@@ -3,8 +3,6 @@ package controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import java.io.IOException;
 
 /**
  * 
@@ -12,24 +10,23 @@ import java.io.IOException;
  *
  */
 
-public class MenuController extends  AbstractController {
+public class MenuController {
+
+    private final AbstractController controller = new AbstractController();
 
     @FXML
-    void openUserHandler(final ActionEvent event) throws IOException {
-        FXMLLoader userLoader = new FXMLLoader(getClass().getResource("/layouts/UserHandler.fxml"));
-            buildWindowNodes(event, userLoader);
+    void openUserHandler(final ActionEvent event) {
+        controller.openUserHandler(event);
     }
 
     @FXML
-    void openTutorial(final ActionEvent event) throws IOException {
-        FXMLLoader tutorialLoader = new FXMLLoader(getClass().getResource("/layouts/Tutorial.fxml"));
-            buildWindowNodes(event, tutorialLoader);
+    void openTutorial(final ActionEvent event) {
+        controller.openTutorial(event);
     }
 
     @FXML
-    void openStats(final ActionEvent event) throws IOException {
-            FXMLLoader statsLoader = new FXMLLoader(getClass().getResource("/layouts/Stats.fxml"));
-            buildWindowNodes(event, statsLoader);
+    void openStats(final ActionEvent event) {
+          controller.openStats(event);
     }
 
     @FXML

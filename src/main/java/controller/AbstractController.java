@@ -73,7 +73,4 @@ public final class AbstractController {
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-
-
-
 }
