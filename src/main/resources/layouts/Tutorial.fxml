@@ -5,32 +5,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TutorialController">
-   <children>
-      <Text layoutX="35.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutorial">
-         <font>
-            <Font name="Courier New Bold" size="50.0" />
-         </font>
-      </Text>
-      <Text layoutX="35.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We are delighted to welcome you to the most popular strategy game in the world: chess!" textAlignment="JUSTIFY" wrappingWidth="320.64975929260254">
-         <font>
-            <Font name="Courier New Bold" size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="35.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In this space we have set up a small tutorial for beginners and for anyone who wants to review the basic rules of the game." wrappingWidth="328.6666463216146">
-         <font>
-            <Font name="Courier New Bold" size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="200.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have fun! ">
-         <font>
-            <Font name="Courier New Bold" size="25.0" />
-         </font>
-      </Text>
-      <Button layoutX="407.0" layoutY="179.0" mnemonicParsing="false" onAction="#openSlide" prefHeight="113.0" prefWidth="163.0" styleClass="startTutorialButton" stylesheets="@../stylesheets/style.css" text="Start the Tutorial">
-         <font>
-            <Font name="Courier New" size="13.0" />
-         </font></Button>
-      <Button layoutX="35.0" layoutY="347.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Back" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" styleClass="background" stylesheets="@../stylesheets/style.css"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.TutorialController">
+   <Text layoutX="35.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutorial">
+      <font>
+         <Font name="Courier New Bold" size="50.0"/>
+      </font>
+   </Text>
+   <Text layoutX="35.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="We are delighted to welcome you to the most popular strategy game in the world: chess!"
+         textAlignment="JUSTIFY" wrappingWidth="320.64975929260254">
+      <font>
+         <Font name="Courier New Bold" size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="35.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="In this space we have set up a small tutorial for beginners and for anyone who wants to review the basic rules of the game."
+         wrappingWidth="328.6666463216146">
+      <font>
+         <Font name="Courier New Bold" size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="200.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have fun! ">
+      <font>
+         <Font name="Courier New Bold" size="25.0"/>
+      </font>
+   </Text>
+   <Button layoutX="407.0" layoutY="179.0" mnemonicParsing="false" onAction="#openSlide" prefHeight="113.0"
+           prefWidth="163.0" styleClass="startTutorialButton" stylesheets="@../stylesheets/style.css"
+           text="Start the Tutorial">
+      <font>
+         <Font name="Courier New" size="13.0"/>
+      </font>
+   </Button>
+   <Button layoutX="35.0" layoutY="347.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0"
+           prefWidth="89.0" styleClass="startGame" text="Back"/>
 </AnchorPane>
