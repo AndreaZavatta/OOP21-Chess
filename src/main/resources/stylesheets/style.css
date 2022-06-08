@@ -32,19 +32,22 @@
 
 .changePageButton {
     -fx-background-color: coral;
-    -fx-opacity: 0;
+    -fx-opacity: 0.5;
     -fx-pref-height: 40;
     -fx-pref-width: 40;
 }
 
 .changePageButton:hover {
-    -fx-opacity: 0.5;
+    -fx-opacity: 0.8;
 }
 
 .chessButton  {
     -fx-opacity: 1;
-    -fx-background-color: gold;
+    -fx-background-color: #ff6600;
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+    -fx-fill: black;
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
 }
 
 .startTutorialButton {
@@ -57,8 +60,8 @@
 }
 
 .backToChessboard {
-    -fx-background-color: rgb(255, 170, 0);
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1, 1);
+    -fx-background-color: rgb(255, 98, 0);
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
 }
 
 .boardPanes {
