@@ -4,9 +4,7 @@ package io;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import game.Game;
 import game.GameImpl;
-
 import java.util.List;
-
 import static io.JsonUtils.getMapper;
 import static io.vertx.core.json.Json.mapper;
 
