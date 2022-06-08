@@ -40,7 +40,7 @@ import user.UserController;
 /**
  * Controller class for Board.fxml.
  */
-public class BoardController {
+public class BoardController extends AbstractController{
     /**
      * The tile size.
      */
@@ -212,7 +212,6 @@ public class BoardController {
             if (match.isInCheck()) {
                 BoardControllerUtils.setEffect(Color.RED, 
                         BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
-                //System.out.println("scacco");
             } else {
                 BoardControllerUtils.removeEffect(BoardControllerUtils.
                         getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
@@ -220,7 +219,6 @@ public class BoardController {
             }
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
-                //System.out.println("Game Over");
                 quitGame();
             }
         } else {
@@ -231,7 +229,10 @@ public class BoardController {
     private void quitGame() {
         final Stage dialog = new Stage();
         final Button buttonDialog = new Button("Back to main menu");
-        buttonDialog.setOnAction(btnEvent -> backToMainMenu());
+        buttonDialog.setOnAction(btnEvent -> {
+            backToMenu(btnEvent, "/layouts/MainMenu.fxml");
+            ((Node) (whitePlayer)).getScene().getWindow().hide();
+        });
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
         final VBox dialogVbox = new VBox(50);
@@ -243,23 +244,11 @@ public class BoardController {
         dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
-        dialog.setOnCloseRequest(ev -> backToMainMenu());
-        dialog.show();
-    }
-
-    private void backToMainMenu() {
-        try {
-            final FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/layouts/MainMenu.fxml"));
-            final Parent root = (Parent) loader.load();
-            final Stage stage = new Stage();
-            stage.setTitle("MENU");
-            stage.setScene(new Scene(root));
-            stage.show();
+        dialog.setOnCloseRequest(ev -> {
+            backToMenu(ev, "/layouts/MainMenu.fxml");
             ((Node) (whitePlayer)).getScene().getWindow().hide();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        });
+        dialog.show();
     }
 
     private void showPossiblePositions(final GuiPiece guiPiece) {
