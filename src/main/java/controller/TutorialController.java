@@ -34,7 +34,7 @@ public class TutorialController {
     }
 
     @FXML
-    void backToMenu (final ActionEvent event) {
+    void backToMenu(final ActionEvent event) {
         controller.backToMenu(event);
     }
 
