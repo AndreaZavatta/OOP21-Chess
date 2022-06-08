@@ -1,6 +1,7 @@
 package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,10 +15,9 @@ import java.io.IOException;
 public abstract class AbstractController {
     private final Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
-    void backToMenu(final ActionEvent event) {
-        //TODO
+    void backToMenu(final Event event, final String string) {
         try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/MainMenu.fxml"));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(string));
             final Parent root = (Parent) loader.load();
             final Stage stage = new Stage();
             stage.setTitle("MENU");
