@@ -9,7 +9,6 @@ import java.util.Map;
 import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
