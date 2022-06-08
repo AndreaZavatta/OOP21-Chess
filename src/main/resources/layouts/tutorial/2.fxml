@@ -20,22 +20,22 @@
             <Font name="Courier New Bold" size="40.0" />
          </font>
       </Text>
-      <Button fx:id="king" layoutX="201.0" layoutY="341.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♔">
+      <Button fx:id="king" layoutX="201.0" layoutY="340.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♔">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="knight" layoutX="279.0" layoutY="67.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♞">
+      <Button fx:id="knight" layoutX="278.0" layoutY="66.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♞">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="queen" layoutX="162.0" layoutY="341.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♕">
+      <Button fx:id="queen" layoutX="161.0" layoutY="340.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♕">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="bishop" layoutX="123.0" layoutY="67.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♝">
+      <Button fx:id="bishop" layoutX="121.0" layoutY="67.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♝">
          <font>
             <Font size="16.0" />
          </font>
@@ -45,7 +45,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="rook" layoutX="318.0" layoutY="67.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♜">
+      <Button fx:id="rook" layoutX="318.0" layoutY="66.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♜">
          <font>
             <Font size="16.0" />
          </font>
@@ -55,7 +55,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#goBack" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#openSlide" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
