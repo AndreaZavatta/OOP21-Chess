@@ -2,7 +2,6 @@ package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
 import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -33,6 +32,30 @@ public final class AbstractController {
      */
     public void backToMenu(final Event event) {
         changePage(event, "/layouts/MainMenu.fxml");
+    }
+    
+    /**
+     * @FXML
+     * @param event
+     */
+    public void openUserHandler(final Event event) {
+        changePage(event, "/layouts/UserHandler.fxml");
+    }
+    
+    /**
+     * @FXML
+     * @param event
+     */
+    public void openTutorial(final Event event) {
+        changePage(event, "/layouts/Tutorial.fxml");
+    }
+    
+    /**
+     * @FXML
+     * @param event
+     */
+    public void openStats(final Event event) {
+        changePage(event, "/layouts/Stats.fxml");
     }
 
     private void showAlert(final String str, final Alert.AlertType type) {
