@@ -31,6 +31,6 @@
          <font>
             <Font name="Courier New" size="13.0" />
          </font></Button>
-      <Button layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Back" />
+      <Button layoutX="35.0" layoutY="347.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Back" />
    </children>
 </AnchorPane>

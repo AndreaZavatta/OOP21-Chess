@@ -29,6 +29,16 @@ public class TutorialController {
     }
 
     @FXML
+    void openTutorial(final ActionEvent event) {
+        controller.openTutorial(event);
+    }
+
+    @FXML
+    void backToMenu (final ActionEvent event) {
+        controller.backToMenu(event);
+    }
+
+    @FXML
     void showPiece(final ActionEvent event) throws IOException {
         final Button caller = (Button) event.getSource();
         System.out.println(caller.getId());
