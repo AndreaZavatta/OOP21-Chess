@@ -58,6 +58,15 @@ public final class AbstractController {
         changePage(event, "/layouts/Stats.fxml");
     }
 
+    public void openSlide(final Event event) {
+        changePage(event, "/layouts/tutorial/1.fxml");
+    }
+
+    public void goOn(final Event event) {
+        changePage(event, "/layouts/tutorial/2.fxml");
+    }
+
+
     public void showAlert(final String str, final Alert.AlertType type) {
         alert.setAlertType(type);
         alert.setContentText("");
@@ -65,7 +74,13 @@ public final class AbstractController {
         alert.show();
     }
 
-    private void buildWindowNodes(final Event event, final FXMLLoader loader) throws IOException {
+    /**
+     *
+     * @param event
+     * @param loader
+     * @throws IOException
+     */
+    public void buildWindowNodes(final Event event, final FXMLLoader loader) throws IOException {
         final Parent root = loader.load();
         final Stage stage = new Stage();
         stage.setTitle("L.A.M.A. Chess");

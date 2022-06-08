@@ -14,24 +14,18 @@ import java.io.IOException;
  *
  */
 
-public class TutorialController extends  AbstractController {
+public class TutorialController {
+
+    private final AbstractController controller = new AbstractController();
 
     @FXML
-    void openSlide(final ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/1.fxml"));
-            buildWindowNodes(event, loader);
+    void openSlide(final ActionEvent event) {
+            controller.openSlide(event);
     }
 
     @FXML
-    void goOn(final ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/2.fxml"));
-            buildWindowNodes(event, loader);
-    }
-
-    @FXML
-    void goBack(final ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/1.fxml"));
-            buildWindowNodes(event, loader);
+    void goOn(final ActionEvent event) {
+        controller.goOn(event);
     }
 
     @FXML
@@ -39,6 +33,6 @@ public class TutorialController extends  AbstractController {
         final Button caller = (Button) event.getSource();
         System.out.println(caller.getId());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/" + caller.getId() + ".fxml"));
-            buildWindowNodes(event, loader);
+            controller.buildWindowNodes(event, loader);
     }
 }
