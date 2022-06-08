@@ -5,6 +5,7 @@ import io.JsonFileReader;
 import io.JsonFileReaderImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -39,7 +40,6 @@ public class StatsController  extends AbstractController implements Initializabl
     private TableColumn<LocalDate, String> date;
     @FXML
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
-
     private DatabaseFilters database;
 
     /**
@@ -60,18 +60,6 @@ public class StatsController  extends AbstractController implements Initializabl
             txtAreaStats.setText("name not found!");
         }
     }
-
-
-    private List<Game> wrappedRead(){
-        List<Game> games = null;
-        try{
-            games = fr.readFile();
-        } catch (IOException e) {
-            showAlert("error! unable to read database", ERROR);
-        }
-        return games;
-    }
-
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         database = new DatabaseFilters(wrappedRead());
@@ -83,6 +71,15 @@ public class StatsController  extends AbstractController implements Initializabl
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
     }
+    private List<Game> wrappedRead(){
+        List<Game> games = null;
+        try{
+            games = fr.readFile();
+        } catch (IOException e) {
+            showAlert("error! unable to read database", ERROR);
+        }
+        return games;
+    }
     private Predicate<Game> filter(final String s2) {
         return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
     }
@@ -91,11 +88,9 @@ public class StatsController  extends AbstractController implements Initializabl
     }
     private void writeWinner(final Triple<User, User, LocalDate> newSelection) {
         if (newSelection != null) {
-            String winner;
-            Optional<Game> game;
-            winner = database.getWinner(newSelection);
-            game = database.getGame(newSelection);
-            game.ifPresentOrElse(x -> writeStatsGamePresent(winner), () -> txtAreaStats.setText("error! game not found"));
+            database.getGame(newSelection).
+                    ifPresentOrElse(x -> writeStatsGamePresent(database.getWinner(newSelection)),
+                            () -> txtAreaStats.setText("error! game not found"));
         }
     }
     private void writeStatsGamePresent(final String winner) {
