@@ -33,7 +33,7 @@ public final class AbstractController {
     public void backToMenu(final Event event) {
         changePage(event, "/layouts/MainMenu.fxml");
     }
-    
+
     /**
      * @FXML
      * @param event
@@ -58,15 +58,27 @@ public final class AbstractController {
         changePage(event, "/layouts/Stats.fxml");
     }
 
+    /**
+     *
+     * @param event
+     */
     public void openSlide(final Event event) {
         changePage(event, "/layouts/tutorial/1.fxml");
     }
 
+    /**
+     *
+     * @param event
+     */
     public void goOn(final Event event) {
         changePage(event, "/layouts/tutorial/2.fxml");
     }
 
-
+    /**
+     *
+     * @param str
+     * @param type
+     */
     public void showAlert(final String str, final Alert.AlertType type) {
         alert.setAlertType(type);
         alert.setContentText("");
