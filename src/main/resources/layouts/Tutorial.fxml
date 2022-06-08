@@ -22,7 +22,7 @@
             <Font name="Courier New Bold" size="20.0" />
          </font>
       </Text>
-      <Text layoutX="127.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have fun! ">
+      <Text layoutX="200.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have fun! ">
          <font>
             <Font name="Courier New Bold" size="25.0" />
          </font>
@@ -31,5 +31,6 @@
          <font>
             <Font name="Courier New" size="13.0" />
          </font></Button>
+      <Button layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="33.0" prefWidth="89.0" styleClass="startGame" text="Back" />
    </children>
 </AnchorPane>
