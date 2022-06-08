@@ -1,6 +1,6 @@
 package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
-import javafx.event.ActionEvent;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,14 +14,18 @@ import java.io.IOException;
 
 public abstract class AbstractController {
     private final Alert alert = new Alert(Alert.AlertType.NONE);
-    @FXML
-    void backToMenu(final Event event, final String string) {
+
+    void changePage(final Event event, final String string) {
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource(string));
             buildWindowNodes(event, loader);
         } catch (IOException e) {
             showAlert("unable to open menu", ERROR);
         }
+    }
+    @FXML
+    void backToMenu(final Event event){
+        changePage(event, "/layouts/MainMenu.fxml");
     }
 
     void showAlert(String str, Alert.AlertType type) {
