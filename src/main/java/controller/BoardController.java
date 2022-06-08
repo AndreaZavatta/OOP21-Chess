@@ -37,7 +37,7 @@ import user.UserController;
 /**
  * Controller class for Board.fxml.
  */
-public class BoardController extends AbstractController{
+public class BoardController {
     /**
      * The tile size.
      */
@@ -60,6 +60,7 @@ public class BoardController extends AbstractController{
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
     private UserController blackUser;
+    private final AbstractController pageLoader = new AbstractController();
     private List<Circle> circles = new ArrayList<>();
     @FXML
     private Pane pane = new Pane();
@@ -227,7 +228,7 @@ public class BoardController extends AbstractController{
         final Stage dialog = new Stage();
         final Button buttonDialog = new Button("Back to main menu");
         buttonDialog.setOnAction(btnEvent -> {
-            backToMenu(btnEvent);
+            pageLoader.backToMenu(btnEvent);
             ((Node) (whitePlayer)).getScene().getWindow().hide();
         });
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -242,7 +243,7 @@ public class BoardController extends AbstractController{
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
         dialog.setOnCloseRequest(ev -> {
-            backToMenu(ev);
+            pageLoader.backToMenu(ev);
             ((Node) (whitePlayer)).getScene().getWindow().hide();
         });
         dialog.show();
