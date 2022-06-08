@@ -33,7 +33,7 @@
 .changePageButton {
     -fx-background-color: coral;
     -fx-opacity: 0.5;
-    -fx-pref-height: 40;
+    -fx-pref-height: 400;
     -fx-pref-width: 40;
 }
 
