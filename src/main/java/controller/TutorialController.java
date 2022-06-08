@@ -10,65 +10,48 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * 
- * 
+ * This class handles the Tutorial GUI and its functionalities.
  *
  */
 
 public class TutorialController {
 
     @FXML
-    void openSlide(final ActionEvent event) {
-
-        try {
+    void openSlide(final ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/1.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+            buildWindowNodes(event, loader);
     }
 
     @FXML
-    void goOn(final ActionEvent event) {
-
-        try {
+    void goOn(final ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/2.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Stats");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+            buildWindowNodes(event, loader);
     }
 
     @FXML
-    void goBack(final ActionEvent event) {
-
+    void goBack(final ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/1.fxml"));
+            buildWindowNodes(event, loader);
     }
 
     @FXML
-    void showPiece(final ActionEvent event) {
+    void showPiece(final ActionEvent event) throws IOException {
         final Button caller = (Button) event.getSource();
         System.out.println(caller.getId());
-        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/"+ caller.getId()+".fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Chess Pieces");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+            buildWindowNodes(event, loader);
+    }
+
+    private void buildWindowNodes(final ActionEvent event, final FXMLLoader loader) throws IOException {
+        Parent root = (Parent) loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("L.A.M.A. Chess");
+        stage.setScene(new Scene(root));
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }
