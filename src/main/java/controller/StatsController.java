@@ -51,7 +51,7 @@ public class StatsController implements Initializable {
         if (user.isPresent()) {
             long gameWon = database.getNumberGameWon(user.get());
             long gamePlayed = database.getNumberGamePlayed(user.get());
-            long gameDraw = database.getNumberGameDraw(user.get());
+            long gameDraw = database.getNumberGameDrawn(user.get());
 
             txtAreaStats.setText("Name: " + user.get().getName() + "\n");
             txtAreaStats.appendText(user.get().getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
