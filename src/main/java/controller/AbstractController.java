@@ -18,12 +18,7 @@ public abstract class AbstractController {
     void backToMenu(final Event event, final String string) {
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource(string));
-            final Parent root = (Parent) loader.load();
-            final Stage stage = new Stage();
-            stage.setTitle("MENU");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
+            buildWindowNodes(event, loader);
         } catch (IOException e) {
             showAlert("unable to open menu", ERROR);
         }
@@ -34,6 +29,15 @@ public abstract class AbstractController {
         alert.setContentText("");
         alert.setHeaderText(str);
         alert.show();
+    }
+
+    void buildWindowNodes(final Event event, final FXMLLoader loader) throws IOException {
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("L.A.M.A. Chess");
+        stage.setScene(new Scene(root));
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
 
