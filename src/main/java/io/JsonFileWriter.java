@@ -14,4 +14,6 @@ public interface JsonFileWriter {
      * @throws IOException if writing to file is not done correctly
      */
         void writeFile(Object obj) throws IOException;
+
+
 }
