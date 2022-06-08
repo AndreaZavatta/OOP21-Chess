@@ -9,8 +9,7 @@ import java.util.Scanner;
 
 /**
  * 
- * 
-
+ * {@inheritDoc}.
  */
 public class JsonFileReaderImpl implements JsonFileReader {
     private final JsonDeserializer jDeserializer;
