@@ -25,14 +25,24 @@
             <Font name="Courier New Bold" size="16.0" />
          </font>
       </Text>
-      <Button layoutX="555.0" layoutY="188.0" mnemonicParsing="false" onAction="#goOn" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button layoutX="555.0" layoutY="188.0" mnemonicParsing="false" onAction="#goOn" opacity="0.5" prefHeight="400.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>
-      <ImageView fitHeight="342.0" fitWidth="191.0" layoutX="28.0" layoutY="31.0" preserveRatio="true">
+      <ImageView fitHeight="342.0" fitWidth="191.0" layoutX="48.0" layoutY="30.0" preserveRatio="true">
          <image>
             <Image url="@../../media/chess.jpg" />
          </image>
       </ImageView>
+      <Button mnemonicParsing="false" onAction="#openSlide" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openSlide" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
    </children>
 </AnchorPane>
