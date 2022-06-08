@@ -33,7 +33,7 @@ public final class AbstractController {
     public void backToMenu(final Event event) {
         changePage(event, "/layouts/MainMenu.fxml");
     }
-    
+
     /**
      * @FXML
      * @param event
@@ -41,7 +41,7 @@ public final class AbstractController {
     public void openUserHandler(final Event event) {
         changePage(event, "/layouts/UserHandler.fxml");
     }
-    
+
     /**
      * @FXML
      * @param event
@@ -49,7 +49,7 @@ public final class AbstractController {
     public void openTutorial(final Event event) {
         changePage(event, "/layouts/Tutorial.fxml");
     }
-    
+
     /**
      * @FXML
      * @param event

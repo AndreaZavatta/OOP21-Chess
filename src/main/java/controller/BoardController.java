@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +9,12 @@ import java.util.Map;
 import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -197,11 +201,11 @@ public class BoardController {
             updateGui();
             if (checkPieceOnPosition(finalPos)) {
                 final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
-                                        .filter(p -> p.getKey().getPosition().equals(finalPos))
-                                        .filter(p -> p.getKey().getSide().equals(match.getUserSideTurn()))
-                                        .findFirst()
-                                        .get()
-                                        .getValue();
+                        .filter(p -> p.getKey().getPosition().equals(finalPos))
+                        .filter(p -> p.getKey().getSide().equals(match.getUserSideTurn()))
+                        .findFirst()
+                        .get()
+                        .getValue();
                 final Piece deadPiece = mapGuiPieceToPiece.get(deadGuiPiece);
                 mapGuiPieceToPiece.remove(deadGuiPiece);
                 mapPieceToGuiPiece.remove(deadPiece);
@@ -227,10 +231,7 @@ public class BoardController {
     private void quitGame() {
         final Stage dialog = new Stage();
         final Button buttonDialog = new Button("Back to main menu");
-        buttonDialog.setOnAction(btnEvent -> {
-            pageLoader.backToMenu(btnEvent);
-            ((Node) (whitePlayer)).getScene().getWindow().hide();
-        });
+        buttonDialog.setOnAction(btnEvent -> backToMainMenu());
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
         final VBox dialogVbox = new VBox(50);
@@ -242,11 +243,23 @@ public class BoardController {
         dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
-        dialog.setOnCloseRequest(ev -> {
-            pageLoader.backToMenu(ev);
-            ((Node) (whitePlayer)).getScene().getWindow().hide();
-        });
+        dialog.setOnCloseRequest(ev -> backToMainMenu());
         dialog.show();
+    }
+
+    private void backToMainMenu() {
+        try {
+            final FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/layouts/MainMenu.fxml"));
+            final Parent root = (Parent) loader.load();
+            final Stage stage = new Stage();
+            stage.setTitle("MENU");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Node) (whitePlayer)).getScene().getWindow().hide();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void showPossiblePositions(final GuiPiece guiPiece) {
