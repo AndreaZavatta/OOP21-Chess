@@ -26,7 +26,7 @@ import java.util.function.Predicate;
  * controller for updating stats view.
  *
  */
-public class StatsController implements Initializable{
+public class StatsController implements Initializable {
     private final AbstractController contr = new AbstractController();
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
     @FXML
@@ -48,16 +48,16 @@ public class StatsController implements Initializable{
      */
     public void showStats() {
         Optional<User> user = database.getFirstOccurrenceUser(txtFieldName.getText());
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             long gameWon = database.getNumberGameWon(user.get());
             long gamePlayed = database.getNumberGamePlayed(user.get());
             long gameDraw = database.getNumberGameDraw(user.get());
 
-            txtAreaStats.setText("Name: " + user.get().getName()+ "\n");
+            txtAreaStats.setText("Name: " + user.get().getName() + "\n");
             txtAreaStats.appendText(user.get().getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
             txtAreaStats.appendText(user.get().getName() + " draw " + (gameDraw * 100 / gamePlayed) + "% of game played\n");
             txtAreaStats.appendText(user.get().getName() + " lose " + ((gamePlayed - gameDraw - gameWon) * 100 / gamePlayed) + "% of game played");
-        }else{
+        } else {
             txtAreaStats.setText("name not found!");
         }
     }
@@ -72,9 +72,9 @@ public class StatsController implements Initializable{
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
     }
-    private List<Game> wrappedRead(){
+    private List<Game> wrappedRead() {
         List<Game> games = null;
-        try{
+        try {
             games = fr.readFile();
         } catch (IOException e) {
             showAlert("error! unable to read database", ERROR);
@@ -107,19 +107,19 @@ public class StatsController implements Initializable{
         return row;
     }
 
-    private void deselectRow(TableRow<Triple<User, User, LocalDate>> row, MouseEvent event) {
+    private void deselectRow(final TableRow<Triple<User, User, LocalDate>> row, final MouseEvent event) {
         final int index = row.getIndex();
-        if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)  ) {
+        if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)) {
             tableView.getSelectionModel().clearSelection();
             event.consume();
             txtAreaStats.setText("");
         }
     }
-    private void showAlert(String str, Alert.AlertType type){
+    private void showAlert(final String str, final Alert.AlertType type) {
         contr.showAlert(str, type);
     }
     @FXML
-    void backToMainMenu(final Event event){
+    void backToMainMenu(final Event event) {
         contr.backToMenu(event);
     }
 }
