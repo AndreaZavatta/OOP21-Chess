@@ -1,18 +1,14 @@
 package chess.parsers;
 
 import board.Chessboard;
-import board.ChessboardFactory;
 import board.ChessboardFactoryImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
-
-import java.lang.annotation.Inherited;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.Character.*;
 import static model.piece.utils.Name.*;
 import static model.piece.utils.Side.BLACK;
@@ -42,14 +38,14 @@ public class FenConverterImpl implements FenConverter {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     public Chessboard getBoard(final String fen) {
         List<Piece> list = buildList(fen.split(" "));
         return new ChessboardFactoryImpl().createTestCB(list);
     }
 
-    private List<Piece> buildList(String[] fenArray) {
+    private List<Piece> buildList(final String[] fenArray) {
         List<Piece> list = new ArrayList<>();
         int x = 0;
         int y = 0;
