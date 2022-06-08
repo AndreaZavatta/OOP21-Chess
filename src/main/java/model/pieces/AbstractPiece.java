@@ -83,7 +83,7 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public int hashCode() {
-        return Objects.hash(basicMoves, color, isMoved, name, position);
+        return super.hashCode();
     }
 
     @Override
