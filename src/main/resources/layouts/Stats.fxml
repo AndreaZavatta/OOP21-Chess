@@ -38,7 +38,7 @@
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
          <Region HBox.hgrow="ALWAYS" />
-         <Button id="statsButton" layoutX="12.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMenu" text="Back" />
+         <Button id="statsButton" layoutX="12.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back" />
       </HBox>
    </bottom>
    <left>
