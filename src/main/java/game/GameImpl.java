@@ -56,6 +56,9 @@ public class GameImpl implements Game {
 
     @Override
     public void nextMove(final Position firstPos, final Position finalPos) {
+        if (isFinished) {
+            return;
+        }
         final Optional<Piece> attacker = chessboard.getPieceOnPosition(firstPos);
         if (checkIllegalArgument(attacker, firstPos, finalPos)) {
             throw new IllegalArgumentException();
