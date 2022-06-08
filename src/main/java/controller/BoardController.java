@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,10 +9,8 @@ import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -230,7 +227,7 @@ public class BoardController extends AbstractController{
         final Stage dialog = new Stage();
         final Button buttonDialog = new Button("Back to main menu");
         buttonDialog.setOnAction(btnEvent -> {
-            backToMenu(btnEvent, "/layouts/MainMenu.fxml");
+            backToMenu(btnEvent);
             ((Node) (whitePlayer)).getScene().getWindow().hide();
         });
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -245,7 +242,7 @@ public class BoardController extends AbstractController{
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
         dialog.setOnCloseRequest(ev -> {
-            backToMenu(ev, "/layouts/MainMenu.fxml");
+            backToMenu(ev);
             ((Node) (whitePlayer)).getScene().getWindow().hide();
         });
         dialog.show();
