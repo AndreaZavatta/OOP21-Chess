@@ -191,7 +191,14 @@ public class BoardController {
         final Position finalPos = Position.createNumericPosition(x, y);
         final Position firstPos = mapGuiPieceToPiece.get(guiPiece).getPosition();
         if (mapPositionRectangle.containsKey(finalPos)) {
-            tryMove(firstPos, finalPos);
+            try {
+                match.nextMove(firstPos, finalPos);
+            } catch (IllegalArgumentException e) {
+                updateGui();
+                return;
+            } catch (IOException ioEx) {
+                abController.showAlert("Impossible create record of the game", AlertType.WARNING);
+            }
             updatePlayers();
             updateGui();
             if (checkPieceOnPosition(finalPos)) {
@@ -304,17 +311,6 @@ public class BoardController {
         } else {
             BoardControllerUtils.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
             BoardControllerUtils.removeEffects(blackPlayer, whitePlayerImage);
-        }
-    }
-
-    private void tryMove(final Position firstPos, final Position finalPos) {
-        try {
-            match.nextMove(firstPos, finalPos);
-        } catch (IllegalArgumentException e) {
-            updateGui();
-            return;
-        } catch (IOException ioEx) {
-            abController.showAlert("Impossible create record of the game", AlertType.WARNING);
         }
     }
 
