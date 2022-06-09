@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import game.Game;
@@ -32,7 +34,7 @@ class GameTest {
     }
 
     @Test
-    void gameEnded() {
+    void gameEnded() throws IOException {
         final Game match = createGame();
 
         match.nextMove(Position.createNewPosition("g2"), 

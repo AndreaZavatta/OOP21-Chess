@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,8 +25,9 @@ public interface Game {
      * 
      * @param firstPos
      * @param finalPos
+     * @throws IOException 
      */
-    void nextMove(Position firstPos, Position finalPos);
+    void nextMove(Position firstPos, Position finalPos) throws IOException;
 
     /**
      * 
