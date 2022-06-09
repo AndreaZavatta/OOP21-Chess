@@ -191,27 +191,11 @@ public class BoardController {
         final Position finalPos = Position.createNumericPosition(x, y);
         final Position firstPos = mapGuiPieceToPiece.get(guiPiece).getPosition();
         if (mapPositionRectangle.containsKey(finalPos)) {
-            try {
-                match.nextMove(firstPos, finalPos);
-            } catch (IllegalArgumentException e) {
-                updateGui();
-                return;
-            } catch (IOException ioEx) {
-                abController.showAlert("Impossible create records of the game", AlertType.WARNING);
-            }
+            tryMove(firstPos, finalPos);
             updatePlayers();
             updateGui();
             if (checkPieceOnPosition(finalPos)) {
-                final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
-                        .filter(p -> p.getKey().getPosition().equals(finalPos))
-                        .filter(p -> p.getKey().getSide().equals(match.getUserSideTurn()))
-                        .findFirst()
-                        .get()
-                        .getValue();
-                final Piece deadPiece = mapGuiPieceToPiece.get(deadGuiPiece);
-                mapGuiPieceToPiece.remove(deadGuiPiece);
-                mapPieceToGuiPiece.remove(deadPiece);
-                pane.getChildren().remove(deadGuiPiece.getRectangle());
+                removePiece(finalPos);
             }
             if (match.isInCheck()) {
                 BoardControllerUtils.setEffect(Color.RED, 
@@ -321,5 +305,29 @@ public class BoardController {
             BoardControllerUtils.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
             BoardControllerUtils.removeEffects(blackPlayer, whitePlayerImage);
         }
+    }
+
+    private void tryMove(final Position firstPos, final Position finalPos) {
+        try {
+            match.nextMove(firstPos, finalPos);
+        } catch (IllegalArgumentException e) {
+            updateGui();
+            return;
+        } catch (IOException ioEx) {
+            abController.showAlert("Impossible create record of the game", AlertType.WARNING);
+        }
+    }
+
+    private void removePiece(final Position finalPos) {
+        final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
+                .filter(p -> p.getKey().getPosition().equals(finalPos))
+                .filter(p -> p.getKey().getSide().equals(match.getUserSideTurn()))
+                .findFirst()
+                .get()
+                .getValue();
+        final Piece deadPiece = mapGuiPieceToPiece.get(deadGuiPiece);
+        mapGuiPieceToPiece.remove(deadGuiPiece);
+        mapPieceToGuiPiece.remove(deadPiece);
+        pane.getChildren().remove(deadGuiPiece.getRectangle());
     }
 }
