@@ -43,6 +43,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
             while (sc.hasNextLine()) {
                 str.append(sc.nextLine());
             }
+            System.out.println(str);
             return str.toString();
         }
     }

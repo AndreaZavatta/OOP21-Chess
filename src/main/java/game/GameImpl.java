@@ -44,6 +44,7 @@ public class GameImpl implements Game {
     private final Chessboard chessboard;
     private final transient EndGame gameController;
     private final Turn turnManager;
+    @JsonIgnore
     private final Promotion promotion;
 
     /**

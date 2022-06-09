@@ -27,6 +27,7 @@ public class JsonDeserializerImpl implements JsonDeserializer {
         if(str.isEmpty()){
             return new ArrayList<>();
         }
+        System.out.println("convert");
         return getMapper().readValue(str, mapper.getTypeFactory().constructCollectionType(List.class, GameImpl.class));
     }
 

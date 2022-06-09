@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,7 @@ class KingTest {
     }
 
     @Test
-    void testMove() {
+    void testMove() throws IOException {
         final Pair<User, Side> player = new Pair<>(new UserImpl("a"), Side.WHITE);
         final Pair<User, Side> player2 = new Pair<>(new UserImpl("a"), Side.BLACK);
         final Game game = new GameImpl(player, player2);
