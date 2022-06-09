@@ -234,10 +234,16 @@ public class BoardController {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
         final VBox dialogVbox = new VBox(50);
-        final Text winText = new Text("Player name :" + match.getWinner().get().getX() + " side :"
-                + match.getWinner().get().getY() + " won!!");
-        BoardControllerUtils.setTextOptions(winText);
-        dialogVbox.getChildren().add(winText);
+        if(match.getWinner().isPresent()){
+            final Text winText = new Text("Player name :" + match.getWinner().get().getX() + " side :"
+                    + match.getWinner().get().getY() + " won!!");
+            BoardControllerUtils.setTextOptions(winText);
+            dialogVbox.getChildren().add(winText);
+        } else {
+            final Text drawText = new Text("It's a draw!");
+            BoardControllerUtils.setTextOptions(drawText);
+            dialogVbox.getChildren().add(drawText);
+        }
         dialogVbox.getChildren().add(buttonDialog);
         dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
