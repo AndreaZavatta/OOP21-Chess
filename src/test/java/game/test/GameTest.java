@@ -12,12 +12,17 @@ import org.junit.jupiter.api.Test;
 import game.Game;
 import game.GameImpl;
 import tuple.Pair;
+import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
+import model.pieces.PieceFactory;
+import model.pieces.PieceFactoryImpl;
 import user.User;
 import user.UserImpl;
 
 class GameTest {
+
+    private final PieceFactory pieceFct = new PieceFactoryImpl();
 
     private Game createGame() {
         final Pair<User, Side> player1 = new Pair<>(new UserImpl("Mario"), Side.WHITE);
@@ -84,5 +89,36 @@ class GameTest {
     @Test
     void draw() {
         //TODO
+    }
+
+    @Test
+    void promotion() throws IOException {
+        final Game match = createGame();
+
+        match.nextMove(Position.createNewPosition("b2"), 
+                Position.createNewPosition("b4"));
+        match.nextMove(Position.createNewPosition("d7"),
+                    Position.createNewPosition("d5"));
+        match.nextMove(Position.createNewPosition("b4"), 
+                    Position.createNewPosition("b5"));
+        match.nextMove(Position.createNewPosition("d5"), 
+                Position.createNewPosition("d4"));
+        match.nextMove(Position.createNewPosition("b5"), 
+                Position.createNewPosition("b6"));
+        match.nextMove(Position.createNewPosition("d4"), 
+                Position.createNewPosition("d3"));
+        match.nextMove(Position.createNewPosition("b6"), 
+                Position.createNewPosition("a7"));
+        match.nextMove(Position.createNewPosition("d3"), 
+                Position.createNewPosition("c2"));
+        match.nextMove(Position.createNewPosition("a7"), 
+                Position.createNewPosition("b8"));
+
+        match.promotion(Name.QUEEN);
+        assertEquals(pieceFct.createPiece(Name.QUEEN, Position.createNewPosition("b8"), Side.WHITE), 
+                    match.getPiecesList().stream()
+                                .filter(x -> x.getPosition().equals(Position.createNewPosition("b8")))
+                                .findFirst()
+                                .get());
     }
 }
