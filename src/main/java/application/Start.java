@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public final class Start extends Application {
 
     /**
-     * 
+     *  
      */
     public static final String SEPARATOR = System.getProperty("file.separator");
     private static final int SCENE_WIDTH = 600;
@@ -33,14 +33,6 @@ public final class Start extends Application {
 
         final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/MainMenu.fxml"));
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-
-//        final ImageView imv = new ImageView();
-
-//        Image image = new Image("/resources/media/LamaChess.png");
-//        imv.setImage(image);
-
-//        imv.fitWidthProperty().bind(center.widthProperty());
-//        imv.fitHeightProperty().bind(center.heightProperty());
         startstage.setScene(scene);
         startstage.setTitle("L.A.M.A. Chess");
         startstage.setResizable(true);
