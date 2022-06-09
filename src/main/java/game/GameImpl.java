@@ -1,9 +1,7 @@
 package game;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,15 +56,13 @@ public class GameImpl implements Game {
 
     @Override
     public void nextMove(final Position firstPos, final Position finalPos) {
+        if (isFinished) {
+            return;
+        }
         final Optional<Piece> attacker = chessboard.getPieceOnPosition(firstPos);
-        if (chessboard.getPieceOnPosition(firstPos).isEmpty()) {
-            throw new IllegalArgumentException("Empty position selected.");
-        } else if (attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())) {
-            throw new IllegalArgumentException("Cannot select enemy pieces.");
-        } else if (!chessboard.getAllPosition(attacker.get()).contains(finalPos)) {
-            throw new IllegalArgumentException("Not valid position selected.");
-        } 
-
+        if (checkIllegalArgument(attacker, firstPos, finalPos)) {
+            throw new IllegalArgumentException();
+        }
         chessboard.move(firstPos, finalPos);
         turnManager.turnIncrement();
         if (gameController.isCheckmate(turnManager.getUserTurn(), chessboard)) {
@@ -125,5 +121,11 @@ public class GameImpl implements Game {
     @Override
     public LocalDate getStartDate() {
         return startDate;
+    }
+
+    private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {
+        return chessboard.getPieceOnPosition(firstPos).isEmpty()
+                || attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())
+                || !chessboard.getAllPosition(attacker.get()).contains(finalPos);
     }
 }

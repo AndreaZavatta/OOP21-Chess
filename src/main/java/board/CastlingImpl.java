@@ -37,7 +37,7 @@ public class CastlingImpl implements Castling {
             return false;
         }
 
-        if (kingInCheck.isInCheck(chessboard, king.getSide())) {
+        if (kingInCheck.isInCheckWithoutKing(chessboard, king.getSide())) {
             return false;
         }
 

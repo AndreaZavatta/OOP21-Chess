@@ -62,7 +62,10 @@ public final class Position {
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        int result = 32;
+        result = Numbers.SEVEN * result + x;
+        result = Numbers.SEVEN * result + y;
+        return result;
     }
 
     @Override

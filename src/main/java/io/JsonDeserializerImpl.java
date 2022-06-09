@@ -10,8 +10,7 @@ import static io.vertx.core.json.Json.mapper;
 
 /**
  * 
- *
-
+ *{@inheritDoc}.
  */
 public class JsonDeserializerImpl implements JsonDeserializer {
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import static io.JsonUtils.getMapper;
 /**
  * 
- *
+ *{@inheritDoc}.
  */
 public class JsonSerializerImpl implements JsonSerializer {
     @Override

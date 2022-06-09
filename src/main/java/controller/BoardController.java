@@ -63,7 +63,6 @@ public class BoardController {
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
     private UserController blackUser;
-    private final AbstractController pageLoader = new AbstractController();
     private List<Circle> circles = new ArrayList<>();
     @FXML
     private Pane pane = new Pane();
@@ -234,16 +233,24 @@ public class BoardController {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
         final VBox dialogVbox = new VBox(50);
-        final Text winText = new Text("Player name :" + match.getWinner().get().getX() + " side :"
-                + match.getWinner().get().getY() + " won!!");
-        BoardControllerUtils.setTextOptions(winText);
-        dialogVbox.getChildren().add(winText);
-        dialogVbox.getChildren().add(buttonDialog);
-        dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        setUpDialogVbox(buttonDialog, dialogVbox);
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
         dialog.setOnCloseRequest(ev -> backToMainMenu());
         dialog.show();
+    }
+
+    private void setUpDialogVbox(final Button buttonDialog, final VBox dialogVbox) {
+        match.getWinner().ifPresentOrElse(x -> createDialog("Player name :" + match.getWinner().get().getX() + " side :"
+                + match.getWinner().get().getY() + " won!!", dialogVbox), () -> createDialog("It's a draw!", dialogVbox));
+        dialogVbox.getChildren().add(buttonDialog);
+        dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    private void createDialog(final String match, final VBox dialogVbox) {
+        final Text winText = new Text(match);
+        BoardControllerUtils.setTextOptions(winText);
+        dialogVbox.getChildren().add(winText);
     }
 
     private void backToMainMenu() {

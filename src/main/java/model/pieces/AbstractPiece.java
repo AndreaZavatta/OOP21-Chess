@@ -83,7 +83,12 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public int hashCode() {
-        return Objects.hash(basicMoves, color, isMoved, name, position);
+        final int prime = 31;
+        int result = 17;
+        result = prime * result + ((color == null) ? 3 : color.hashCode());
+        result = prime * result + position.hashCode();
+        result = prime * result + ((name == null) ? 3 : name.hashCode());
+        return result;
     }
 
     @Override
@@ -98,9 +103,6 @@ public abstract class AbstractPiece implements Piece {
             return false;
         }
         final AbstractPiece other = (AbstractPiece) obj;
-        return Objects.equals(basicMoves, other.basicMoves) && color == other.color && isMoved == other.isMoved
-                && name == other.name && Objects.equals(position, other.position);
+        return color == other.color && name == other.name && Objects.equals(position, other.position);
     }
-
-
 }

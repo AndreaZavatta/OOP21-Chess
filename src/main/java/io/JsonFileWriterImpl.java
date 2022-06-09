@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 
- *
+ *{@inheritDoc}.
  */
 public class JsonFileWriterImpl implements JsonFileWriter {
 

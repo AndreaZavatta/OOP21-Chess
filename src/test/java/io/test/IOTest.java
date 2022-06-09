@@ -20,15 +20,14 @@ import user.User;
 import user.UserImpl;
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 class IOTest {
-    PieceFactory fact = new PieceFactoryImpl();
-    JsonSerializer js = new JsonSerializerImpl();
-    ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
-    ObjectMapper map = JsonUtils.getMapper();
-    JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
+    private final PieceFactory fact = new PieceFactoryImpl();
+    private final JsonSerializer js = new JsonSerializerImpl();
+    private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
+    private final ObjectMapper map = JsonUtils.getMapper();
+    private final JsonFileWriter fw = new JsonFileWriterImpl("database.txt");
     @Test
     void serializeRook() throws IOException {
         final Rook rook = (Rook) fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
@@ -103,7 +102,7 @@ class IOTest {
         assertEquals(json, json2);
     }
     @Test
-    void testSerializer() throws JsonProcessingException{
+    void testSerializer() throws JsonProcessingException {
         final String json = js.serialize(getGame("andrea", "giacomo"));
         System.out.println(json);
     }
@@ -117,7 +116,7 @@ class IOTest {
     }
 
 
-    private Game getGame(final String firstName, final String secondName){
+    private Game getGame(final String firstName, final String secondName) {
         final User user1 = new UserImpl(firstName);
         final User user2 = new UserImpl(secondName);
         return new GameImpl(new Pair<>(user1, WHITE), new Pair<>(user2, BLACK));
@@ -135,7 +134,7 @@ class IOTest {
             final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
             final Game game2 = (Game) fr.readFile();
             assertEquals(game.getPiecesList(), game2.getPiecesList());
-        }catch(IOException ignored){
+        } catch (IOException ignored) {
             fail();
         }
     }
@@ -149,14 +148,14 @@ class IOTest {
             fr.readFile();
 
 
-        }catch (IOException ignored){
+        } catch (IOException ignored) {
             fail();
         }
     }
 
     @Test
-    void testReadFile(){
-        try{
+    void testReadFile() {
+        try {
             final List<Game> list = getGames();
             fw.writeFile(list);
             JsonFileReader fr = new JsonFileReaderImpl("database.txt");
