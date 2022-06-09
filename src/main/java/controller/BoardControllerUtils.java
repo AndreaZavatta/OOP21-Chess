@@ -2,7 +2,6 @@ package controller;
 
 import java.util.Map;
 
-import controller.utils.ColorSettings;
 import game.Game;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
@@ -116,7 +115,11 @@ public final class BoardControllerUtils {
         text.setStyle("-fx-font: 18 arial;");
         text.setFill(Color.WHITE);
     }
-
+    /**
+     * A getter for a new background color.
+     * @param theme the color theme.
+     * @return a new background.
+     */
     public static Background getBackground(final Color theme) {
         return new Background(new BackgroundFill(theme, null, null));
     }

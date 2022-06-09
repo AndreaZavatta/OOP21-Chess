@@ -38,8 +38,14 @@ import model.piece.utils.Side;
 import model.pieces.Piece;
 import user.User;
 import user.UserController;
-
-import static controller.BoardControllerUtils.*;
+import static controller.BoardControllerUtils.getBackground;
+import static controller.BoardControllerUtils.getKingOfTheOtherTurn;
+import static controller.BoardControllerUtils.getKingOfThisTurn;
+import static controller.BoardControllerUtils.removeEffect;
+import static controller.BoardControllerUtils.removeEffects;
+import static controller.BoardControllerUtils.setEffect;
+import static controller.BoardControllerUtils.setEffectPlayerTurn;
+import static controller.BoardControllerUtils.setTextOptions;
 
 /**
  * Controller class for Board.fxml.
@@ -154,7 +160,7 @@ public class BoardController {
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
-        guiPieceRectangle.setOnMouseEntered(x -> setEffect(theme.getHoverEffect(), guiPieceRectangle));
+        guiPieceRectangle.setOnMouseEntered(x -> setEffect(theme.getPieceEffect(), guiPieceRectangle));
         guiPieceRectangle.setOnMouseExited(x -> removeEffect(guiPieceRectangle, this.match, this.mapGuiPieceToPiece));
         guiPieceRectangle.setOnMousePressed(x -> showPossiblePositions(guiPiece));
         pane.getChildren().add(guiPiece.getRectangle());

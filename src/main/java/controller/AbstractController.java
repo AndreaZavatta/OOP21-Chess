@@ -35,7 +35,7 @@ public final class AbstractController {
         changePage(event, "/layouts/MainMenu.fxml");
     }
     /**
-     * Opens the user handler
+     * Opens the user handler.
      * @FXML
      * @param event
      */
