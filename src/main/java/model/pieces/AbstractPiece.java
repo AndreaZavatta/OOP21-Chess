@@ -84,10 +84,10 @@ public abstract class AbstractPiece implements Piece {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + ((color == null) ? 0 : color.hashCode());
+        int result = 17;
+        result = prime * result + ((color == null) ? 3 : color.hashCode());
         result = prime * result + position.hashCode();
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((name == null) ? 3 : name.hashCode());
         return result;
     }
 
