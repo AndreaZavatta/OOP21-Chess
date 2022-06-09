@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 /**
- * 
+ *
  *
  */
 public final class AbstractController {
@@ -27,6 +27,7 @@ public final class AbstractController {
     }
 
     /**
+     * Opens the main menu screen and closes the current one.
      * @FXML
      * @param event
      */
@@ -34,6 +35,7 @@ public final class AbstractController {
         changePage(event, "/layouts/MainMenu.fxml");
     }
     /**
+     * Opens the user handler
      * @FXML
      * @param event
      */
