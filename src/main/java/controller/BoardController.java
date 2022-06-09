@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import game.Game;
 import game.GameImpl;
@@ -234,22 +235,24 @@ public class BoardController {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
         final VBox dialogVbox = new VBox(50);
-        if(match.getWinner().isPresent()){
-            final Text winText = new Text("Player name :" + match.getWinner().get().getX() + " side :"
-                    + match.getWinner().get().getY() + " won!!");
-            BoardControllerUtils.setTextOptions(winText);
-            dialogVbox.getChildren().add(winText);
-        } else {
-            final Text drawText = new Text("It's a draw!");
-            BoardControllerUtils.setTextOptions(drawText);
-            dialogVbox.getChildren().add(drawText);
-        }
-        dialogVbox.getChildren().add(buttonDialog);
-        dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        setUpDialogVbox(buttonDialog, dialogVbox);
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
         dialog.setOnCloseRequest(ev -> backToMainMenu());
         dialog.show();
+    }
+
+    private void setUpDialogVbox(Button buttonDialog, VBox dialogVbox) {
+        match.getWinner().ifPresentOrElse(x -> createDialog("Player name :" + match.getWinner().get().getX() + " side :"
+                + match.getWinner().get().getY() + " won!!", dialogVbox), () -> createDialog("It's a draw!", dialogVbox));
+        dialogVbox.getChildren().add(buttonDialog);
+        dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    private void createDialog(String match, VBox dialogVbox) {
+        final Text winText = new Text(match);
+        BoardControllerUtils.setTextOptions(winText);
+        dialogVbox.getChildren().add(winText);
     }
 
     private void backToMainMenu() {
