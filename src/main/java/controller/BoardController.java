@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import game.Game;
 import game.GameImpl;
@@ -64,7 +63,6 @@ public class BoardController {
     private final Map<GuiPiece, Piece> mapGuiPieceToPiece = new HashMap<>();
     private UserController whiteUser;
     private UserController blackUser;
-    private final AbstractController pageLoader = new AbstractController();
     private List<Circle> circles = new ArrayList<>();
     @FXML
     private Pane pane = new Pane();
@@ -242,14 +240,14 @@ public class BoardController {
         dialog.show();
     }
 
-    private void setUpDialogVbox(Button buttonDialog, VBox dialogVbox) {
+    private void setUpDialogVbox(final Button buttonDialog, final VBox dialogVbox) {
         match.getWinner().ifPresentOrElse(x -> createDialog("Player name :" + match.getWinner().get().getX() + " side :"
                 + match.getWinner().get().getY() + " won!!", dialogVbox), () -> createDialog("It's a draw!", dialogVbox));
         dialogVbox.getChildren().add(buttonDialog);
         dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
-    private void createDialog(String match, VBox dialogVbox) {
+    private void createDialog(final String match, final VBox dialogVbox) {
         final Text winText = new Text(match);
         BoardControllerUtils.setTextOptions(winText);
         dialogVbox.getChildren().add(winText);
