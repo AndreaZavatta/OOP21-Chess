@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controller.utils.ColorSettings;
 import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
@@ -37,6 +38,8 @@ import model.piece.utils.Side;
 import model.pieces.Piece;
 import user.User;
 import user.UserController;
+
+import static controller.BoardControllerUtils.*;
 
 /**
  * Controller class for Board.fxml.
@@ -82,6 +85,7 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
+    private ColorSettings theme = ColorSettings.CORAL;
 
     /**
      * Initialize the player's textarea and image with the relative text and image.
@@ -100,7 +104,7 @@ public class BoardController {
     void initialize() {
         this.createChessboard();
         this.createBoardInformation();
-        borderPane.setStyle("-fx-background-color: #2F4F4F");
+        borderPane.setBackground(getBackground(theme.getBackground()));
     }
 
     @FXML
@@ -111,11 +115,11 @@ public class BoardController {
     private void createPlayers() {
         this.blackPlayer.setText(blackUser.getName());
         this.whitePlayer.setText(whiteUser.getName());
-        BoardControllerUtils.setTextOptions(whitePlayer);
+        setTextOptions(whitePlayer);
         this.blackPlayerImage.setImage(blackUser.getImage());
         this.whitePlayerImage.setImage(whiteUser.getImage());
-        BoardControllerUtils.setTextOptions(blackPlayer);
-        BoardControllerUtils.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
+        setTextOptions(blackPlayer);
+        setEffectPlayerTurn(whitePlayer, blackPlayerImage);
     }
 
     private void createBoardInformation() {
@@ -126,13 +130,14 @@ public class BoardController {
             leftText.setX(Numbers.FIVE);
             bottomText.setX(TILE_SIZE * i + TILE_SIZE / 2.0);
             bottomText.setY(TEXT_DISTANCE);
-            BoardControllerUtils.setTextOptions(leftText);
-            BoardControllerUtils.setTextOptions(bottomText);
+            setTextOptions(leftText);
+            setTextOptions(bottomText);
+            bottomPane.setBackground(getBackground(theme.getBoxesColor()));
             bottomPane.getChildren().add(bottomText);
+            leftPane.setBackground(getBackground(theme.getBoxesColor()));
             leftPane.getChildren().add(leftText);
         }
     }
-
     private void createGuiPieces() {
         match.getPiecesList().stream().forEach(x -> createGuiPiece(x));
     }
@@ -149,9 +154,8 @@ public class BoardController {
         mapGuiPieceToPiece.put(guiPiece, piece);
         guiPieceRectangle.setOnMouseDragged(x -> dragged(x, guiPieceRectangle));
         guiPieceRectangle.setOnMouseReleased(x -> released(guiPiece));
-        guiPieceRectangle.setOnMouseEntered(x -> BoardControllerUtils.setEffect(Color.RED, guiPieceRectangle));
-        guiPieceRectangle.setOnMouseExited(x -> BoardControllerUtils
-                .removeEffect(guiPieceRectangle, this.match, this.mapGuiPieceToPiece));
+        guiPieceRectangle.setOnMouseEntered(x -> setEffect(theme.getHoverEffect(), guiPieceRectangle));
+        guiPieceRectangle.setOnMouseExited(x -> removeEffect(guiPieceRectangle, this.match, this.mapGuiPieceToPiece));
         guiPieceRectangle.setOnMousePressed(x -> showPossiblePositions(guiPiece));
         pane.getChildren().add(guiPiece.getRectangle());
     }
@@ -165,16 +169,16 @@ public class BoardController {
                         TILE_SIZE, TILE_SIZE);
                 mapPositionRectangle.put(Position.createNumericPosition(i, j), chessBoardRectangle);
                 if (count % 2 == 0) {
-                    chessBoardRectangle.setFill(Color.valueOf("#582"));
+                    chessBoardRectangle.setFill(theme.getR1());
                 } else {
-                    chessBoardRectangle.setFill(Color.valueOf("#feb"));
+                    chessBoardRectangle.setFill(theme.getR2());
                 }
                 count++;
                 chessBoardRectangle.setStroke(Color.BLACK);
                 chessBoardRectangle.setOnMouseEntered(x -> 
-                BoardControllerUtils.setEffect(Color.YELLOW, chessBoardRectangle));
-                chessBoardRectangle.setOnMouseExited(x -> BoardControllerUtils
-                        .removeEffect(chessBoardRectangle, this.match, this.mapGuiPieceToPiece));
+                setEffect(theme.getRectangleEffect(), chessBoardRectangle));
+                chessBoardRectangle.
+                        setOnMouseExited(x -> removeEffect(chessBoardRectangle, this.match, this.mapGuiPieceToPiece));
                 pane.getChildren().add(chessBoardRectangle);
             }
         }
@@ -205,11 +209,9 @@ public class BoardController {
                 removePiece(finalPos);
             }
             if (match.isInCheck()) {
-                BoardControllerUtils.setEffect(Color.RED, 
-                        BoardControllerUtils.getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
+                setEffect(Color.RED, getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
             } else {
-                BoardControllerUtils.removeEffect(BoardControllerUtils.
-                        getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
+                removeEffect(getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
                         this.match, this.mapGuiPieceToPiece);
             }
             pane.getChildren().removeAll(circles);
@@ -244,7 +246,7 @@ public class BoardController {
 
     private void createDialog(final String match, final VBox dialogVbox) {
         final Text winText = new Text(match);
-        BoardControllerUtils.setTextOptions(winText);
+        setTextOptions(winText);
         dialogVbox.getChildren().add(winText);
     }
 
@@ -306,11 +308,11 @@ public class BoardController {
 
     private void updatePlayers() {
         if (match.getUserSideTurn().equals(Side.BLACK)) {
-            BoardControllerUtils.setEffectPlayerTurn(blackPlayer, whitePlayerImage);
-            BoardControllerUtils.removeEffects(whitePlayer, blackPlayerImage);
+            setEffectPlayerTurn(blackPlayer, whitePlayerImage);
+            removeEffects(whitePlayer, blackPlayerImage);
         } else {
-            BoardControllerUtils.setEffectPlayerTurn(whitePlayer, blackPlayerImage);
-            BoardControllerUtils.removeEffects(blackPlayer, whitePlayerImage);
+            setEffectPlayerTurn(whitePlayer, blackPlayerImage);
+            removeEffects(blackPlayer, whitePlayerImage);
         }
     }
 
