@@ -215,7 +215,7 @@ public class BoardController {
                 removePiece(finalPos);
             }
             if (match.isInCheck()) {
-                setEffect(Color.RED, getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
+                setEffect(theme.getPieceEffect(), getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
             } else {
                 removeEffect(getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
                         this.match, this.mapGuiPieceToPiece);

@@ -9,7 +9,7 @@ public enum ColorSettings {
     /**
      * 
      */
-    CORAL(Color.web("b7b7a4"), Color.web("616E59"), Color.web("#b1e4b9"), Color.web("#70a2a3"), Color.WHITE, Color.WHITE),
+    CORAL(Color.web("b7b7a4"), Color.web("616E59"), Color.web("#b1e4b9"), Color.web("#70a2a3"), Color.WHITE, Color.YELLOW),
     /**
      * 
      */
