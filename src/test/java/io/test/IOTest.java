@@ -107,12 +107,12 @@ class IOTest {
         System.out.println(json);
     }
     @Test
-    void testDeserializer() throws JsonProcessingException {
+    void testDeserializer() throws IOException {
         final JsonDeserializer jsonDeserializer = new JsonDeserializerImpl();
-        final Game game = getGame("andrea", "giacomo");
+        final List<Game> game = List.of(getGame("andrea", "giacomo"));
         final String json = js.serialize(game);
-        final Game game2 = (GameImpl) jsonDeserializer.deserialize(json);
-        assertEquals(game.getPiecesList(), game2.getPiecesList());
+        final List<Game> game2 = jsonDeserializer.deserialize(json);
+        assertEquals(game.get(0).getPiecesList(), game2.get(0).getPiecesList());
     }
 
 
