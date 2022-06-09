@@ -4,6 +4,8 @@ import static model.piece.utils.Name.KNIGHT;
 import static model.piece.utils.Name.BISHOP;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
+
+import model.piece.utils.Name;
 import model.piece.utils.Side;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +61,10 @@ public class EndGameImpl implements EndGame {
                 .collect(Collectors.toList());
         if (alive.size() > 2) {
             return false;
-        } 
+        }
+        if (alive.size() == 1 && alive.stream().map(Piece::getName).collect(Collectors.toList()).contains(Name.KING)) {
+            return true;
+        }
         return alive.stream().anyMatch(x -> x.getName() == KNIGHT || x.getName() == BISHOP);
     }
 
