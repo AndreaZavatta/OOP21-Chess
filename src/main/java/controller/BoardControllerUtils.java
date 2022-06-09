@@ -2,11 +2,14 @@ package controller;
 
 import java.util.Map;
 
+import controller.utils.ColorSettings;
 import game.Game;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -112,5 +115,9 @@ public final class BoardControllerUtils {
     public static void setTextOptions(final Text text) {
         text.setStyle("-fx-font: 18 arial;");
         text.setFill(Color.WHITE);
+    }
+
+    public static Background getBackground(final Color theme) {
+        return new Background(new BackgroundFill(theme, null, null));
     }
 }
