@@ -51,6 +51,24 @@ public class EndGameTest {
 
         assertTrue(endGame.isDrawByInsufficientMaterial(board));
     }
+    @Test
+    void drawWithTwoKings() {
+        final List<Piece> list = new ArrayList<>();
+        final PieceFactory pieces = new PieceFactoryImpl();
+
+        var whiteKing = pieces.createPiece(Name.KING, Position.createNewPosition("c2"), Side.WHITE);
+        list.add(whiteKing);
+        var blackKing = pieces.createPiece(Name.KING, Position.createNewPosition("g5"), Side.BLACK);
+        list.add(blackKing);
+        var blackPawn = pieces.createPiece(Name.PAWN, Position.createNewPosition("d2"), Side.BLACK);
+        list.add(blackPawn);
+
+        final Chessboard board = this.board.createTestCB(list);
+        board.move(Position.createNewPosition("c2"), Position.createNewPosition("d2"));
+
+        assertTrue(endGame.isDrawByInsufficientMaterial(board));
+
+    }
 
     @Test
     void stalemateTest() {
