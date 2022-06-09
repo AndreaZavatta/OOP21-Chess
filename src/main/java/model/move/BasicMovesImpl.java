@@ -31,7 +31,8 @@ public class BasicMovesImpl implements BasicMoves {
         return directions.getDirections().stream()
                 .map(p -> ControlsUtility.getNewPosition(piece, p, 1))
                 .filter(ControlsUtility::checkPositionOnBoard)
-                .filter(p -> !ControlsUtility.checkPieceOnPosition(p, board) || ControlsUtility.checkEnemyOnPosition(piece, p, board))
+                .filter(p -> !ControlsUtility.checkPieceOnPosition(p, board) ||
+                        ControlsUtility.checkEnemyOnPosition(piece, p, board))
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -46,6 +47,7 @@ public class BasicMovesImpl implements BasicMoves {
         if (ControlsUtility.checkEnemyOnPosition(piece, previousPosition, board)) {
             return false;
         }
-        return !(ControlsUtility.checkPieceOnPosition(p, board) && !ControlsUtility.checkEnemyOnPosition(piece, p, board));
+        return !(ControlsUtility.checkPieceOnPosition(p, board)
+                && !ControlsUtility.checkEnemyOnPosition(piece, p, board));
     }
 }
