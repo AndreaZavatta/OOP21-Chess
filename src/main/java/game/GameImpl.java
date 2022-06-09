@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,8 @@ import board.ControlCheck;
 import board.ControlCheckImpl;
 import board.EndGame;
 import board.EndGameImpl;
+import io.JsonUtils;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -55,7 +58,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public void nextMove(final Position firstPos, final Position finalPos) {
+    public void nextMove(final Position firstPos, final Position finalPos) throws IOException {
         if (isFinished) {
             return;
         }
@@ -67,9 +70,9 @@ public class GameImpl implements Game {
         turnManager.turnIncrement();
         if (gameController.isCheckmate(turnManager.getUserTurn(), chessboard)) {
             winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
-            isFinished = true;
+            matchEnded(); 
         } else if (gameController.isDraw(turnManager.getUserTurn(), chessboard)) {
-            isFinished = true;
+            matchEnded();
         }
     }
 
@@ -127,5 +130,10 @@ public class GameImpl implements Game {
         return chessboard.getPieceOnPosition(firstPos).isEmpty()
                 || attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())
                 || !chessboard.getAllPosition(attacker.get()).contains(finalPos);
+    }
+
+    private void matchEnded() throws IOException {
+        isFinished = true;
+        JsonUtils.addToDatabase(this);
     }
 }

@@ -15,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +65,7 @@ public class BoardController {
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
+    private AbstractController abController = new AbstractController();
     @FXML
     private Pane pane = new Pane();
     @FXML
@@ -194,6 +196,8 @@ public class BoardController {
             } catch (IllegalArgumentException e) {
                 updateGui();
                 return;
+            } catch (IOException ioEx) {
+                abController.showAlert("Impossible create records of the game", AlertType.WARNING);
             }
             updatePlayers();
             updateGui();
