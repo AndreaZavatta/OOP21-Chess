@@ -19,9 +19,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import tuple.Pair;
+import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;
+import model.promotion.Promotion;
+import model.promotion.PromotionImpl;
 import user.User;
 
 /**
@@ -41,6 +44,7 @@ public class GameImpl implements Game {
     private final Chessboard chessboard;
     private final transient EndGame gameController;
     private final Turn turnManager;
+    private final Promotion promotion;
 
     /**
      * 
@@ -54,6 +58,7 @@ public class GameImpl implements Game {
         this.chessboard = new ChessboardFactoryImpl().createNormalCB();
         this.gameController = new EndGameImpl();
         this.turnManager = new TurnImpl(player1, player2);
+        this.promotion = new PromotionImpl();
         startDate = LocalDate.now();
     }
 
@@ -126,10 +131,16 @@ public class GameImpl implements Game {
         return startDate;
     }
 
+    @Override
+    public void promotion(final Name namePiece) {
+        chessboard.promotion(namePiece);
+    }
+
     private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {
         return chessboard.getPieceOnPosition(firstPos).isEmpty()
                 || attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())
-                || !chessboard.getAllPosition(attacker.get()).contains(finalPos);
+                || !chessboard.getAllPosition(attacker.get()).contains(finalPos)
+                || promotion.checkForPromotion(getPiecesList()).isPresent();
     }
 
     private void matchEnded() throws IOException {

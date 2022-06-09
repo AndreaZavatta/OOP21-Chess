@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import tuple.Pair;
+import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;
@@ -85,4 +86,10 @@ public interface Game {
      * @return game start date
      */
     LocalDate getStartDate();
+
+    /**
+     * 
+     * @param namePiece
+     */
+    void promotion(Name namePiece);
 }
