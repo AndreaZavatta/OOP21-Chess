@@ -86,6 +86,6 @@ public class EndGameImpl implements EndGame {
 
     // Private method that indicates if the King is in check.
     private boolean controlCheck(final Side side, final Chessboard chessboard, final ControlCheck controls) {
-        return controls.isInCheck(chessboard, side);
+        return controls.isInCheckWithoutKing(chessboard, side);
     }
 }

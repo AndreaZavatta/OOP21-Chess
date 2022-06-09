@@ -24,5 +24,7 @@ public interface ControlCheck {
      * @param color The color of the king to check if it is in check
      * @return boolean
      */
+    boolean isInCheckWithoutKing(Chessboard chessboard, Side color);
+
     boolean isInCheck(Chessboard chessboard, Side color);
 }
