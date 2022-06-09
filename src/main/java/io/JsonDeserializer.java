@@ -3,6 +3,7 @@ package io;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import game.Game;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,5 +17,5 @@ public interface JsonDeserializer {
      * @param str the string formatted in json to convert
      * @return T
      */
-        List<Game> deserialize(String str) throws JsonProcessingException;
+        List<Game> deserialize(String str) throws IOException;
 }
