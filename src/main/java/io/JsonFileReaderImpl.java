@@ -35,7 +35,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
 
 
     private String composeString(final File file) throws IOException {
-        if(!file.exists()){
+        if (!file.exists()) {
             return "";
         }
         try (Scanner sc = new Scanner(file)) {
@@ -43,7 +43,6 @@ public class JsonFileReaderImpl implements JsonFileReader {
             while (sc.hasNextLine()) {
                 str.append(sc.nextLine());
             }
-            System.out.println(str);
             return str.toString();
         }
     }
