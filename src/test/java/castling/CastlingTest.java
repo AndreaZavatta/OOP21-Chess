@@ -1,7 +1,12 @@
 package castling;
 
-import board.*;
+import board.Castling;
+import board.CastlingImpl;
+import board.Chessboard;
+import board.ChessboardFactoryImpl;
+import board.ChessboardFactory;
 import model.piece.utils.Name;
+import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;
@@ -12,6 +17,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * 
+ * 
+ *
+ */
 public class CastlingTest {
 
     private final PieceFactory factory = new PieceFactoryImpl();
@@ -32,7 +42,7 @@ public class CastlingTest {
         board.move(Position.createNewPosition("f1"), Position.createNewPosition("g2"));
         board.move(Position.createNewPosition("c8"), Position.createNewPosition("d7"));
 
-        assertTrue(castle.canCastle(board, whiteKing, 7));
+        assertTrue(castle.canCastle(board, whiteKing, Numbers.SEVEN));
     }
 
      @Test
@@ -50,7 +60,7 @@ public class CastlingTest {
          board.move(Position.createNewPosition("b1"), Position.createNewPosition("c3"));
          board.move(Position.createNewPosition("c8"), Position.createNewPosition("d7"));
 
-         assertFalse(castle.canCastle(board, whiteKing, 7));
+         assertFalse(castle.canCastle(board, whiteKing, Numbers.SEVEN));
      }
 
      @Test
