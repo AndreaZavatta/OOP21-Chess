@@ -41,15 +41,15 @@ class IOTest {
         System.out.println(map.writeValueAsString(rook));
     }
     @Test
-    void testInstant1() throws JsonProcessingException {
-        Instant inst1 = Instant.parse("2017-02-03T11:25:30.00Z");
-        String string = map.writeValueAsString(inst1);
+    void testInstant1() throws IOException {
+       Instant inst1 = Instant.parse("2017-02-03T11:25:30.00Z");
+       String string = map.writeValueAsString(inst1);
        Instant inst2 =  map.readValue(string, Instant.class);
        assertEquals(inst1, inst2);
     }
 
     @Test
-    void testInstant2() throws JsonProcessingException {
+    void testInstant2() throws IOException {
         String str = "1654474370.473283800";
         Instant inst2 =  map.readValue(str, Instant.class);
         assertEquals(str, map.writeValueAsString(inst2));
@@ -77,7 +77,7 @@ class IOTest {
     }
 
     @Test
-    void deserializeAbstractClass() throws JsonProcessingException {
+    void deserializeAbstractClass() throws IOException {
         final AbstractPiece queen = (AbstractPiece) fact.createPiece(Name.QUEEN, Position.createNumericPosition(3, 4), BLACK);
         final String json = map.writeValueAsString(queen);
         System.out.println(json);
@@ -92,7 +92,7 @@ class IOTest {
         assertEquals(chessboard, chessboard2);
     }
     @Test
-    void deserializeGame() throws JsonProcessingException {
+    void deserializeGame() throws IOException {
         final User user = new UserImpl("andrea");
         final User user2 = new UserImpl("giacomo");
         final Game game = new GameImpl(new Pair<>(user, WHITE), new Pair<>(user2, BLACK));
