@@ -13,11 +13,16 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" styleClass="background" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <MenuBar>
-            <Menu mnemonicParsing="false" text="Help" />
+            <Menu>
+               <graphic>
+                  <Label fx:id="menu" text="Help" onMouseClicked="#showHelp" />
+               </graphic>
+            </Menu>
          </MenuBar>
          <HBox spacing="10.0">
             <VBox.margin>
@@ -36,7 +41,7 @@
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
          <Region HBox.hgrow="ALWAYS" />
-         <Button id="statsButton" layoutX="12.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back" />
+         <Button layoutX="12.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back" />
       </HBox>
    </bottom>
    <left>
