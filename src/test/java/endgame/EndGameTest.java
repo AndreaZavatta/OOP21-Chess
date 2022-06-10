@@ -1,6 +1,10 @@
 package endgame;
 
-import board.*;
+import board.EndGame;
+import board.ChessboardFactory;
+import board.ChessboardFactoryImpl;
+import board.Chessboard;
+import board.EndGameImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
@@ -13,7 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * 
+ * 
+ *
+ */
 public class EndGameTest {
 
     private final ChessboardFactory board = new ChessboardFactoryImpl();
@@ -31,7 +39,7 @@ public class EndGameTest {
     }
 
     @Test
-    void insufficientMaterialDrawTest(){
+    void insufficientMaterialDrawTest() {
         final List<Piece> list =  new ArrayList<>();
 
         final PieceFactory pieces = new PieceFactoryImpl();
