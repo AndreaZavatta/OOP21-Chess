@@ -27,8 +27,9 @@ import java.util.function.Predicate;
  *
  */
 public class StatsController implements Initializable {
-    private final AbstractController contr = new AbstractController();
+    private final ControllerUtils contr = new ControllerUtils();
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
+    public Label menu;
     @FXML
     private TextField txtFieldName = new TextField();
     @FXML
@@ -46,6 +47,15 @@ public class StatsController implements Initializable {
     /**
      * show stats of user, on click of show stats button.
      */
+    @FXML
+    public void showHelp(){
+        String str =    "You can use the text field above the table to filter " +
+                        "matches by player's name.\n" +
+                        "The search also allows you to see information such as percentages of " +
+                        "games won, lost, and drawn.\n" +
+                        "you can select a match to see the statistics associated with it";
+        contr.showCompleteAlert("Guide","DATABASE GUIDE",str, Alert.AlertType.INFORMATION);
+    }
     public void showStats() {
          Optional<User> user = database.getUser(txtFieldName.getText());
         if (user.isEmpty()) {
@@ -64,6 +74,7 @@ public class StatsController implements Initializable {
             txtAreaStats.setText("name not found!");
         }
     }
+
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         database = new DatabaseFilters(wrappedRead());
@@ -127,4 +138,6 @@ public class StatsController implements Initializable {
     void backToMainMenu(final Event event) {
         contr.backToMenu(event);
     }
+
+
 }
