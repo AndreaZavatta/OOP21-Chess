@@ -22,7 +22,7 @@ public final class Start extends Application {
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 400;
 
-    private final Stage startstage = new Stage();
+    private final Stage startStage = new Stage();
 
     /**
      * This method loads the Menu and sets the window up.
@@ -33,10 +33,10 @@ public final class Start extends Application {
 
         final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/MainMenu.fxml"));
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        startstage.setScene(scene);
-        startstage.setTitle("L.A.M.A. Chess");
-        startstage.setResizable(true);
-        startstage.show();
+        startStage.setScene(scene);
+        startStage.setTitle("L.A.M.A. Chess");
+        startStage.setResizable(true);
+        startStage.show();
     }
 
     /**
