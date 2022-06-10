@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 
 public class MenuController {
 
-    private final AbstractController controller = new AbstractController();
+    private final ControllerUtils controller = new ControllerUtils();
 
     @FXML
     void openUserHandler(final ActionEvent event) {

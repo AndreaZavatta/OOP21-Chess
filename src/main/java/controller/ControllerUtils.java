@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  *
  */
-public final class AbstractController {
+public final class ControllerUtils {
     private final Alert alert = new Alert(Alert.AlertType.NONE);
 
     private void changePage(final Event event, final String string) {
@@ -78,11 +78,15 @@ public final class AbstractController {
      * @param str
      * @param type
      */
-    public void showAlert(final String str, final Alert.AlertType type) {
+    public void showCompleteAlert(final String title, final String header, final String content, final Alert.AlertType type){
         alert.setAlertType(type);
-        alert.setContentText("");
-        alert.setHeaderText(str);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.show();
+    }
+    public void showAlert(final String str, final Alert.AlertType type) {
+        showCompleteAlert("Message","",str,type);
     }
 
     /**

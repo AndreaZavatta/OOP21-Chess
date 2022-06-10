@@ -74,7 +74,7 @@ public class BoardController {
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
-    private AbstractController abController = new AbstractController();
+    private ControllerUtils abController = new ControllerUtils();
     @FXML
     private Pane pane = new Pane();
     @FXML

@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class TutorialController {
 
-    private final AbstractController controller = new AbstractController();
+    private final ControllerUtils controller = new ControllerUtils();
 
     @FXML
     void openSlide(final ActionEvent event) {
