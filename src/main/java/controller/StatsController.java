@@ -47,7 +47,10 @@ public class StatsController implements Initializable {
      * show stats of user, on click of show stats button.
      */
     public void showStats() {
-        Optional<User> user = database.getFirstOccurrenceUser(txtFieldName.getText());
+         Optional<User> user = database.getUser(txtFieldName.getText());
+        if (user.isEmpty()) {
+            user = database.getFirstOccurrenceUser(txtFieldName.getText());
+        }
         if (user.isPresent()) {
             long gameWon = database.getNumberGameWon(user.get());
             long gamePlayed = database.getNumberGamePlayed(user.get());
@@ -68,6 +71,7 @@ public class StatsController implements Initializable {
         secondPlayer.setCellValueFactory(new PropertyValueFactory<>("y"));
         date.setCellValueFactory(new PropertyValueFactory<>("z"));
         txtFieldName.textProperty().addListener((observableValue, s, s2) -> tableView.setItems(observableList(filter(s2))));
+        txtFieldName.textProperty().addListener((observableValue, s, s2) -> showStats());
         tableView.setItems(observableList((x -> true)));
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
@@ -104,6 +108,7 @@ public class StatsController implements Initializable {
     private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
         final TableRow<Triple<User, User, LocalDate>> row = new TableRow<>();
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
+        row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> showStats());
         return row;
     }
 
