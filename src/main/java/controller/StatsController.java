@@ -57,22 +57,23 @@ public class StatsController implements Initializable {
         contr.showCompleteAlert("Guide","DATABASE GUIDE",str, Alert.AlertType.INFORMATION);
     }
     public void showStats() {
-         Optional<User> user = database.getUser(txtFieldName.getText());
-        if (user.isEmpty()) {
-            user = database.getFirstOccurrenceUser(txtFieldName.getText());
-        }
-        if (user.isPresent()) {
-            long gameWon = database.getNumberGameWon(user.get());
-            long gamePlayed = database.getNumberGamePlayed(user.get());
-            long gameDraw = database.getNumberGameDrawn(user.get());
+        getUser().ifPresentOrElse(this::writeStats, () -> txtAreaStats.setText("name not found!"));
+    }
 
-            txtAreaStats.setText("Name: " + user.get().getName() + "\n");
-            txtAreaStats.appendText(user.get().getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
-            txtAreaStats.appendText(user.get().getName() + " draw " + (gameDraw * 100 / gamePlayed) + "% of game played\n");
-            txtAreaStats.appendText(user.get().getName() + " lose " + ((gamePlayed - gameDraw - gameWon) * 100 / gamePlayed) + "% of game played");
-        } else {
-            txtAreaStats.setText("name not found!");
-        }
+    private Optional<User> getUser() {
+        Optional<User> user = database.getUser(txtFieldName.getText());
+        return user.isEmpty() ? database.getFirstOccurrenceUser(txtFieldName.getText()) : user;
+    }
+
+    private void writeStats(User user) {
+        long gameWon = database.getNumberGameWon(user);
+        long gamePlayed = database.getNumberGamePlayed(user);
+        long gameDraw = database.getNumberGameDrawn(user);
+
+        txtAreaStats.setText("Name: " + user.getName() + "\n");
+        txtAreaStats.appendText(user.getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
+        txtAreaStats.appendText(user.getName() + " draw " + (gameDraw * 100 / gamePlayed) + "% of game played\n");
+        txtAreaStats.appendText(user.getName() + " lose " + ((gamePlayed - gameDraw - gameWon) * 100 / gamePlayed) + "% of game played");
     }
 
     @Override
