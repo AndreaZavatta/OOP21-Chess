@@ -85,6 +85,15 @@ public final class ControllerUtils {
         alert.setContentText(content);
         alert.show();
     }
+    private void setUpAlert(final String title, final String content, final Alert.AlertType type) {
+        alert.setAlertType(type);
+        alert.setTitle(title);
+        alert.setContentText(content);
+    }
+    public void showEndGameAlert(final String title, final String content, final Alert.AlertType type) {
+        setUpAlert(title, content, type);
+    }
+
     public void showAlert(final String str, final Alert.AlertType type) {
         showCompleteAlert("Message","",str,type);
     }
@@ -102,5 +111,9 @@ public final class ControllerUtils {
         stage.setScene(new Scene(root));
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
+    public Alert getAlert() {
+        return alert;
     }
 }
