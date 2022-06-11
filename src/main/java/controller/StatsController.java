@@ -49,15 +49,13 @@ public class StatsController implements Initializable {
      */
     @FXML
     public void showHelp() {
-        String str =    """
-                        You can use the text field above the table to filter
-                        matches by player's name.
-                        The search also allows you to see information such as percentages of
-                        games won, lost, and drawn of a given player.
-                        You can select a match to see the statistics associated with it""";
+        String str =    "You can use the text field above the table to filter "
+                        + "matches by player's name.\n"
+                        + "The search also allows you to see information such as percentages of "
+                        + "games won, lost, and drawn of a given player.\n"
+                        + "You can select a match to see the statistics associated with it";
         contr.showCompleteAlert("Guide", "DATABASE GUIDE", str, Alert.AlertType.INFORMATION);
     }
-
     private void showStats() {
         getUser().ifPresentOrElse(this::writeStats, () -> txtAreaStats.setText("name not found!"));
     }
