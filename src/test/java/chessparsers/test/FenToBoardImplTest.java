@@ -9,7 +9,6 @@ import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 import static model.piece.utils.Name.*;
@@ -19,18 +18,18 @@ import static model.piece.utils.Side.WHITE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FenToBoardImplTest {
-    PieceFactory pieceFact = new PieceFactoryImpl();
-    FenConverter fenToBoard = new FenConverterImpl();
-    ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
+    private final PieceFactory pieceFact = new PieceFactoryImpl();
+    private final FenConverter fenToBoard = new FenConverterImpl();
+    private final ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
 
     @Test
-    void firstTest(){
+    void firstTest() {
         String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
         Chessboard chessboard = fenToBoard.getBoard(fen);
         assertEquals(chessboard, chessboardFactory.createNormalCB());
     }
     @Test
-    void secondTest(){
+    void secondTest() {
         final List<Piece> list =
                 List.of(pieceFact.createPiece(ROOK, createNewPosition("a8"), BLACK),
                         pieceFact.createPiece(KING, createNewPosition("e8"), BLACK),
@@ -45,7 +44,7 @@ class FenToBoardImplTest {
     }
 
     @Test
-    void thirdTest(){
+    void thirdTest() {
         final List<Piece> list =
                 List.of(pieceFact.createPiece(KING, createNewPosition("b5"), BLACK),
                         pieceFact.createPiece(PAWN, createNewPosition("a2"), BLACK),
@@ -59,7 +58,7 @@ class FenToBoardImplTest {
     }
 
     @Test
-    void testFoolMate(){
+    void testFoolMate() {
         final Chessboard board = chessboardFactory.createNormalCB();
         board.move(createNewPosition("f2"), createNewPosition("f3"));
         board.move(createNewPosition("e7"), createNewPosition("e5"));
@@ -72,7 +71,7 @@ class FenToBoardImplTest {
     }
 
     @Test
-    void testPhilidorPosition(){
+    void testPhilidorPosition() {
         final List<Piece> list =
                 List.of(pieceFact.createPiece(KING, createNewPosition("f4"), BLACK),
                         pieceFact.createPiece(PAWN, createNewPosition("e4"), BLACK),

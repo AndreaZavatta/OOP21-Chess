@@ -158,7 +158,7 @@ class IOTest {
                 fail();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            fail();
         }
     }
 }

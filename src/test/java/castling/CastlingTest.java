@@ -23,11 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  */
 public class CastlingTest {
-
     private final PieceFactory factory = new PieceFactoryImpl();
     private  final ChessboardFactory board = new ChessboardFactoryImpl();
     private final Castling castle = new CastlingImpl();
-
     @Test
     void basicCastlingTest() {
         final Chessboard board = this.board.createNormalCB();

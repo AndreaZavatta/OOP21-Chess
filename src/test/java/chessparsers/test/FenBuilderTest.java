@@ -19,7 +19,6 @@ import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 
 class FenBuilderTest {
-
     private final Fen fenBuilder = new FenBuilder();
     private final PieceFactory pieceFact = new PieceFactoryImpl();
     private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();
@@ -73,7 +72,6 @@ class FenBuilderTest {
         board.move(createNewPosition("d8"), createNewPosition("h4"));
         assertEquals("rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1", 
                 fenBuilder.activeColor(WHITE).build(board));
-        
     }
     @Test
     void testPhilidorPosition() {
