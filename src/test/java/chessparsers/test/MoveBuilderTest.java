@@ -47,7 +47,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("d4")));
        assertEquals("d4", moveBuilder.toString());
    }
@@ -59,7 +59,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("b7"), WHITE))
                  .promotion(QUEEN)
                  .destination(createNewPosition("b8")));
        assertEquals("b8=Q", moveBuilder.toString());
@@ -67,7 +67,7 @@ class MoveBuilderTest {
 
    @Test
    void testDrawOffer() {
-       wrapBuild(moveBuilder.drawOffer());
+       wrapException(moveBuilder.drawOffer());
        assertEquals("(=)", moveBuilder.toString());
    }
    @Test
@@ -78,7 +78,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("e3"), WHITE))
                  .check()
                  .destination(createNewPosition("b3")));
        assertEquals("Qb3+", moveBuilder.toString());
@@ -93,7 +93,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-           wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE))
+           wrapException(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("c4"), WHITE))
                     .checkmate()
                     .destination(createNewPosition("b3")));
        assertEquals("Qcb3#", moveBuilder.toString());
@@ -107,19 +107,19 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(PAWN, createNewPosition("d4"), BLACK))
                  .capture()
                  .destination(createNewPosition("e3")));
        assertEquals("dxe3", moveBuilder.toString());
    }
    @Test
    void testKingSideCastling() {
-       wrapBuild(moveBuilder.kingSideCastling());
+       wrapException(moveBuilder.kingSideCastling());
        assertEquals("0-0", moveBuilder.toString());
    }
    @Test
    void testQueenSideCastling() {
-       wrapBuild(moveBuilder.queenSideCastling());
+       wrapException(moveBuilder.queenSideCastling());
        assertEquals("0-0-0", moveBuilder.toString());
    }
    @Test
@@ -130,7 +130,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(BISHOP, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("f2")));
        assertEquals("Bf2", moveBuilder.toString());
    }
@@ -143,7 +143,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(KNIGHT, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("e6")));
        assertEquals("Nde6", moveBuilder.toString());
    }
@@ -157,7 +157,7 @@ class MoveBuilderTest {
        LIST.add(pieceFact.createPiece(Name.KING, createNewPosition("g2"), WHITE));
        chessboard = boardFactory.createTestCB(LIST);
 
-       wrapBuild(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE))
+       wrapException(moveBuilder.piece(pieceFact.createPiece(QUEEN, createNewPosition("d4"), WHITE))
                .destination(createNewPosition("e4")));
        assertEquals("Qd4e4", moveBuilder.toString());
    }
@@ -175,7 +175,7 @@ class MoveBuilderTest {
                () -> moveBuilder.destination(createNewPosition("d4")).build(chessboard));
    }
 
-   private void wrapBuild(final Move move) {
+   private void wrapException(final Move move) {
        try {
            move.build(chessboard);
        } catch (IllegalMoveException e) {
