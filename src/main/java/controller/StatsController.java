@@ -52,8 +52,8 @@ public class StatsController implements Initializable {
         String str =    "You can use the text field above the table to filter " +
                         "matches by player's name.\n" +
                         "The search also allows you to see information such as percentages of " +
-                        "games won, lost, and drawn.\n" +
-                        "you can select a match to see the statistics associated with it";
+                        "games won, lost, and drawn of a given player.\n" +
+                        "You can select a match to see the statistics associated with it";
         contr.showCompleteAlert("Guide","DATABASE GUIDE",str, Alert.AlertType.INFORMATION);
     }
     public void showStats() {
