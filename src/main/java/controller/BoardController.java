@@ -180,7 +180,7 @@ public class BoardController {
                 chessBoardRectangle.setOnMouseEntered(x -> 
                 setEffect(theme.getRectangleEffect(), chessBoardRectangle));
                 chessBoardRectangle.
-                        setOnMouseExited(x -> removeEffect(chessBoardRectangle, this.match, this.mapGuiPieceToPiece));
+                setOnMouseExited(x -> removeEffect(chessBoardRectangle, this.match, this.mapGuiPieceToPiece));
                 pane.getChildren().add(chessBoardRectangle);
             }
         }
@@ -226,7 +226,8 @@ public class BoardController {
     }
 
     private void quitGame() {
-        contrUtil.createEndGameAlert("Game ended", "Press ok to go back to main menu", AlertType.INFORMATION);
+        contrUtil.createEndGameAlert("Game ended", "Press ok to go back to main menu",
+                AlertType.INFORMATION);
         setHeader(contrUtil.getAlert());
         final Optional<ButtonType> result = contrUtil.getAlert().showAndWait();
         final ButtonType button = result.orElse(ButtonType.CANCEL);
@@ -239,8 +240,11 @@ public class BoardController {
     }
 
     private void setHeader(final Alert alert) {
-        match.getWinner().ifPresentOrElse(x -> alert.setHeaderText("Player name '" + match.getWinner().get().getX() + "' side '"
-                + match.getWinner().get().getY() + "' won!!"), () -> alert.setHeaderText("It's a draw!"));
+        match.getWinner().ifPresentOrElse(x -> alert.setHeaderText("Player name '" 
+                + match.getWinner().get().getX() 
+                + "' side '"
+                + match.getWinner().get().getY() 
+                + "' won!!"), () -> alert.setHeaderText("It's a draw!"));
     }
 
     private void backToMainMenu() {
