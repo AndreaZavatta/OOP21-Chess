@@ -236,31 +236,7 @@ public class BoardController {
         } else {
             backToMainMenu();
         }
-        /*final Stage dialog = new Stage();
-        final Button buttonDialog = new Button("Back to main menu");
-        buttonDialog.setOnAction(btnEvent -> backToMainMenu());
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(this.blackPlayerImage.getScene().getWindow());
-        final VBox dialogVbox = new VBox(50);
-        setUpDialogVbox(buttonDialog, dialogVbox);
-        final Scene dialogScene = new Scene(dialogVbox, 300, 150);
-        dialog.setScene(dialogScene);
-        dialog.setOnCloseRequest(ev -> backToMainMenu());
-        dialog.show();*/
     }
-
-    /*private void setUpDialogVbox(final Button buttonDialog, final VBox dialogVbox) {
-        match.getWinner().ifPresentOrElse(x -> createDialog("Player name :" + match.getWinner().get().getX() + " side :"
-                + match.getWinner().get().getY() + " won!!", dialogVbox), () -> createDialog("It's a draw!", dialogVbox));
-        dialogVbox.getChildren().add(buttonDialog);
-        dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-    }*/
-
-    /*private void createDialog(final String match, final VBox dialogVbox) {
-        final Text winText = new Text(match);
-        setTextOptions(winText);
-        dialogVbox.getChildren().add(winText);
-    }*/
 
     private void setHeader(final Alert alert) {
         match.getWinner().ifPresentOrElse(x -> alert.setHeaderText("Player name '" + match.getWinner().get().getX() + "' side '"
