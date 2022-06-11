@@ -79,10 +79,8 @@ public final class ControllerUtils {
      * @param type
      */
     public void showCompleteAlert(final String title, final String header, final String content, final Alert.AlertType type){
-        alert.setAlertType(type);
-        alert.setTitle(title);
+        setUpAlert(title, content, type);
         alert.setHeaderText(header);
-        alert.setContentText(content);
         alert.show();
     }
     /**
