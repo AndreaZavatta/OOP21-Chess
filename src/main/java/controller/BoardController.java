@@ -1,10 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import controller.utils.ColorSettings;
 import game.Game;
@@ -16,8 +13,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -29,7 +28,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tuple.Pair;
 import model.piece.utils.Numbers;
@@ -74,7 +72,7 @@ public class BoardController {
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
-    private ControllerUtils abController = new ControllerUtils();
+    private ControllerUtils contrUtil = new ControllerUtils();
     @FXML
     private Pane pane = new Pane();
     @FXML
@@ -207,7 +205,7 @@ public class BoardController {
                 updateGui();
                 return;
             } catch (IOException ioEx) {
-                abController.showAlert("Impossible create record of the game", AlertType.WARNING);
+                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
             }
             updatePlayers();
             updateGui();
@@ -230,7 +228,17 @@ public class BoardController {
     }
 
     private void quitGame() {
-        final Stage dialog = new Stage();
+        contrUtil.showEndGameAlert("Game ended", "Press ok to go back to main menu", AlertType.INFORMATION);
+        setHeader(contrUtil.getAlert());
+        Optional<ButtonType> result = contrUtil.getAlert().showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+
+        if (button == ButtonType.OK) {
+            backToMainMenu();
+        } else {
+            backToMainMenu();
+        }
+        /*final Stage dialog = new Stage();
         final Button buttonDialog = new Button("Back to main menu");
         buttonDialog.setOnAction(btnEvent -> backToMainMenu());
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -240,20 +248,25 @@ public class BoardController {
         final Scene dialogScene = new Scene(dialogVbox, 300, 150);
         dialog.setScene(dialogScene);
         dialog.setOnCloseRequest(ev -> backToMainMenu());
-        dialog.show();
+        dialog.show();*/
     }
 
-    private void setUpDialogVbox(final Button buttonDialog, final VBox dialogVbox) {
+    /*private void setUpDialogVbox(final Button buttonDialog, final VBox dialogVbox) {
         match.getWinner().ifPresentOrElse(x -> createDialog("Player name :" + match.getWinner().get().getX() + " side :"
                 + match.getWinner().get().getY() + " won!!", dialogVbox), () -> createDialog("It's a draw!", dialogVbox));
         dialogVbox.getChildren().add(buttonDialog);
         dialogVbox.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-    }
+    }*/
 
-    private void createDialog(final String match, final VBox dialogVbox) {
+    /*private void createDialog(final String match, final VBox dialogVbox) {
         final Text winText = new Text(match);
         setTextOptions(winText);
         dialogVbox.getChildren().add(winText);
+    }*/
+
+    private void setHeader(final Alert alert) {
+        match.getWinner().ifPresentOrElse(x -> alert.setHeaderText("Player name '" + match.getWinner().get().getX() + "' side '"
+                + match.getWinner().get().getY() + "' won!!"), () -> alert.setHeaderText("It's a draw!"));
     }
 
     private void backToMainMenu() {
