@@ -42,9 +42,9 @@ class FenBuilderTest {
         final Chessboard board = boardFactory.createTestCB(list);
         assertEquals("r3k2b/8/8/8/8/8/3K4/R7 w q - 0 1", 
                 fenBuilder.activeColor(WHITE)
-                .blackCastledKingSide()
-                .whiteCastledKingSide()
-                .whiteCastledQueenSide()
+                .blackCastlingKingSide()
+                .whiteCastlingKingSide()
+                .whiteCastlingQueenSide()
                 .build(board));
     }
     @Test
@@ -57,10 +57,10 @@ class FenBuilderTest {
         final Chessboard board = boardFactory.createTestCB(list);
         assertEquals("8/8/8/1k6/7P/8/p4K2/8 b - - 0 1", 
                 fenBuilder.activeColor(BLACK)
-                .blackCastledKingSide()
-                .blackCastledQueenSide()
-                .whiteCastledKingSide()
-                .whiteCastledQueenSide()
+                .blackCastlingKingSide()
+                .blackCastlingQueenSide()
+                .whiteCastlingKingSide()
+                .whiteCastlingQueenSide()
                 .build(board));
 
     }
@@ -86,10 +86,10 @@ class FenBuilderTest {
         final Chessboard board = boardFactory.createTestCB(list);
         assertEquals("8/8/8/8/4pk2/R7/7r/4K3 b - - 0 1", 
                 fenBuilder.activeColor(BLACK)
-                .blackCastledKingSide()
-                .blackCastledQueenSide()
-                .whiteCastledKingSide()
-                .whiteCastledQueenSide()
+                .blackCastlingKingSide()
+                .blackCastlingQueenSide()
+                .whiteCastlingKingSide()
+                .whiteCastlingQueenSide()
                 .build(board));
     }
 }

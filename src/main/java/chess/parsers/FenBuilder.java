@@ -34,22 +34,22 @@ public class FenBuilder implements Fen {
         return this;
     }
     @Override
-    public Fen blackCastledKingSide() {
+    public Fen blackCastlingKingSide() {
         blackCastlingKingSide = false;
         return this;
     }
     @Override
-    public Fen blackCastledQueenSide() {
+    public Fen blackCastlingQueenSide() {
         blackCastlingQueenSide = false;
         return this;
     }
     @Override
-    public Fen whiteCastledKingSide() {
+    public Fen whiteCastlingKingSide() {
         whiteCastlingKingSide = false;
         return this;
     }
     @Override
-    public Fen whiteCastledQueenSide() {
+    public Fen whiteCastlingQueenSide() {
         whiteCastlingQueenSide = false;
         return this;
     }

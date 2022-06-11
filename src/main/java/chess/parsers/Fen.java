@@ -21,25 +21,25 @@ public interface Fen {
      * set white king castled kingSide
      * @return Fen
      */
-    Fen whiteCastledKingSide();
+    Fen whiteCastlingKingSide();
 
     /**
      * set white king castled queen side
      * @return Fen
      */
-    Fen whiteCastledQueenSide();
+    Fen whiteCastlingQueenSide();
 
     /**
      * set black king castled king side
      * @return Fen
      */
-    Fen blackCastledKingSide();
+    Fen blackCastlingKingSide();
 
     /**
      * set black king castled queen side
      * @return Fen
      */
-    Fen blackCastledQueenSide();
+    Fen blackCastlingQueenSide();
 
     /**
      * set
