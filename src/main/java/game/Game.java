@@ -1,18 +1,15 @@
 package game;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import model.pieces.*;
 import tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
-import model.pieces.Piece;
 import user.User;
 
 /**
@@ -20,6 +17,7 @@ import user.User;
  * interface for GameImpl.
  *
  */
+@JsonDeserialize(as = GameImpl.class)
 public interface Game {
 
     /**
