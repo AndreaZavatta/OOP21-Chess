@@ -1,7 +1,11 @@
 package controller;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import controller.utils.ColorSettings;
 import game.Game;
@@ -9,21 +13,15 @@ import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -228,10 +226,10 @@ public class BoardController {
     }
 
     private void quitGame() {
-        contrUtil.showEndGameAlert("Game ended", "Press ok to go back to main menu", AlertType.INFORMATION);
+        contrUtil.createEndGameAlert("Game ended", "Press ok to go back to main menu", AlertType.INFORMATION);
         setHeader(contrUtil.getAlert());
-        Optional<ButtonType> result = contrUtil.getAlert().showAndWait();
-        ButtonType button = result.orElse(ButtonType.CANCEL);
+        final Optional<ButtonType> result = contrUtil.getAlert().showAndWait();
+        final ButtonType button = result.orElse(ButtonType.CANCEL);
 
         if (button == ButtonType.OK) {
             backToMainMenu();

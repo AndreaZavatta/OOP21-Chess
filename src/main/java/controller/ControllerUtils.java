@@ -85,13 +85,20 @@ public final class ControllerUtils {
         alert.setContentText(content);
         alert.show();
     }
+    /**
+     * Create a custom alert for the end of the game.
+     * @param title the title of the alert.
+     * @param content the content of the alert.
+     * @param type the type of the alert.
+     */
+    public void createEndGameAlert(final String title, final String content, final Alert.AlertType type) {
+        setUpAlert(title, content, type);
+    }
+
     private void setUpAlert(final String title, final String content, final Alert.AlertType type) {
         alert.setAlertType(type);
         alert.setTitle(title);
         alert.setContentText(content);
-    }
-    public void showEndGameAlert(final String title, final String content, final Alert.AlertType type) {
-        setUpAlert(title, content, type);
     }
 
     public void showAlert(final String str, final Alert.AlertType type) {
@@ -112,7 +119,10 @@ public final class ControllerUtils {
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-
+    /**
+     * A standard getter for the alert.
+     * @return the alert
+     */
     public Alert getAlert() {
         return alert;
     }
