@@ -1,6 +1,7 @@
 package io;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import game.Game;
 import game.GameImpl;
 
@@ -18,9 +19,10 @@ public class JsonDeserializerImpl implements JsonDeserializer {
 
     @Override
     public List<Game> deserialize(final String str) throws IOException {
-        if (str.isEmpty()) {
-            return new ArrayList<>();
-        }
+        return str.isEmpty() ? new ArrayList<>() : deserializeGames(str);
+    }
+
+    private List<Game> deserializeGames(String str) throws JsonProcessingException {
         return getMapper().readValue(str, mapper.getTypeFactory().constructCollectionType(List.class, GameImpl.class));
     }
 

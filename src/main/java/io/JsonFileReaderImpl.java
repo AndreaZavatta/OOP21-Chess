@@ -3,6 +3,7 @@ package io;
 import game.Game;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -30,14 +31,15 @@ public class JsonFileReaderImpl implements JsonFileReader {
     @Override
     public List<Game> readFile() throws IOException {
             final File file = new File(cd + fs + fileName);
-            return jDeserializer.deserialize(composeString(file));
+            return jDeserializer.deserialize(fromFileToString(file));
     }
 
 
-    private String composeString(final File file) throws IOException {
-        if (!file.exists()) {
-            return "";
-        }
+    private String fromFileToString(final File file) throws IOException {
+        return file.exists() ? getContentFromFile(file) : "";
+    }
+
+    private String getContentFromFile(File file) throws FileNotFoundException {
         try (Scanner sc = new Scanner(file)) {
             StringBuilder str = new StringBuilder();
             while (sc.hasNextLine()) {

@@ -29,13 +29,14 @@ public class JsonFileWriterImpl implements JsonFileWriter {
     @Override
     public void writeFile(final Object obj) throws IOException {
             final FileOutputStream file = new FileOutputStream(cd + fs + fileName);
-            try (var a = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8))) {
-                a.write(jSerializer.serialize(obj));
-            }
+            write(obj, file);
     }
 
-
-
+    private void write(Object obj, FileOutputStream file) throws IOException {
+        try (var a = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8))) {
+            a.write(jSerializer.serialize(obj));
+        }
+    }
 
 
 }
