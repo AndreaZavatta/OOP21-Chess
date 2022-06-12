@@ -23,7 +23,7 @@ public class FenConverterImpl implements FenConverter {
      * @param chessNotation
      * @return the Name of piece
      */
-    public Name fromChessNotationToName(final char chessNotation) {
+    private Name fromChessNotationToName(final char chessNotation) {
         Name ret = null;
         switch (chessNotation) {
             case 'R' : ret = ROOK; break;
@@ -64,6 +64,8 @@ public class FenConverterImpl implements FenConverter {
     }
 
     private void addPiece(final List<Piece> list, final int x, final int y, final Character c) {
-        list.add(pieceFactory.createPiece(fromChessNotationToName(toUpperCase(c)), Position.createNumericPosition(x, y), isUpperCase(c) ? WHITE : BLACK));
+        list.add(
+                pieceFactory.createPiece(
+                fromChessNotationToName(toUpperCase(c)), Position.createNumericPosition(x, y), isUpperCase(c) ? WHITE : BLACK));
     }
 }

@@ -74,19 +74,28 @@ public class FenBuilder implements Fen {
         final List<Piece> rowPiece = getPiecesByRow(row, chessboard);
         int previousPiece = 0;
         for (final Piece piece : rowPiece) {
-           final int diff = piece.getPosition().getX() - previousPiece;
-           if (diff > 0) {
-               res.append(diff);
-           }
-           final String notation = piece.getName().getChessNotation();
-           res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation);
-           previousPiece = piece.getPosition().getX() + 1;
+            addDiff(res, previousPiece, piece);
+            addNotation(res, piece);
+            previousPiece = piece.getPosition().getX() + 1;
         }
         if (previousPiece < chessboard.getxBorder() + 1) {
             res.append(chessboard.getxBorder() + 1 - previousPiece);
         }
         return res.toString();
     }
+
+    private void addNotation(StringBuilder res, Piece piece) {
+        final String notation = piece.getName().getChessNotation();
+        res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation);
+    }
+
+    private void addDiff(StringBuilder res, int previousPiece, Piece piece) {
+        final int diff = piece.getPosition().getX() - previousPiece;
+        if (diff > 0) {
+            res.append(diff);
+        }
+    }
+
     private List<Piece> getPiecesByRow(final int row, final Chessboard chessboard) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getPosition().getY() == row)
