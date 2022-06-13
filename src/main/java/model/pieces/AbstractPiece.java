@@ -77,18 +77,8 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public String toString() {
-        return "Piece [name=" + name + ", position=" + position + ", color=" + color + "]";
-    }
-
-    @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 17;
-        result = prime * result + ((color == null) ? 3 : color.hashCode());
-        result = prime * result + position.hashCode();
-        result = prime * result + ((name == null) ? 3 : name.hashCode());
-        return result;
+        return Objects.hash(color, isMoved, name, position);
     }
 
     @Override
@@ -96,13 +86,11 @@ public abstract class AbstractPiece implements Piece {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof AbstractPiece)) {
             return false;
         }
         final AbstractPiece other = (AbstractPiece) obj;
-        return color == other.color && name == other.name && Objects.equals(position, other.position);
+        return color == other.color && isMoved == other.isMoved && name == other.name
+                && Objects.equals(position, other.position);
     }
 }
