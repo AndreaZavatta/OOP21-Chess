@@ -19,7 +19,6 @@ import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 
 class FenBuilderTest {
-
     private final Fen fenBuilder = new FenBuilder();
     private final PieceFactory pieceFact = new PieceFactoryImpl();
     private final ChessboardFactory boardFactory = new ChessboardFactoryImpl();

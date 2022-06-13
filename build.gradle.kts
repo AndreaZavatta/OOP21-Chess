@@ -54,7 +54,7 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.3")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-parameter-names
     implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.13.3")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.5.1")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3")
 
     // and a dependency on vert.x
     implementation("io.vertx:vertx-core:3.5.3")

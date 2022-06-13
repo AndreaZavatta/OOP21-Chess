@@ -41,7 +41,14 @@ class ControlCheckTest {
          );
 
     }
-
+    @Test
+    void isInCheckTrue() {
+        final Piece blackKing = PIECE_FACTORY.createPiece(KING, createNewPosition("a8"), BLACK);
+        final Piece whiteRook = PIECE_FACTORY.createPiece(ROOK, createNewPosition("e8"), WHITE);
+        final Piece whiteKing = PIECE_FACTORY.createPiece(KING, createNewPosition("f4"), WHITE);
+        chessboard = CHESSBOARD_FACTORY.createTestCB(List.of(blackKing, whiteRook, whiteKing));
+        assertTrue(CONTROL.isInCheck(chessboard, BLACK));
+    }
     @Test
     void beInCheckEnemyAttackKingTrue() {
         final Piece blackKing = PIECE_FACTORY.createPiece(KING, createNewPosition("a8"), BLACK);
