@@ -9,9 +9,10 @@ import user.UserControllerImpl;
  *
  */
 public class TimerPlayer extends UserControllerImpl {
-    private int timeLeft;
+    private double timeLeft;
     private final Game match;
     private Side currentPlayer;
+    private boolean timerExpired;
 
     /**
      * @param name
@@ -19,11 +20,12 @@ public class TimerPlayer extends UserControllerImpl {
      * @param timeLeft
      * @param match
      */
-    public TimerPlayer(final String name, final Image img, final int timeLeft, final Game match, final Side s) {
+    public TimerPlayer(final String name, final Image img, final double timeLeft, final Game match, final Side s) {
         super(name, img);
         this.timeLeft = timeLeft;
         this.match = match;
         this.currentPlayer = s;
+        this.timerExpired = false;
     }
 
     /**
@@ -46,7 +48,7 @@ public class TimerPlayer extends UserControllerImpl {
      *
      * @return
      */
-    public int getTimeLeft() {
+    public double getTimeLeft() {
         return timeLeft;
     }
 
@@ -54,8 +56,20 @@ public class TimerPlayer extends UserControllerImpl {
      *
      * @param timeLeft
      */
-    public void setTimeLeft(final int timeLeft) {
+    private void setTimeLeft(final double timeLeft) {
         this.timeLeft = timeLeft;
+        if (this.timeLeft <= 0.) {
+            this.timerExpired = true;
+            this.timeLeft = 0.;
+        }
+    }
+
+    public void subtractTime(final double delta) {
+        this.setTimeLeft(this.getTimeLeft() - delta);
+    }
+
+    public boolean isTimerExpired() {
+        return this.timerExpired;
     }
 
     /**
@@ -63,11 +77,11 @@ public class TimerPlayer extends UserControllerImpl {
      * @return
      */
     public String getFormattedTime() {
-        String minutes = String.valueOf(this.timeLeft / 60);
+        String minutes = String.valueOf((int) (this.timeLeft / 60));
         if (minutes.length() < 2) {
             minutes = "0" + minutes;
         }
-        String seconds = String.valueOf(this.timeLeft % 60);
+        String seconds = String.valueOf((int) (this.timeLeft % 60));
         if (seconds.length() < 2) {
             seconds = "0" + seconds;
         }
