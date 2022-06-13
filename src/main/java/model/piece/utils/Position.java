@@ -13,7 +13,6 @@ public final class Position {
     private final int x;
     private final int y;
     private Position(final int x, final int y) {
-        super();
         this.x = x;
         this.y = y;
     }
@@ -62,10 +61,7 @@ public final class Position {
 
     @Override
     public int hashCode() {
-        int result = 32;
-        result = Numbers.SEVEN * result + x;
-        result = Numbers.SEVEN * result + y;
-        return result;
+        return Objects.hash(x, y);
     }
 
     @Override
