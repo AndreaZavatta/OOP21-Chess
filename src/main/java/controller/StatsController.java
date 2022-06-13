@@ -135,6 +135,7 @@ public class StatsController implements Initializable {
     }
     private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
         final TableRow<Triple<User, User, LocalDate>> row = new TableRow<>();
+
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> showStats());
         return row;

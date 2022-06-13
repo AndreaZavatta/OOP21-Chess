@@ -1,8 +1,8 @@
 package game;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +38,7 @@ public class GameImpl implements Game {
 
     private Pair<User, Side> winner;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" ,timezone="CEST")
-    private final Date startDate;
+    private final LocalDate startDate;
     @JsonProperty("gameFinished")
     private boolean isFinished;
     private final Chessboard chessboard;
@@ -60,7 +60,7 @@ public class GameImpl implements Game {
         this.gameController = new EndGameImpl();
         this.turnManager = new TurnImpl(player1, player2);
         this.promotion = new PromotionImpl();
-        startDate = new Date();
+        startDate = LocalDate.now();
     }
 
     @Override
@@ -128,7 +128,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 

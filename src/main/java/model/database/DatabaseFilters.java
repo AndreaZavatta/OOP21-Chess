@@ -96,6 +96,9 @@ public class DatabaseFilters {
      * @return an Optional.of(User) or Optional.empty()
      */
     public Optional<Game> getGame(final Triple<User, User, LocalDate> newSelection) {
+        if(newSelection==null){
+            return Optional.empty();
+        }
         return games.stream().filter(x -> x.getUsers().getX().equals(newSelection.getFirst()))
                 .filter(x -> x.getUsers().getY().equals(newSelection.getSecond()))
                 .filter(x -> x.getStartDate().equals(newSelection.getThird())).findFirst();
