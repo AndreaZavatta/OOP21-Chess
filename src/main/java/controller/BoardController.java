@@ -111,7 +111,22 @@ public class BoardController {
 
     @FXML
     void askForDraw(final ActionEvent event) {
-        //TODO
+        contrUtil.createEndGameAlert(match.getUserSideTurn() + " ask for a draw!",
+                        "Do you want to accept the draw? \n"
+                        + "If you don't want to draw close this alert.",
+                        AlertType.INFORMATION);
+        setHeader(contrUtil.getAlert());
+        final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
+        final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
+
+        if (yes.equals(ButtonType.OK)) {
+            try {
+                match.setDraw();
+            } catch (IOException ioEx) {
+                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
+            }
+            quitGame();
+        }
     }
 
     private void createPlayers() {
