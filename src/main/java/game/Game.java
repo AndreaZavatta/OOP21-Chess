@@ -1,9 +1,6 @@
 package game;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -82,10 +79,9 @@ public interface Game {
     Pair<User, User> getUsers();
 
     /**
-     * 
      * @return game start date
      */
-    LocalDate getStartDate();
+    Date getStartDate();
 
     /**
      * 
