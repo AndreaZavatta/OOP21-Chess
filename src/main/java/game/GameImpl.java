@@ -137,6 +137,11 @@ public class GameImpl implements Game {
         chessboard.promotion(namePiece);
     }
 
+    @Override
+    public void setDraw() throws IOException {
+        matchEnded();
+    }
+
     private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {
         return chessboard.getPieceOnPosition(firstPos).isEmpty()
                 || attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())

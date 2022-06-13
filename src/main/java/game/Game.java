@@ -92,4 +92,10 @@ public interface Game {
      * @param namePiece
      */
     void promotion(Name namePiece);
+
+    /**
+     * method for set a draw.
+     * @throws IOException 
+     */
+    void setDraw() throws IOException;
 }
