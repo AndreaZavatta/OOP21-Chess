@@ -1,15 +1,17 @@
 package timer;
 
-import application.Start;
 import game.Game;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.time.Duration;
+import java.time.Instant;
+
 /**
  *
  */
-public class Timer implements Runnable {
+public class TimerOld implements Runnable {
 
     private final Game match;
 
@@ -24,7 +26,7 @@ public class Timer implements Runnable {
     private final Label time2;
 
 
-    public Timer(final TimerPlayer whitePlayer, final TimerPlayer blackPlayer, final Label time1, final Label time2, final Game match) {
+    public TimerOld(final TimerPlayer whitePlayer, final TimerPlayer blackPlayer, final Label time1, final Label time2, final Game match) {
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
         this.time1 = time1;
@@ -48,35 +50,36 @@ public class Timer implements Runnable {
         this.blackPlayer = blackPlayer;
     }
 
+    public TimerPlayer getCurrentPlayer() {
+        return this.whitePlayer.isCurrentPlayer() ? this.whitePlayer : this.blackPlayer;
+    }
+
     @Override
     public void run() {
         boolean stop = false;
+        var previousTime = Instant.now();
         while (!stop) {
+            var currentTime = Instant.now();
+            final var delta = Duration.between(previousTime, currentTime).toMillis() / 1000.;
 
-            synchronized (this) {
-                if (this.whitePlayer.isCurrentPlayer()) {
-                    this.whitePlayer.setTimeLeft(this.whitePlayer.getTimeLeft() - 1);
-                } else {
-                    this.blackPlayer.setTimeLeft(this.blackPlayer.getTimeLeft() - 1);
-                }
-                Platform.runLater(() -> {
-                    time1.setText(whitePlayer.getFormattedTime());
-                    time2.setText(blackPlayer.getFormattedTime());
-                });
+            final var currentPlayer = this.getCurrentPlayer();
+            currentPlayer.subtractTime(delta);
+            previousTime = currentTime;
+
+            Platform.runLater(() -> {
+                time1.setText(whitePlayer.getFormattedTime());
+                time2.setText(blackPlayer.getFormattedTime());
+            });
+
+            if (this.whitePlayer.isTimerExpired() || this.blackPlayer.isTimerExpired()) {
+                stop = true;
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            if (this.whitePlayer.getTimeLeft() == 0 | this.blackPlayer.getTimeLeft() == 0) {
-                stop = true;
-            }
         }
-
-        Platform.runLater(Start::launch);
     }
-
 }
