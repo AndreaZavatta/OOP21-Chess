@@ -22,7 +22,7 @@ public class JsonDeserializerImpl implements JsonDeserializer {
         return str.isEmpty() ? new ArrayList<>() : deserializeGames(str);
     }
 
-    private List<Game> deserializeGames(String str) throws JsonProcessingException {
+    private List<Game> deserializeGames(final String str) throws JsonProcessingException {
         return getMapper().readValue(str, mapper.getTypeFactory().constructCollectionType(List.class, GameImpl.class));
     }
 

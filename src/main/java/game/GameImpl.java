@@ -37,7 +37,7 @@ import user.User;
 public class GameImpl implements Game {
 
     private Pair<User, Side> winner;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" ,timezone="CEST")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private final LocalDate startDate;
     @JsonProperty("gameFinished")
     private boolean isFinished;

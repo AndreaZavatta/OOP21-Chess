@@ -44,7 +44,7 @@
 .chessButton  {
     -fx-opacity: 1;
     -fx-background-color: #ff6600;
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+    /*-fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);*/
     -fx-fill: black;
     -fx-pref-height: 40;
     -fx-pref-width: 40;
@@ -54,14 +54,14 @@
     -fx-background-color: coral;
     -fx-opacity: 1;
     -fx-font-family: Courier New;
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+    /*-fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);*/
     -fx-pref-height: 80;
     -fx-pref-width: 150;    
 }
 
 .backToChessboard {
     -fx-background-color: rgb(255, 98, 0);
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+    /*-fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);*/
 }
 
 .boardPanes {

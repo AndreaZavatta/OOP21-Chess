@@ -25,7 +25,7 @@ public class DatabaseFilters {
     public DatabaseFilters(final List<Game> games) {
         this.games = new ArrayList<>(games);
     }
-    private Optional<User> getUserByPredicate(final String str, final Predicate<User> pred){
+    private Optional<User> getUserByPredicate(final String str, final Predicate<User> pred) {
         return games.stream().map(Game::getUsers)
                 .flatMap(x -> Stream.of(x.getX(), x.getY()))
                 .filter(pred).findFirst();
@@ -99,7 +99,7 @@ public class DatabaseFilters {
         return newSelection == null ? Optional.empty() : getGameSupport(newSelection);
     }
 
-    private Optional<Game> getGameSupport(Triple<User, User, LocalDate> newSelection) {
+    private Optional<Game> getGameSupport(final Triple<User, User, LocalDate> newSelection) {
         return games.stream().filter(x -> x.getUsers().getX().equals(newSelection.getFirst()))
                 .filter(x -> x.getUsers().getY().equals(newSelection.getSecond()))
                 .filter(x -> x.getStartDate().equals(newSelection.getThird())).findFirst();
@@ -114,7 +114,7 @@ public class DatabaseFilters {
         return newSelection == null ? "" : getWinnerSupport(newSelection);
     }
 
-    private String getWinnerSupport(Triple<User, User, LocalDate> newSelection) {
+    private String getWinnerSupport(final Triple<User, User, LocalDate> newSelection) {
         return getGame(newSelection)
                 .flatMap(Game::getWinner)
                 .map(Pair::getX)

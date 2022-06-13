@@ -1,7 +1,5 @@
 package controller.utils;
 
-import application.Start;
-
 /**
  * 
  * Enum for piece image path.

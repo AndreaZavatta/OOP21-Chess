@@ -30,7 +30,6 @@ import java.util.function.Predicate;
 public class StatsController implements Initializable {
     private final ControllerUtils contr = new ControllerUtils();
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");
-    public Label menu;
     @FXML
     private TextField txtFieldName = new TextField();
     @FXML
@@ -111,7 +110,7 @@ public class StatsController implements Initializable {
         try {
             games = fr.readFile();
         } catch (IOException e) {
-            contr.showCompleteAlert("Something went wrong", "error!", "unable to read database" , ERROR);
+            contr.showCompleteAlert("Something went wrong", "error!", "unable to read database", ERROR);
         }
         return games;
     }

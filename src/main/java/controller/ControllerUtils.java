@@ -73,12 +73,14 @@ public final class ControllerUtils {
         changePage(event, "/layouts/tutorial/2.fxml");
     }
 
-    /**
-     *
-     * @param str
-     * @param type
-     */
-    public void showCompleteAlert(final String title, final String header, final String content, final Alert.AlertType type){
+/**
+ * 
+ * @param title
+ * @param header
+ * @param content
+ * @param type
+ */
+    public void showCompleteAlert(final String title, final String header, final String content, final Alert.AlertType type) {
         setUpAlert(title, content, type);
         alert.setHeaderText(header);
         alert.show();
@@ -98,9 +100,13 @@ public final class ControllerUtils {
         alert.setTitle(title);
         alert.setContentText(content);
     }
-
+    /**
+     * 
+     * @param str
+     * @param type
+     */
     public void showAlert(final String str, final Alert.AlertType type) {
-        showCompleteAlert("Message","",str,type);
+        showCompleteAlert("Message", "", str, type);
     }
 
     /**

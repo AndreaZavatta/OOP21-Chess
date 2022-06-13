@@ -39,7 +39,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
         return file.exists() ? getContentFromFile(file) : "";
     }
 
-    private String getContentFromFile(File file) throws FileNotFoundException {
+    private String getContentFromFile(final File file) throws FileNotFoundException {
         try (Scanner sc = new Scanner(file)) {
             StringBuilder str = new StringBuilder();
             while (sc.hasNextLine()) {

@@ -84,12 +84,12 @@ public class FenBuilder implements Fen {
         return res.toString();
     }
 
-    private void addNotation(StringBuilder res, Piece piece) {
+    private void addNotation(final StringBuilder res, final Piece piece) {
         final String notation = piece.getName().getChessNotation();
         res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation);
     }
 
-    private void addDiff(StringBuilder res, int previousPiece, Piece piece) {
+    private void addDiff(final StringBuilder res, final int previousPiece, final Piece piece) {
         final int diff = piece.getPosition().getX() - previousPiece;
         if (diff > 0) {
             res.append(diff);

@@ -30,6 +30,7 @@ class ControlCheckTest {
     private static final PieceFactory PIECE_FACTORY = new PieceFactoryImpl();
     private static final ControlCheck CONTROL = new ControlCheckImpl();
 
+    
     @Test
     void testKingNotFoundException() {
         final Piece whiteRook = PIECE_FACTORY.createPiece(ROOK, createNewPosition("e8"), WHITE);
