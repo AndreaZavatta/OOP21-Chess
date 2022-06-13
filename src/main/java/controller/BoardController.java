@@ -104,10 +104,10 @@ public class BoardController {
         this.createGuiPieces();
 
         //va in createPlayers()
-        this.whitePlayerTimer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), 600, match);
-        this.blackPlayerTimer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), 600, match);
+        this.whitePlayerTimer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), 600, match, Side.WHITE);
+        this.blackPlayerTimer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), 600, match, Side.BLACK);
         //nuovo metodo createTimer()
-        this.timer = new Timer(whitePlayerTimer, blackPlayerTimer, timeTest, timeTest1, match);
+        this.timer = new Timer(blackPlayerTimer, whitePlayerTimer, timeTest, timeTest1, match);
         timeTest1.setText(timer.getBlackPlayer().getFormattedTime());
         this.startTimer();
     }
@@ -217,10 +217,8 @@ public class BoardController {
                 updateGui();
                 return;
             }
-            this.timer.switchPlayers();
             updatePlayers();
             updateGui();
-
             if (checkPieceOnPosition(finalPos)) {
                 final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
                         .filter(p -> p.getKey().getPosition().equals(finalPos))

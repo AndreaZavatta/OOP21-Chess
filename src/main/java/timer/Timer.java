@@ -18,12 +18,13 @@ public class Timer implements Runnable {
     private TimerPlayer blackPlayer;
 
     @FXML
-    Label time1;
+    private final Label time1;
 
     @FXML
-    Label time2;
+    private final Label time2;
 
-    public Timer(TimerPlayer whitePlayer, TimerPlayer blackPlayer, Label time1, Label time2, final Game match) {
+
+    public Timer(final TimerPlayer whitePlayer, final TimerPlayer blackPlayer, final Label time1, final Label time2, final Game match) {
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
         this.time1 = time1;
@@ -78,19 +79,4 @@ public class Timer implements Runnable {
         Platform.runLater(Start::launch);
     }
 
-    public void switchPlayers() {
-        if (whitePlayer.isCurrentPlayer()) {
-            //whitePlayer.setCurrentPlayer(match);
-            blackPlayer.setCurrentPlayer(match);
-        } else {
-            //blackPlayer.setCurrentPlayer(match);
-            whitePlayer.setCurrentPlayer(match);
-        }
-    }
-
-    public void switchSides() {
-        TimerPlayer temp = whitePlayer;
-        whitePlayer = blackPlayer;
-        blackPlayer = temp;
-    }
 }

@@ -19,10 +19,11 @@ public class TimerPlayer extends UserControllerImpl {
      * @param timeLeft
      * @param match
      */
-    public TimerPlayer(final String name, final Image img, final int timeLeft, final Game match) {
+    public TimerPlayer(final String name, final Image img, final int timeLeft, final Game match, final Side s) {
         super(name, img);
         this.timeLeft = timeLeft;
         this.match = match;
+        this.currentPlayer = s;
     }
 
     /**
