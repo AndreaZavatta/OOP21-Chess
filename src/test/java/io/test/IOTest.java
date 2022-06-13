@@ -20,6 +20,7 @@ import user.User;
 import user.UserImpl;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,14 +56,21 @@ class IOTest {
     }
     @Test
     void testDate() {
-        //TODO
+        try{
+            final LocalDate date = LocalDate.of(2001, 3, 31);
+            final String str = map.writeValueAsString(date);
+            final LocalDate date2 = map.readValue(str, LocalDate.class);
+            assertEquals(date, date2);
+        } catch (JsonProcessingException e) {
+            fail();
+        }
     }
 
     @Test
     void testDeserializationChessboard() {
         try {
             final Chessboard chessboard = chessboardFact.createNormalCB();
-            String str = map.writeValueAsString(chessboard);
+            final String str = map.writeValueAsString(chessboard);
             final Chessboard chessboard2 = map.readValue(str, Chessboard.class);
             assertEquals(chessboard, chessboard2);
         } catch (JsonProcessingException ex) {
@@ -73,7 +81,7 @@ class IOTest {
     void testSerializationChessboard() {
         try {
             final Chessboard chessboard = chessboardFact.createNormalCB();
-            String str = map.writeValueAsString(chessboard);
+            final String str = map.writeValueAsString(chessboard);
             final Chessboard chessboard2 = map.readValue(str, Chessboard.class);
             assertEquals(chessboard, chessboard2);
         } catch (IOException ex) {
@@ -86,7 +94,7 @@ class IOTest {
     void testDeserializationGame() {
         try {
             final Game game = new GameImpl(new Pair<>(new UserImpl("andrea"), BLACK), new Pair<>(new UserImpl("marco"), WHITE));
-            String str = map.writeValueAsString(game);
+            final String str = map.writeValueAsString(game);
             final Game game2 = map.readValue(str, Game.class);
             assertEquals(game.getPiecesList(), game2.getPiecesList());
         } catch (JsonProcessingException ex) {
@@ -131,18 +139,6 @@ class IOTest {
         return List.of(getGame("andrea", "giacomo"), getGame("stefano", "giorgio"));
     }
 
-    @Test
-    void testReadObjFile() {
-        try {
-            final Game game = getGame("andrea", "giacomo");
-            fw.writeFile(game);
-            final JsonFileReader fr = new JsonFileReaderImpl("prova.txt");
-            final Game game2 = (Game) fr.readFile();
-            assertEquals(game.getPiecesList(), game2.getPiecesList());
-        } catch (IOException ignored) {
-            fail();
-        }
-    }
 
     @Test
     void testReadListFile() {
