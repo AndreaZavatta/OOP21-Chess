@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -29,6 +30,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import timer.Timer;
+import timer.TimerPlayer;
 import tuple.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
@@ -64,6 +67,9 @@ public class BoardController {
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
+    private TimerPlayer whitePlayerTimer;
+    private TimerPlayer blackPlayerTimer;
+    private Timer timer;
     @FXML
     private Pane pane = new Pane();
     @FXML
@@ -80,7 +86,10 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
-
+    @FXML
+    private Label timeTest = new Label();
+    @FXML
+    private Label timeTest1 = new Label();
     /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
@@ -93,12 +102,25 @@ public class BoardController {
         this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
                 new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.createGuiPieces();
+
+        //va in createPlayers()
+        this.whitePlayerTimer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), 600, match);
+        this.blackPlayerTimer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), 600, match);
+        //nuovo metodo createTimer()
+        this.timer = new Timer(whitePlayerTimer, blackPlayerTimer, timeTest, timeTest1, match);
+        timeTest1.setText(timer.getBlackPlayer().getFormattedTime());
+        this.startTimer();
     }
     @FXML
     void initialize() {
         this.createChessboard();
         this.createBoardInformation();
         borderPane.setStyle("-fx-background-color: #2F4F4F");
+    }
+
+    private void startTimer() {
+        Thread th = new Thread(this.timer);
+        th.start();
     }
 
     @FXML
@@ -195,8 +217,10 @@ public class BoardController {
                 updateGui();
                 return;
             }
+            this.timer.switchPlayers();
             updatePlayers();
             updateGui();
+
             if (checkPieceOnPosition(finalPos)) {
                 final GuiPiece deadGuiPiece = mapPieceToGuiPiece.entrySet().stream()
                         .filter(p -> p.getKey().getPosition().equals(finalPos))
