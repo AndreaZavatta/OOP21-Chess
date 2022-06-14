@@ -253,6 +253,9 @@ public class BoardController {
             if (match.isGameFinished()) {
                 quitGame();
             }
+            if (match.checkPromotion().isPresent()) {
+                //updatePromotion(match.checkPromotion().get(), match.promotion(Name.QUEEN));
+            }
         } else {
             updateGui();
         }
@@ -357,7 +360,7 @@ public class BoardController {
         mapPieceRemove(deadPiece, deadGuiPiece);
     }
 
-    private void promotionUpdate(final Piece oldPiece, final Piece newPiece) {
+    private void updatePromotion(final Piece oldPiece, final Piece newPiece) {
         final GuiPiece oldGuiPiece = mapPieceToGuiPiece.get(oldPiece);
         mapPieceRemove(oldPiece, oldGuiPiece);
         createGuiPiece(newPiece);
