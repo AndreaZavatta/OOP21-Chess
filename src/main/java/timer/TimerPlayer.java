@@ -40,7 +40,7 @@ public class TimerPlayer extends UserControllerImpl {
     /**
      *
      * @return
-     */
+     */ 
     public double getTimeLeft() {
         return timeLeft;
     }
