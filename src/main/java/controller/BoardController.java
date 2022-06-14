@@ -30,6 +30,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import timer.ChessTimer;
 import timer.TimerOld;
 import timer.TimerPlayer;
 import tuple.Pair;
@@ -90,6 +91,8 @@ public class BoardController {
     private Label timeTest = new Label();
     @FXML
     private Label timeTest1 = new Label();
+
+    private ChessTimer chessTimer;
     /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
@@ -106,10 +109,14 @@ public class BoardController {
         //va in createPlayers()
         this.whitePlayerTimer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), 600, match, Side.WHITE);
         this.blackPlayerTimer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), 600, match, Side.BLACK);
+
+
         //nuovo metodo createTimer()
         //this.timer = new Timer(blackPlayerTimer, whitePlayerTimer, timeTest, timeTest1, match);
         //this.startTimer();
-        var t = new java.util.Timer(true);
+        chessTimer = new ChessTimer(whitePlayerTimer, blackPlayerTimer, timeTest1, timeTest);
+        chessTimer.buildTimer();
+        /*var t = new java.util.Timer(true);
         t.scheduleAtFixedRate(new TimerTask() {
             Instant previousTime = Instant.now();
             @Override
@@ -130,7 +137,7 @@ public class BoardController {
                     t.cancel();
                 }
             }
-        }, 0, 100);
+        }, 0, 100);*/
     }
     @FXML
     void initialize() {
