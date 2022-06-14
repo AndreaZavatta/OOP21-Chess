@@ -43,8 +43,8 @@
    <top>
       <Pane prefHeight="0.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="timeTest1" layoutX="196.0" layoutY="29.0" />
-            <Label fx:id="timeTest" layoutX="977.0" layoutY="27.0" />
+            <Label fx:id="whiteTimer" layoutX="196.0" layoutY="29.0" />
+            <Label fx:id="blackTimer" layoutX="977.0" layoutY="27.0" />
          </children>
       </Pane>
    </top>
