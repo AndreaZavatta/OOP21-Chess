@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -27,6 +28,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import timer.ChessTimerImpl;
+import timer.MatchDuration;
+import timer.TimerPlayer;
 import tuple.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
@@ -89,6 +93,12 @@ public class BoardController {
     private ImageView whitePlayerImage = new ImageView();
     private ColorSettings theme = ColorSettings.CORAL;
 
+    @FXML
+    private final Label whiteTimer = new Label();
+    @FXML
+    private final Label blackTimer = new Label();
+
+
     /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
@@ -101,6 +111,13 @@ public class BoardController {
         this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
                 new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.createGuiPieces();
+
+        //va in createPlayers()
+        TimerPlayer whitePlayer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
+        TimerPlayer blackPlayer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
+
+        ChessTimerImpl chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
+        chessTimer.buildTimer();
     }
     @FXML
     void initialize() {
