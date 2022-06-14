@@ -28,6 +28,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import timer.ChessTimer;
 import timer.ChessTimerImpl;
 import timer.MatchDuration;
 import timer.TimerPlayer;
@@ -116,7 +117,7 @@ public class BoardController {
         TimerPlayer whitePlayer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
         TimerPlayer blackPlayer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
 
-        ChessTimerImpl chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
+        ChessTimer chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
         chessTimer.buildTimer();
     }
     @FXML
