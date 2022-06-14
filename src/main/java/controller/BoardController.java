@@ -95,9 +95,9 @@ public class BoardController {
     private ColorSettings theme = ColorSettings.CORAL;
 
     @FXML
-    private final Label whiteTimer = new Label();
+    private Label whiteTimer = new Label();
     @FXML
-    private final Label blackTimer = new Label();
+    private Label blackTimer = new Label();
 
 
     /**
