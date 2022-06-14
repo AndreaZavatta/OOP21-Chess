@@ -33,7 +33,6 @@ import timer.ChessTimerImpl;
 import timer.MatchDuration;
 import timer.TimerPlayer;
 import tuple.Pair;
-import model.piece.utils.Name;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
@@ -243,12 +242,7 @@ public class BoardController {
             if (checkPieceOnPosition(finalPos)) {
                 removePiece(finalPos);
             }
-            if (match.isInCheck()) {
-                setEffect(theme.getPieceEffect(), getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
-            } else {
-                removeEffect(getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
-                        this.match, this.mapGuiPieceToPiece);
-            }
+            isInCheck();
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
                 quitGame();
@@ -258,6 +252,15 @@ public class BoardController {
             }
         } else {
             updateGui();
+        }
+    }
+
+    private void isInCheck() {
+        if (match.isInCheck()) {
+            setEffect(theme.getPieceEffect(), getKingOfThisTurn(this.match, this.mapGuiPieceToPiece).getRectangle());
+        } else {
+            removeEffect(getKingOfTheOtherTurn(this.match, this.mapGuiPieceToPiece).getRectangle(),
+                    this.match, this.mapGuiPieceToPiece);
         }
     }
 
