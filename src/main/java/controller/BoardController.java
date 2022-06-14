@@ -33,6 +33,7 @@ import timer.ChessTimerImpl;
 import timer.MatchDuration;
 import timer.TimerPlayer;
 import tuple.Pair;
+import model.piece.utils.Name;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
@@ -353,8 +354,12 @@ public class BoardController {
                 .get()
                 .getValue();
         final Piece deadPiece = mapGuiPieceToPiece.get(deadGuiPiece);
-        mapGuiPieceToPiece.remove(deadGuiPiece);
-        mapPieceToGuiPiece.remove(deadPiece);
-        pane.getChildren().remove(deadGuiPiece.getRectangle());
+        mapPieceRemove(deadPiece, deadGuiPiece);
+    }
+
+    private void mapPieceRemove(final Piece piece, final GuiPiece guiPiece) {
+        mapGuiPieceToPiece.remove(guiPiece);
+        mapPieceToGuiPiece.remove(piece);
+        pane.getChildren().remove(guiPiece.getRectangle());
     }
 }
