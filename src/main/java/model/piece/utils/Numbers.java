@@ -1,7 +1,7 @@
 package model.piece.utils;
 
 /**
- * This class is only needed to remove magic numbers.
+ * This class represents the numbers on the board.
  */
 public final class Numbers {
     /**
