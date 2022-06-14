@@ -9,9 +9,10 @@ import user.UserControllerImpl;
  *
  */
 public class TimerPlayer extends UserControllerImpl {
+    private static final int SECONDS_IN_ONE_MINUTE = 60;
     private double timeLeft;
     private final Game match;
-    private Side currentPlayer;
+    private final Side currentPlayer;
     private boolean timerExpired;
 
     /**
@@ -26,14 +27,6 @@ public class TimerPlayer extends UserControllerImpl {
         this.match = match;
         this.currentPlayer = s;
         this.timerExpired = false;
-    }
-
-    /**
-     *
-     * @param game
-     */
-    public void setCurrentPlayer(final Game game) {
-        this.currentPlayer = game.getUserSideTurn();
     }
 
     /**
@@ -85,15 +78,14 @@ public class TimerPlayer extends UserControllerImpl {
      * @return
      */
     public String getFormattedTime() {
-        String minutes = String.valueOf((int) (this.timeLeft / 60));
+        String minutes = String.valueOf((int) (this.timeLeft / SECONDS_IN_ONE_MINUTE));
         if (minutes.length() < 2) {
             minutes = "0" + minutes;
         }
-        String seconds = String.valueOf((int) (this.timeLeft % 60));
+        String seconds = String.valueOf((int) (this.timeLeft % SECONDS_IN_ONE_MINUTE));
         if (seconds.length() < 2) {
             seconds = "0" + seconds;
         }
         return String.format("%s:%s", minutes, seconds);
     }
-
 }

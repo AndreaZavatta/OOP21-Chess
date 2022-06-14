@@ -1,13 +1,9 @@
 package controller;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.*;
-
 import game.Game;
 import game.GameImpl;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +26,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import timer.ChessTimer;
-import timer.TimerOld;
+import timer.ChessTimerImpl;
+import timer.MatchDuration;
 import timer.TimerPlayer;
 import tuple.Pair;
 import model.piece.utils.Numbers;
@@ -68,9 +64,6 @@ public class BoardController {
     private UserController whiteUser;
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
-    private TimerPlayer whitePlayerTimer;
-    private TimerPlayer blackPlayerTimer;
-    private TimerOld timer;
     @FXML
     private Pane pane = new Pane();
     @FXML
@@ -87,12 +80,13 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
-    @FXML
-    private Label timeTest = new Label();
-    @FXML
-    private Label timeTest1 = new Label();
 
-    private ChessTimer chessTimer;
+    @FXML
+    private final Label whiteTimer = new Label();
+    @FXML
+    private final Label blackTimer = new Label();
+
+
     /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
@@ -107,48 +101,17 @@ public class BoardController {
         this.createGuiPieces();
 
         //va in createPlayers()
-        this.whitePlayerTimer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), 600, match, Side.WHITE);
-        this.blackPlayerTimer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), 600, match, Side.BLACK);
+        TimerPlayer whitePlayer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
+        TimerPlayer blackPlayer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
 
-
-        //nuovo metodo createTimer()
-        //this.timer = new Timer(blackPlayerTimer, whitePlayerTimer, timeTest, timeTest1, match);
-        //this.startTimer();
-        chessTimer = new ChessTimer(whitePlayerTimer, blackPlayerTimer, timeTest1, timeTest);
+        ChessTimerImpl chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
         chessTimer.buildTimer();
-        /*var t = new java.util.Timer(true);
-        t.scheduleAtFixedRate(new TimerTask() {
-            Instant previousTime = Instant.now();
-            @Override
-            public void run() {
-                var currentTime = Instant.now();
-                final var delta = Duration.between(previousTime, currentTime).toMillis() / 1000.;
-
-                final var currentPlayer = whitePlayerTimer.isCurrentPlayer() ? whitePlayerTimer : blackPlayerTimer;
-                currentPlayer.subtractTime(delta);
-                this.previousTime = currentTime;
-
-                Platform.runLater(() -> {
-                    timeTest1.setText(whitePlayerTimer.getFormattedTime());
-                    timeTest.setText(blackPlayerTimer.getFormattedTime());
-                });
-
-                if (currentPlayer.isTimerExpired()) {
-                    t.cancel();
-                }
-            }
-        }, 0, 100);*/
     }
     @FXML
     void initialize() {
         this.createChessboard();
         this.createBoardInformation();
         borderPane.setStyle("-fx-background-color: #2F4F4F");
-    }
-
-    private void startTimer() {
-        Thread th = new Thread(this.timer);
-        th.start();
     }
 
     @FXML
