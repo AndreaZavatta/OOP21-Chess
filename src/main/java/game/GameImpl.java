@@ -143,8 +143,8 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public boolean checkPromotion() {
-        return promotion.checkForPromotion(getPiecesList()).isPresent();
+    public Optional<Piece> checkPromotion() {
+        return promotion.checkForPromotion(getPiecesList());
     }
 
     private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {

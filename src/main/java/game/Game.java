@@ -99,7 +99,7 @@ public interface Game {
 
     /**
      * 
-     * @return true if promotion is available
+     * @return a piece if present
      */
-    boolean checkPromotion();
+    Optional<Piece> checkPromotion();
 }
