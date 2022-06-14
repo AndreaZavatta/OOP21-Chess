@@ -87,8 +87,9 @@ public interface Game {
     /**
      * 
      * @param namePiece
+     * @return the new piece
      */
-    void promotion(Name namePiece);
+    Piece promotion(Name namePiece);
 
     /**
      * method for set a draw.

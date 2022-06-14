@@ -75,11 +75,12 @@ import model.promotion.PromotionImpl;
     }
 
     @Override
-    public void promotion(final Name namePiece) {
+    public Piece promotion(final Name namePiece) {
         final Piece oldPiece = promotion.checkForPromotion(piecesList).get();
         final Piece newPiece = promotion.changePiece(namePiece, oldPiece);
         this.piecesList.remove(oldPiece);
         this.piecesList.add(newPiece);
+        return newPiece;
     }
 
     private boolean canKill(final Position targetPos) {

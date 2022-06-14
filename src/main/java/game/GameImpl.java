@@ -133,8 +133,8 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public void promotion(final Name namePiece) {
-        chessboard.promotion(namePiece);
+    public Piece promotion(final Name namePiece) {
+        return chessboard.promotion(namePiece);
     }
 
     @Override

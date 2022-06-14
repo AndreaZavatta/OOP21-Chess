@@ -59,8 +59,9 @@ public interface Chessboard {
      * @param namePiece
      * 
      * pawn get promoted to a new Piece.
+     * @return the new piece
      */
-    void promotion(Name namePiece);
+    Piece promotion(Name namePiece);
 
     /**
      * 
