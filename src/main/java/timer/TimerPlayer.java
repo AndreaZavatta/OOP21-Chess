@@ -64,10 +64,18 @@ public class TimerPlayer extends UserControllerImpl {
         }
     }
 
+    /**
+     *
+     * @param delta
+     */
     public void subtractTime(final double delta) {
         this.setTimeLeft(this.getTimeLeft() - delta);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isTimerExpired() {
         return this.timerExpired;
     }
