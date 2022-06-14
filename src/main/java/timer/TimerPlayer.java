@@ -40,7 +40,7 @@ public class TimerPlayer extends UserControllerImpl {
     /**
      *
      * @return
-     */ 
+     */
     public double getTimeLeft() {
         return timeLeft;
     }
@@ -64,7 +64,6 @@ public class TimerPlayer extends UserControllerImpl {
     public void subtractTime(final double delta) {
         this.setTimeLeft(this.getTimeLeft() - delta);
     }
-
     /**
      *
      * @return
@@ -72,7 +71,6 @@ public class TimerPlayer extends UserControllerImpl {
     public boolean isTimerExpired() {
         return this.timerExpired;
     }
-
     /**
      *
      * @return
