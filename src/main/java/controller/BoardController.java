@@ -130,9 +130,8 @@ public class BoardController {
     @FXML
     void askForDraw(final ActionEvent event) {
         contrUtil.createEndGameAlert(match.getUserSideTurn() + " ask for a draw!",
-                        "Do you want to accept the draw? \n"
-                        + "If you don't want to draw close this alert.",
-                        AlertType.INFORMATION);
+                        "Do you want to accept the draw?",
+                        AlertType.CONFIRMATION);
         setHeader(contrUtil.getAlert());
         final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
         final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
