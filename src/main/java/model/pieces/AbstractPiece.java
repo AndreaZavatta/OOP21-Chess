@@ -1,5 +1,6 @@
 package model.pieces;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,8 +78,10 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public final int hashCode() {
+        var result = color.hashCode() + (name.hashCode() * 31 + (position.hashCode() * 31)) * 31;
+        result = 7 /  result;
+        return result;
     }
 
     @Override
