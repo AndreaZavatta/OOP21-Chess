@@ -357,6 +357,12 @@ public class BoardController {
         mapPieceRemove(deadPiece, deadGuiPiece);
     }
 
+    private void promotionUpdate(final Piece oldPiece, final Piece newPiece) {
+        final GuiPiece oldGuiPiece = mapPieceToGuiPiece.get(oldPiece);
+        mapPieceRemove(oldPiece, oldGuiPiece);
+        createGuiPiece(newPiece);
+    }
+
     private void mapPieceRemove(final Piece piece, final GuiPiece guiPiece) {
         mapGuiPieceToPiece.remove(guiPiece);
         mapPieceToGuiPiece.remove(piece);
