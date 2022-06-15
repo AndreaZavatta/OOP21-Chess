@@ -34,7 +34,8 @@ public class TimerPlayerImpl extends UserControllerImpl implements TimerPlayer {
     }
     @Override
     public boolean isCurrentPlayer() {
-        return match.getUserSideTurn().equals(this.currentPlayer);
+        return match.getUserSideTurn()
+                    .equals(this.currentPlayer);
     }
     @Override
     public double getTimeLeft() {
