@@ -17,8 +17,6 @@ import model.pieces.Piece;
  *
  */
 public class EndGameImpl implements EndGame {
-
-    private static final long serialVersionUID = 8138985175091153307L;
     private final transient ControlCheck controls = new ControlCheckImpl();
 
     @Override
@@ -86,7 +84,6 @@ public class EndGameImpl implements EndGame {
     private boolean canShield(final Chessboard chessboard, final ControlCheck controls, final Piece shield) {
         return !controls.controlledMoves(chessboard, shield).isEmpty();
     }
-
     // Private method that indicates if the King is in check.
     private boolean controlCheck(final Chessboard chessboard, final Side side, final ControlCheck controls) {
         return controls.isInCheckWithoutKing(chessboard, side);
