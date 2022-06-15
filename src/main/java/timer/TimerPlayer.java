@@ -14,7 +14,6 @@ public class TimerPlayer extends UserControllerImpl {
     private final Game match;
     private final Side currentPlayer;
     private boolean timerExpired;
-
     /**
      * @param name
      * @param img
