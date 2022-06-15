@@ -10,10 +10,11 @@ import java.util.TimerTask;
 
 /**
  *
+ * Implementation of ChessTimer Interface's methods.
+ *
  */
 public class ChessTimerImpl implements ChessTimer {
-
-    private final Timer t = new java.util.Timer(true);
+    private final Timer timer = new java.util.Timer(true);
     private final TimerPlayer white;
     private final TimerPlayer black;
     @FXML
@@ -22,11 +23,12 @@ public class ChessTimerImpl implements ChessTimer {
     private final Label blackTimer;
 
     /**
+     * The Timer's constructor.
      *
-     * @param white
-     * @param black
-     * @param whiteTimer
-     * @param blackTimer
+     * @param white the white player.
+     * @param black the black player.
+     * @param whiteTimer the white player's timer.
+     * @param blackTimer the black player's timer.
      */
     public ChessTimerImpl(final TimerPlayer white, final TimerPlayer black, final Label whiteTimer, final Label blackTimer) {
         this.white = white;
@@ -34,18 +36,15 @@ public class ChessTimerImpl implements ChessTimer {
         this.whiteTimer = whiteTimer;
         this.blackTimer = blackTimer;
     }
-    /**
-     *
-     */
+
     @Override
     public void buildTimer() {
-        t.scheduleAtFixedRate(new TimerTask() {
+        timer.scheduleAtFixedRate(new TimerTask() {
             private Instant previousTime = Instant.now();
             @Override
             public void run() {
                 var currentTime = Instant.now();
                 final var delta = Duration.between(previousTime, currentTime).toMillis() / 1000.;
-
                 final var currentPlayer = white.isCurrentPlayer() ? white : black;
                 currentPlayer.subtractTime(delta);
                 previousTime = currentTime;
@@ -53,7 +52,7 @@ public class ChessTimerImpl implements ChessTimer {
                 Platform.runLater(() -> setTimerText());
 
                 if (currentPlayer.isTimerExpired()) {
-                    t.cancel();
+                    timer.cancel();
                 }
             }
         }, 0, 100);

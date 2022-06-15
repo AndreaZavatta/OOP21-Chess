@@ -74,10 +74,10 @@ public class GameImpl implements Game {
         }
         chessboard.move(firstPos, finalPos);
         turnManager.turnIncrement();
-        if (gameController.isCheckmate(turnManager.getUserTurn(), chessboard)) {
+        if (gameController.isCheckmate(chessboard, turnManager.getUserTurn())) {
             winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
             matchEnded(); 
-        } else if (gameController.isDraw(turnManager.getUserTurn(), chessboard)) {
+        } else if (gameController.isDraw(chessboard, turnManager.getUserTurn())) {
             matchEnded();
         }
     }

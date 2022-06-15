@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 
- * 
+ * This class tests some situations in which it is possible to castle.
  *
  */
 public class CastlingTest {
@@ -30,7 +30,6 @@ public class CastlingTest {
     void basicCastlingTest() {
         final Chessboard board = this.board.createNormalCB();
         final Piece whiteKing = factory.createPiece(Name.KING, Position.createNewPosition("e1"), Side.WHITE);
-
         board.move(Position.createNewPosition("e2"), Position.createNewPosition("e3"));
         board.move(Position.createNewPosition("e7"), Position.createNewPosition("e6"));
         board.move(Position.createNewPosition("g1"), Position.createNewPosition("h3"));
@@ -47,8 +46,6 @@ public class CastlingTest {
     void castleWithPiecesInTheWay() {
          final Chessboard board = this.board.createNormalCB();
          final Piece whiteKing = factory.createPiece(Name.KING, Position.createNewPosition("e1"), Side.WHITE);
-
-
          board.move(Position.createNewPosition("e2"), Position.createNewPosition("e3"));
          board.move(Position.createNewPosition("e7"), Position.createNewPosition("e6"));
          board.move(Position.createNewPosition("g1"), Position.createNewPosition("h3"));
@@ -65,7 +62,6 @@ public class CastlingTest {
     void castleWhileAttacked() {
          final Chessboard board = this.board.createNormalCB();
          final Piece blackKing = factory.createPiece(Name.KING, Position.createNewPosition("e8"), Side.BLACK);
-
          board.move(Position.createNewPosition("e2"), Position.createNewPosition("e3"));
          board.move(Position.createNewPosition("e7"), Position.createNewPosition("e5"));
          board.move(Position.createNewPosition("g2"), Position.createNewPosition("g3"));

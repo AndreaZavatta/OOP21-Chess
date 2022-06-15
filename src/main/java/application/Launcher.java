@@ -6,7 +6,6 @@ package application;
  *
  */
 public final class Launcher {
-
     private Launcher() { }
     /**
      * @param args ignored

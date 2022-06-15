@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,8 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * This class sets up the GUI for the Main Menu of the application. 
- *
+ * This class sets up the GUI for the Main Menu of the application.
  */
 public final class Start extends Application {
     /**
@@ -19,9 +17,7 @@ public final class Start extends Application {
     public static final String SEPARATOR = System.getProperty("file.separator");
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 400;
-
     private final Stage startStage = new Stage();
-
     /**
      * This method loads the Menu and sets the window up.
      * 
@@ -35,7 +31,6 @@ public final class Start extends Application {
         startStage.setResizable(true);
         startStage.show();
     }
-
     /**
      * Main method.
      * 

@@ -15,28 +15,23 @@ import model.pieces.Piece;
  *
  */
 public class CastlingImpl implements Castling {
-
     private final ControlCheck kingInCheck = new ControlCheckImpl();
-
     @Override
-    public boolean canCastle(final Chessboard chessboard, final Piece king, final int xPos) {
-        return chessboard.getPieceOnPosition(Position.createNumericPosition(xPos, king.getPosition().getY()))
-                .map(r -> isCastlePossible(chessboard, r, king))
+    public boolean canCastle(final Chessboard chessboard, final Piece king, final int xRook) {
+        return chessboard.getPieceOnPosition(Position.createNumericPosition(xRook, king.getPosition().getY()))
+                .map(r -> isCastlePossible(chessboard, king, r))
                 .orElse(false);
     }
-
-    private boolean isCastlePossible(final Chessboard chessboard, final Piece rook, final Piece king) {
+    private boolean isCastlePossible(final Chessboard chessboard, final Piece king, final Piece rook) {
 
         // we're working with the correct pieces;
         if (!king.getName().equals(Name.KING) || !rook.getName().equals(Name.ROOK)) {
             return false;
         }
-
         // the pieces must not have been moved;
         if (king.isMoved() || rook.isMoved()) {
             return false;
         }
-
         if (kingInCheck.isInCheckWithoutKing(chessboard, king.getSide())) {
             return false;
         }
@@ -47,8 +42,7 @@ public class CastlingImpl implements Castling {
         if (positions.stream().anyMatch(p -> chessboard.getPieceOnPosition(p).isPresent())) {
             return false;
         }
-
-        // filter the previous list and get the positions the king has to go through;
+        // filter the previous list and get the positions the king has to go through.
         return positions.stream()
                 .filter(p -> Math.abs(king.getPosition().getX() - p.getX()) <= 2)
                 .noneMatch(p -> isPositionUnderAttack(chessboard, p, king.getSide()));
@@ -65,8 +59,8 @@ public class CastlingImpl implements Castling {
         final int y = piece1.getPosition().getY();
         final int x1 = piece1.getPosition().getX();
         final int x2 = piece2.getPosition().getX();
-
         int maxX, minX;
+
         if (x1 > x2) {
             maxX = x1;
             minX = x2;
@@ -74,6 +68,8 @@ public class CastlingImpl implements Castling {
             minX = x1;
             maxX = x2;
         }
-        return IntStream.range(minX + 1, maxX).mapToObj(x -> Position.createNumericPosition(x, y)).collect(Collectors.toUnmodifiableList());
+        return IntStream.range(minX + 1, maxX)
+                .mapToObj(x -> Position.createNumericPosition(x, y))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

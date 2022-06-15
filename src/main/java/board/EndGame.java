@@ -8,26 +8,27 @@ import model.piece.utils.Side;
  *
  */
 public interface EndGame {
-
     /**
-     * 
-     * @param side
-     * @param chessboard
+     * This method checks if the game has ended with a checkmate.
+     *
+     * @param chessboard the current chessboard.
+     * @param side the attacked side.
      * @return true if the passed Side is under Checkmate.
      */
-    boolean isCheckmate(Side side, Chessboard chessboard);
+    boolean isCheckmate(Chessboard chessboard, Side side);
 
     /**
-     * 
-     * @param side
-     * @param chessboard
+     * This method checks if the game has ended with a stalemate.
+     *
+     * @param chessboard the current chessboard.
+     * @param side the attacked side.
      * @return true if the passed Side cannot move anything.
      */
-    boolean isStalemate(Side side, Chessboard chessboard);
+    boolean isStalemate(Chessboard chessboard, Side side);
 
     /**
-     * 
-     * @param chessboard
+     * This method checks if the game has ended with a draw, due to lack of chess pieces.
+     * @param chessboard the current chessboard.
      * @return true if the match ends in Stalemate due to insufficiency of material.
      */
     boolean isDrawByInsufficientMaterial(Chessboard chessboard);
@@ -40,10 +41,10 @@ public interface EndGame {
     boolean isDrawByRepetition(Chessboard chessboard);*/
 
     /**
-     * @param side
-     * @param chessboard
+     * This method returns if the current game ended with a draw.
+     * @param chessboard the current chessboard.
+     * @param side the attacked side.
      * @return true if the match ends with a draw.
      */
-    boolean isDraw(Side side, Chessboard chessboard);
-
+    boolean isDraw(Chessboard chessboard, Side side);
 }

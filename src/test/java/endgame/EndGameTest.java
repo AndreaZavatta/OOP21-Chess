@@ -19,11 +19,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * 
- * 
+ * This class tests some Endgame cases.
  *
  */
 public class EndGameTest {
-
     private final ChessboardFactory board = new ChessboardFactoryImpl();
     private final EndGame endGame = new EndGameImpl();
 
@@ -35,7 +34,7 @@ public class EndGameTest {
         board.move(Position.createNewPosition("g2"), Position.createNewPosition("g4"));
         board.move(Position.createNewPosition("d8"), Position.createNewPosition("h4"));
 
-        assertTrue(endGame.isCheckmate(Side.WHITE, board));
+        assertTrue(endGame.isCheckmate(board, Side.WHITE));
     }
 
     @Test
@@ -53,7 +52,6 @@ public class EndGameTest {
         list.add(blackKing);
         var blackKnight = pieces.createPiece(Name.KNIGHT, Position.createNewPosition("g4"), Side.BLACK);
         list.add(blackKnight);
-
         final Chessboard board = this.board.createTestCB(list);
         board.move(Position.createNewPosition("g4"), Position.createNewPosition("f2"));
 
@@ -63,25 +61,21 @@ public class EndGameTest {
     void drawWithTwoKings() {
         final List<Piece> list = new ArrayList<>();
         final PieceFactory pieces = new PieceFactoryImpl();
-
         var whiteKing = pieces.createPiece(Name.KING, Position.createNewPosition("c2"), Side.WHITE);
         list.add(whiteKing);
         var blackKing = pieces.createPiece(Name.KING, Position.createNewPosition("g5"), Side.BLACK);
         list.add(blackKing);
         var blackPawn = pieces.createPiece(Name.PAWN, Position.createNewPosition("d2"), Side.BLACK);
         list.add(blackPawn);
-
         final Chessboard board = this.board.createTestCB(list);
         board.move(Position.createNewPosition("c2"), Position.createNewPosition("d2"));
 
         assertTrue(endGame.isDrawByInsufficientMaterial(board));
-
     }
 
     @Test
     void stalemateTest() {
         final List<Piece> list =  new ArrayList<>();
-
         final PieceFactory pieces = new PieceFactoryImpl();
         var whiteKing = pieces.createPiece(Name.KING, Position.createNewPosition("b6"), Side.WHITE);
         list.add(whiteKing);
@@ -91,11 +85,9 @@ public class EndGameTest {
         list.add(whiteBishop);
         var blackKing = pieces.createPiece(Name.KING, Position.createNewPosition("a8"), Side.BLACK);
         list.add(blackKing);
-
         final Chessboard board = this.board.createTestCB(list);
         board.move(Position.createNewPosition("c5"), Position.createNewPosition("d6"));
 
-        assertTrue(endGame.isStalemate(Side.BLACK, board));
+        assertTrue(endGame.isStalemate(board, Side.BLACK));
     }
-
 }

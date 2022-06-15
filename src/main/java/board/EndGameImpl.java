@@ -22,13 +22,12 @@ public class EndGameImpl implements EndGame {
     private final transient ControlCheck controls = new ControlCheckImpl();
 
     @Override
-    public boolean isCheckmate(final Side side, final Chessboard chessboard) {
+    public boolean isCheckmate(final Chessboard chessboard, final Side side) {
+        final List<Piece> attackedColor = getAttackedSide(chessboard, side);
 
-        final List<Piece> attackedColor = getAttackedSide(side, chessboard);
-
-        if (controlCheck(side, chessboard, controls)) {
+        if (controlCheck(chessboard, side, controls)) {
             for (final Piece shield : attackedColor) {
-                if (!cannotShield(chessboard, controls, shield)) {
+                if (canShield(chessboard, controls, shield)) {
                     return false;
                 }
             }
@@ -38,12 +37,11 @@ public class EndGameImpl implements EndGame {
     }
 
     @Override
-    public boolean isStalemate(final Side side, final Chessboard chessboard) {
-
-        final List<Piece> attackedColor = getAttackedSide(side, chessboard);
+    public boolean isStalemate(final Chessboard chessboard, final Side side) {
+        final List<Piece> attackedColor = getAttackedSide(chessboard, side);
 
         for (final Piece piece : attackedColor) {
-            if (!cannotShield(chessboard, controls, piece)) {
+            if (canShield(chessboard, controls, piece)) {
                 return false;
             }
         }
@@ -52,10 +50,10 @@ public class EndGameImpl implements EndGame {
 
     @Override
     public boolean isDrawByInsufficientMaterial(final Chessboard chessboard) {
-        return checkIfRemainingPiecesCauseStalemate(BLACK, chessboard) && checkIfRemainingPiecesCauseStalemate(WHITE, chessboard);
+        return checkIfRemainingPiecesCauseStalemate(chessboard, BLACK) && checkIfRemainingPiecesCauseStalemate(chessboard, WHITE);
     }
 
-    private boolean checkIfRemainingPiecesCauseStalemate(final Side side, final Chessboard chessboard) {
+    private boolean checkIfRemainingPiecesCauseStalemate(final Chessboard chessboard, final Side side) {
         final List<Piece> alive = chessboard.getAllPieces().stream()
                 .filter(x -> x.getSide() == side)
                 .collect(Collectors.toList());
@@ -68,29 +66,29 @@ public class EndGameImpl implements EndGame {
         return alive.stream().anyMatch(x -> x.getName() == KNIGHT || x.getName() == BISHOP);
     }
 
-/*    @Override
+    /*@Override
     public boolean isDrawByRepetition(final Chessboard chessboard) {
         return true;
     }*/
 
     @Override
-    public boolean isDraw(final Side side, final Chessboard chessboard) {
-        return isDrawByInsufficientMaterial(chessboard) /*|| isDrawByRepetition(chessboard)*/ || isStalemate(side, chessboard);
+    public boolean isDraw(final Chessboard chessboard, final Side side) {
+        return isDrawByInsufficientMaterial(chessboard) /*|| isDrawByRepetition(chessboard)*/ || isStalemate(chessboard, side);
     }
 
-    private List<Piece> getAttackedSide(final Side side, final Chessboard chessboard) {
+    private List<Piece> getAttackedSide(final Chessboard chessboard, final Side side) {
         return chessboard.getAllPieces().stream()
                 .filter(x -> x.getSide().equals(side))
                 .collect(Collectors.toList());
     }
 
     // Private method that indicates if the pieces of the attacked side can protect their King.
-    private boolean cannotShield(final Chessboard chessboard, final ControlCheck controls, final Piece shield) {
-        return controls.controlledMoves(chessboard, shield).isEmpty();
+    private boolean canShield(final Chessboard chessboard, final ControlCheck controls, final Piece shield) {
+        return !controls.controlledMoves(chessboard, shield).isEmpty();
     }
 
     // Private method that indicates if the King is in check.
-    private boolean controlCheck(final Side side, final Chessboard chessboard, final ControlCheck controls) {
+    private boolean controlCheck(final Chessboard chessboard, final Side side, final ControlCheck controls) {
         return controls.isInCheckWithoutKing(chessboard, side);
     }
 }
