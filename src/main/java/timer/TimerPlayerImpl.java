@@ -7,7 +7,7 @@ import user.UserControllerImpl;
 
 /**
  *
- *
+ * Implementation of the TimerPlayer Interface's method.
  *
  */
 public class TimerPlayerImpl extends UserControllerImpl implements TimerPlayer {
