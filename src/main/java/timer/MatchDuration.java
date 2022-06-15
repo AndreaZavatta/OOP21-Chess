@@ -38,7 +38,9 @@ public enum MatchDuration {
         }
     },
     /**
-     * 
+     *
+     * A match in which each player has thirty minutes total.
+     *
      */
     THIRTY_MINUTES_MATCH {
         @Override

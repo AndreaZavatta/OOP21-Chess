@@ -1,6 +1,7 @@
 package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -43,6 +44,7 @@ public final class ControllerUtils {
         changePage(event, "/layouts/UserHandler.fxml");
     }
     /**
+     * Opens the tutorial. 
      * @FXML
      * @param event
      */
@@ -50,6 +52,7 @@ public final class ControllerUtils {
         changePage(event, "/layouts/Tutorial.fxml");
     }
     /**
+     * Opens the statistics.
      * @FXML
      * @param event
      */
@@ -58,7 +61,7 @@ public final class ControllerUtils {
     }
 
     /**
-     *
+     * Opens the tutorial slides.
      * @param event
      */
     public void openSlide(final Event event) {
@@ -73,13 +76,35 @@ public final class ControllerUtils {
         changePage(event, "/layouts/tutorial/2.fxml");
     }
 
-/**
- * 
- * @param title
- * @param header
- * @param content
- * @param type
- */
+    /**
+     * @param event
+     */
+    public void openCastling(final Event event) {
+        changePage(event, "/layouts/tutorial/castling.fxml");
+    }
+
+    /**
+     *
+     * @param event
+     */
+    public void openEndgame(final ActionEvent event) {
+        changePage(event, "/layouts/tutorial/endgame.fxml");
+    }
+
+    /**
+     * @param event
+     */
+    public void openFinalSlide(final ActionEvent event) {
+        changePage(event, "/layouts/tutorial/final.fxml");
+    }
+
+    /**
+     *
+     * @param title
+     * @param header
+     * @param content
+     * @param type
+     */
     public void showCompleteAlert(final String title, final String header, final String content, final Alert.AlertType type) {
         setUpAlert(title, content, type);
         alert.setHeaderText(header);
@@ -101,7 +126,7 @@ public final class ControllerUtils {
         alert.setContentText(content);
     }
     /**
-     * 
+     *
      * @param str
      * @param type
      */

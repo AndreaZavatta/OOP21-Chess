@@ -34,11 +34,10 @@ public interface EndGame {
     boolean isDrawByInsufficientMaterial(Chessboard chessboard);
 
     /**
-     * 
      * @param chessboard
      * @return true if the match ends in Stalemate due to moves repetition.
-     *//*
-    boolean isDrawByRepetition(Chessboard chessboard);*/
+     */
+    /* boolean isDrawByRepetition(Chessboard chessboard); */
 
     /**
      * This method returns if the current game ended with a draw.

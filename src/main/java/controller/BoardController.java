@@ -113,7 +113,6 @@ public class BoardController {
                 new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.createGuiPieces();
 
-        //va in createPlayers()
         TimerPlayer whitePlayer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
         TimerPlayer blackPlayer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
 

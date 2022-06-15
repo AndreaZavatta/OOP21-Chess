@@ -21,7 +21,7 @@ public final class Start extends Application {
     /**
      * This method loads the Menu and sets the window up.
      * 
-     * @param stage is the loaded stage.
+     * @param stage the loaded stage.
      */
     public void start(final Stage stage) throws IOException {
         final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/MainMenu.fxml"));

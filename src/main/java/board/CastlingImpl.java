@@ -23,7 +23,6 @@ public class CastlingImpl implements Castling {
                 .orElse(false);
     }
     private boolean isCastlePossible(final Chessboard chessboard, final Piece king, final Piece rook) {
-
         // we're working with the correct pieces;
         if (!king.getName().equals(Name.KING) || !rook.getName().equals(Name.ROOK)) {
             return false;

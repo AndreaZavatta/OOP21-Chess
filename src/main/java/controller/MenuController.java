@@ -9,9 +9,7 @@ import javafx.fxml.FXML;
  * This class controls the Menu and the related FXML files.
  *
  */
-
 public class MenuController {
-
     private final ControllerUtils controller = new ControllerUtils();
 
     @FXML
