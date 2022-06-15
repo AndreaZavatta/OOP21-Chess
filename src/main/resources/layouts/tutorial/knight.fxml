@@ -29,7 +29,7 @@
             <Font name="Courier New Bold" size="17.0" />
          </font>
       </Text>
-      <Text layoutX="215.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A little curiosity: they are the only pieces in chess that can jump over other pieces - both their and the opponent's ones. " textAlignment="JUSTIFY" wrappingWidth="169.0">
+      <Text layoutX="215.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A little curiosity: they are the only pieces in chess that can jump over other pieces - both theirs and the opponent's ones. " textAlignment="JUSTIFY" wrappingWidth="169.0">
          <font>
             <Font name="Courier New Bold" size="14.0" />
          </font>

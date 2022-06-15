@@ -19,7 +19,7 @@
             <Image url="@../../pieces/gif/pawn.gif" />
          </image>
       </ImageView>
-      <Text layoutX="322.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pawns can only move forwards and only one square at a time. However, only on their first move, thay can move forward two squares. Pawns capture one square diagonally in a forwards direction." textAlignment="JUSTIFY" wrappingWidth="240.0390625">
+      <Text layoutX="322.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pawns can only move forward and only one square at a time. However, only on their first move, thay can move forward two squares. Pawns capture one square diagonally in a forwards direction." textAlignment="JUSTIFY" wrappingWidth="240.0390625">
          <font>
             <Font name="Courier New Bold" size="16.0" />
          </font>
