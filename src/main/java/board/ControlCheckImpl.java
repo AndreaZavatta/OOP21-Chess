@@ -46,17 +46,22 @@ public class ControlCheckImpl implements ControlCheck {
 
     private boolean isInCheckSupport(final Chessboard chessboard, final Side color, final Predicate<Piece> pred) {
         return chessboard.getAllPieces().stream()
-                .filter(x -> !x.getSide().equals(color))
+                .filter(isOppositeColor(color))
                 .filter(pred)
                 .anyMatch(x -> canEatKing(chessboard, x));
     }
+
+    private Predicate<Piece> isOppositeColor(Side color) {
+        return x -> !x.getSide().equals(color);
+    }
+
     @Override
     public boolean isInCheck(final Chessboard chessboard, final Side color) {
         return isInCheckSupport(chessboard, color, x -> true);
     }
     @Override
     public boolean isInCheckWithoutKing(final Chessboard chessboard, final Side color) {
-        return isInCheckSupport(chessboard, color, x -> !x.getName().equals(KING));
+        return isInCheckSupport(chessboard, color, x -> !isPieceKing(x));
     }
 
     private boolean canEatKing(final Chessboard chessboard, final Piece piece) {
@@ -65,10 +70,19 @@ public class ControlCheckImpl implements ControlCheck {
     }
     private Position getEnemyKingPosition(final Chessboard chessboard, final Piece piece) {
         return chessboard.getAllPieces().stream()
-                .filter(x -> !x.getSide().equals(piece.getSide()))
-                .filter(x -> x.getName().equals(KING))
+                .filter(isPieceOppositeColor(piece))
+                .filter(this::isPieceKing)
                 .findFirst()
                 .map(Piece::getPosition)
                 .orElseThrow(KingNotFoundException::new);
     }
+
+    private Predicate<Piece> isPieceOppositeColor(Piece piece) {
+        return x -> !x.getSide().equals(piece.getSide());
+    }
+
+    private boolean isPieceKing(Piece piece) {
+        return piece.getName().equals(KING);
+    }
+
 }

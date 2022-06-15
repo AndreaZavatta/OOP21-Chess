@@ -44,9 +44,7 @@ public class StatsController implements Initializable {
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
     private DatabaseFilters database;
 
-    /**
-     * show stats of user, on click of show stats button.
-     */
+
     @FXML
     public void showHelp() {
         String str =    "You can use the text field above the table to filter "

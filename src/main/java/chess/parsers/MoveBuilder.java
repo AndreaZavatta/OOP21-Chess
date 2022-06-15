@@ -113,10 +113,6 @@ public class MoveBuilder implements Move {
     private boolean isCastling() {
         return kingSideCastling || queenSideCastling;
     }
-    /*
-     * function that check if there is the same piece in the same row or column that can go in the same destination
-     * update the rank and file field
-     * */
 
     private Optional<Piece> findPiecesSameRow(final List<Piece> pieces) {
         return findPiecesFunction(pieces, x -> x.getPosition().getY());
