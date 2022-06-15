@@ -28,10 +28,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import timer.ChessTimer;
-import timer.ChessTimerImpl;
-import timer.MatchDuration;
-import timer.TimerPlayer;
+import timer.*;
 import tuple.Pair;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
@@ -76,6 +73,7 @@ public class BoardController {
     private UserController blackUser;
     private List<Circle> circles = new ArrayList<>();
     private final ControllerUtils contrUtil = new ControllerUtils();
+    private ColorSettings theme = ColorSettings.CORAL;
     @FXML
     private Pane pane = new Pane();
     @FXML
@@ -92,8 +90,6 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
-    private ColorSettings theme = ColorSettings.CORAL;
-
     @FXML
     private Label whiteTimer = new Label();
     @FXML
@@ -112,13 +108,17 @@ public class BoardController {
         this.match = new GameImpl(new Pair<User, Side>(whiteUser.getUser(), Side.WHITE),
                 new Pair<User, Side>(blackUser.getUser(), Side.BLACK));
         this.createGuiPieces();
+        createTimer();
+    }
 
-        TimerPlayer whitePlayer = new TimerPlayer(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
-        TimerPlayer blackPlayer = new TimerPlayer(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
+    private void createTimer() {
+        TimerPlayer whitePlayer = new TimerPlayerImpl(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
+        TimerPlayer blackPlayer = new TimerPlayerImpl(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
 
         ChessTimer chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
         chessTimer.buildTimer();
     }
+
     @FXML
     void initialize() {
         this.createChessboard();
