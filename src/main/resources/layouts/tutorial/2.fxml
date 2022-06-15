@@ -50,7 +50,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#goOn" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#openCastling" opacity="0.5" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: coral;" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
