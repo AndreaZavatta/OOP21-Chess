@@ -3,7 +3,6 @@ package timer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Timer;
@@ -13,6 +12,7 @@ import java.util.TimerTask;
  *
  */
 public class ChessTimerImpl implements ChessTimer {
+
     private final Timer t = new java.util.Timer(true);
     private final TimerPlayer white;
     private final TimerPlayer black;
@@ -34,7 +34,6 @@ public class ChessTimerImpl implements ChessTimer {
         this.whiteTimer = whiteTimer;
         this.blackTimer = blackTimer;
     }
-
     /**
      *
      */
