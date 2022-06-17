@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import model.piece.utils.Name;
 import model.piece.utils.Side;
 import model.pieces.Piece;
 
@@ -74,8 +75,8 @@ public class FenBuilder implements Fen {
         final List<Piece> rowPiece = getPiecesByRow(row, chessboard);
         int previousPiece = 0;
         for (final Piece piece : rowPiece) {
-            addDiff(res, previousPiece, piece);
-            addNotation(res, piece);
+            res.append(diffPosX(previousPiece, piece));
+            res.append(getNotation(piece));
             previousPiece = piece.getPosition().getX() + 1;
         }
         if (previousPiece < chessboard.getxBorder() + 1) {
@@ -84,16 +85,17 @@ public class FenBuilder implements Fen {
         return res.toString();
     }
 
-    private void addNotation(final StringBuilder res, final Piece piece) {
+    private String getNotation(final Piece piece) {
         final String notation = piece.getName().getChessNotation();
-        res.append(piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation);
+        return piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation;
     }
 
-    private void addDiff(final StringBuilder res, final int previousPiece, final Piece piece) {
+    private String diffPosX( final int previousPiece, final Piece piece) {
         final int diff = piece.getPosition().getX() - previousPiece;
         if (diff > 0) {
-            res.append(diff);
+            return Integer.toString(diff);
         }
+        return "";
     }
 
     private List<Piece> getPiecesByRow(final int row, final Chessboard chessboard) {
