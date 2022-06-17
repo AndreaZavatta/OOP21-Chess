@@ -92,10 +92,7 @@ public class FenBuilder implements Fen {
 
     private String diffPosX( final int previousPiece, final Piece piece) {
         final int diff = piece.getPosition().getX() - previousPiece;
-        if (diff > 0) {
-            return Integer.toString(diff);
-        }
-        return "";
+        return diff > 0 ? Integer.toString(diff) : "";
     }
 
     private List<Piece> getPiecesByRow(final int row, final Chessboard chessboard) {
