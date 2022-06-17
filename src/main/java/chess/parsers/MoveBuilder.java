@@ -148,13 +148,21 @@ public class MoveBuilder implements Move {
      */
     @Override
     public String toString() {
+        String str = "";
         if (drawOffer) {
-            return "(=)";
+            str = "(=)";
         } else if (kingSideCastling) {
-            return "0-0";
+            str = "0-0";
         } else if (queenSideCastling) {
-            return "0-0-0";
+            str = "0-0-0";
+        }else {
+            str = getMove();
         }
+        return str;
+
+    }
+
+    private String getMove() {
         return getPieceNotation() +
                 getDepartureX() +
                 getDepartureY() +
@@ -165,17 +173,11 @@ public class MoveBuilder implements Move {
     }
 
     private String getDepartureY() {
-        if (row) {
-            return Integer.toString(piece.getPosition().getY());
-        }
-        return "";
+        return row ? Integer.toString(piece.getPosition().getY()) : "";
     }
 
     private String getDepartureX() {
-        if (column || isPawnCapture()) {
-            return Character.toString(piece.getPosition().getCharX());
-        }
-        return "";
+        return (column || isPawnCapture()) ? Character.toString(piece.getPosition().getCharX()) : "";
     }
 
     private boolean isPawnCapture() {
@@ -183,18 +185,11 @@ public class MoveBuilder implements Move {
     }
 
     private String getPieceNotation() {
-        if (!"P".contentEquals(piece.getName().getChessNotation())) {
-            return nameNotation();
-        }
-        return "";
-
+        return (!"P".contentEquals(piece.getName().getChessNotation())) ? nameNotation() : "";
     }
 
     private String getPromotion() {
-        if (promotion != null) {
-            return "="+promotion.getChessNotation();
-        }
-        return "";
+        return (promotion != null) ? "="+promotion.getChessNotation() : "";
     }
 
     private String getCheckConditions() {
@@ -208,10 +203,7 @@ public class MoveBuilder implements Move {
     }
 
     private String getCapture() {
-        if (capture) {
-            return "x";
-        }
-        return "";
+        return capture ? "x" : "";
     }
 
 
