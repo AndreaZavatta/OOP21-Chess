@@ -78,6 +78,7 @@ public class StatsController implements Initializable {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         database = new DatabaseFilters(wrappedRead());
+        showStats();
         initializeTriple();
         initializeTxtField();
         initializeTable();
@@ -91,7 +92,7 @@ public class StatsController implements Initializable {
 
     private void initializeTxtField() {
         txtFieldName.textProperty()
-                .addListener((observableValue, s, s2) -> tableView.setItems(observableList(filter(s2))));
+                .addListener((observableValue, s, s2) -> tableView.setItems(observableList(filterByName(s2))));
         txtFieldName.textProperty()
                 .addListener((observableValue, s, s2) -> showStats());
     }
@@ -112,7 +113,7 @@ public class StatsController implements Initializable {
         }
         return games;
     }
-    private Predicate<Game> filter(final String s2) {
+    private Predicate<Game> filterByName(final String s2) {
         return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
     }
     private ObservableList<Triple<User, User, LocalDate>> observableList(final Predicate<Game> predicate) {
@@ -132,7 +133,6 @@ public class StatsController implements Initializable {
     }
     private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
         final TableRow<Triple<User, User, LocalDate>> row = new TableRow<>();
-
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> showStats());
         return row;
