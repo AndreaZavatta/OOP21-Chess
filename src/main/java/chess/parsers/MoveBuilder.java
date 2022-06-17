@@ -155,7 +155,7 @@ public class MoveBuilder implements Move {
             str = "0-0";
         } else if (queenSideCastling) {
             str = "0-0-0";
-        }else {
+        } else {
             str = getMove();
         }
         return str;
@@ -163,13 +163,13 @@ public class MoveBuilder implements Move {
     }
 
     private String getMove() {
-        return getPieceNotation() +
-                getDepartureX() +
-                getDepartureY() +
-                getCapture() +
-                destination +
-                getPromotion() +
-                getCheckConditions();
+        return getPieceNotation()
+                + getDepartureX()
+                + getDepartureY()
+                + getCapture()
+                + destination
+                + getPromotion()
+                + getCheckConditions();
     }
 
     private String getDepartureY() {
@@ -189,7 +189,7 @@ public class MoveBuilder implements Move {
     }
 
     private String getPromotion() {
-        return (promotion != null) ? "="+promotion.getChessNotation() : "";
+        return (promotion != null) ? "=" + promotion.getChessNotation() : "";
     }
 
     private String getCheckConditions() {
@@ -197,7 +197,7 @@ public class MoveBuilder implements Move {
             return "+";
         } else if (checkmate) {
             return "#";
-        }else{
+        } else {
             return "";
         }
     }

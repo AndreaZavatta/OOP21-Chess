@@ -46,7 +46,7 @@ public class StatsController implements Initializable {
 
 
     @FXML
-    public void showHelp() {
+    private void showHelp() {
         String str =    "You can use the text field above the table to filter "
                         + "matches by player's name.\n"
                         + "The search also allows you to see information such as percentages of "
@@ -148,7 +148,7 @@ public class StatsController implements Initializable {
     }
 
     @FXML
-    void backToMainMenu(final Event event) {
+    private void backToMainMenu(final Event event) {
         contr.backToMenu(event);
     }
 
