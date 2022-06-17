@@ -155,62 +155,63 @@ public class MoveBuilder implements Move {
         } else if (queenSideCastling) {
             return "0-0-0";
         }
-        final StringBuilder str = new StringBuilder();
-        addPieceNotation(str);
-        addDepartureX(str);
-        addDepartureY(str);
-        addCapture(str);
-        addDestination(str);
-        addPromotion(str);
-        addCheckConditions(str);
-        return str.toString();
+        return getPieceNotation() +
+                getDepartureX() +
+                getDepartureY() +
+                getCapture() +
+                destination +
+                getPromotion() +
+                getCheckConditions();
     }
 
-    private void addDepartureY(final StringBuilder str) {
+    private String getDepartureY() {
         if (row) {
-            str.append(piece.getPosition().getY());
+            return Integer.toString(piece.getPosition().getY());
         }
+        return "";
     }
 
-    private void addDepartureX(final StringBuilder str) {
+    private String getDepartureX() {
         if (column || isPawnCapture()) {
-            str.append(piece.getPosition().getCharX());
+            return Character.toString(piece.getPosition().getCharX());
         }
+        return "";
     }
 
     private boolean isPawnCapture() {
         return piece.getName().equals(PAWN) && capture;
     }
 
-    private void addPieceNotation(final StringBuilder str) {
+    private String getPieceNotation() {
         if (!"P".contentEquals(piece.getName().getChessNotation())) {
-            str.append(nameNotation());
+            return nameNotation();
         }
+        return "";
 
     }
 
-    private void addDestination(final StringBuilder str) {
-        str.append(destination);
-    }
-
-    private void addPromotion(final StringBuilder str) {
+    private String getPromotion() {
         if (promotion != null) {
-            str.append('=').append(promotion.getChessNotation());
+            return "="+promotion.getChessNotation();
         }
+        return "";
     }
 
-    private void addCheckConditions(final StringBuilder str) {
+    private String getCheckConditions() {
         if (check) {
-            str.append('+');
+            return "+";
         } else if (checkmate) {
-            str.append('#');
+            return "#";
+        }else{
+            return "";
         }
     }
 
-    private void addCapture(final StringBuilder str) {
+    private String getCapture() {
         if (capture) {
-            str.append('x');
+            return "x";
         }
+        return "";
     }
 
 
