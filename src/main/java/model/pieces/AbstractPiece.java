@@ -1,6 +1,5 @@
 package model.pieces;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +27,8 @@ public abstract class AbstractPiece implements Piece {
     private boolean isMoved;
     @JsonIgnore
     private final BasicMoves basicMoves;
+    private static final int HASHCODE_VALUE = 31;
+    private static final int HASHCODE_VALUE_2 = 7;
 
     AbstractPiece(final Name name, final Position position, final Side color) {
         this.name = name;
@@ -79,8 +80,8 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public final int hashCode() {
-        var result = color.hashCode() + (name.hashCode() * 31 + (position.hashCode() * 31)) * 31;
-        result = 7 /  result;
+        var result = color.hashCode() + name.hashCode() * HASHCODE_VALUE + position.hashCode() * HASHCODE_VALUE * HASHCODE_VALUE;
+        result = HASHCODE_VALUE_2 / result;
         return result;
     }
 
