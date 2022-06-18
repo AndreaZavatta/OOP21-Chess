@@ -8,28 +8,34 @@ import java.util.Map;
 import java.util.Optional;
 
 import controller.utils.ColorSettings;
+import controller.utils.PieceImagePath;
 import game.Game;
 import game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import timer.*;
 import tuple.Pair;
+import model.piece.utils.Name;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
@@ -247,7 +253,7 @@ public class BoardController {
                 quitGame();
             }
             if (match.checkPromotion().isPresent()) {
-                //updatePromotion(match.checkPromotion().get(), match.promotion(Name.QUEEN));
+                selectPromotion(mapGuiPieceToPiece.get(guiPiece));
             }
         } else {
             updateGui();
@@ -275,6 +281,26 @@ public class BoardController {
         } else {
             backToMainMenu();
         }
+    }
+
+    private void selectPromotion(final Piece oldPiece) {
+        final Stage promotionStage = new Stage();
+        final Button queen = contrUtil.createImageButton(PieceImagePath.QUEEN.getWhitePath());
+        queen.setOnMouseClicked(x -> setClick(Name.QUEEN, promotionStage, oldPiece));
+        final Button rook = contrUtil.createImageButton(PieceImagePath.ROOK.getWhitePath());
+        rook.setOnMouseClicked(x ->  setClick(Name.ROOK, promotionStage, oldPiece));
+        final Button bishop = contrUtil.createImageButton(PieceImagePath.BISHOP.getBlackPath());
+        bishop.setOnMouseClicked(x -> setClick(Name.BISHOP, promotionStage, oldPiece));
+        final Button knight = contrUtil.createImageButton(PieceImagePath.KNIGHT.getBlackPath());
+        knight.setOnMouseClicked(x -> setClick(Name.KNIGHT, promotionStage, oldPiece));
+        final VBox window = new VBox(10);
+        window.getChildren().addAll(queen, rook, bishop, knight);
+        window.setAlignment(Pos.CENTER);
+        final Scene promotionScene = new Scene(window);
+        promotionStage.initModality(Modality.APPLICATION_MODAL);
+        promotionStage.setOnCloseRequest(x -> x.consume());
+        promotionStage.setScene(promotionScene);
+        promotionStage.show();
     }
 
     private void setHeader(final Alert alert) {
@@ -372,5 +398,10 @@ public class BoardController {
         mapGuiPieceToPiece.remove(guiPiece);
         mapPieceToGuiPiece.remove(piece);
         pane.getChildren().remove(guiPiece.getRectangle());
+    }
+
+    private void setClick(final Name namePiece, final Stage currentStage, final Piece oldPiece) {
+        updatePromotion(oldPiece, match.promotion(namePiece));
+        currentStage.close();
     }
 }

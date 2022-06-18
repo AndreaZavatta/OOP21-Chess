@@ -166,7 +166,7 @@ public final class ControllerUtils {
      */
     public Button createImageButton(final String path) {
         final Button btn = new Button();
-        final Image img = new Image(path);
+        final Image img = new Image(path, 50, 50, false, false);
         final ImageView imgVw = new ImageView(img);
         btn.setGraphic(imgVw);
         return btn;
