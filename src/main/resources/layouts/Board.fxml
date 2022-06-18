@@ -35,10 +35,10 @@
          <children>
             <ImageView fx:id="blackPlayerImage" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="blackPlayer" layoutX="10.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Label fx:id="blackTimer" layoutX="35.0" layoutY="67.0" prefHeight="17.0" prefWidth="30.0" />
+            <Label fx:id="blackTimer" layoutX="35.0" layoutY="67.0" prefHeight="17.0" prefWidth="69.0" />
             <ImageView fx:id="whitePlayerImage" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="610.0" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="whitePlayer" layoutX="10.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Label fx:id="whiteTimer" layoutX="36.0" layoutY="706.0" prefHeight="6.0" prefWidth="69.0" />
+            <Label fx:id="whiteTimer" layoutX="35.0" layoutY="707.0" prefHeight="17.0" prefWidth="69.0" />
          </children>
       </Pane>
    </right>
