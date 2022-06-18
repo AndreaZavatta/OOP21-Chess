@@ -8,6 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -154,5 +157,18 @@ public final class ControllerUtils {
      */
     public Alert getAlert() {
         return alert;
+    }
+
+    /**
+     * 
+     * @param path
+     * @return a button
+     */
+    public Button createImageButton(final String path) {
+        final Button btn = new Button();
+        final Image img = new Image(path);
+        final ImageView imgVw = new ImageView(img);
+        btn.setGraphic(imgVw);
+        return btn;
     }
 }
