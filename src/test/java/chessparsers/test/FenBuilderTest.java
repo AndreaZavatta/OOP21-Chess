@@ -1,9 +1,12 @@
 package chessparsers.test;
 
-import static model.piece.utils.Name.*;
+import static model.piece.utils.Name.ROOK;
+import static model.piece.utils.Name.KING;
+import static model.piece.utils.Name.BISHOP;
+import static model.piece.utils.Name.PAWN;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static model.piece.utils.Position.createNewPosition;
 import java.util.List;
 

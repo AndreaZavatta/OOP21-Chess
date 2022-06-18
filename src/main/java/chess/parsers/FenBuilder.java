@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import model.piece.utils.Name;
 import model.piece.utils.Side;
 import model.pieces.Piece;
 
@@ -90,7 +89,7 @@ public class FenBuilder implements Fen {
         return piece.getSide().equals(BLACK) ? notation.toLowerCase(Locale.ROOT) : notation;
     }
 
-    private String diffPosX( final int previousPiece, final Piece piece) {
+    private String diffPosX(final int previousPiece, final Piece piece) {
         final int diff = piece.getPosition().getX() - previousPiece;
         return diff > 0 ? Integer.toString(diff) : "";
     }
