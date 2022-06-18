@@ -1,6 +1,6 @@
 package model.piece.utils;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.pieces.Piece;
 
 /**

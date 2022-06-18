@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.move.BasicMoves;
 import model.move.BasicMovesImpl;
 import model.piece.utils.Position;

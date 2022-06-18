@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.piece.utils.ControlsUtility;
 import model.piece.utils.PieceDirections;
 import model.piece.utils.Position;

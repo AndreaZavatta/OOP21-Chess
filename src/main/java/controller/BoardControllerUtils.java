@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Map;
 
-import game.Game;
+import model.game.Game;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.InnerShadow;

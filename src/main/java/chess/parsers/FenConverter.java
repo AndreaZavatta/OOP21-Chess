@@ -1,6 +1,6 @@
 package chess.parsers;
 
-import board.Chessboard;
+import model.board.Chessboard;
 
 /**
  * interface for FenConverter.

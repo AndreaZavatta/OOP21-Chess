@@ -9,8 +9,8 @@ import java.util.Optional;
 
 import controller.utils.ColorSettings;
 import controller.utils.PieceImagePath;
-import game.Game;
-import game.GameImpl;
+import model.game.Game;
+import model.game.GameImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

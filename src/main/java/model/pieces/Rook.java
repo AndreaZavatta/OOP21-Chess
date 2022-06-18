@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.piece.utils.Name;

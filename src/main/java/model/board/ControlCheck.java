@@ -1,4 +1,4 @@
-package board;
+package model.board;
 
 import model.piece.utils.Side;
 import java.util.List;

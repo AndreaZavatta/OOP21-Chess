@@ -12,9 +12,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import board.Chessboard;
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactory;
+import model.board.ChessboardFactoryImpl;
 import chess.parsers.Fen;
 import chess.parsers.FenBuilder;
 import model.pieces.Piece;

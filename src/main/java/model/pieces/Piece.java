@@ -2,7 +2,7 @@ package model.pieces;
 
 import java.util.List;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import model.piece.utils.Side;

@@ -1,6 +1,6 @@
 package model.database;
 
-import game.Game;
+import model.game.Game;
 import tuple.Pair;
 import tuple.Triple;
 import user.User;

@@ -1,7 +1,7 @@
 package pieces.test;
 
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
+import model.board.ChessboardFactory;
+import model.board.ChessboardFactoryImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

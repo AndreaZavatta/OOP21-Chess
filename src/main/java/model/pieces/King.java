@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import board.Castling;
-import board.CastlingImpl;
-import board.Chessboard;
+import model.board.Castling;
+import model.board.CastlingImpl;
+import model.board.Chessboard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;

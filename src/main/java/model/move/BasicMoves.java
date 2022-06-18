@@ -2,7 +2,7 @@ package model.move;
 
 import java.util.List;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.piece.utils.PieceDirections;
 import model.piece.utils.Position;
 import model.pieces.Piece;

@@ -1,10 +1,10 @@
 package castling;
 
-import board.Castling;
-import board.CastlingImpl;
-import board.Chessboard;
-import board.ChessboardFactoryImpl;
-import board.ChessboardFactory;
+import model.board.Castling;
+import model.board.CastlingImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactoryImpl;
+import model.board.ChessboardFactory;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;
 import model.piece.utils.Position;

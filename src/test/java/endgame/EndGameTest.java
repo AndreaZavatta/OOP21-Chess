@@ -1,10 +1,10 @@
 package endgame;
 
-import board.EndGame;
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
-import board.Chessboard;
-import board.EndGameImpl;
+import model.board.EndGame;
+import model.board.ChessboardFactory;
+import model.board.ChessboardFactoryImpl;
+import model.board.Chessboard;
+import model.board.EndGameImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

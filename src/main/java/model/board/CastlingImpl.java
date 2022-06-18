@@ -1,4 +1,4 @@
-package board;
+package model.board;
 
 import java.util.List;
 import java.util.stream.Collectors;

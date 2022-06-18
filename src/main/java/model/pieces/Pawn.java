@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.piece.utils.ControlsUtility;

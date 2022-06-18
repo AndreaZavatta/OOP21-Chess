@@ -1,6 +1,6 @@
 package timer;
 
-import game.Game;
+import model.game.Game;
 import javafx.scene.image.Image;
 import model.piece.utils.Side;
 import user.UserControllerImpl;

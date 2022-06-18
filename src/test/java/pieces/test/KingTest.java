@@ -1,15 +1,15 @@
 package pieces.test;
 
 
-import game.Game;
-import game.GameImpl;
+import model.game.Game;
+import model.game.GameImpl;
 import org.junit.jupiter.api.Test;
 
-import board.Chessboard;
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
-import board.ControlCheck;
-import board.ControlCheckImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactory;
+import model.board.ChessboardFactoryImpl;
+import model.board.ControlCheck;
+import model.board.ControlCheckImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

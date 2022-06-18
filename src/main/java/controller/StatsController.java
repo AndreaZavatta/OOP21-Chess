@@ -1,7 +1,7 @@
 package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
-import game.Game;
+import model.game.Game;
 import io.JsonFileReader;
 import io.JsonFileReaderImpl;
 import javafx.collections.FXCollections;

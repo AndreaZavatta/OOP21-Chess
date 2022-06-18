@@ -2,8 +2,8 @@ package io;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import game.Game;
-import game.GameImpl;
+import model.game.Game;
+import model.game.GameImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;

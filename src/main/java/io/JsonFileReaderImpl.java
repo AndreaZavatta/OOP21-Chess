@@ -1,6 +1,6 @@
 package io;
 
-import game.Game;
+import model.game.Game;
 
 import java.io.File;
 import java.io.FileNotFoundException;

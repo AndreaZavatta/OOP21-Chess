@@ -1,4 +1,4 @@
-package board;
+package model.board;
 
 import static model.piece.utils.Name.KING;
 

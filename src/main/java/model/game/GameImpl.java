@@ -1,4 +1,4 @@
-package game;
+package model.game;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import board.Chessboard;
-import board.ChessboardFactoryImpl;
-import board.ControlCheck;
-import board.ControlCheckImpl;
-import board.EndGame;
-import board.EndGameImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactoryImpl;
+import model.board.ControlCheck;
+import model.board.ControlCheckImpl;
+import model.board.EndGame;
+import model.board.EndGameImpl;
 import io.JsonUtils;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;

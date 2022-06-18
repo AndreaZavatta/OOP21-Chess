@@ -1,6 +1,6 @@
 package chess.parsers;
 
-import board.Chessboard;
+import model.board.Chessboard;
 import model.piece.utils.Side;
 /**
  * an Interface for represent a 

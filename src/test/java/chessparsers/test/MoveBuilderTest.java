@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static model.piece.utils.Position.createNewPosition;
 
-import board.Chessboard;
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactory;
+import model.board.ChessboardFactoryImpl;
 import chess.parsers.Move;
 import chess.parsers.MoveBuilder;
 import exceptions.IllegalMoveException;

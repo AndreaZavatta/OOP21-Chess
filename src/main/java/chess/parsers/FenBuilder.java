@@ -4,7 +4,7 @@ import static model.piece.utils.Name.KING;
 import static model.piece.utils.Name.QUEEN;
 import static model.piece.utils.Side.BLACK;
 
-import board.Chessboard;
+import model.board.Chessboard;
 
 import java.util.Comparator;
 import java.util.List;

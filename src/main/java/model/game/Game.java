@@ -1,4 +1,4 @@
-package game;
+package model.game;
 
 import java.io.IOException;
 import java.time.LocalDate;

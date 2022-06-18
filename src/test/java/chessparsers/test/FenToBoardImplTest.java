@@ -1,8 +1,8 @@
 package chessparsers.test;
 
-import board.Chessboard;
-import board.ChessboardFactory;
-import board.ChessboardFactoryImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactory;
+import model.board.ChessboardFactoryImpl;
 import chess.parsers.FenConverter;
 import chess.parsers.FenConverterImpl;
 import model.pieces.Piece;

@@ -1,7 +1,7 @@
 package chess.parsers;
 
-import board.Chessboard;
-import board.ChessboardFactoryImpl;
+import model.board.Chessboard;
+import model.board.ChessboardFactoryImpl;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.pieces.Piece;
