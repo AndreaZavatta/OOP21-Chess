@@ -25,7 +25,7 @@ public class DatabaseFilters {
     public DatabaseFilters(final List<Game> games) {
         this.games = new ArrayList<>(games);
     }
-    private Optional<User> getUserByPredicate(final String str, final Predicate<User> pred) {
+    private Optional<User> getUserByPredicate(final Predicate<User> pred) {
         return games.stream().map(Game::getUsers)
                 .flatMap(x -> Stream.of(x.getX(), x.getY()))
                 .filter(pred).findFirst();
@@ -36,7 +36,7 @@ public class DatabaseFilters {
      * @return Optional.of(User) or Optional.empty
      */
     public Optional<User> getUser(final String str) {
-        return getUserByPredicate(str, x -> x.getName().equals(str));
+        return getUserByPredicate(x -> x.getName().equals(str));
     }
     /**
      * this function find the first occurrence of User who's name contains the given string.
@@ -44,7 +44,7 @@ public class DatabaseFilters {
      * @return Optional.of(User) or Optional.empty
      */
     public Optional<User> getFirstOccurrenceUser(final String str) {
-        return getUserByPredicate(str, x -> x.getName().contains(str));
+        return getUserByPredicate(x -> x.getName().contains(str));
     }
 
     /**
