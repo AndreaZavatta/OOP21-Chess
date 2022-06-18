@@ -32,7 +32,7 @@ public class JsonFileWriterImpl implements JsonFileWriter {
             write(obj, file);
     }
 
-    private void write(Object obj, FileOutputStream file) throws IOException {
+    private void write(final Object obj, final FileOutputStream file) throws IOException {
         try (var a = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8))) {
             a.write(jSerializer.serialize(obj));
         }

@@ -27,27 +27,27 @@ public interface Move {
     Move destination(Position destination);
 
     /**
-     * set this is a capture move
+     * set this is a capture move.
      * @return Move to join the pattern builder
      */
     Move capture();
 
     /**
-     * set this is a king side castling move
+     * set this is a king side castling move.
      * @return Move to join the pattern builder
      */
     Move kingSideCastling();
 
 
     /**
-     * set this is a queen side castling move
+     * set this is a queen side castling move.
      * @return Move to join the pattern builder
      */
     Move queenSideCastling();
 
 
     /**
-     * set this is a promotion move
+     * set this is a promotion move.
      * @param piece
      * @return Move to join the pattern builder
      */
@@ -55,21 +55,21 @@ public interface Move {
 
 
     /**
-     * set this is a draw offer
+     * set this is a draw offer.
      * @return Move to join the pattern builder
      */
     Move drawOffer();
 
 
     /**
-     * set this move puts the king in check
+     * set this move puts the king in check.
      * @return Move to join the pattern builder
      */
     Move check();
 
 
     /**
-     * that this move puts the king in checkmate
+     * that this move puts the king in checkmate.
      * @return Move to join the pattern builder
      */
     Move checkmate();

@@ -9,8 +9,16 @@ import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 import java.util.ArrayList;
 import java.util.List;
-import static java.lang.Character.*;
-import static model.piece.utils.Name.*;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.getNumericValue;
+import static java.lang.Character.toUpperCase;
+import static java.lang.Character.isUpperCase;
+import static model.piece.utils.Name.ROOK;
+import static model.piece.utils.Name.BISHOP;
+import static model.piece.utils.Name.KNIGHT;
+import static model.piece.utils.Name.QUEEN;
+import static model.piece.utils.Name.KING;
+import static model.piece.utils.Name.PAWN;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
 /**
@@ -41,15 +49,15 @@ public class FenConverterImpl implements FenConverter {
      * {@inheritDoc}.
      */
     public Chessboard getBoard(final String fen) {
-        List<Piece> list = buildList(fen.split(" "));
+        final List<Piece> list = buildList(fen.split(" "));
         return new ChessboardFactoryImpl().createTestCB(list);
     }
 
     private List<Piece> buildList(final String[] fenArray) {
-        List<Piece> list = new ArrayList<>();
+        final List<Piece> list = new ArrayList<>();
         int x = 0;
         int y = 0;
-        for (Character c : fenArray[0].toCharArray()) {
+        for (final Character c : fenArray[0].toCharArray()) {
             if (isDigit(c)) {
                 x += getNumericValue(c);
             } else if (c == '/') {

@@ -10,12 +10,14 @@ import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-
-import static model.piece.utils.Name.*;
+import static model.piece.utils.Name.ROOK;
+import static model.piece.utils.Name.KING;
+import static model.piece.utils.Name.BISHOP;
+import static model.piece.utils.Name.PAWN;
 import static model.piece.utils.Position.createNewPosition;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FenToBoardImplTest {
     private final PieceFactory pieceFact = new PieceFactoryImpl();
@@ -24,8 +26,8 @@ class FenToBoardImplTest {
 
     @Test
     void firstTest() {
-        String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-        Chessboard chessboard = fenToBoard.getBoard(fen);
+        final String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+        final Chessboard chessboard = fenToBoard.getBoard(fen);
         assertEquals(chessboard, chessboardFactory.createNormalCB());
     }
     @Test
@@ -38,8 +40,8 @@ class FenToBoardImplTest {
                         pieceFact.createPiece(KING, createNewPosition("d2"), WHITE));
         final Chessboard board = chessboardFactory.createTestCB(list);
 
-        String fen = "r3k2b/8/8/8/8/8/3K4/R7 w q - 0 1";
-        Chessboard chessboard = fenToBoard.getBoard(fen);
+        final String fen = "r3k2b/8/8/8/8/8/3K4/R7 w q - 0 1";
+        final Chessboard chessboard = fenToBoard.getBoard(fen);
         assertEquals(chessboard, board);
     }
 
@@ -52,8 +54,8 @@ class FenToBoardImplTest {
                         pieceFact.createPiece(PAWN, createNewPosition("h4"), WHITE));
         final Chessboard board = chessboardFactory.createTestCB(list);
 
-        String fen = "8/8/8/1k6/7P/8/p4K2/8 b - - 0 1";
-        Chessboard chessboard = fenToBoard.getBoard(fen);
+        final String fen = "8/8/8/1k6/7P/8/p4K2/8 b - - 0 1";
+        final Chessboard chessboard = fenToBoard.getBoard(fen);
         assertEquals(chessboard, board);
     }
 
@@ -65,8 +67,8 @@ class FenToBoardImplTest {
         board.move(createNewPosition("g2"), createNewPosition("g4"));
         board.move(createNewPosition("d8"), createNewPosition("h4"));
 
-        String fen = "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1";
-        Chessboard chessboard = fenToBoard.getBoard(fen);
+        final String fen = "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1";
+        final Chessboard chessboard = fenToBoard.getBoard(fen);
         assertEquals(chessboard, board);
     }
 
@@ -80,8 +82,8 @@ class FenToBoardImplTest {
                         pieceFact.createPiece(KING, createNewPosition("e1"), WHITE));
         final Chessboard board = chessboardFactory.createTestCB(list);
 
-        String fen = "8/8/8/8/4pk2/R7/7r/4K3 b - - 0 1";
-        Chessboard chessboard = fenToBoard.getBoard(fen);
+        final String fen = "8/8/8/8/4pk2/R7/7r/4K3 b - - 0 1";
+        final Chessboard chessboard = fenToBoard.getBoard(fen);
         assertEquals(chessboard, board);
     }
 }

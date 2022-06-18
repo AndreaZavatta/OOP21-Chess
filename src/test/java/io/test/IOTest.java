@@ -47,7 +47,7 @@ class IOTest {
     void testSerializationPiece() {
         try {
             final Piece rook = fact.createPiece(Name.ROOK, Position.createNumericPosition(3, 4), BLACK);
-            String str = map.writeValueAsString(rook);
+            final String str = map.writeValueAsString(rook);
             final Piece rook2 = map.readValue(str, Piece.class);
             assertEquals(rook, rook2);
         } catch (JsonProcessingException ex) {
@@ -56,7 +56,7 @@ class IOTest {
     }
     @Test
     void testDate() {
-        try{
+        try {
             final LocalDate date = LocalDate.of(2001, 3, 31);
             final String str = map.writeValueAsString(date);
             final LocalDate date2 = map.readValue(str, LocalDate.class);
@@ -145,7 +145,7 @@ class IOTest {
         try {
             final List<Game> listGame = getGames();
             fw.writeFile(listGame);
-            JsonFileReader fr = new JsonFileReaderImpl("prova.txt");
+            final JsonFileReader fr = new JsonFileReaderImpl("prova.txt");
             final List<Game> listGame2 = fr.readFile();
             final List<List<Piece>> listPiece = listGame.stream().map(Game::getPiecesList).collect(Collectors.toList());
             final List<List<Piece>> listPiece2 = listGame2.stream().map(Game::getPiecesList).collect(Collectors.toList());

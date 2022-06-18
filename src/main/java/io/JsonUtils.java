@@ -15,8 +15,8 @@ import java.util.TimeZone;
  *
  */
 public final class JsonUtils {
-    static JsonFileReader reader = new JsonFileReaderImpl("database.txt");
-    static JsonFileWriter writer = new JsonFileWriterImpl("database.txt");
+    private static JsonFileReader reader = new JsonFileReaderImpl("database.txt");
+    private static JsonFileWriter writer = new JsonFileWriterImpl("database.txt");
     private JsonUtils() { }
     /**
      * 
@@ -31,9 +31,13 @@ public final class JsonUtils {
                 .enable(SerializationFeature.INDENT_OUTPUT)
                 .setTimeZone(TimeZone.getDefault());
     }
-
-    public static void addToDatabase(Game game) throws IOException {
-        List<Game> games = reader.readFile();
+    /**
+     * add to database the game passed as argument.
+     * @param game
+     * @throws IOException
+     */
+    public static void addToDatabase(final Game game) throws IOException {
+        final List<Game> games = reader.readFile();
         games.add(game);
         writer.writeFile(games);
     }

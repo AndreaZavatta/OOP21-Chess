@@ -148,7 +148,7 @@ public class MoveBuilder implements Move {
      */
     @Override
     public String toString() {
-        String str = "";
+        String str;
         if (drawOffer) {
             str = "(=)";
         } else if (kingSideCastling) {

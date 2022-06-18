@@ -51,7 +51,7 @@ public class ControlCheckImpl implements ControlCheck {
                 .anyMatch(x -> canEatKing(chessboard, x));
     }
 
-    private Predicate<Piece> isOppositeColor(Side color) {
+    private Predicate<Piece> isOppositeColor(final Side color) {
         return x -> !x.getSide().equals(color);
     }
 
@@ -77,11 +77,11 @@ public class ControlCheckImpl implements ControlCheck {
                 .orElseThrow(KingNotFoundException::new);
     }
 
-    private Predicate<Piece> isPieceOppositeColor(Piece piece) {
+    private Predicate<Piece> isPieceOppositeColor(final Piece piece) {
         return x -> !x.getSide().equals(piece.getSide());
     }
 
-    private boolean isPieceKing(Piece piece) {
+    private boolean isPieceKing(final Piece piece) {
         return piece.getName().equals(KING);
     }
 

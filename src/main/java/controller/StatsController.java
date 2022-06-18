@@ -38,19 +38,18 @@ public class StatsController implements Initializable {
     private TextField txtFieldName = new TextField();
     @FXML
     private TextArea txtAreaStats = new TextArea();
-    @FXML
-    private TableColumn<User, String> firstPlayer;
-    @FXML
-    private TableColumn<User, String> secondPlayer;
-    @FXML
-    private TableColumn<LocalDate, String> date;
+    private final TableColumn<User, String> firstPlayer = new TableColumn<>();
+    private final TableColumn<User, String> secondPlayer = new TableColumn<>();
+    private final TableColumn<LocalDate, String> date = new TableColumn<>();
     @FXML
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
     private DatabaseFilters database;
 
-
+    /**
+     * this method create a dialog to explain hoe to use the database.
+     */
     @FXML
-    private void showHelp() {
+    public void showHelp() {
         String str =    "You can use the text field above the table to filter "
                         + "matches by player's name.\n"
                         + "The search also allows you to see information such as percentages of "
@@ -63,14 +62,14 @@ public class StatsController implements Initializable {
     }
 
     private Optional<User> getUser() {
-        Optional<User> user = database.getUser(txtFieldName.getText());
+        final Optional<User> user = database.getUser(txtFieldName.getText());
         return user.isEmpty() ? database.getFirstOccurrenceUser(txtFieldName.getText()) : user;
     }
 
     private void writeStats(final User user) {
-        long gameWon = database.getNumberGameWon(user);
-        long gamePlayed = database.getNumberGamePlayed(user);
-        long gameDraw = database.getNumberGameDrawn(user);
+        final long gameWon = database.getNumberGameWon(user);
+        final long gamePlayed = database.getNumberGamePlayed(user);
+        final long gameDraw = database.getNumberGameDrawn(user);
 
         txtAreaStats.setText("Name: " + user.getName() + "\n");
         txtAreaStats.appendText(user.getName() + " won " + (gameWon * 100 / gamePlayed) + "% of game played\n");
@@ -102,7 +101,7 @@ public class StatsController implements Initializable {
     }
 
     private void initializeTable() {
-        tableView.setItems(observableList((x -> true)));
+        tableView.setItems(observableList(x -> true));
         tableView.getSelectionModel()
                 .selectedItemProperty().addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());

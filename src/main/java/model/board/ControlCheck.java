@@ -19,12 +19,17 @@ public interface ControlCheck {
      */
     List<Position> controlledMoves(Chessboard chessboard, Piece piece);
     /**
-     * this method checks if the king is in check, according to the color.
+     * this method checks if the king is in check according to the color, without checking whether the opposing king is attacking the king in question.
      * @param chessboard The chessboard in which to check whether the king is in check
      * @param color The color of the king to check if it is in check
      * @return boolean
      */
     boolean isInCheckWithoutKing(Chessboard chessboard, Side color);
-
+    /**
+     * this method checks if the king is in check, according to the color.
+     * @param chessboard The chessboard in which to check whether the king is in check
+     * @param color The color of the king to check if it is in check
+     * @return boolean
+     */
     boolean isInCheck(Chessboard chessboard, Side color);
 }

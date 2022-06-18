@@ -18,32 +18,32 @@ public interface Fen {
     Fen activeColor(Side side);
 
     /**
-     * set white king castled kingSide
+     * set white king castled kingSide.
      * @return Fen
      */
     Fen whiteCastlingKingSide();
 
     /**
-     * set white king castled queen side
+     * set white king castled queen side.
      * @return Fen
      */
     Fen whiteCastlingQueenSide();
 
     /**
-     * set black king castled king side
+     * set black king castled king side.
      * @return Fen
      */
     Fen blackCastlingKingSide();
 
     /**
-     * set black king castled queen side
+     * set black king castled queen side.
      * @return Fen
      */
     Fen blackCastlingQueenSide();
 
     /**
-     * set
-     * @param pos set the position where the pawn can be captured by en passant
+     * set the position where the pawn can be captured by en passant.
+     * @param pos 
      * @return Fen
      */
     Fen enPassant(String pos);
