@@ -1,5 +1,6 @@
 package pieces.test;
 
+import model.board.Chessboard;
 import model.board.ChessboardFactory;
 import model.board.ChessboardFactoryImpl;
 import model.piece.utils.Name;
