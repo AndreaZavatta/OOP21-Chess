@@ -38,16 +38,17 @@ public class StatsController implements Initializable {
     private TextField txtFieldName = new TextField();
     @FXML
     private TextArea txtAreaStats = new TextArea();
-    private final TableColumn<User, String> firstPlayer = new TableColumn<>();
-    private final TableColumn<User, String> secondPlayer = new TableColumn<>();
-    private final TableColumn<LocalDate, String> date = new TableColumn<>();
+    @FXML
+    private TableColumn<User, String> firstPlayer;
+    @FXML
+    private TableColumn<User, String> secondPlayer;
+    @FXML
+    private TableColumn<LocalDate, String> date;
     @FXML
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
     private DatabaseFilters database;
 
-    /**
-     * this method create a dialog to explain hoe to use the database.
-     */
+
     @FXML
     public void showHelp() {
         String str =    "You can use the text field above the table to filter "
