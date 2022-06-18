@@ -64,7 +64,6 @@ public class UserHandlerController {
 
     @FXML
     void backToMenu(final ActionEvent event) {
-        //TODO 
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/MainMenu.fxml"));
             final Parent root = (Parent) loader.load();
