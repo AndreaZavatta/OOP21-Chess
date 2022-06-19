@@ -11,6 +11,7 @@ import user.UserControllerImpl;
  *
  */
 public class TimerPlayerImpl extends UserControllerImpl implements TimerPlayer {
+    private static final long serialVersionUID = -2847220700449330935L;
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     private double timeLeft;
     private final Game match;
