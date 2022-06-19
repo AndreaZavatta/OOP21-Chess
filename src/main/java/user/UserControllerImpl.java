@@ -16,8 +16,8 @@ public class UserControllerImpl extends UserImpl implements UserController {
 
     /**
      * 
-     * @param name
-     * @param img
+     * @param name name of the user
+     * @param img image chose by the user
      */
     public UserControllerImpl(final String name, final Image img) {
         super(name);

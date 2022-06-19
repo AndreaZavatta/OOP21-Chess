@@ -22,11 +22,10 @@ public interface Game {
 
     /**
      * The method move a piece from a position to an another one.
-     * The method can throw an IOException beacause if the game is finished
-     * it store the game in the database.
      * @param firstPos initial position
      * @param finalPos position where the piece want to move
-     * @throws IOException 
+     * @throws IOException it can throw it when method try to 
+     *                     store the game in database
      */
     void nextMove(Position firstPos, Position finalPos) throws IOException;
 
@@ -98,9 +97,8 @@ public interface Game {
 
     /**
      * Method for set a draw.
-     * It can throw and IOException when it 
-     * try to store the game in the database.
-     * @throws IOException 
+     * @throws IOException It can throw and IOException when it 
+     *                     try to store the game in the database.
      */
     void setDraw() throws IOException;
 
