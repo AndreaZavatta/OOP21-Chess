@@ -74,7 +74,7 @@ public final class BoardControllerUtils {
 
     /**
      * If the rectangle is not the king's rectangle, or if the king is not in check, then remove the effect from the
-     * rectangle
+     * rectangle.
      *
      * @param rectangle the rectangle of the piece that is being checked
      * @param match the game object

@@ -156,6 +156,7 @@ public final class ControllerUtils {
      *
      * @param event The event that triggered the method.
      * @param loader The FXMLLoader object that is used to load the FXML file.
+     * @throws IOException The standard exception when loading an fxml file.
      */
     public void buildWindowNodes(final Event event, final FXMLLoader loader) throws IOException {
         final Parent root = loader.load();
