@@ -22,7 +22,6 @@ public class Queen extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-
     protected Queen(final Position position, final Side color) {
         super(Name.QUEEN, position, color);
     }

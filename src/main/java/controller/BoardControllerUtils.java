@@ -73,13 +73,15 @@ public final class BoardControllerUtils {
     }
 
     /**
-     * A method for removing the effects of the rectangles.
-     * If the king is on check, it's effect will not be removed.
-     * @param rectangle the rectangle.
-     * @param match the current match.
-     * @param mapGuiPieceToPiece the current map GuiPiece-Piece.
+     * If the rectangle is not the king's rectangle, or if the king is not in check, then remove the effect from the
+     * rectangle
+     *
+     * @param rectangle the rectangle of the piece that is being checked
+     * @param match the game object
+     * @param mapGuiPieceToPiece a map that maps a GuiPiece to a Piece.
      */
-    public static void removeEffect(final Rectangle rectangle, final Game match, final Map<GuiPiece, Piece> mapGuiPieceToPiece) {
+    public static void removeEffect(final Rectangle rectangle, final Game match,
+                                    final Map<GuiPiece, Piece> mapGuiPieceToPiece) {
         if (!rectangle.equals(BoardControllerUtils.getKingOfThisTurn(match, mapGuiPieceToPiece).getRectangle())
                 || !match.isInCheck()) {
             rectangle.setEffect(null);
@@ -99,26 +101,30 @@ public final class BoardControllerUtils {
         image.setEffect(colorAdjust);
     }
     /**
-     * A method used to remove any effect from an image and a text.
-     * @param text the text you are removing the effect.
-     * @param image the image you are removing the effect.
+     * Removes the effects from the image and sets the text options.
+     *
+     * @param text The Text object that you want to apply the effect to.
+     * @param image The ImageView that you want to apply the effect to.
      */
     public static void removeEffects(final Text text, final ImageView image) {
         image.setEffect(null);
         setTextOptions(text);
     }
     /**
-     * A setter for the color, font and dimension of the text.
-     * @param text the text.
+     * Sets the style and color of the text.
+     *
+     * @param text The text object that you want to set the options for.
      */
     public static void setTextOptions(final Text text) {
         text.setStyle("-fx-font: 18 arial;");
         text.setFill(Color.WHITE);
     }
     /**
-     * A getter for a new background color.
-     * @param theme the color theme.
-     * @return a new background.
+     * This method returns a Background object with a BackgroundFill object that has a theme color,
+     * null insets, and null radius.
+     *
+     * @param theme The color of the background
+     * @return A Background object with a BackgroundFill object as its parameter.
      */
     public static Background getBackground(final Color theme) {
         return new Background(new BackgroundFill(theme, null, null));

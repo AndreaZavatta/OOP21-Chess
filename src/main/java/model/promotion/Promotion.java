@@ -9,21 +9,23 @@ import model.pieces.Piece;
  * An interface for the pawn's promotion.
  */
 public interface Promotion {
+
     /**
-     * This method checks if there is a pawn on the highest or lowest row 
-     * of the board.
-     * 
-     * @param pieceList the current list of pieces.
-     * @return an Optional of piece.
+     * If the last piece in the list is a pawn, and it's at the end of the board,
+     * return it, otherwise return null.
+     *
+     * @param pieceList The list of pieces on the board.
+     * @return Optional<Piece>
      */
     Optional<Piece> checkForPromotion(List<Piece> pieceList);
 
+
     /**
-     * This method is used to create a new piece. 
-     * 
-     * @param name the name of the piece you will create.
-     * @param piece the old piece you get the position and side from.
-     * @return a new piece with the position and side from the old piece.
+     * Change the piece with the given name to the given piece.
+     *
+     * @param name The name of the piece you want to change.
+     * @param piece The piece to be changed.
+     * @return The piece that was replaced.
      */
     Piece changePiece(Name name, Piece piece);
 }

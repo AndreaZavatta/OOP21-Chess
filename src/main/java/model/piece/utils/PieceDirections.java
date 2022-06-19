@@ -81,8 +81,9 @@ public enum PieceDirections {
 
     private static final int MINUS_TWO = -2;
     /**
-     * The getter for the list of directions of a piece.
-     * @return the directions a piece can go to.
+     * Returns a list of all the directions that this piece can move in.
+     *
+     * @return A list of positions.
      */
     public abstract List<Position> getDirections();
 }

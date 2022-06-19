@@ -16,12 +16,7 @@ import model.pieces.PieceFactoryImpl;
 public class PromotionImpl implements Promotion {
 
     private final PieceFactory factory = new PieceFactoryImpl();
-    /**
-     * This method checks if there is a pawn that can be promoted.
-     * 
-     * @param pieceList the piece list
-     * @return an optional of Piece, or null if there is no pawn to be promoted
-     */
+
     @Override
     public Optional<Piece> checkForPromotion(final List<Piece> pieceList) {
         if (checkColor(Side.WHITE, pieceList, 0).isPresent()) {
@@ -29,13 +24,7 @@ public class PromotionImpl implements Promotion {
         }
         return checkColor(Side.BLACK, pieceList, Numbers.SEVEN);
     }
-    /**
-     * This method creates a new piece.
-     * 
-     * @param name the name of the new piece
-     * @param piece the old piece
-     * @return a new piece with the old piece position and color
-     */
+
     @Override
     public Piece changePiece(final Name name, final Piece piece) {
         return factory.createPiece(name, piece.getPosition(), piece.getSide());

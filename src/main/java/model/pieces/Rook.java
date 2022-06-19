@@ -25,7 +25,6 @@ public class Rook extends AbstractPiece {
      * @param position the piece position.
      * @param color the piece color.
      */
-
     protected Rook(final Position position, final Side color) {
         super(Name.ROOK, position, color);
     }

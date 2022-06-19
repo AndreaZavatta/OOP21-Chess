@@ -60,8 +60,9 @@ public enum Name {
         }
     };
     /**
-     * A getter for the corresponding letter for the piece.
-     * @return the letter representing the piece.
+     * Returns the chess notation for the piece.
+     *
+     * @return The chess notation of the piece.
      */
     public abstract String getChessNotation();
 }

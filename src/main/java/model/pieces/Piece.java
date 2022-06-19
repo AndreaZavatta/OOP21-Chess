@@ -31,9 +31,10 @@ public interface Piece {
      */
     Name getName();
     /**
-     * A getter for a list of all positions the piece can go to.
-     * @param board the current board.
-     * @return a list of positions with all the possible positions the piece can go to.
+     * Given a chessboard, return a list of all possible positions that a piece can move to.
+     *
+     * @param board The chessboard that the piece is on.
+     * @return A list of all possible positions that the piece can move to.
      */
     List<Position> getAllPossiblePositions(Chessboard board);
     /**

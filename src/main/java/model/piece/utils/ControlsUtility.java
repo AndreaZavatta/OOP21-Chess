@@ -21,17 +21,17 @@ public final class ControlsUtility {
         return board.getPieceOnPosition(position).map(p -> !p.getSide().equals(piece.getSide())).orElse(false);
     }
     /**
-     * This method checks if in the given position there is a piece.
-     * @param position the position you are checking.
-     * @param board the current board.
+     * Check if there is a piece on the given position on the given board.
+     * @param position The position to check.
+     * @param board The chessboard to check.
      * @return true if there is a piece in the specified position, false otherwise.
      */
     public static boolean checkPieceOnPosition(final Position position, final Chessboard board) {
         return board.getPieceOnPosition(position).isPresent();
     }
     /**
-     * This method checks if the given position is in the board.
-     * @param position the position you are checking.
+     * Check if the position is on the board.
+     * @param position The position to check.
      * @return true if the position is in the board, false otherwise.
      */
     public static boolean checkPositionOnBoard(final Position position) {
@@ -39,11 +39,11 @@ public final class ControlsUtility {
                 && position.getY() < 8 && position.getY() >= 0;
     }
     /**
-     * This method, given a direction and a multiplier, returns a new position.
-     * @param piece the piece you are calculating the possible positions.
-     * @param direction the directions the piece can go to.
-     * @param multiplier position multiplier.
-     * @return the new position.
+     * Given a piece, a direction, and a multiplier, return a new position.
+     * @param piece The piece that is moving
+     * @param direction The direction in which the piece is moving.
+     * @param multiplier This is the number of steps the piece will take in the direction specified.
+     * @return A new position
      */
     public static Position getNewPosition(final Piece piece, final Position direction, final int multiplier) {
         return Position.createNumericPosition(piece.getPosition().getX() + (direction.getX() * multiplier),

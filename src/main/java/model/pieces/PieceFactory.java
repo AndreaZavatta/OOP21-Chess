@@ -9,12 +9,12 @@ import model.piece.utils.Name;
  */
 public interface PieceFactory {
     /**
-     * A standard method to create a Piece. Also used to promote a pawn into another piece.
-     * 
-     * @param name the name of the piece.
-     * @param position the position of the piece.
-     * @param color the color of the piece.
-     * @return given a name, return a Piece object.
+     * Create a new piece of the given name, position, and color.
+     *
+     * @param name The name of the piece.
+     * @param position The position of the piece on the board.
+     * @param color The color of the piece.
+     * @return A Piece object.
      */
     Piece createPiece(Name name, Position position, Side color);
 }
