@@ -86,7 +86,7 @@ public class DatabaseFilters {
      * @param predicate used for filtering the games
      * @return List of Triple<User, User, LocalDate>
      */
-    public List<Triple<User, User, LocalDate>> getTripleFromGame(final Predicate<Game> predicate) {
+    public List<Triple<User, User, LocalDate>> getTriple(final Predicate<Game> predicate) {
         return games.stream().filter(predicate)
                 .map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toUnmodifiableList());
     }
@@ -120,5 +120,8 @@ public class DatabaseFilters {
                 .map(Pair::getX)
                 .map(User::getName)
                 .orElse("");
+    }
+    public Predicate<Game> filterByName(final String s2) {
+        return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
     }
 }

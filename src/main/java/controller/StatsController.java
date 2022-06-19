@@ -69,7 +69,7 @@ public class StatsController extends AbstractStatsController implements Initiali
 
     private void initializeTxtField() {
         txtFieldName.textProperty()
-                .addListener((observableValue, s, s2) -> tableView.setItems(observableList(filterByName(s2))));
+                .addListener((observableValue, s, s2) -> tableView.setItems(observableList(database.filterByName(s2))));
         txtFieldName.textProperty()
                 .addListener((observableValue, s, s2) -> showStats());
     }
@@ -78,8 +78,12 @@ public class StatsController extends AbstractStatsController implements Initiali
         tableView.setItems(observableList(x -> true));
         tableView.getSelectionModel()
                 .selectedItemProperty()
-                .addListener((obs, oldSelection, newSelection) -> txtAreaStats.setText(getWinner(newSelection)));
+                .addListener((obs, oldSelection, newSelection) -> writeWinner(newSelection));
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
+    }
+
+    private void writeWinner(Triple<User,User,LocalDate> triple) {
+        txtAreaStats.setText(statsGamePresent(getWinner(triple)));
     }
 
     private List<Game> wrappedRead() {
@@ -87,23 +91,20 @@ public class StatsController extends AbstractStatsController implements Initiali
                 () -> contr.showCompleteAlert(
                         "Something went wrong", "error!", "unable to read database", ERROR));
     }
-    private Predicate<Game> filterByName(final String s2) {
-        return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
-    }
+
     private ObservableList<Triple<User, User, LocalDate>> observableList(final Predicate<Game> predicate) {
-        return  FXCollections.observableArrayList(database.getTripleFromGame(predicate));
+        return  FXCollections.observableArrayList(database.getTriple(predicate));
     }
 
     private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
         final TableRow<Triple<User, User, LocalDate>> row = new TableRow<>();
-        row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row, event));
+        row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> deselectRow(row.getIndex(), event));
         row.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> showStats());
         return row;
     }
 
-    private void deselectRow(final TableRow<Triple<User, User, LocalDate>> row, final MouseEvent event) {
-        final int index = row.getIndex();
-        if (index >= 0 && index < tableView.getItems().size() && tableView.getSelectionModel().isSelected(index)) {
+    private void deselectRow(int row, final MouseEvent event) {
+        if (row >= 0 && row < tableView.getItems().size() && tableView.getSelectionModel().isSelected(row)) {
             tableView.getSelectionModel().clearSelection();
             event.consume();
             txtAreaStats.setText("");
@@ -114,5 +115,4 @@ public class StatsController extends AbstractStatsController implements Initiali
     private void backToMainMenu(final Event event) {
         contr.backToMenu(event);
     }
-
 }
