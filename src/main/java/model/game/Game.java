@@ -107,4 +107,11 @@ public interface Game {
      * @return a piece to get promoted if present
      */
     Optional<Piece> checkPromotion();
+
+    /**
+     * Invert the color in input.
+     * @param color color to change
+     * @return the opposite color 
+     */
+    Side getOppositeColor(Side color);
 }

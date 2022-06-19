@@ -147,6 +147,11 @@ public class GameImpl implements Game {
         return promotion.checkForPromotion(getPiecesList());
     }
 
+    @Override
+    public Side getOppositeColor(final Side color) {
+        return turnManager.getOppositeColor(color);
+    }
+
     private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {
         return chessboard.getPieceOnPosition(firstPos).isEmpty()
                 || attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())

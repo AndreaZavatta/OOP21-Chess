@@ -1,5 +1,7 @@
 package controller.utils;
 
+import model.piece.utils.Side;
+
 /**
  * 
  * Enum for piece image path.
@@ -61,5 +63,16 @@ public enum PieceImagePath {
      */
     public String getWhitePath() {
         return BASIC_PATH + white;
+    }
+
+    /**
+     * 
+     * @param color color of piece
+     * @return the right path
+     */
+    public String getPath(final Side color) {
+        return color.equals(Side.WHITE) 
+                ? BASIC_PATH + white
+                : BASIC_PATH + black;
     }
 }

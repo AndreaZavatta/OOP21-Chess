@@ -285,13 +285,13 @@ public class BoardController {
 
     private void selectPromotion(final Piece oldPiece) {
         final Stage promotionStage = new Stage();
-        final Button queen = contrUtil.createImageButton(PieceImagePath.QUEEN.getWhitePath());
+        final Button queen = contrUtil.createImageButton(PieceImagePath.QUEEN.getPath(match.getOppositeColor(match.getUserSideTurn())));
         queen.setOnMouseClicked(x -> setClick(Name.QUEEN, promotionStage, oldPiece));
-        final Button rook = contrUtil.createImageButton(PieceImagePath.ROOK.getWhitePath());
+        final Button rook = contrUtil.createImageButton(PieceImagePath.ROOK.getPath(match.getOppositeColor(match.getUserSideTurn())));
         rook.setOnMouseClicked(x ->  setClick(Name.ROOK, promotionStage, oldPiece));
-        final Button bishop = contrUtil.createImageButton(PieceImagePath.BISHOP.getBlackPath());
+        final Button bishop = contrUtil.createImageButton(PieceImagePath.BISHOP.getPath(match.getOppositeColor(match.getUserSideTurn())));
         bishop.setOnMouseClicked(x -> setClick(Name.BISHOP, promotionStage, oldPiece));
-        final Button knight = contrUtil.createImageButton(PieceImagePath.KNIGHT.getBlackPath());
+        final Button knight = contrUtil.createImageButton(PieceImagePath.KNIGHT.getPath(match.getOppositeColor(match.getUserSideTurn())));
         knight.setOnMouseClicked(x -> setClick(Name.KNIGHT, promotionStage, oldPiece));
         final VBox window = new VBox(10);
         window.getChildren().addAll(queen, rook, bishop, knight);
