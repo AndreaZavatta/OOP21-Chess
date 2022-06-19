@@ -30,37 +30,45 @@ public class DatabaseFilters {
                 .flatMap(x -> Stream.of(x.getX(), x.getY()))
                 .filter(pred).findFirst();
     }
+
     /**
-     * function for finding the given user in the database.
-     * @param str
-     * @return Optional.of(User) or Optional.empty
+     * GetUserByPredicate returns an Optional<User> and we're passing it a lambda that takes a User and returns a boolean.
+     *
+     * @param str The string to search for.
+     * @return Optional<User>
      */
     public Optional<User> getUser(final String str) {
         return getUserByPredicate(x -> x.getName().equals(str));
     }
+
     /**
-     * this function find the first occurrence of User who's name contains the given string.
-     * @param str the string whose name we want to search for within the database
-     * @return Optional.of(User) or Optional.empty
+     * Return the first user whose name contains the given string.
+     *
+     * @param str The string to search for.
+     * @return Optional<User>
      */
     public Optional<User> getFirstOccurrenceUser(final String str) {
         return getUserByPredicate(x -> x.getName().contains(str));
     }
 
+
     /**
-     * count the game played from a User.
-     * @param user the user whose information we want
-     * @return the number of game played
+     * Return the number of games played by a user.
+     *
+     * @param user The user whose number of games played we want to know.
+     * @return The number of games played by a user.
      */
     public long getNumberGamePlayed(final User user) {
         return games.stream()
                 .filter(x -> x.getUsers().getX().equals(user) || x.getUsers().getY().equals(user)).count();
     }
 
+
     /**
-     * count the game won from a User.
-     * @param user the user whose information we want
-     * @return the number of game won
+     * Return the number of games won by the user.
+     *
+     * @param user The user whose number of games won we want to know.
+     * @return The number of games won by the user.
      */
     public long getNumberGameWon(final User user) {
         return games.stream()
@@ -69,10 +77,13 @@ public class DatabaseFilters {
                 .filter(x -> x.getWinner().get().getX().equals(user))
                 .count();
     }
+
+
     /**
-     * count the game drawed from a User.
-     * @param user the user whose information we want
-     * @return the number of game played
+     * Count the number of games that the user has played in that have not been won by either player.
+     *
+     * @param user The user whose statistics are being requested.
+     * @return The number of games that the user has drawn.
      */
     public long getNumberGameDrawn(final User user) {
         return games.stream()
@@ -121,6 +132,12 @@ public class DatabaseFilters {
                 .map(User::getName)
                 .orElse("");
     }
+    /**
+     * Return a predicate that returns true if the name of either user in the game contains the string s2.
+     *
+     * @param s2 The string to search for
+     * @return A predicate that takes a Game and returns true if either of the users' names contains the string s2.
+     */
     public Predicate<Game> filterByName(final String s2) {
         return x -> x.getUsers().getX().getName().contains(s2) || x.getUsers().getY().getName().contains(s2);
     }

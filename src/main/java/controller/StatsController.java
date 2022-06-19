@@ -43,7 +43,9 @@ public class StatsController extends AbstractStatsController implements Initiali
     @FXML
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
 
-
+    /**
+     * showing help message.
+     */
     @FXML
     public void showHelp() {
         contr.showCompleteAlert("Guide", "DATABASE GUIDE", helpMessage(), INFORMATION);
@@ -54,7 +56,7 @@ public class StatsController extends AbstractStatsController implements Initiali
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        database = new DatabaseFilters(wrappedRead());
+        setDatabase(new DatabaseFilters(wrappedRead()));
         showStats();
         initializeTriple();
         initializeTxtField();
@@ -69,7 +71,7 @@ public class StatsController extends AbstractStatsController implements Initiali
 
     private void initializeTxtField() {
         txtFieldName.textProperty()
-                .addListener((observableValue, s, s2) -> tableView.setItems(observableList(database.filterByName(s2))));
+                .addListener((observableValue, s, s2) -> tableView.setItems(observableList(getDatabase().filterByName(s2))));
         txtFieldName.textProperty()
                 .addListener((observableValue, s, s2) -> showStats());
     }
@@ -82,7 +84,7 @@ public class StatsController extends AbstractStatsController implements Initiali
         tableView.setRowFactory(tableView2 -> addDeselectionRowEvent());
     }
 
-    private void writeWinner(Triple<User,User,LocalDate> triple) {
+    private void writeWinner(final Triple<User, User, LocalDate> triple) {
         txtAreaStats.setText(statsGamePresent(getWinner(triple)));
     }
 
@@ -93,7 +95,7 @@ public class StatsController extends AbstractStatsController implements Initiali
     }
 
     private ObservableList<Triple<User, User, LocalDate>> observableList(final Predicate<Game> predicate) {
-        return  FXCollections.observableArrayList(database.getTriple(predicate));
+        return  FXCollections.observableArrayList(getDatabase().getTriple(predicate));
     }
 
     private TableRow<Triple<User, User, LocalDate>> addDeselectionRowEvent() {
@@ -103,16 +105,19 @@ public class StatsController extends AbstractStatsController implements Initiali
         return row;
     }
 
-    private void deselectRow(int row, final MouseEvent event) {
+    private void deselectRow(final int row, final MouseEvent event) {
         if (row >= 0 && row < tableView.getItems().size() && tableView.getSelectionModel().isSelected(row)) {
             tableView.getSelectionModel().clearSelection();
             event.consume();
             txtAreaStats.setText("");
         }
     }
-
+    /**
+     * function used to return to main menu.
+     * @param event
+     */
     @FXML
-    private void backToMainMenu(final Event event) {
+    public void backToMainMenu(final Event event) {
         contr.backToMenu(event);
     }
 }

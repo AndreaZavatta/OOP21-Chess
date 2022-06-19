@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * 
- * {@inheritDoc}.
+ * an implementation of JsonFileReader, this is used to read a list of game from file.
  */
 public class JsonFileReaderImpl implements JsonFileReader {
     private final JsonDeserializer jDeserializer;

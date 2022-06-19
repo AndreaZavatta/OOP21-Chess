@@ -28,45 +28,57 @@ public class Triple<T, U, V> {
         this.z = new SimpleObjectProperty<>(third);
     }
 
+
     /**
-     * 
-     * @return T
+     * Get the first element of the Triple.
+     *
+     * @return The first element of the list.
      */
     public T getFirst() {
         return x.get();
     }
+
     /**
-     * 
-     * @return U
+     * Returns the second value of the Triple.
+     *
+     * @return The value of the second element of the pair.
      */
     public U getSecond() {
         return y.get();
     }
+
     /**
-     * 
-     * @return V
+     * Get the third element of the Triple.
+     *
+     * @return The value of the third element of the tuple.
      */
     public V getThird() {
         return z.get(); 
     }
 
+
     /**
-     * this method is used in the controller for recognize data.
-     * @return ObjectProperty that represent x element
+     * Returns the property used to represent the x of this Triple.
+     *
+     * @return An ObjectProperty<T>
      */
     public ObjectProperty<T> xProperty() {
         return x;
     }
+
     /**
-     * this method is used in the controller for recognize data.
-     * @return ObjectProperty that represent y element
+     * Returns the property used to represent the y of this Triple.
+     *
+     * @return A property that represents the y of this Triple.
      */
     public ObjectProperty<U> yProperty() {
         return y;
     }
+
     /**
-     * this method is used in the controller for recognize data.
-     * @return ObjectProperty that represent z element
+     * Returns the property used to represent the z of this Triple.
+     *
+     * @return A property that represents the z of this triple.
      */
     public ObjectProperty<V> zProperty() {
         return z;

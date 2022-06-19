@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 
- *{@inheritDoc}.
+ * an implementation of JsonFileWriter, this is used to write a List of game to file.
  */
 public class JsonFileWriterImpl implements JsonFileWriter {
 
@@ -18,7 +18,7 @@ public class JsonFileWriterImpl implements JsonFileWriter {
     private final String cd =  System.getProperty("user.dir");
 
     /**
-     * 
+     *
      * @param fileName the name of the file in which to write the object
      */
     public JsonFileWriterImpl(final String fileName) {

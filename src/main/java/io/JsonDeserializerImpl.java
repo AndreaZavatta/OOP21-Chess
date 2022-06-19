@@ -11,9 +11,9 @@ import java.util.List;
 import static io.JsonUtils.getMapper;
 import static io.vertx.core.json.Json.mapper;
 
+
 /**
- * 
- *{@inheritDoc}.
+ * an implementation of deserializer, this is used to deserialize a list of game.
  */
 public class JsonDeserializerImpl implements JsonDeserializer {
 
