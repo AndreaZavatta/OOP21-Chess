@@ -33,8 +33,8 @@ public final class JsonUtils {
     }
     /**
      * add to database the game passed as argument.
-     * @param game
-     * @throws IOException
+     * @param game to be added to the database
+     * @throws IOException if the addition to the database fails
      */
     public static void addToDatabase(final Game game) throws IOException {
         final List<Game> games = reader.readFile();

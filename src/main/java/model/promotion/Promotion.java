@@ -15,7 +15,7 @@ public interface Promotion {
      * return it, otherwise return null.
      *
      * @param pieceList The list of pieces on the board.
-     * @return Optional<Piece>
+     * @return Optional of {@link Piece Piece.class}
      */
     Optional<Piece> checkForPromotion(List<Piece> pieceList);
 

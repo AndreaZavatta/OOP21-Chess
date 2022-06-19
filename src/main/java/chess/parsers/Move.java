@@ -48,7 +48,7 @@ public interface Move {
 
     /**
      * set this is a promotion move.
-     * @param piece
+     * @param piece set the name of the piece moved
      * @return Move to join the pattern builder
      */
     Move promotion(Name piece);
@@ -90,6 +90,7 @@ public interface Move {
     /**
      * @param chessboard the chessboard on which the move is made
      * @return a string that represent a move
+     * @throws IllegalMoveException if the move isn't valid
      */
     Move build(Chessboard chessboard) throws IllegalMoveException;
 }

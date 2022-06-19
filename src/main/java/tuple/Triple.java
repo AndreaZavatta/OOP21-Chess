@@ -6,21 +6,29 @@ import javafx.beans.property.SimpleObjectProperty;
  * 
  * A generic Triple.
  *
- * @param <T>
- * @param <U>
- * @param <V>
+ * @param <T> generic first parameter
+ * @param <U> generic second parameter
+ * @param <V> generic third parameter
  */
 public class Triple<T, U, V> {
-
+    /**
+     * the ObjectProperty that represent the generic first parameter.
+     */
     private final ObjectProperty<T> x;
+    /**
+     * the ObjectProperty that represent the generic second parameter.
+     */
     private final ObjectProperty<U> y;
+    /**
+     * the ObjectProperty that represent the generic third parameter.
+     */
     private final ObjectProperty<V> z;
 
     /**
      * 
-     * @param first
-     * @param second
-     * @param third
+     * @param first generic parameter 
+     * @param second generic parameter
+     * @param third generic parameter
      */
     public Triple(final T first, final U second, final V third) {
         this.x = new SimpleObjectProperty<>(first);
@@ -60,7 +68,7 @@ public class Triple<T, U, V> {
     /**
      * Returns the property used to represent the x of this Triple.
      *
-     * @return An ObjectProperty<T>
+     * @return An ObjectProperty of T
      */
     public ObjectProperty<T> xProperty() {
         return x;

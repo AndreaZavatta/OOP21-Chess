@@ -32,10 +32,10 @@ public class DatabaseFilters {
     }
 
     /**
-     * GetUserByPredicate returns an Optional<User> and we're passing it a lambda that takes a User and returns a boolean.
+     * Return the user whose name is equals to the string.
      *
      * @param str The string to search for.
-     * @return Optional<User>
+     * @return Optional of {@link User User.class}
      */
     public Optional<User> getUser(final String str) {
         return getUserByPredicate(x -> x.getName().equals(str));
@@ -45,7 +45,7 @@ public class DatabaseFilters {
      * Return the first user whose name contains the given string.
      *
      * @param str The string to search for.
-     * @return Optional<User>
+     * @return Optional of {@link User User.class}
      */
     public Optional<User> getFirstOccurrenceUser(final String str) {
         return getUserByPredicate(x -> x.getName().contains(str));
@@ -95,7 +95,7 @@ public class DatabaseFilters {
     /**
      * get a list of Triple from game filtered by a given predicate.
      * @param predicate used for filtering the games
-     * @return List of Triple<User, User, LocalDate>
+     * @return List of Triple of {@link User User.class}, {@link User User.class}, {@link LocalDate LocalDate.class}
      */
     public List<Triple<User, User, LocalDate>> getTriple(final Predicate<Game> predicate) {
         return games.stream().filter(predicate)

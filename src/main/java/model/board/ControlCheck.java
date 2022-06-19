@@ -5,7 +5,7 @@ import java.util.List;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 /**
- * this interface makes controls if the king is in check
+ * this interface makes controls if the king is in check.
  * and controls if the positions the king is moving to are attacked by other pieces
  *
  */
@@ -16,7 +16,7 @@ public interface ControlCheck {
      * 
      * @param chessboard The chessboard where the moves must be controlled
      * @param piece the piece to which have to check the moves
-     * @return List<Position>
+     * @return The list of positions representing all legal moves
      */
     List<Position> controlledMoves(Chessboard chessboard, Piece piece);
     /**

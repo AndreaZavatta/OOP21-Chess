@@ -114,7 +114,7 @@ public class StatsController extends AbstractStatsController implements Initiali
     }
     /**
      * function used to return to main menu.
-     * @param event
+     * @param event that triggers back to menu
      */
     @FXML
     public void backToMainMenu(final Event event) {
