@@ -22,51 +22,50 @@ public interface Chessboard {
     List<Piece> getAllPieces();
 
     /**
-     * 
-     * @param actualPos
-     * @param finalPos 
+     * Move a piece to a position to an another one.
+     * @param actualPos the initial position of the piece
+     * @param finalPos the position where the piece want to move
      */
     void move(Position actualPos, Position finalPos);
 
     /**
      * 
-     * @return X border of chessboard
+     * @return X chessboard's border
      */
     int getxBorder();
 
     /**
      * 
-     * @return Y border of chessboard
+     * @return Y chessboard's border
      */
     int getyBorder();
 
     /**
-     * 
-     * @param selectedPos
-     * @return an optional of a piece
+     * Try to get a piece from a position if it exist.
+     * @param selectedPos The position to check
+     * @return an optional of piece
      */
     Optional<Piece> getPieceOnPosition(Position selectedPos);
 
     /**
-     * 
-     * @param attacker
+     * From a piece it return all its allowed position.
+     * @param attacker every piece is allowed
      * @return a list of all possible position
      */
     List<Position> getAllPosition(Piece attacker);
 
     /**
-     * 
-     * @param namePiece
-     * 
-     * pawn get promoted to a new Piece.
+     * Pawn get promoted to a new Piece.
+     * @param namePiece the name of the new piece
      * @return the new piece
      */
     Piece promotion(Name namePiece);
 
     /**
-     * 
-     * @param piece
-     * @param targetPos
+     * From a piece and a position it checks if 
+     * the piece is castling.
+     * @param piece the king
+     * @param targetPos the position where the king want to move
      * @return true if king is castling
      */
     boolean isCastling(Piece piece, Position targetPos);

@@ -19,7 +19,7 @@ public class UserImpl implements User {
     private boolean isWinner;
 
     /**
-     * @param name
+     * @param name name of user
      */
 
     public UserImpl(@JsonProperty("name") final String name) {
