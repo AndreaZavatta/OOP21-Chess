@@ -17,9 +17,10 @@ public class Pair<X, Y> implements Serializable {
     private final Y y;
 
     /**
+     * Standard constructor.
      * 
-     * @param x
-     * @param y
+     * @param x the x value
+     * @param y the y value
      */
 
     public Pair(final X x, final Y y) {
@@ -28,7 +29,7 @@ public class Pair<X, Y> implements Serializable {
     }
 
     /**
-     * 
+     * A getter for the x value.
      * @return X
      */
     public X getX() {
@@ -36,7 +37,7 @@ public class Pair<X, Y> implements Serializable {
     }
 
     /**
-     * 
+     * A getter for the y value.
      * @return Y
      */
     public Y getY() {
