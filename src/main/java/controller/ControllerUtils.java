@@ -14,9 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 /**
- *
- *
+ * It's a utility class that contains methods that are used by multiple controllers.
  */
 public final class ControllerUtils {
     private final Alert alert = new Alert(Alert.AlertType.NONE);
@@ -31,88 +31,100 @@ public final class ControllerUtils {
     }
 
     /**
-     * Opens the main menu screen and closes the current one.
-     * @FXML
-     * @param event
+     * When the backToMenu button is clicked, change the page to the MainMenu.fxml page.
+     *
+     * @param event The event that triggered the method.
      */
     public void backToMenu(final Event event) {
         changePage(event, "/layouts/MainMenu.fxml");
     }
+
     /**
-     * Opens the user handler.
-     * @FXML
-     * @param event
+     * When the user clicks the button, change the page to the UserHandler.fxml page.
+     *
+     * @param event The event that triggered the method.
      */
     public void openUserHandler(final Event event) {
         changePage(event, "/layouts/UserHandler.fxml");
     }
+
     /**
-     * Opens the tutorial. 
-     * @FXML
-     * @param event
+     * When the user clicks the tutorial button, change the page to the tutorial page.
+     *
+     * @param event The event that triggered the method.
      */
     public void openTutorial(final Event event) {
         changePage(event, "/layouts/Tutorial.fxml");
     }
+
     /**
-     * Opens the statistics.
-     * @FXML
-     * @param event
+     * When the user clicks the Stats button, change the page to the Stats page.
+     *
+     * @param event The event that triggered the method.
      */
     public void openStats(final Event event) {
         changePage(event, "/layouts/Stats.fxml");
     }
 
     /**
-     * Opens the tutorial slides.
-     * @param event
+     * When the user clicks the button, change the page to the tutorial page.
+     *
+     * @param event The event that triggered the method.
      */
     public void openSlide(final Event event) {
         changePage(event, "/layouts/tutorial/1.fxml");
     }
 
     /**
+     * When the user clicks the button, change the page to the next page in the tutorial.
      *
-     * @param event
+     * @param event The event that triggered the method.
      */
     public void goOn(final Event event) {
         changePage(event, "/layouts/tutorial/2.fxml");
     }
 
     /**
-     * @param event
+     * When the user clicks the button, change the page to the castling page.
+     *
+     * @param event The event that triggered the method.
      */
     public void openCastling(final Event event) {
         changePage(event, "/layouts/tutorial/castling.fxml");
     }
 
     /**
+     * When the user clicks the button, change the page to the endgame.fxml page.
      *
-     * @param event
+     * @param event The event that triggered the method.
      */
     public void openEndgame(final ActionEvent event) {
         changePage(event, "/layouts/tutorial/endgame.fxml");
     }
 
     /**
-     * @param event
+     * When the user clicks the button, change the page to the final slide.
+     *
+     * @param event The event that triggered the method.
      */
     public void openFinalSlide(final ActionEvent event) {
         changePage(event, "/layouts/tutorial/final.fxml");
     }
 
     /**
+     * This function sets up an alert with a title, content, and type, and then shows it.
      *
-     * @param title
-     * @param header
-     * @param content
-     * @param type
+     * @param title The title of the alert
+     * @param header The header text of the alert.
+     * @param content The content of the alert.
+     * @param type The type of alert.
      */
     public void showCompleteAlert(final String title, final String header, final String content, final Alert.AlertType type) {
         setUpAlert(title, content, type);
         alert.setHeaderText(header);
         alert.show();
     }
+
     /**
      * Create a custom alert for the end of the game.
      * @param title the title of the alert.
@@ -128,20 +140,22 @@ public final class ControllerUtils {
         alert.setTitle(title);
         alert.setContentText(content);
     }
+
     /**
+     * It shows an alert with the given message, title, and type.
      *
-     * @param str
-     * @param type
+     * @param str The message you want to display
+     * @param type The type of alert.
      */
     public void showAlert(final String str, final Alert.AlertType type) {
         showCompleteAlert("Message", "", str, type);
     }
 
     /**
+     * It takes an event and an FXMLLoader, and it creates a new window with the FXMLLoader's root as the scene.
      *
-     * @param event
-     * @param loader
-     * @throws IOException
+     * @param event The event that triggered the method.
+     * @param loader The FXMLLoader object that is used to load the FXML file.
      */
     public void buildWindowNodes(final Event event, final FXMLLoader loader) throws IOException {
         final Parent root = loader.load();
@@ -151,6 +165,7 @@ public final class ControllerUtils {
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+
     /**
      * A standard getter for the alert.
      * @return the alert
@@ -160,9 +175,10 @@ public final class ControllerUtils {
     }
 
     /**
-     * 
-     * @param path
-     * @return a button
+     * Create a button with an image on it.
+     *
+     * @param path The path to the image file.
+     * @return A button with an image.
      */
     public Button createImageButton(final String path) {
         final Button btn = new Button();
