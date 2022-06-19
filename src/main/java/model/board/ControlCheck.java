@@ -5,7 +5,8 @@ import java.util.List;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 /**
- * 
+ * this interface makes controls if the king is in check
+ * and controls if the positions the king is moving to are attacked by other pieces
  *
  */
 public interface ControlCheck {

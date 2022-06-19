@@ -3,7 +3,7 @@ package chess.parsers;
 import model.board.Chessboard;
 
 /**
- * interface for FenConverter.
+ * interface for converting a Chessboard in a string fen
  *
  */
 public interface FenConverter {

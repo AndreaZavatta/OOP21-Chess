@@ -13,9 +13,8 @@ import model.pieces.Piece;
 
 /**
  * 
- *
+ * simple implementation of ControlCheck
  */
-
 public class ControlCheckImpl implements ControlCheck {
   private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
     @Override

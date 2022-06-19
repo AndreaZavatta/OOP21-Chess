@@ -16,7 +16,9 @@ import model.pieces.Piece;
 
 /**
  * 
- *
+ * an implementation of Fen.
+ * this class is given all the information about the checkerboard
+ * and returns a string representing that checkerboard
  */
 public class FenBuilder implements Fen {
     private Side side;

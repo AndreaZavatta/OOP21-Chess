@@ -6,7 +6,7 @@ import model.piece.utils.Position;
 import model.pieces.Piece;
 
 /**
- * 
+ * this interface is used to convert a move into a string.
  *
  */
 public interface Move {
