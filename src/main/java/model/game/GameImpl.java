@@ -49,8 +49,8 @@ public class GameImpl implements Game {
 
     /**
      * 
-     * @param player1
-     * @param player2
+     * @param player1 white player
+     * @param player2 black player
      */
 
     public GameImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
