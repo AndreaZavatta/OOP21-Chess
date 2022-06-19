@@ -6,8 +6,8 @@ import java.io.Serializable;
  * 
  * A generic Pair.
  *
- * @param <X>
- * @param <Y>
+ * @param <X> generic first parameter
+ * @param <Y> generic second parameter
  */
 public class Pair<X, Y> implements Serializable {
 
