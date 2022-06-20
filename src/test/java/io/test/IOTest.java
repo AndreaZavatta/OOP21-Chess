@@ -8,8 +8,6 @@ import model.board.ChessboardFactory;
 import model.board.ChessboardFactoryImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.*;
-import model.pieces.*;
 import model.user.User;
 import model.user.UserImpl;
 import io.JsonDeserializer;
@@ -105,7 +103,7 @@ class IOTest {
     @Test
     void testDeserializationGame() {
         try {
-            final Game game = new GameImpl(new Pair<>(new UserImpl("andrea"), BLACK), new Pair<>(new UserImpl("marco"), WHITE));
+            final Game game = new GameImpl(new Pair<>(new UserImpl("Andrea"), BLACK), new Pair<>(new UserImpl("marco"), WHITE));
             final String str = map.writeValueAsString(game);
             final Game game2 = map.readValue(str, Game.class);
             assertEquals(game.getPiecesList(), game2.getPiecesList());

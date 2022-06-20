@@ -35,11 +35,11 @@ public class StatsController extends AbstractStatsController implements Initiali
     @FXML
     private TextArea txtAreaStats = new TextArea();
     @FXML
-    private TableColumn<User, String> firstPlayer;
+    private TableColumn<User, String> firstPlayer = new TableColumn<>();
     @FXML
-    private TableColumn<User, String> secondPlayer;
+    private TableColumn<User, String> secondPlayer = new TableColumn<>();
     @FXML
-    private TableColumn<LocalDate, String> date;
+    private TableColumn<LocalDate, String> date = new TableColumn<>();
     @FXML
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
 

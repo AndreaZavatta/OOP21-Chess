@@ -30,6 +30,7 @@ public class JsonFileWriterImpl implements JsonFileWriter {
     public void writeFile(final Object obj) throws IOException {
             final FileOutputStream file = new FileOutputStream(cd + fs + fileName);
             write(obj, file);
+            file.close();
     }
 
     private void write(final Object obj, final FileOutputStream file) throws IOException {
