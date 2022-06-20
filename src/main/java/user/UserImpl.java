@@ -14,7 +14,14 @@ public class UserImpl implements User {
 
     private static final long serialVersionUID = 5552078593645290172L;
 
+    /**
+     * 
+     * name of user.
+     */
     private final String name;
+    /**
+     * true if is the winner.
+     */
     @JsonProperty("gameWinner")
     private boolean isWinner;
 
