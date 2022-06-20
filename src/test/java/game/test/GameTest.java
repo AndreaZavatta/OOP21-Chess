@@ -87,8 +87,16 @@ class GameTest {
     }
 
     @Test
-    void draw() {
-        //TODO
+    void testDraw() {
+        final Game match = createGame();
+
+        try {
+            match.setDraw();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        assertTrue(match.isGameFinished());
+        assertTrue(match.getWinner().isEmpty());
     }
 
     @Test
