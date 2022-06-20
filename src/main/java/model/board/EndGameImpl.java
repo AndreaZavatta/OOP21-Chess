@@ -64,14 +64,9 @@ public class EndGameImpl implements EndGame {
         return alive.stream().anyMatch(x -> x.getName() == KNIGHT || x.getName() == BISHOP);
     }
 
-    /*@Override
-    public boolean isDrawByRepetition(final Chessboard chessboard) {
-        return true;
-    }*/
-
     @Override
     public boolean isDraw(final Chessboard chessboard, final Side side) {
-        return isDrawByInsufficientMaterial(chessboard) /*|| isDrawByRepetition(chessboard)*/ || isStalemate(chessboard, side);
+        return isDrawByInsufficientMaterial(chessboard) || isStalemate(chessboard, side);
     }
 
     private List<Piece> getAttackedSide(final Chessboard chessboard, final Side side) {
