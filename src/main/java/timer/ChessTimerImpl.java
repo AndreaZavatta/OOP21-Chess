@@ -1,11 +1,11 @@
 package timer;
 
 import javafx.application.Platform;
+import java.util.Timer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -14,7 +14,7 @@ import java.util.TimerTask;
  *
  */
 public class ChessTimerImpl implements ChessTimer {
-    private final Timer timer = new java.util.Timer(true);
+    private final Timer timer = new Timer(true);
     private final TimerPlayer white;
     private final TimerPlayer black;
     @FXML
@@ -43,7 +43,7 @@ public class ChessTimerImpl implements ChessTimer {
             private Instant previousTime = Instant.now();
             @Override
             public void run() {
-                var currentTime = Instant.now();
+                final var currentTime = Instant.now();
                 final var delta = Duration.between(previousTime, currentTime).toMillis() / 1000.;
                 final var currentPlayer = white.isCurrentPlayer() ? white : black;
                 currentPlayer.subtractTime(delta);

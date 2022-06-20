@@ -47,7 +47,7 @@ public class TutorialController {
     void showPiece(final ActionEvent event) throws IOException {
         final Button caller = (Button) event.getSource();
         System.out.println(caller.getId());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/" + caller.getId() + ".fxml"));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/tutorial/" + caller.getId() + ".fxml"));
             controller.buildWindowNodes(event, loader);
     }
 }

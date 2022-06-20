@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * This class tests some situations in which it is possible to castle.
  *
  */
-public class CastlingTest {
+class CastlingTest {
     private final PieceFactory factory = new PieceFactoryImpl();
     private  final ChessboardFactory board = new ChessboardFactoryImpl();
     private final Castling castle = new CastlingImpl();

@@ -34,7 +34,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import timer.*;
+import timer.TimerPlayerImpl;
+import timer.ChessTimer;
+import timer.ChessTimerImpl;
+import timer.MatchDuration;
+import timer.TimerPlayer;
 import tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;
@@ -119,10 +123,10 @@ public class BoardController {
     }
 
     private void createTimer() {
-        TimerPlayer whitePlayer = new TimerPlayerImpl(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
-        TimerPlayer blackPlayer = new TimerPlayerImpl(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
+        final TimerPlayer whitePlayer = new TimerPlayerImpl(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
+        final TimerPlayer blackPlayer = new TimerPlayerImpl(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
 
-        ChessTimer chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
+        final ChessTimer chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
         chessTimer.buildTimer();
     }
 
