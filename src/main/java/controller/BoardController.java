@@ -200,19 +200,16 @@ public class BoardController {
     }
 
     private void createChessboard() {
-        int count = 0;
         for (int i = 0; i < WIDTH; i++) {
-            count++;
             for (int j = 0; j < HEIGHT; j++) {
                 final Rectangle chessBoardRectangle = new Rectangle(i * TILE_SIZE, j * TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
                 mapPositionRectangle.put(Position.createNumericPosition(i, j), chessBoardRectangle);
-                if (count % 2 == 0) {
+                if ((i + j) % 2 == 0) {
                     chessBoardRectangle.setFill(theme.getR1());
                 } else {
                     chessBoardRectangle.setFill(theme.getR2());
                 }
-                count++;
                 chessBoardRectangle.setStroke(Color.BLACK);
                 chessBoardRectangle.setOnMouseEntered(x -> 
                 setEffect(theme.getRectangleEffect(), chessBoardRectangle));
