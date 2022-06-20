@@ -13,7 +13,7 @@ import model.pieces.Piece;
 
 /**
  * 
- * simple implementation of ControlCheck
+ * Simple implementation of ControlCheck.
  */
 public class ControlCheckImpl implements ControlCheck {
   private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();

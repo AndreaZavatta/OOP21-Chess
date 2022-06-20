@@ -22,9 +22,8 @@ import static model.piece.utils.Name.PAWN;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
 /**
- * an implementation of FenConverter
+ * An implementation of FenConverter.
  */
-
 public class FenConverterImpl implements FenConverter {
     private final PieceFactory pieceFactory = new PieceFactoryImpl();
     /**
