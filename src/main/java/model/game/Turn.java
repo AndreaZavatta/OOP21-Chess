@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import tuple.Pair;
 import model.piece.utils.Side;
-import user.User;
+import model.user.User;
 @JsonDeserialize(as = TurnImpl.class)
 interface Turn extends Serializable {
 

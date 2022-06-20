@@ -16,9 +16,9 @@ import model.piece.utils.Side;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
+import model.user.User;
+import model.user.UserImpl;
 import tuple.Pair;
-import user.User;
-import user.UserImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

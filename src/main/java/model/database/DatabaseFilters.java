@@ -1,9 +1,10 @@
 package model.database;
 
 import model.game.Game;
+import model.user.User;
 import tuple.Pair;
 import tuple.Triple;
-import user.User;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

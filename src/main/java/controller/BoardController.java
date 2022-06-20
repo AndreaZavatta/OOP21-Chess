@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import controller.user.UserController;
 import controller.utils.ColorSettings;
 import controller.utils.PieceImagePath;
 import model.game.Game;
@@ -40,8 +41,8 @@ import model.piece.utils.Numbers;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;
-import user.User;
-import user.UserController;
+import model.user.User;
+
 import static controller.BoardControllerUtils.getBackground;
 import static controller.BoardControllerUtils.getKingOfTheOtherTurn;
 import static controller.BoardControllerUtils.getKingOfThisTurn;

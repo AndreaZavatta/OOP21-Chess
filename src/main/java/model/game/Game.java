@@ -10,7 +10,7 @@ import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.Piece;
-import user.User;
+import model.user.User;
 
 /**
  * 

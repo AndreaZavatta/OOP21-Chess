@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import tuple.Pair;
 import model.piece.utils.Side;
-import user.User;
+import model.user.User;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class TurnImpl implements Turn {
 

@@ -25,7 +25,7 @@ import model.piece.utils.Side;
 import model.pieces.Piece;
 import model.promotion.Promotion;
 import model.promotion.PromotionImpl;
-import user.User;
+import model.user.User;
 
 /**
  * 
@@ -76,6 +76,7 @@ public class GameImpl implements Game {
         turnManager.turnIncrement();
         if (gameController.isCheckmate(chessboard, turnManager.getUserTurn())) {
             winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
+            winner.getX().haveWon();
             matchEnded(); 
         } else if (gameController.isDraw(chessboard, turnManager.getUserTurn())) {
             matchEnded();

@@ -17,8 +17,8 @@ import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
-import user.User;
-import user.UserImpl;
+import model.user.User;
+import model.user.UserImpl;
 
 class GameTest {
 

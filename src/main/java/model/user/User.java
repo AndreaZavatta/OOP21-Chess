@@ -1,4 +1,4 @@
-package user;
+package model.user;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 

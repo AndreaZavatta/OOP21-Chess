@@ -10,14 +10,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.*;
 import model.pieces.*;
+import model.user.User;
+import model.user.UserImpl;
+
 import org.junit.jupiter.api.Test;
 import model.game.Game;
 import model.game.GameImpl;
 import tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
-import user.User;
-import user.UserImpl;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;

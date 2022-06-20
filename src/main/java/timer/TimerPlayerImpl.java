@@ -1,9 +1,9 @@
 package timer;
 
 import model.game.Game;
+import controller.user.UserControllerImpl;
 import javafx.scene.image.Image;
 import model.piece.utils.Side;
-import user.UserControllerImpl;
 
 /**
  *

@@ -4,8 +4,8 @@ import io.JsonFileReader;
 import io.JsonFileReaderImpl;
 import model.database.DatabaseFilters;
 import model.game.Game;
+import model.user.User;
 import tuple.Triple;
-import user.User;
 
 import java.io.IOException;
 import java.time.LocalDate;

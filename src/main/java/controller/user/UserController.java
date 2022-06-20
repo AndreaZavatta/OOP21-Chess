@@ -1,6 +1,7 @@
-package user;
+package controller.user;
 
 import javafx.scene.image.Image;
+import model.user.User;
 
 /**
  * 

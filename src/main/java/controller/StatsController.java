@@ -2,6 +2,7 @@ package controller;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import model.game.Game;
+import model.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -16,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.database.DatabaseFilters;
 import tuple.Triple;
-import user.User;
 
 import java.net.URL;
 import java.time.LocalDate;
