@@ -177,7 +177,7 @@ public class MoveBuilder implements Move {
     }
 
     private String getDepartureX() {
-        return (column || isPawnCapture()) ? Character.toString(piece.getPosition().getCharX()) : "";
+        return column || isPawnCapture() ? Character.toString(piece.getPosition().getCharX()) : "";
     }
 
     private boolean isPawnCapture() {
@@ -185,7 +185,7 @@ public class MoveBuilder implements Move {
     }
 
     private String getPieceNotation() {
-        return (!"P".contentEquals(piece.getName().getChessNotation())) ? nameNotation() : "";
+        return !"P".contentEquals(piece.getName().getChessNotation()) ? nameNotation() : "";
     }
 
     private String getPromotion() {
