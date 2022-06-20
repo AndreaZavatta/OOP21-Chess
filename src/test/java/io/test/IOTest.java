@@ -30,8 +30,6 @@ import model.piece.utils.Position;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
-import user.User;
-import user.UserImpl;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
