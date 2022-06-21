@@ -28,9 +28,9 @@ public class JsonFileWriterImpl implements JsonFileWriter {
 
     @Override
     public void writeFile(final Object obj) throws IOException {
-            final FileOutputStream file = new FileOutputStream(cd + fs + fileName);
-            write(obj, file);
-            file.close();
+            try (FileOutputStream file = new FileOutputStream(cd + fs + fileName)) {
+                write(obj, file);
+            }
     }
 
     private void write(final Object obj, final FileOutputStream file) throws IOException {
