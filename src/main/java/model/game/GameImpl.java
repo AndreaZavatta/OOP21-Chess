@@ -75,7 +75,7 @@ public class GameImpl implements Game {
         chessboard.move(firstPos, finalPos);
         turnManager.turnIncrement();
         if (gameController.isCheckmate(chessboard, turnManager.getUserTurn())) {
-            matchEndeda();
+            setWinner();
         } else if (gameController.isDraw(chessboard, turnManager.getUserTurn())) {
             matchEnded();
         }
@@ -148,6 +148,13 @@ public class GameImpl implements Game {
     @Override
     public Side getOppositeColor(final Side color) {
         return turnManager.getOppositeColor(color);
+    }
+
+    @Override
+    public void setWinner() throws IOException {
+        winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
+        winner.getX().haveWon();
+        matchEnded();
     }
 
     private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {

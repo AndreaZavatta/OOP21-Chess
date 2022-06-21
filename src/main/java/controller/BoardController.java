@@ -132,7 +132,7 @@ public class BoardController {
         chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
         chessTimer.setGameOverListener(loserPlayer -> {
             try {
-                match.matchEndeda();
+                match.setWinner();
                 quitGame();
             } catch (IOException e) {
                 e.printStackTrace();
