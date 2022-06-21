@@ -1,9 +1,10 @@
-package timer;
+package model.game;
 
 import javafx.application.Platform;
 import java.util.Timer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.util.TimerTask;
