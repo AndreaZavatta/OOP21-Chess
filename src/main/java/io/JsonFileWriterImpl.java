@@ -15,7 +15,7 @@ public class JsonFileWriterImpl implements JsonFileWriter {
     private final JsonSerializer jSerializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
-    private final String cd =  System.getProperty("user.dir");
+    private final String cd =  System.getProperty("user.home");
 
     /**
      *
