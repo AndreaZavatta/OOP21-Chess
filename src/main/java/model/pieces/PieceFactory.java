@@ -9,7 +9,8 @@ import model.piece.utils.Name;
  */
 public interface PieceFactory {
     /**
-     * Create a new piece of the given name, position, and color.
+     * Create a new piece of the given {@link model.piece.utils.Name},
+     * {@link model.piece.utils.Position}, and {@link model.piece.utils.Side}.
      *
      * @param name The name of the piece.
      * @param position The position of the piece on the board.

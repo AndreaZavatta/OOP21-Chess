@@ -12,7 +12,8 @@ import model.pieces.Piece;
  */
 public interface BasicMoves {
     /**
-     * Given a piece, a chessboard, and a set of directions,
+     * Given a {@link model.pieces.Piece}, a {@link model.board.Chessboard},
+     * and a set of {@link model.piece.utils.PieceDirections},
      * return a list of all the positions that the piece can move
      * to. The function takes in a set of directions,
      * which is a list of directions that the piece can move in.
@@ -24,7 +25,7 @@ public interface BasicMoves {
      */
     List<Position> iteratedMove(PieceDirections directions, Chessboard board, Piece piece);
     /**
-     * This method is used by the King and Knight in order to
+     * This method is used by the {@link model.pieces.King} and {@link model.pieces.Knight} in order to
      * return the list of possible position. It iterates only for the piece's direction since for those pieces
      * you don't need to iterate for the entire board.
      *

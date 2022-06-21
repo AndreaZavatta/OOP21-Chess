@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  */
 public enum PieceDirections {
     /**
-     * The pawn directions.
+     * The {@link model.pieces.Pawn} directions.
      */
     PAWN_DIR {
         @Override
@@ -19,7 +19,7 @@ public enum PieceDirections {
         }
     },
     /**
-     * The king directions.
+     * The {@link model.pieces.King} directions.
      */
     KING_DIR {
         @Override
@@ -29,7 +29,7 @@ public enum PieceDirections {
         }
     },
     /**
-     * The rook directions.
+     * The {@link model.pieces.Rook} directions.
      */
     ROOK_DIR {
         @Override
@@ -41,7 +41,7 @@ public enum PieceDirections {
         }
     },
     /**
-     * The bishop directions.
+     * The {@link model.pieces.Bishop} directions.
      */
     BISHOP_DIR {
         @Override
@@ -53,7 +53,7 @@ public enum PieceDirections {
         }
     },
     /**
-     * The knight directions.
+     * The {@link model.pieces.Knight} directions.
      */
     KNIGHT_DIR {
         @Override
@@ -69,7 +69,7 @@ public enum PieceDirections {
         }
     },
     /**
-     * The queen directions.
+     * The {@link model.pieces.Queen} directions.
      */
     QUEEN_DIR {
         @Override
@@ -83,7 +83,7 @@ public enum PieceDirections {
     /**
      * Returns a list of all the directions that this piece can move in.
      *
-     * @return A list of positions.
+     * @return A list of {@link model.piece.utils.Position}.
      */
     public abstract List<Position> getDirections();
 }
