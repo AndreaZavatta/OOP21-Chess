@@ -100,10 +100,12 @@ public class BoardController {
     private ImageView blackPlayerImage = new ImageView();
     @FXML
     private ImageView whitePlayerImage = new ImageView();
+    private ChessTimer chessTimer;
     @FXML
     private Label whiteTimer = new Label();
     @FXML
     private Label blackTimer = new Label();
+
 
 
     /**
@@ -122,10 +124,20 @@ public class BoardController {
     }
 
     private void createTimer() {
-        final TimerPlayer whitePlayer = new TimerPlayerImpl(whiteUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
-        final TimerPlayer blackPlayer = new TimerPlayerImpl(blackUser.getName(), whiteUser.getImage(), MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
+        final TimerPlayer whitePlayer = new TimerPlayerImpl(whiteUser.getName(), whiteUser.getImage(),
+                MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.WHITE);
+        final TimerPlayer blackPlayer = new TimerPlayerImpl(blackUser.getName(), whiteUser.getImage(),
+                MatchDuration.TEN_MINUTES_MATCH.getTime(), match, Side.BLACK);
 
-        final ChessTimer chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
+        chessTimer = new ChessTimerImpl(whitePlayer, blackPlayer, whiteTimer, blackTimer);
+        chessTimer.setGameOverListener(loserPlayer -> {
+            try {
+                match.matchEndeda();
+                quitGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         chessTimer.buildTimer();
     }
 
@@ -139,8 +151,8 @@ public class BoardController {
     @FXML
     void askForDraw(final ActionEvent event) {
         contrUtil.createEndGameAlert(match.getUserSideTurn() + " ask for a draw!",
-                        "Do you want to accept the draw?",
-                        AlertType.CONFIRMATION);
+                "Do you want to accept the draw?",
+                AlertType.CONFIRMATION);
         setHeader(contrUtil.getAlert());
         final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
         final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
@@ -151,6 +163,7 @@ public class BoardController {
             } catch (IOException ioEx) {
                 contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
             }
+            chessTimer.closeTimer();
             quitGame();
         }
     }
@@ -251,6 +264,7 @@ public class BoardController {
             isInCheck();
             pane.getChildren().removeAll(circles);
             if (match.isGameFinished()) {
+                chessTimer.closeTimer();
                 quitGame();
             }
             if (match.checkPromotion().isPresent()) {

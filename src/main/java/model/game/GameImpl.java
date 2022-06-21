@@ -75,14 +75,11 @@ public class GameImpl implements Game {
         chessboard.move(firstPos, finalPos);
         turnManager.turnIncrement();
         if (gameController.isCheckmate(chessboard, turnManager.getUserTurn())) {
-            winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
-            winner.getX().haveWon();
-            matchEnded(); 
+            matchEndeda();
         } else if (gameController.isDraw(chessboard, turnManager.getUserTurn())) {
             matchEnded();
         }
     }
-
     @Override
     public Optional<Pair<User, Side>> getWinner() {
         return Optional.ofNullable(winner);
