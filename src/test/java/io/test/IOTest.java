@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 
 class IOTest {
     private final String fs = System.getProperty("file.separator");
-    private final String cd =  System.getProperty("user.dir");
+    private final String cd =  System.getProperty("user.home");
     private final PieceFactory fact = new PieceFactoryImpl();
     private final JsonSerializer js = new JsonSerializerImpl();
     private final ChessboardFactory chessboardFact = new ChessboardFactoryImpl();
