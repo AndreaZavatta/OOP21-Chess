@@ -16,7 +16,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
     private final JsonDeserializer jDeserializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
-    private final String cd =  System.getProperty("user.dir");
+    private final String cd =  System.getProperty("user.home");
 
     /**
      * 
