@@ -30,6 +30,7 @@ public final class Start extends Application {
         startStage.setTitle("L.A.M.A. Chess");
         startStage.setResizable(true);
         startStage.show();
+        startStage.setResizable(false);
     }
     /**
      * Main method.

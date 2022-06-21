@@ -7,17 +7,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TutorialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TutorialController">
     <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The King">
         <font>
             <Font name="Courier New Bold" size="50.0" />
         </font>
     </Text>
-    <ImageView fitHeight="292.0" fitWidth="294.0" layoutX="283.0" layoutY="74.0" preserveRatio="true" smooth="false">
-    </ImageView>
-    <ImageView fitHeight="292.0" fitWidth="294.0" layoutX="282.0" layoutY="54.0" preserveRatio="true">
-        <Image url="@../../pieces/gif/king.gif" />
-    </ImageView>
     <Text layoutX="26.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kings can move in any direction, but only 1 square at a time. The King is also, for obvious reasons, the only piece that cannot be placed on a square that is attacked by one of the opponent's pieces. Additionally, the King can make a special move called &quot;Castling&quot;." textAlignment="JUSTIFY" wrappingWidth="240.0390625">
         <font>
             <Font name="Courier New Bold" size="15.0" />
@@ -33,4 +28,9 @@
             <Font name="Courier New Bold" size="12.0" />
         </font>
     </Button>
+   <ImageView fitHeight="292.0" fitWidth="354.0" layoutX="295.0" layoutY="54.0" preserveRatio="true">
+      <image>
+         <Image url="@../../pieces/tutorial/king.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

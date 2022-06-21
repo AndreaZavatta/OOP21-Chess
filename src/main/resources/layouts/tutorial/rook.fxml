@@ -7,18 +7,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TutorialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TutorialController">
    <children>
       <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Rook">
          <font>
             <Font name="Courier New Bold" size="50.0" />
          </font>
       </Text>
-      <ImageView fitHeight="261.0" fitWidth="313.0" layoutX="309.0" layoutY="81.0" preserveRatio="true">
-         <image>
-            <Image url="@../../pieces/gif/rook.gif" />
-         </image>
-      </ImageView>
       <Text layoutX="26.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Piece value: 5">
          <font>
             <Font name="Courier New Bold Italic" size="20.0" />
@@ -34,5 +29,10 @@
             <Font name="Courier New Bold" size="12.0" />
          </font>
       </Button>
+      <ImageView fitHeight="298.0" fitWidth="282.0" layoutX="300.0" layoutY="66.0" preserveRatio="true">
+         <image>
+            <Image url="@../../pieces/tutorial/rook.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
