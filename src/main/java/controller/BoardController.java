@@ -63,14 +63,8 @@ public class BoardController {
      * The tile size.
      */
     public static final int TILE_SIZE = 600 / 8;
-    /**
-     * The width of the board.
-     */
-    public static final int WIDTH = 8;
-    /**
-     * The height of the board.
-     */
-    public static final int HEIGHT = 8;
+    private static final int WIDTH = 8;
+    private static final int HEIGHT = 8;
     private static final int TEXT_DISTANCE = 15;
     private static final double OPACITY = 0.4;
     private static final int RADIUS = 15;

@@ -11,7 +11,8 @@ public final class ControlsUtility {
     private ControlsUtility() {
     }
     /**
-     * This method checks if in the given position there is an enemy piece.
+     * This method checks if in the given {@link model.piece.utils.Position} there is an
+     * enemy {@link model.pieces.Piece}.
      * @param piece the piece you are calculating the possible positions.
      * @param position the position you are checking.
      * @param board the current board.
@@ -21,7 +22,8 @@ public final class ControlsUtility {
         return board.getPieceOnPosition(position).map(p -> !p.getSide().equals(piece.getSide())).orElse(false);
     }
     /**
-     * Check if there is a piece on the given position on the given board.
+     * Check if there is a {@link model.pieces.Piece} on the given {@link model.piece.utils.Position}
+     * on the given {@link model.board.Chessboard}.
      * @param position The position to check.
      * @param board The chessboard to check.
      * @return true if there is a piece in the specified position, false otherwise.
@@ -30,7 +32,7 @@ public final class ControlsUtility {
         return board.getPieceOnPosition(position).isPresent();
     }
     /**
-     * Check if the position is on the board.
+     * Check if the {@link model.piece.utils.Position} is on the board.
      * @param position The position to check.
      * @return true if the position is in the board, false otherwise.
      */
@@ -39,7 +41,8 @@ public final class ControlsUtility {
                 && position.getY() < 8 && position.getY() >= 0;
     }
     /**
-     * Given a piece, a direction, and a multiplier, return a new position.
+     * Given a {@link model.pieces.Piece}, a {@link model.piece.utils.PieceDirections}, and a multiplier,
+     * return a new {@link model.piece.utils.Position}.
      * @param piece The piece that is moving
      * @param direction The direction in which the piece is moving.
      * @param multiplier This is the number of steps the piece will take in the direction specified.
