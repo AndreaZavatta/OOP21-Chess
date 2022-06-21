@@ -1,4 +1,4 @@
-package model.game;
+package timer;
 
 import java.util.function.Consumer;
 

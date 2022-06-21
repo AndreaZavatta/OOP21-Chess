@@ -1,7 +1,8 @@
-package model.game;
+package timer;
 
 import controller.user.UserControllerImpl;
 import javafx.scene.image.Image;
+import model.game.Game;
 import model.piece.utils.Side;
 
 /**
