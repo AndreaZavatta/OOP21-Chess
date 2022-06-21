@@ -67,10 +67,7 @@ public abstract class AbstractPiece implements Piece {
         this.isMoved = true;
     }
 
-    /**
-     * A getter for the BasicMove object needed in each piece.
-     * @return the basicMoves
-     */
+    @Override
     public BasicMoves getBasicMoves() {
         return basicMoves;
     }

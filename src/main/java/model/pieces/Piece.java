@@ -3,6 +3,8 @@ package model.pieces;
 import java.util.List;
 
 import model.board.Chessboard;
+import model.move.BasicMoves;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import model.piece.utils.Side;
@@ -62,5 +64,10 @@ public interface Piece {
      * @param position the new Position
      */
     void setPosition(Position position);
+    /**
+     * A getter for the BasicMove object needed in each piece.
+     * @return the basicMoves
+     */
+    BasicMoves getBasicMoves();
 
 }
