@@ -15,7 +15,7 @@ import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.piece.utils.Name;
 /**
- * An abstract class that implements the Piece interface.
+ * An abstract class that implements the {@link model.pieces.Piece} interface.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)

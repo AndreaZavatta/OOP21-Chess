@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * This enum contains the standard directions a piece can go to.
+ * This enum contains the standard directions a {@link model.pieces.Piece} can go to.
  */
 public enum PieceDirections {
     /**

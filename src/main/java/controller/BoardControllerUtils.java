@@ -17,7 +17,7 @@ import model.piece.utils.Numbers;
 import model.pieces.Piece;
 
 /**
- * 
+ * An utility class for the {@link controller.BoardController}.
  *
  */
 public final class BoardControllerUtils {

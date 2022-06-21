@@ -11,7 +11,7 @@ import model.piece.utils.Side;
 import model.piece.utils.Name;
 import model.piece.utils.PieceDirections;
 /**
- * A Rook class that extends AbstractPiece abstract class.
+ * A Rook class that extends {@link model.pieces.AbstractPiece} abstract class.
  *
  */
 

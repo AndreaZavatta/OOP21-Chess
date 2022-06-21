@@ -13,7 +13,7 @@ import model.piece.utils.Name;
 import model.piece.utils.PieceDirections;
 
 /**
- * A Pawn class that extends AbstractPiece abstract class.
+ * A Pawn class that extends {@link model.pieces.AbstractPiece} abstract class.
  */
 public class Pawn extends AbstractPiece {
 

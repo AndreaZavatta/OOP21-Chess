@@ -11,7 +11,7 @@ import model.pieces.PieceFactory;
 import model.pieces.PieceFactoryImpl;
 
 /**
- * The Pawn promotion class.
+ * The Pawn promotion class, implements {@link model.promotion.Promotion}.
  */
 public class PromotionImpl implements Promotion {
 

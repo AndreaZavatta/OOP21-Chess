@@ -7,7 +7,7 @@ import model.piece.utils.Side;
 import model.piece.utils.Name;
 import model.piece.utils.PieceDirections;
 /**
- * A Bishop class that extends AbstractPiece abstract class.
+ * A Bishop class that extends {@link model.pieces.AbstractPiece} abstract class.
  *
  */
 public class Bishop extends AbstractPiece {

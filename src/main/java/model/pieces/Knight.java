@@ -10,7 +10,7 @@ import model.piece.utils.Name;
 import model.piece.utils.PieceDirections;
 
 /**
- * A Knight class that extends AbstractPiece abstract class.
+ * A Knight class that extends {@link model.pieces.AbstractPiece} abstract class.
  */
 public class Knight extends AbstractPiece {
 

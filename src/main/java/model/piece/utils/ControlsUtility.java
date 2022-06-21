@@ -4,7 +4,7 @@ import model.board.Chessboard;
 import model.pieces.Piece;
 
 /**
- * A piece utility class.
+ * A {@link model.pieces.Piece} utility class.
  */
 public final class ControlsUtility {
 

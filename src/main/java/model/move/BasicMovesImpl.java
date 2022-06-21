@@ -10,7 +10,7 @@ import model.piece.utils.PieceDirections;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 /**
- * Implementation of BasicMoves Interface.
+ * Implementation of {@link model.move.BasicMoves} Interface.
  */
 public class BasicMovesImpl implements BasicMoves {
 

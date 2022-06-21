@@ -15,7 +15,7 @@ import model.piece.utils.Position;
 import model.piece.utils.Side;
 
 /**
- * A King class that extends AbstractPiece abstract class.
+ * A King class that extends {@link model.pieces.AbstractPiece} abstract class.
  */
 public class King extends AbstractPiece {
 

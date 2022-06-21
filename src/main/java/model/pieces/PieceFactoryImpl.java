@@ -4,7 +4,7 @@ import model.piece.utils.Side;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 /**
- * Implementation of PieceFactory interface.
+ * Implementation of {@link model.pieces.PieceFactory} interface.
  */
 public class PieceFactoryImpl implements PieceFactory {
 
