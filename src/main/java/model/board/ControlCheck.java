@@ -5,8 +5,8 @@ import java.util.List;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 /**
- * this interface makes controls if the king is in check.
- * and controls if the positions the king is moving to are attacked by other pieces
+ * In chess, no move can be made that makes the king, of the player who is moving, checkmate.
+ * this rule is handled by this class
  *
  */
 public interface ControlCheck {
