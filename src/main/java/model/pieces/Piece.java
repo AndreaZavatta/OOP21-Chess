@@ -69,5 +69,4 @@ public interface Piece {
      * @return the basicMoves
      */
     BasicMoves getBasicMoves();
-
 }
