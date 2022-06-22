@@ -1,6 +1,5 @@
 package model.pieces;
 
-import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -8,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import model.board.Chessboard;
 import model.move.BasicMoves;
 import model.move.BasicMovesImpl;
 import model.piece.utils.Position;
