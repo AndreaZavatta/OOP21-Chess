@@ -31,7 +31,7 @@ class PromotionImplTest {
         list.add(pawn);
         assertFalse(prom.checkForPromotion(list).isPresent());
         pawn.setPosition(Position.createNumericPosition(0, Numbers.SEVEN));
-        assertTrue(prom.checkForPromotion(list).isEmpty());
+        assertTrue(prom.checkForPromotion(list).isPresent());
     }
 
 }
