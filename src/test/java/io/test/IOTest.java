@@ -160,7 +160,7 @@ class IOTest {
             final List<List<Piece>> listPiece = listGame.stream().map(Game::getPiecesList).collect(Collectors.toList());
             final List<List<Piece>> listPiece2 = listGame2.stream().map(Game::getPiecesList).collect(Collectors.toList());
             assertEquals(listPiece, listPiece2);
-            if (!new File(cd + fs +"LAMAChess"+ fs + "prova.txt").delete()) {
+            if (!new File(cd + fs + "LAMAChess" + fs + "prova.txt").delete()) {
                 fail();
             }
         } catch (IOException e) {
