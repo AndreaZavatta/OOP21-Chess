@@ -1,9 +1,5 @@
 package controls.test;
-import static model.piece.utils.Name.KING;
-import static model.piece.utils.Name.BISHOP;
 import static model.piece.utils.Name.ROOK;
-import static model.piece.utils.Name.KNIGHT;
-import static model.piece.utils.Name.QUEEN;
 import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
 import static model.piece.utils.Position.createNewPosition;
