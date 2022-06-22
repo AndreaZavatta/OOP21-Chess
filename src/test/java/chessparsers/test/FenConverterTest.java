@@ -19,7 +19,7 @@ import static model.piece.utils.Side.BLACK;
 import static model.piece.utils.Side.WHITE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class FenToBoardImplTest {
+class FenConverterTest {
     private final PieceFactory pieceFact = new PieceFactoryImpl();
     private final FenConverter fenToBoard = new FenConverterImpl();
     private final ChessboardFactory chessboardFactory = new ChessboardFactoryImpl();
