@@ -30,7 +30,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
 
     @Override
     public List<Game> readFile() throws IOException {
-            final File file = new File(cd + fs + fileName);
+            final File file = new File(cd + fs + "LAMAChess" + fs + fileName);
             return jDeserializer.deserialize(fromFileToString(file));
     }
 

@@ -1,9 +1,6 @@
 package io;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -28,7 +25,15 @@ public class JsonFileWriterImpl implements JsonFileWriter {
 
     @Override
     public void writeFile(final Object obj) throws IOException {
-            try (FileOutputStream file = new FileOutputStream(cd + fs + fileName)) {
+            File folder = new File(cd + fs + "LAMAChess");
+            if (!folder.exists() && !folder.mkdirs()){
+                throw new IOException();
+            }
+            writeObject(obj, folder);
+    }
+
+    private void writeObject(Object obj, File folder) throws IOException {
+            try (FileOutputStream file = new FileOutputStream(folder.getAbsoluteFile() + fs + fileName)) {
                 write(obj, file);
             }
     }
