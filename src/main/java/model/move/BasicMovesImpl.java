@@ -15,7 +15,7 @@ import model.pieces.Piece;
 public class BasicMovesImpl implements BasicMoves {
 
     @Override
-    public List<Position> iteratedMove(final PieceDirections directions, final Chessboard board,
+    public List<Position> multipleMove(final PieceDirections directions, final Chessboard board,
                                        final Piece piece) {
         return directions.getDirections().stream()
                 .flatMap(d -> 
@@ -26,7 +26,7 @@ public class BasicMovesImpl implements BasicMoves {
     }
 
     @Override
-    public List<Position> directMove(final PieceDirections directions, final Chessboard board,
+    public List<Position> singleMove(final PieceDirections directions, final Chessboard board,
                                      final Piece piece) {
         return directions.getDirections().stream()
                 .map(p -> ControlsUtility.getNewPosition(piece, p, 1))

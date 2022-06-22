@@ -23,7 +23,7 @@ public interface BasicMoves {
      * @param piece The piece that is moving
      * @return A list of positions that the piece can move to.
      */
-    List<Position> iteratedMove(PieceDirections directions, Chessboard board, Piece piece);
+    List<Position> multipleMove(PieceDirections directions, Chessboard board, Piece piece);
     /**
      * This method is used by the {@link model.pieces.King} and {@link model.pieces.Knight} in order to
      * return the list of possible position. It iterates only for the piece's direction since for those pieces
@@ -34,5 +34,5 @@ public interface BasicMoves {
      * @param piece the piece.
      * @return a list of position the piece can go to.
      */
-    List<Position> directMove(PieceDirections directions, Chessboard board, Piece piece);
+    List<Position> singleMove(PieceDirections directions, Chessboard board, Piece piece);
 }

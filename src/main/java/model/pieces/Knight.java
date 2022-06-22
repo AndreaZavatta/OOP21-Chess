@@ -29,7 +29,7 @@ public class Knight extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         return Collections
-                .unmodifiableList(this.getBasicMoves().directMove(PieceDirections.KNIGHT_DIR, board, this));
+                .unmodifiableList(this.getBasicMoves().singleMove(PieceDirections.KNIGHT_DIR, board, this));
     }
 
     @Override
