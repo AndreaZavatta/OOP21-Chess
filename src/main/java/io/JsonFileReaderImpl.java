@@ -16,7 +16,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
     private final JsonDeserializer jDeserializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
-    private final String cd =  System.getProperty("user.home");
+    private final String uh =  System.getProperty("user.home");
 
     /**
      * 
@@ -30,7 +30,7 @@ public class JsonFileReaderImpl implements JsonFileReader {
 
     @Override
     public List<Game> readFile() throws IOException {
-            final File file = new File(cd + fs + "LAMAChess" + fs + fileName);
+            final File file = new File(uh + fs + "LAMAChess" + fs + fileName);
             return jDeserializer.deserialize(fromFileToString(file));
     }
 

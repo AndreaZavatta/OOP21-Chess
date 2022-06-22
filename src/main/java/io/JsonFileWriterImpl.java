@@ -16,7 +16,7 @@ public class JsonFileWriterImpl implements JsonFileWriter {
     private final JsonSerializer jSerializer;
     private final String fileName;
     private final String fs = System.getProperty("file.separator");
-    private final String cd =  System.getProperty("user.home");
+    private final String uh =  System.getProperty("user.home");
 
     /**
      *
@@ -29,7 +29,7 @@ public class JsonFileWriterImpl implements JsonFileWriter {
 
     @Override
     public void writeFile(final Object obj) throws IOException {
-            final File folder = new File(cd + fs + "LAMAChess");
+            final File folder = new File(uh + fs + "LAMAChess");
             if (!folder.exists() && !folder.mkdirs()) {
                 throw new IOException();
             }
