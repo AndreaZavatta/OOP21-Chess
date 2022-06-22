@@ -41,9 +41,6 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public abstract List<Position> getAllPossiblePositions(Chessboard board);
-
-    @Override
     public Position getPosition() {
         return this.position;
     }
@@ -52,9 +49,6 @@ public abstract class AbstractPiece implements Piece {
     public Side getSide() {
         return this.color;
     }
-
-    @Override
-    public abstract int getValue();
 
     @Override
     public boolean isMoved() {
