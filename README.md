@@ -11,11 +11,11 @@ Questo programma è stato sviluppato da:
 
 ## Funzionalità Opzionali
 - [x] Aggiunta del timer alle partite. 
-- [] Salvataggio delle mosse per ogni partita.
-- [] Possibilità della partita in LAN.
-- [] La creazione di una partita in modalità 'Scacchi Magici'.
-- [] Personalizzazione della scacchiera e dei pezzi da parte dell'utente.
-- [] Implementazione della mossa 'en passant'.
+- [ ] Salvataggio delle mosse per ogni partita.
+- [ ] Possibilità della partita in LAN.
+- [ ] La creazione di una partita in modalità 'Scacchi Magici'.
+- [ ] Personalizzazione della scacchiera e dei pezzi da parte dell'utente.
+- [ ] Implementazione della mossa 'en passant'.
 
 ## How to run 
 ``` 
