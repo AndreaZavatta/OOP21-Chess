@@ -24,11 +24,15 @@
       </AnchorPane>
    </center>
    <left>
-      <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#askForDraw" prefHeight="50.0" prefWidth="120.0" text="Patta" BorderPane.alignment="BOTTOM_LEFT">
+      <Pane BorderPane.alignment="BOTTOM_LEFT">
          <BorderPane.margin>
             <Insets bottom="100.0" left="10.0" />
          </BorderPane.margin>
-      </Button>
+         <children>
+            <Button layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#askForDraw" prefHeight="50.0" prefWidth="120.0" text="Patta" />
+            <Button layoutY="100.0" mnemonicParsing="false" onAction="#surrend" prefHeight="50.0" prefWidth="120.0" text="Resa" />
+         </children>
+      </Pane>
    </left>
    <right>
       <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">

@@ -100,8 +100,6 @@ public class BoardController {
     @FXML
     private Label blackTimer = new Label();
 
-
-
     /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
@@ -159,6 +157,25 @@ public class BoardController {
             }
             chessTimer.closeTimer();
             quitGame();
+        }
+    }
+
+    @FXML
+    void surrend() {
+        contrUtil.createEndGameAlert("Surrend", "Do you want to surrend?",
+                AlertType.CONFIRMATION);
+        contrUtil.getAlert().setHeaderText(match.getUserSideTurn() + " is surrendering");
+        final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
+        final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
+
+        if (yes.equals(ButtonType.OK)) {
+            try {
+                match.setWinner();
+                chessTimer.closeTimer();
+                quitGame();
+            } catch (IOException e) {
+                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
+            }
         }
     }
 
