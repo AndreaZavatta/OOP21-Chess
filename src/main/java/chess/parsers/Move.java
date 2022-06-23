@@ -12,7 +12,7 @@ import model.pieces.Piece;
 public interface Move {
 
     /**
-     * et the moved Piece.
+     * Set the moved Piece.
      * @param piece the piece moved
      * 
      * @return Move to join the pattern builder
@@ -20,7 +20,7 @@ public interface Move {
     Move piece(Piece piece);
 
     /**
-     * 
+     * Set the destination of the piece moved.
      * @param destination the destination of the piece moved
      * @return Move to join the pattern builder
      */
@@ -88,6 +88,7 @@ public interface Move {
      */
     Move column();
     /**
+     * This method is used for building Move from Chessboard, based on fields.
      * @param chessboard the chessboard on which the move is made
      * @return a string that represent a move
      * @throws IllegalMoveException if the move isn't valid

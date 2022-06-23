@@ -15,7 +15,7 @@ import model.pieces.Piece;
 import static model.piece.utils.Name.PAWN;
 
 /**
- * a MoveBuilder to convert a move to String 
+ * An implementation of Move to convert a move to String
  * represented by algebric notation.
  *
  */
@@ -142,10 +142,7 @@ public class MoveBuilder implements Move {
         .orElse(List.of());
 
     }
-    /**
-     * 
-     * @return the string representation of the move
-     */
+
     @Override
     public String toString() {
         String str;

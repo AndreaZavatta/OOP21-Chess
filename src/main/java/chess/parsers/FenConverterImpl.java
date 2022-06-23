@@ -27,7 +27,7 @@ import static model.piece.utils.Side.WHITE;
 public class FenConverterImpl implements FenConverter {
     private final PieceFactory pieceFactory = new PieceFactoryImpl();
     /**
-     * 
+     * This method convert the Chess notation to Name.
      * @param chessNotation
      * @return the Name of piece
      */
@@ -45,9 +45,7 @@ public class FenConverterImpl implements FenConverter {
         return ret;
     }
 
-    /**
-     * {@inheritDoc}.
-     */
+    @Override
     public Chessboard getBoard(final String fen) {
         final List<Piece> list = buildList(fen.split(" "));
         return new ChessboardFactoryImpl().createTestCB(list);

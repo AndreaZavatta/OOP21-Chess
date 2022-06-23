@@ -19,7 +19,7 @@ public final class JsonUtils {
     private static JsonFileWriter writer = new JsonFileWriterImpl("database.txt");
     private JsonUtils() { }
     /**
-     * 
+     * This method is used to obtain the ObjectMapper.
      * @return ObjectMapper for serializing and deserializing objects
      */
     public static ObjectMapper getMapper() {

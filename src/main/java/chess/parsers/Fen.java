@@ -10,7 +10,7 @@ import model.piece.utils.Side;
 public interface Fen {
 
     /**
-     * 
+     * Set the active color.
      * @param side the color that must move to this position on the chessboard.
      * @return Fen to comply with the pattern builder
      */
@@ -57,14 +57,14 @@ public interface Fen {
      */
     Fen halfMoveClock(int halfMove);
     /**
-     * 
+     * Set the numero of semi moves.
      * @param fullMoveNumber is the number of semi moves until then
      * @return Fen to comply with the pattern builder
      */
     Fen fullMoveNumber(int fullMoveNumber);
 
     /**
-     * 
+     * This method create the String from Chessboard.
      * @param chessboard the chessboard you want to parse
      * @return String representing the chessboard at a given instant
      */
