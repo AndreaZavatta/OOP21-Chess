@@ -3,7 +3,7 @@ package chess.parsers;
 import model.board.Chessboard;
 import model.piece.utils.Side;
 /**
- * an Interface for represent a 
+ * An Interface for represent a
  * position reached during a game of chess.
  * 
  */
@@ -18,31 +18,31 @@ public interface Fen {
     Fen activeColor(Side side);
 
     /**
-     * set white king castled kingSide.
+     * Set white king castled kingSide.
      * @return Fen to comply with the pattern builder
      */
     Fen whiteCastlingKingSide();
 
     /**
-     * set white king castled queen side.
+     * Set white king castled queen side.
      * @return Fen to comply with the pattern builder
      */
     Fen whiteCastlingQueenSide();
 
     /**
-     * set black king castled king side.
+     * Set black king castled king side.
      * @return Fen to comply with the pattern builder
      */
     Fen blackCastlingKingSide();
 
     /**
-     * set black king castled queen side.
+     * Set black king castled queen side.
      * @return Fen to comply with the pattern builder
      */
     Fen blackCastlingQueenSide();
 
     /**
-     * set the position where the pawn can be captured by en passant.
+     * Set the position where the pawn can be captured by en passant.
      * @param pos where the pawn can be captured
      * @return Fen to comply with the pattern builder 
      */

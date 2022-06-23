@@ -13,7 +13,7 @@ import static io.vertx.core.json.Json.mapper;
 
 
 /**
- * an implementation of deserializer, this is used to deserialize a list of game.
+ * An implementation of deserializer, this is used to deserialize a list of game.
  */
 public class JsonDeserializerImpl implements JsonDeserializer {
 

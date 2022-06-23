@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.TimeZone;
 /**
- * this class has utils methods for input/output classes. 
+ * This class has utils methods for input/output classes.
  *
  */
 public final class JsonUtils {

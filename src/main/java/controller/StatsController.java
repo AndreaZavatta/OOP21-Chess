@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 /**
- * controller for updating stats view.
+ * Controller for updating stats view.
  *
  */
 public class StatsController extends AbstractStatsController implements Initializable {
@@ -113,7 +113,7 @@ public class StatsController extends AbstractStatsController implements Initiali
         }
     }
     /**
-     * function used to return to main menu.
+     * Function used to return to main menu.
      * @param event that triggers back to menu
      */
     @FXML

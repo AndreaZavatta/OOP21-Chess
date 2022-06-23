@@ -3,7 +3,7 @@ package io;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
- * an interface to serialize an object.
+ * An interface to serialize an object.
  *
  */
 public interface JsonSerializer {

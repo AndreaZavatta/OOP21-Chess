@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 /**
- * the class has methods for filtering data in the database.
+ * The class has methods for filtering data in the database.
  *
  */
 
@@ -94,7 +94,7 @@ public class DatabaseFilters {
     }
 
     /**
-     * get a list of Triple from game filtered by a given predicate.
+     * Get a list of Triple from game filtered by a given predicate.
      * @param predicate used for filtering the games
      * @return List of Triple of {@link User User.class}, {@link User User.class}, {@link LocalDate LocalDate.class}
      */
@@ -103,7 +103,7 @@ public class DatabaseFilters {
                 .map(x -> new Triple<>(x.getUsers().getX(), x.getUsers().getY(), x.getStartDate())).collect(Collectors.toUnmodifiableList());
     }
     /** 
-     * get a game from a Triple. 
+     * Get a game from a Triple.
      * @param newSelection that represent a Triple
      * @return an Optional.of(User) or Optional.empty()
      */
@@ -118,7 +118,7 @@ public class DatabaseFilters {
     }
 
     /**
-     * get winner from a Triple that represent a game.
+     * Get winner from a Triple that represent a game.
      * @param newSelection that represent a Triple
      * @return the string that represent the name of the winner or an empty string otherwise
      */

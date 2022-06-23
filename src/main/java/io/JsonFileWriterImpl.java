@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 
- * an implementation of JsonFileWriter, this is used to write a List of game to file.
+ * An implementation of JsonFileWriter, this is used to write a List of game to file.
  */
 public class JsonFileWriterImpl implements JsonFileWriter {
 

@@ -14,7 +14,7 @@ import java.util.Optional;
 
 
 /**
- * the generic controller for Stats, you must extend this class in order to create your personalized controller based on view.
+ * The generic controller for Stats, you must extend this class in order to create your personalized controller based on view.
  */
 public class AbstractStatsController {
     private final JsonFileReader fr = new JsonFileReaderImpl("database.txt");

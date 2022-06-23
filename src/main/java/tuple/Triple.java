@@ -12,15 +12,15 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class Triple<T, U, V> {
     /**
-     * the ObjectProperty that represent the generic first parameter.
+     * The ObjectProperty that represent the generic first parameter.
      */
     private final ObjectProperty<T> x;
     /**
-     * the ObjectProperty that represent the generic second parameter.
+     * The ObjectProperty that represent the generic second parameter.
      */
     private final ObjectProperty<U> y;
     /**
-     * the ObjectProperty that represent the generic third parameter.
+     * The ObjectProperty that represent the generic third parameter.
      */
     private final ObjectProperty<V> z;
 
