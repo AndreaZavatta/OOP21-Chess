@@ -16,7 +16,6 @@ import model.game.GameImpl;
 import model.timer.MatchDuration;
 import model.timer.TimerPlayer;
 import model.timer.TimerPlayerImpl;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -101,6 +100,59 @@ public class BoardController {
     private Label blackTimer = new Label();
 
     /**
+     * The initializer method for the class.
+     */
+    @FXML
+    public void initialize() {
+        this.createChessboard();
+        this.createBoardInformation();
+        borderPane.setBackground(getBackground(theme.getBackground()));
+    }
+    /**
+     * Creates an alert to ask the user if they want to accept a draw.
+     */
+    @FXML
+    public void askForDraw() {
+        contrUtil.createEndGameAlert(match.getUserSideTurn() + " ask for a draw!",
+                "Do you want to accept the draw?",
+                AlertType.CONFIRMATION);
+        setHeader(contrUtil.getAlert());
+        final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
+        final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
+
+        if (yes.equals(ButtonType.OK)) {
+            try {
+                match.setDraw();
+            } catch (IOException ioEx) {
+                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
+            }
+            chessTimer.closeTimer();
+            quitGame();
+        }
+    }
+    /**
+     * Creates an alert to ask the user if they want to surrender.
+     */
+    @FXML
+    public void surrend() {
+        contrUtil.createEndGameAlert("Surrender", "Do you want to surrender?",
+                AlertType.CONFIRMATION);
+        contrUtil.getAlert().setHeaderText(match.getUserSideTurn() + " is surrendering");
+        final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
+        final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
+
+        if (yes.equals(ButtonType.OK)) {
+            try {
+                match.setWinner();
+                chessTimer.closeTimer();
+                quitGame();
+            } catch (IOException e) {
+                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
+            }
+        }
+    }
+
+    /**
      * Initialize the player's textarea and image with the relative text and image.
      * @param whiteUser the white user.
      * @param blackUser the black user.
@@ -131,52 +183,6 @@ public class BoardController {
             }
         });
         chessTimer.buildTimer();
-    }
-
-    @FXML
-    void initialize() {
-        this.createChessboard();
-        this.createBoardInformation();
-        borderPane.setBackground(getBackground(theme.getBackground()));
-    }
-
-    @FXML
-    void askForDraw(final ActionEvent event) {
-        contrUtil.createEndGameAlert(match.getUserSideTurn() + " ask for a draw!",
-                "Do you want to accept the draw?",
-                AlertType.CONFIRMATION);
-        setHeader(contrUtil.getAlert());
-        final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
-        final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
-
-        if (yes.equals(ButtonType.OK)) {
-            try {
-                match.setDraw();
-            } catch (IOException ioEx) {
-                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
-            }
-            chessTimer.closeTimer();
-            quitGame();
-        }
-    }
-
-    @FXML
-    void surrend() {
-        contrUtil.createEndGameAlert("Surrend", "Do you want to surrend?",
-                AlertType.CONFIRMATION);
-        contrUtil.getAlert().setHeaderText(match.getUserSideTurn() + " is surrendering");
-        final Optional<ButtonType> yesBtn = contrUtil.getAlert().showAndWait();
-        final ButtonType yes = yesBtn.orElse(ButtonType.CANCEL);
-
-        if (yes.equals(ButtonType.OK)) {
-            try {
-                match.setWinner();
-                chessTimer.closeTimer();
-                quitGame();
-            } catch (IOException e) {
-                contrUtil.showAlert("Impossible create record of the game", AlertType.WARNING);
-            }
-        }
     }
 
     private void createPlayers() {
