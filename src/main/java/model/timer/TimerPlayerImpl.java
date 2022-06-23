@@ -1,4 +1,4 @@
-package timer;
+package model.timer;
 
 import controller.user.UserControllerImpl;
 import javafx.scene.image.Image;

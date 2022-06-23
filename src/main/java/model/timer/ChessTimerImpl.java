@@ -1,4 +1,4 @@
-package timer;
+package model.timer;
 
 import javafx.application.Platform;
 import java.util.Timer;
