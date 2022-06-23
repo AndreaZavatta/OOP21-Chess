@@ -116,7 +116,8 @@ public interface Game {
     Side getOppositeColor(Side color);
 
     /**
-     * 
+     * the method finish the game and give victory to the player
+     * of the next turn.
      * @throws IOException it can throw it when add the game to database
      */
     void setWinner() throws IOException;
