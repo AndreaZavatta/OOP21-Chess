@@ -6,12 +6,12 @@ import javafx.scene.paint.Color;
  */
 public enum ColorSettings {
     /**
-     * 
+     * "Coral" color settings.
      */
     CORAL(Color.web("b7b7a4"), Color.web("616E59"),
             Color.web("#b1e4b9"), Color.web("#70a2a3"), Color.WHITE, Color.YELLOW),
     /**
-     * 
+     * "Standard" color settings.
      */
     STANDARD(Color.web("d4a373"), Color.web("#c08552"),
             Color.valueOf("#582"), Color.valueOf("#feb"), Color.YELLOW, Color.RED);
