@@ -12,8 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class UserImpl implements User {
 
-    private static final long serialVersionUID = 5552078593645290172L;
-
     /**
      * 
      * name of user.

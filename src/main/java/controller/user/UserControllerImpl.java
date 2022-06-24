@@ -13,7 +13,6 @@ import model.user.UserImpl;
  */
 public class UserControllerImpl extends UserImpl implements UserController {
 
-    private static final long serialVersionUID = -2758032167630487732L;
     @JsonIgnore
     private final transient Image img;
 

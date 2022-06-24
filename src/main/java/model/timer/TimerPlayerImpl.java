@@ -11,7 +11,6 @@ import model.piece.utils.Side;
  *
  */
 public class TimerPlayerImpl extends UserControllerImpl implements TimerPlayer {
-    private static final long serialVersionUID = -2847220700449330935L;
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     /**
      * The seconds left before the timer expires.
