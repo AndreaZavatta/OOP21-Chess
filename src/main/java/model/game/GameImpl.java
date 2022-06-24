@@ -12,13 +12,13 @@ import model.board.ControlCheck;
 import model.board.ControlCheckImpl;
 import model.board.EndGame;
 import model.board.EndGameImpl;
-import io.JsonUtils;
+import model.io.JsonUtils;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tuple.Pair;
+import model.tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

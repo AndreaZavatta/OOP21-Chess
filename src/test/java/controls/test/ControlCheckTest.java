@@ -14,7 +14,7 @@ import model.board.ChessboardFactory;
 import model.board.ChessboardFactoryImpl;
 import model.board.ControlCheck;
 import model.board.ControlCheckImpl;
-import exceptions.KingNotFoundException;
+import model.exceptions.KingNotFoundException;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 import model.pieces.PieceFactory;

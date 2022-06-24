@@ -36,7 +36,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tuple.Pair;
+import model.tuple.Pair;
 import view.GuiPiece;
 import view.GuiPieceFactory;
 import view.GuiPieceFactoryImpl;

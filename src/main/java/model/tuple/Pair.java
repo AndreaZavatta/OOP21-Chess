@@ -1,4 +1,4 @@
-package tuple;
+package model.tuple;
 
 import java.io.Serializable;
 

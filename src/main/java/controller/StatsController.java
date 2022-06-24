@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.database.DatabaseFilters;
-import tuple.Triple;
+import model.tuple.Triple;
 
 import java.net.URL;
 import java.time.LocalDate;

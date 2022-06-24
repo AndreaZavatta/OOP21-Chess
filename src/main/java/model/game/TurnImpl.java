@@ -2,7 +2,7 @@ package model.game;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import tuple.Pair;
+import model.tuple.Pair;
 import model.piece.utils.Side;
 import model.user.User;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)

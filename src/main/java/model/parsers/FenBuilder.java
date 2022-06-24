@@ -1,4 +1,4 @@
-package chess.parsers;
+package model.parsers;
 
 import static model.piece.utils.Name.KING;
 import static model.piece.utils.Name.QUEEN;

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import chess.parsers.FenConverter;
-import chess.parsers.FenConverterImpl;
+import model.parsers.FenConverter;
+import model.parsers.FenConverterImpl;
 import model.piece.utils.Side;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;

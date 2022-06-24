@@ -1,7 +1,6 @@
-package io;
+package model.io;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import static io.JsonUtils.getMapper;
 /**
  * 
  * An implementation of JsonSerializer, this is used to serialize a generic object.
@@ -9,6 +8,6 @@ import static io.JsonUtils.getMapper;
 public class JsonSerializerImpl implements JsonSerializer {
     @Override
     public String serialize(final Object obj) throws JsonProcessingException {
-        return getMapper().writeValueAsString(obj);
+        return JsonUtils.getMapper().writeValueAsString(obj);
     }
 }

@@ -1,4 +1,4 @@
-package chess.parsers;
+package model.parsers;
 
 import model.board.Chessboard;
 import model.piece.utils.Side;

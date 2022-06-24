@@ -2,7 +2,7 @@ package model.game;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import tuple.Pair;
+import model.tuple.Pair;
 import model.piece.utils.Side;
 import model.user.User;
 @JsonDeserialize(as = TurnImpl.class)

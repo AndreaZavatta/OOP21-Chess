@@ -1,11 +1,11 @@
 package controller;
 
-import io.JsonFileReader;
-import io.JsonFileReaderImpl;
+import model.io.JsonFileReader;
+import model.io.JsonFileReaderImpl;
 import model.database.DatabaseFilters;
 import model.game.Game;
 import model.user.User;
-import tuple.Triple;
+import model.tuple.Triple;
 
 import java.io.IOException;
 import java.time.LocalDate;

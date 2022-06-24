@@ -1,4 +1,4 @@
-package io;
+package model.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

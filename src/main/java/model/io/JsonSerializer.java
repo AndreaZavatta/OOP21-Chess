@@ -1,4 +1,4 @@
-package io;
+package model.io;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 

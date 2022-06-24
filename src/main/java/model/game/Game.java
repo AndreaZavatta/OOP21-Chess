@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import tuple.Pair;
+import model.tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

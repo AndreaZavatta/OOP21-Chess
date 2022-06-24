@@ -1,4 +1,4 @@
-package io;
+package model.io;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,7 +8,7 @@ import model.game.GameImpl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import static io.JsonUtils.getMapper;
+import static model.io.JsonUtils.getMapper;
 import static io.vertx.core.json.Json.mapper;
 
 

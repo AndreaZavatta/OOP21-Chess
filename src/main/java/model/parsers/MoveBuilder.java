@@ -1,4 +1,4 @@
-package chess.parsers;
+package model.parsers;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import model.board.Chessboard;
 import model.board.ControlCheck;
 import model.board.ControlCheckImpl;
-import exceptions.IllegalMoveException;
+import model.exceptions.IllegalMoveException;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.pieces.Piece;

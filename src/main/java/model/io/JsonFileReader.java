@@ -1,4 +1,4 @@
-package io;
+package model.io;
 import model.game.Game;
 
 import java.io.IOException;

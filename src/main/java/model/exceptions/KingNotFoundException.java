@@ -1,4 +1,4 @@
-package exceptions;
+package model.exceptions;
 /**
  * This exception is thrown when the king is not found in the list of piece.
  *

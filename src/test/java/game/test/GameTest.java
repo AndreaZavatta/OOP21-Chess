@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import model.game.Game;
 import model.game.GameImpl;
-import tuple.Pair;
+import model.tuple.Pair;
 import model.piece.utils.Name;
 import model.piece.utils.Position;
 import model.piece.utils.Side;

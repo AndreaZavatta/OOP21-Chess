@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import model.piece.utils.Position;
-import exceptions.KingNotFoundException;
+import model.exceptions.KingNotFoundException;
 import model.pieces.Piece;
 
 /**

@@ -2,8 +2,8 @@ package model.database;
 
 import model.game.Game;
 import model.user.User;
-import tuple.Pair;
-import tuple.Triple;
+import model.tuple.Pair;
+import model.tuple.Triple;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
