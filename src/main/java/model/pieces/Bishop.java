@@ -27,7 +27,7 @@ public class Bishop extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         return Collections
-                .unmodifiableList(this.getBasicMoves().multipleMove(PieceDirections.BISHOP_DIR, board, this));
+                .unmodifiableList(this.getPieceMovement().multipleMove(PieceDirections.BISHOP_DIR, board, this));
     }
 
     @Override

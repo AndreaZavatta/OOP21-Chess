@@ -10,9 +10,9 @@ import model.piece.utils.PieceDirections;
 import model.piece.utils.Position;
 import model.pieces.Piece;
 /**
- * Implementation of {@link model.move.BasicMoves} Interface.
+ * Implementation of {@link model.move.PieceMovement} Interface.
  */
-public class BasicMovesImpl implements BasicMoves {
+public class PieceMovementImpl implements PieceMovement {
 
     @Override
     public List<Position> multipleMove(final PieceDirections directions, final Chessboard board,

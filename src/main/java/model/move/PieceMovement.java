@@ -10,7 +10,7 @@ import model.pieces.Piece;
  * This interface contains methods used by the pieces in order to
  * generate the list of possible positions.
  */
-public interface BasicMoves {
+public interface PieceMovement {
     /**
      * Given a {@link model.pieces.Piece}, a {@link model.board.Chessboard},
      * and a set of {@link model.piece.utils.PieceDirections},

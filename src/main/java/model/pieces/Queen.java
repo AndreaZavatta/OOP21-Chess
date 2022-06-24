@@ -29,7 +29,7 @@ public class Queen extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         return Collections.
-                unmodifiableList(this.getBasicMoves().multipleMove(PieceDirections.QUEEN_DIR, board, this));
+                unmodifiableList(this.getPieceMovement().multipleMove(PieceDirections.QUEEN_DIR, board, this));
     }
 
     @Override

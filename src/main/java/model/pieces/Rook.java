@@ -32,7 +32,7 @@ public class Rook extends AbstractPiece {
     @Override
     public List<Position> getAllPossiblePositions(final Chessboard board) {
         return Collections
-                .unmodifiableList(this.getBasicMoves().multipleMove(PieceDirections.ROOK_DIR, board, this));
+                .unmodifiableList(this.getPieceMovement().multipleMove(PieceDirections.ROOK_DIR, board, this));
     }
 
     @JsonIgnore

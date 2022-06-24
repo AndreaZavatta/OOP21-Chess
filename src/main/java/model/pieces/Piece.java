@@ -3,7 +3,7 @@ package model.pieces;
 import java.util.List;
 
 import model.board.Chessboard;
-import model.move.BasicMoves;
+import model.move.PieceMovement;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -65,8 +65,8 @@ public interface Piece {
      */
     void setPosition(Position position);
     /**
-     * A getter for the BasicMove object needed in each piece.
-     * @return the basicMoves
+     * A getter for the PieceMovement object needed in each piece.
+     * @return the PieceMovement
      */
-    BasicMoves getBasicMoves();
+    PieceMovement getPieceMovement();
 }

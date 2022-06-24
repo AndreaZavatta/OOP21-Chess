@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import model.move.BasicMoves;
-import model.move.BasicMovesImpl;
+import model.move.PieceMovement;
+import model.move.PieceMovementImpl;
 import model.piece.utils.Position;
 import model.piece.utils.Side;
 import model.piece.utils.Name;
@@ -24,13 +24,13 @@ public abstract class AbstractPiece implements Piece {
     @JsonProperty("moved")
     private boolean isMoved;
     @JsonIgnore
-    private final BasicMoves basicMoves;
+    private final PieceMovement basicMoves;
 
     AbstractPiece(final Name name, final Position position, final Side color) {
         this.name = name;
         this.position = position;
         this.color = color;
-        this.basicMoves = new BasicMovesImpl();
+        this.basicMoves = new PieceMovementImpl();
     }
 
     @Override
@@ -60,7 +60,7 @@ public abstract class AbstractPiece implements Piece {
     }
 
     @Override
-    public BasicMoves getBasicMoves() {
+    public PieceMovement getPieceMovement() {
         return basicMoves;
     }
 
