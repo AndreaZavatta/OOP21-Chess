@@ -1,3 +1,5 @@
+import java.util.regex.Pattern.compile
+
 plugins {
     // Apply the java plugin to add support for Java
     java
@@ -44,10 +46,24 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+    //compile group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
+    //api("com.google.code.gson:gson:2.8.6")
+    implementation("com.google.code.gson:gson:2.9.0")
+    // a dependency on Jackson Databind
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.8.9")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.3")
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-parameter-names
+    implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.13.3")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3")
+
+    // and a dependency on vert.x
+    implementation("io.vertx:vertx-core:3.5.3")
+
 }
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+    options.compilerArgs.plusAssign("-parameters")
 }
 
 tasks.withType<Test> {
@@ -57,5 +73,6 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("it.unibo.samplejavafx.App")
+    mainClass.set("application.Launcher")
 }
+

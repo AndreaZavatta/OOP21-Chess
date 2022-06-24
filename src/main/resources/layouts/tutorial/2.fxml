@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TutorialController">
+   <children>
+      <ImageView fitHeight="332.0" fitWidth="320.0" layoutX="40.0" layoutY="62.0" preserveRatio="true">
+         <image>
+            <Image url="@../../media/chessboard.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="131.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Chessboard">
+         <font>
+            <Font name="Courier New Bold" size="40.0" />
+         </font>
+      </Text>
+      <Button fx:id="king" layoutX="201.0" layoutY="340.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♔">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="knight" layoutX="278.0" layoutY="66.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♞">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="queen" layoutX="161.0" layoutY="340.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♕">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="bishop" layoutX="121.0" layoutY="67.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♝">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="pawn" layoutX="45.0" layoutY="301.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♙">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="rook" layoutX="318.0" layoutY="66.0" mnemonicParsing="false" onAction="#showPiece" prefHeight="38.0" prefWidth="38.0" styleClass="chessButton" stylesheets="@../../stylesheets/style.css" text="♜">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#openCastling" opacity="0.5" prefHeight="40.0" prefWidth="40.0" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button layoutX="565.0" layoutY="198.0" mnemonicParsing="false" onAction="#openSlide" opacity="0.5" prefHeight="40.0" prefWidth="40.0" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Text layoutX="408.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="At the start, each player controls sixteen pieces (either the white or the black ones): one king, one queen, two rooks, two bishops, two knights, and eight pawns. Click on the buttons to learn about them!" textAlignment="JUSTIFY" wrappingWidth="139.78134155273438">
+         <font>
+            <Font name="Courier New Bold" size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

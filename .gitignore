@@ -1,18 +1,60 @@
-# Ignore Gradle project-specific cache directory
-.gradle
 
-# Ignore Gradle build output directory
-build
+##############################
+## Java
+##############################
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
 
+
+##############################
+## Gradle
+##############################
 bin/
+build/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
 
-.idea
+##############################
+## IntelliJ
+##############################
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
 
-**/.DS_Store
-
-#Ignore Eclipse classpath
-.classpath
-
-.project
-
+##############################
+## Eclipse
+##############################
 .settings/
+bin/
+tmp/
+.metadata
+.classpath
+.project
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
+
+##############################
+## OS X
+##############################
+.DS_Store
+
+
+##############################
+## database
+##############################
+database.txt

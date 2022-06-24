@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TutorialController">
+   <children>
+      <Text layoutX="52.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You're all set!" wrappingWidth="454.0732421875">
+         <font>
+            <Font name="Courier New Bold" size="50.0" />
+         </font>
+      </Text>
+      <Button mnemonicParsing="false" onAction="#openEndgame" styleClass="changePageButton" stylesheets="@../../stylesheets/style.css" text="&lt;" />
+      <Text layoutX="61.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now you have all the basics to start playing... Have fun! To return to the main menu, click the button below." textAlignment="JUSTIFY" wrappingWidth="247.74899291992188">
+         <font>
+            <Font name="Courier New Bold" size="20.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="228.0" fitWidth="230.0" layoutX="332.0" layoutY="124.0" preserveRatio="true">
+         <image>
+            <Image url="@../../media/final.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="129.0" layoutY="286.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="66.0" prefWidth="111.0" styleClass="startGame" stylesheets="@../../stylesheets/style.css" text="Go Back">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

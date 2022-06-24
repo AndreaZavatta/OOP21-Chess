@@ -1,0 +1,163 @@
+.background {
+    -fx-background-color: linear-gradient(to bottom, red, crimson);
+}
+.menu-bar .menu:hover{
+    -fx-background-color: #280000
+}
+
+.text-field{
+    -fx-background-color: rgb(246, 185, 185);
+    -fx-prompt-text-fill: #5e5e5e;
+}
+.text-field .content{
+    -fx-background-color: text-area-background ;
+}
+
+.text-area {
+    text-area-background: rgb(246, 185, 185);
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}
+.button {
+    -fx-background-color: transparent;
+}
+.button:hover {
+    -fx-background-color: #981100;
+}
+.button .text{
+    -fx-fill: white
+}
+
+.changePageButton {
+    -fx-background-color: coral;
+    -fx-opacity: 0.5;
+    -fx-pref-height: 400;
+    -fx-pref-width: 40;
+}
+
+.changePageButton:hover {
+    -fx-opacity: 0.8;
+    -fx-background-color: #981100;
+}
+
+.chessButton  {
+    -fx-opacity: 1;
+    -fx-background-color: #ff6600;
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+    -fx-fill: black;
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
+}
+
+.startTutorialButton {
+    -fx-background-color: coral;
+    -fx-opacity: 1;
+    -fx-font-family: Courier New;
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+    -fx-pref-height: 80;
+    -fx-pref-width: 150;    
+}
+
+.backToChessboard {
+    -fx-background-color: rgb(255, 98, 0);
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 1);
+}
+
+.boardPanes {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-insets: -0.5px;
+}
+
+.startGame {
+    -fx-background-color: coral;
+    -fx-opacity: 1;
+}
+
+.imageButton {
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
+}
+
+.table-view {
+    -fx-background-color: rgb(255, 0, 0, 0.10);
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: rgb(255, 0, 0, 0.10);
+}
+.table-view .corner {
+    -fx-background-color: rgb(255, 102, 102);
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, rgb(255, 0, 0), rgb(255, 232, 132));
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell:hover {
+    -fx-background-color: rgb(52, 13, 13);
+    -fx-text-background-color: #ff8763;
+}
+.table-row-cell:odd{
+    -fx-background-color: rgb(253, 246, 201, 0.10);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: rgb(232, 59, 59, 0.10);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, rgb(255, 0, 0), rgb(255, 232, 132));
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right, rgb(255, 0, 0), rgb(255, 232, 132));
+}
+.table-row-cell:selected {
+    -fx-background-color: rgb(255, 232, 132, 0.70);
+}
+.table-row-cell:selected .text {
+    -fx-fill: #000000;
+}
+
+.table-row-cell .text {
+    -fx-fill: white
+}
+
+.table-view .column-header .label {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 7px;
+}
+
+.menu-bar{
+    -fx-background-color: linear-gradient(to bottom, #590000, #ff0000);
+}
+.menu-bar .text {
+    -fx-fill: white
+}
+
