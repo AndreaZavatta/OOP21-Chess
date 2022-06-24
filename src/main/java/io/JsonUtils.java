@@ -32,7 +32,7 @@ public final class JsonUtils {
                 .setTimeZone(TimeZone.getDefault());
     }
     /**
-     * add to database the game passed as argument.
+     * Add to database the game passed as argument.
      * @param game to be added to the database
      * @throws IOException if the addition to the database fails
      */
