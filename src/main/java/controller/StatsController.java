@@ -44,7 +44,7 @@ public class StatsController extends AbstractStatsController implements Initiali
     private TableView<Triple<User, User, LocalDate>> tableView = new TableView<>();
 
     /**
-     * showing help message.
+     * Showing help message.
      */
     @FXML
     public void showHelp() {
@@ -54,6 +54,16 @@ public class StatsController extends AbstractStatsController implements Initiali
         txtAreaStats.setText(getStats(txtFieldName.getText()));
     }
 
+    /**
+     *
+     * @param location
+     * The location used to resolve relative paths for the root object, or
+     * {@code null} if the location is not known.
+     *
+     * @param resources
+     * The resources used to localize the root object, or {@code null} if
+     * the root object was not localized.
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         setDatabase(new DatabaseFilters(wrappedRead()));
