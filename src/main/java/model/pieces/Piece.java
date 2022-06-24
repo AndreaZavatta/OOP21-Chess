@@ -61,12 +61,12 @@ public interface Piece {
     boolean isMoved();
     /**
      * A setter for the position of the piece.
-     * @param position the new Position
+     * @param position the new Position.
      */
     void setPosition(Position position);
     /**
-     * A getter for the BasicMove object needed in each piece.
-     * @return the basicMoves
+     * A getter for the PieceMovement object needed in each piece.
+     * @return the PieceMovement.
      */
     PieceMovement getPieceMovement();
 }
