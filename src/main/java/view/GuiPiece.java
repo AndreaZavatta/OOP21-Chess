@@ -22,7 +22,7 @@ public class GuiPiece {
      * @param x the x value.
      * @param y the y value.
      */
-    protected GuiPiece(final double x, final double y, final String s) {
+    public GuiPiece(final double x, final double y, final String s) {
         this.rectangle = new Rectangle(TILE_SIZE, TILE_SIZE);
         final Image im = new Image(s, TILE_SIZE, TILE_SIZE, true, false);
         rectangle.setFill(new ImagePattern(im));
