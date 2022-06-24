@@ -24,13 +24,13 @@ public abstract class AbstractPiece implements Piece {
     @JsonProperty("moved")
     private boolean isMoved;
     @JsonIgnore
-    private final PieceMovement basicMoves;
+    private final PieceMovement pieceMovement;
 
     AbstractPiece(final Name name, final Position position, final Side color) {
         this.name = name;
         this.position = position;
         this.color = color;
-        this.basicMoves = new PieceMovementImpl();
+        this.pieceMovement = new PieceMovementImpl();
     }
 
     @Override
@@ -61,7 +61,7 @@ public abstract class AbstractPiece implements Piece {
 
     @Override
     public PieceMovement getPieceMovement() {
-        return basicMoves;
+        return pieceMovement;
     }
 
     @Override

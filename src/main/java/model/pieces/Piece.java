@@ -65,8 +65,8 @@ public interface Piece {
      */
     void setPosition(Position position);
     /**
-     * A getter for the PieceMovement object needed in each piece.
-     * @return the PieceMovement
+     * A getter for the BasicMove object needed in each piece.
+     * @return the basicMoves
      */
     PieceMovement getPieceMovement();
 }
