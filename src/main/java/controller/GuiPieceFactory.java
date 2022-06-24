@@ -1,6 +1,7 @@
-package view;
+package controller;
 
 import model.pieces.Piece;
+import view.GuiPiece;
 
 /**
  * 

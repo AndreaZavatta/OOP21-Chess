@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * 
- * user interface for UserImpl.
+ * User interface for UserImpl.
  *
  */
 @JsonDeserialize(as = UserImpl.class)
@@ -16,7 +16,7 @@ public interface User {
     String getName();
 
     /**
-     * set user as winner.
+     * Set user as winner.
      */
     void haveWon();
 

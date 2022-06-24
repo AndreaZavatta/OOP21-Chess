@@ -14,7 +14,7 @@ import model.user.User;
 
 /**
  * 
- * interface for GameImpl.
+ * Interface for GameImpl.
  *
  */
 @JsonDeserialize(as = GameImpl.class)
@@ -117,7 +117,7 @@ public interface Game {
     Side getOppositeColor(Side color);
 
     /**
-     * the method finish the game and give victory to the player
+     * The method finish the game and give victory to the player
      * of the next turn.
      * @throws IOException it can throw it when add the game to database
      */

@@ -16,7 +16,7 @@ import model.promotion.PromotionImpl;
 
     /**
      * 
-     * a normal chessboard.
+     * A normal chessboard.
      *
      */
 

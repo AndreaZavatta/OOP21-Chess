@@ -5,7 +5,7 @@ import model.user.User;
 
 /**
  * 
- * generic interface of userControllerImpl.
+ * Generic interface of userControllerImpl.
  *
  */
 public interface UserController extends User {

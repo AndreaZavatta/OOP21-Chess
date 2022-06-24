@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
- * contain information about user during the game.
+ * Contain information about user during the game.
  *
  */
 public class UserImpl implements User {
