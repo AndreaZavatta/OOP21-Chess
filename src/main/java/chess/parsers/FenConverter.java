@@ -8,7 +8,7 @@ import model.board.Chessboard;
  */
 public interface FenConverter {
     /**
-     * function that deserialize from fen string to Chessboard object.
+     * Function that deserialize from fen string to Chessboard object.
      * @param fen the string to deserialize
      * @return Chessboard the chessboard that represent the string
      */
