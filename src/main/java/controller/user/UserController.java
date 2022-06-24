@@ -11,13 +11,13 @@ import model.user.User;
 public interface UserController extends User {
 
     /**
-     * 
+     * Getter for Image.
      * @return user image
      */
     Image getImage();
 
     /**
-     * 
+     * Getter for user.
      * @return user 
      */
     User getUser();

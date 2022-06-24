@@ -42,7 +42,7 @@ public interface Game {
     boolean isGameFinished();
 
     /**
-     * 
+     * Return all pieces in chessboard.
      * @return list of pieces in life
      */
     List<Piece> getPiecesList();
@@ -56,7 +56,7 @@ public interface Game {
     List<Position> getPossiblePiecePositions(Piece piece);
 
     /**
-     * 
+     * Return a user turn of the game.
      * @return user side turn
      */
     Side getUserSideTurn();
@@ -77,12 +77,13 @@ public interface Game {
     boolean isCastling(Piece piece, Position targetPos);
 
     /**
-     * 
+     * Get players of the game.
      * @return 2 players of the game
      */
     Pair<User, User> getUsers();
 
     /**
+     * This method is useful for database. 
      * @return game start date
      */
     LocalDate getStartDate();

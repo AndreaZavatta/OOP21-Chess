@@ -16,7 +16,7 @@ import model.pieces.Piece;
 public interface Chessboard {
 
     /**
-     * 
+     * Return all pieces in chessboard.
      * @return a list of all pieces on the board
      */
     List<Piece> getAllPieces();
@@ -29,13 +29,15 @@ public interface Chessboard {
     void move(Position actualPos, Position finalPos);
 
     /**
-     * 
+     * This method is useful for pieces to 
+     * calculate their possible moves.
      * @return X chessboard's border
      */
     int getxBorder();
 
     /**
-     * 
+     * This method is useful for pieces to 
+     * calculate their possible moves.
      * @return Y chessboard's border
      */
     int getyBorder();

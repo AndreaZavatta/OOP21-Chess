@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(as = UserImpl.class)
 public interface User {
     /**
-     * 
+     * Getter for the name.
      * @return the user name
      */
     String getName();
@@ -21,7 +21,7 @@ public interface User {
     void haveWon();
 
     /**
-     * 
+     * Getter for isWinner.
      * @return if the user won the game
      */
     boolean isGameWinner();

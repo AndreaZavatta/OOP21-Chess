@@ -7,7 +7,13 @@ import model.piece.utils.Name;
 import model.piece.utils.Side;
 import model.pieces.Piece;
 
-class GuiPieceFactoryImpl implements GuiPieceFactory {
+/**
+ * 
+ * A factory for the creation of guiPiece
+ * from a piece.
+ *
+ */
+public class GuiPieceFactoryImpl implements GuiPieceFactory {
 
     private static final Map<Name, PieceImagePath> LINK = Map.of(
             Name.PAWN, PieceImagePath.PAWN,
