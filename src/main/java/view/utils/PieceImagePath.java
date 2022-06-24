@@ -1,4 +1,4 @@
-package controller.utils;
+package view.utils;
 
 import model.piece.utils.Side;
 

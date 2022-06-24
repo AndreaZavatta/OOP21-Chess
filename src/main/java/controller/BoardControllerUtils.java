@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import model.piece.utils.Name;
 import model.piece.utils.Numbers;
 import model.pieces.Piece;
+import view.GuiPiece;
 
 /**
  * An utility class for the {@link controller.BoardController}.

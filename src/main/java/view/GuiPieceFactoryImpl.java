@@ -1,11 +1,12 @@
-package controller;
+package view;
 
 import java.util.Map;
 
-import controller.utils.PieceImagePath;
+import controller.BoardController;
 import model.piece.utils.Name;
 import model.piece.utils.Side;
 import model.pieces.Piece;
+import view.utils.PieceImagePath;
 
 /**
  * 
