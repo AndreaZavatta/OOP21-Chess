@@ -8,6 +8,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Implementation of an AI Chess Player using LangChain4j. Orchestrates the
@@ -60,6 +65,9 @@ public class ChessAIPlayer implements ChessPlayerLogic {
 		}
 
 		final String promptString = promptGenerator.toPromptString(board, aiColor);
+		logInteraction("============== AI REQUEST ["
+				+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "] ==============\n"
+				+ promptString + "\n");
 
 		for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
 			LOGGER.info(String.format("AI attempt %d/%d for color %s", attempt, MAX_RETRIES, aiColor));
@@ -68,6 +76,8 @@ public class ChessAIPlayer implements ChessPlayerLogic {
 				// 1. Call LLM
 				final String llmResponse = chatModel.generate(promptString);
 				LOGGER.fine("LLM raw response: " + llmResponse);
+				logInteraction(
+						"============== AI RESPONSE [Attempt " + attempt + "] ==============\n" + llmResponse + "\n");
 
 				// 2. Parse Response
 				final Optional<String> parsedMoveOpt = moveParser.parse(llmResponse);
@@ -100,5 +110,13 @@ public class ChessAIPlayer implements ChessPlayerLogic {
 		final String fallbackMove = legalMoves.get(randomIndex);
 		LOGGER.info("AI executed fallback move: " + fallbackMove);
 		return fallbackMove;
+	}
+
+	private void logInteraction(final String text) {
+		try (FileWriter fw = new FileWriter("ai_interaction_logs.txt", true); PrintWriter pw = new PrintWriter(fw)) {
+			pw.println(text);
+		} catch (IOException e) {
+			LOGGER.warning("Could not write to AI log file: " + e.getMessage());
+		}
 	}
 }

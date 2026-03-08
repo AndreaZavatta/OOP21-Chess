@@ -347,11 +347,11 @@ public class BoardController {
 			}
 			if (match.checkPromotion().isPresent()) {
 				selectPromotion(mapGuiPieceToPiece.get(guiPiece));
-			}
-
-			// Trigger AI if it's their turn
-			if (isAiTurn() && (!match.isGameFinished())) {
-				triggerAiMove();
+			} else {
+				// Trigger AI if it's their turn
+				if (isAiTurn() && (!match.isGameFinished())) {
+					triggerAiMove();
+				}
 			}
 
 		} else {
@@ -501,6 +501,9 @@ public class BoardController {
 	private void setClick(final Name namePiece, final Stage currentStage, final Piece oldPiece) {
 		updatePromotion(oldPiece, match.promotion(namePiece));
 		currentStage.close();
+		if (isAiTurn() && (!match.isGameFinished())) {
+			triggerAiMove();
+		}
 	}
 
 	private boolean isAiTurn() {
@@ -516,7 +519,7 @@ public class BoardController {
 		final Board adapterBoard = new Board() {
 			@Override
 			public String getFen() {
-				return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+				return match.getFen();
 			}
 
 			@Override
@@ -558,6 +561,13 @@ public class BoardController {
 					if (match.isGameFinished()) {
 						chessTimer.closeTimer();
 						quitGame();
+					}
+
+					if (match.checkPromotion().isPresent()) {
+						final Piece oldPiece = match.getPiecesList().stream()
+								.filter(p -> p.getPosition().equals(finalPos)).findFirst().orElseThrow();
+
+						updatePromotion(oldPiece, match.promotion(Name.QUEEN));
 					}
 
 					if (isAiTurn() && (!match.isGameFinished())) {

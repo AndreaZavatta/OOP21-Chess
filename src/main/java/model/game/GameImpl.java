@@ -13,6 +13,7 @@ import model.board.ControlCheckImpl;
 import model.board.EndGame;
 import model.board.EndGameImpl;
 import model.io.JsonUtils;
+import model.parsers.FenBuilder;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,143 +30,149 @@ import model.user.User;
 
 /**
  * 
- * The main class of the game,
- * it manage a match user vs user.
+ * The main class of the game, it manage a match user vs user.
  *
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class GameImpl implements Game {
 
-    private Pair<User, Side> winner;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private final LocalDate startDate;
-    @JsonProperty("gameFinished")
-    private boolean isFinished;
-    private final Chessboard chessboard;
-    private final transient EndGame gameController;
-    private final Turn turnManager;
-    @JsonIgnore
-    private final Promotion promotion;
+	private Pair<User, Side> winner;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private final LocalDate startDate;
+	@JsonProperty("gameFinished")
+	private boolean isFinished;
+	private final Chessboard chessboard;
+	private final transient EndGame gameController;
+	private final Turn turnManager;
+	@JsonIgnore
+	private final Promotion promotion;
 
-    /**
-     * 
-     * @param player1 white player
-     * @param player2 black player
-     */
+	/**
+	 * 
+	 * @param player1 white player
+	 * @param player2 black player
+	 */
 
-    public GameImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
-        this.isFinished = false; 
-        this.winner = null;
-        this.chessboard = new ChessboardFactoryImpl().createNormalCB();
-        this.gameController = new EndGameImpl();
-        this.turnManager = new TurnImpl(player1, player2);
-        this.promotion = new PromotionImpl();
-        startDate = LocalDate.now();
-    }
+	public GameImpl(final Pair<User, Side> player1, final Pair<User, Side> player2) {
+		this.isFinished = false;
+		this.winner = null;
+		this.chessboard = new ChessboardFactoryImpl().createNormalCB();
+		this.gameController = new EndGameImpl();
+		this.turnManager = new TurnImpl(player1, player2);
+		this.promotion = new PromotionImpl();
+		startDate = LocalDate.now();
+	}
 
-    @Override
-    public void nextMove(final Position firstPos, final Position finalPos) throws IOException {
-        if (isFinished) {
-            return;
-        }
-        final Optional<Piece> attacker = chessboard.getPieceOnPosition(firstPos);
-        if (checkIllegalArgument(attacker, firstPos, finalPos)) {
-            throw new IllegalArgumentException();
-        }
-        chessboard.move(firstPos, finalPos);
-        turnManager.turnIncrement();
-        if (gameController.isCheckmate(chessboard, turnManager.getUserTurn())) {
-            setWinner();
-        } else if (gameController.isDraw(chessboard, turnManager.getUserTurn())) {
-            matchEnded();
-        }
-    }
-    @Override
-    public Optional<Pair<User, Side>> getWinner() {
-        return Optional.ofNullable(winner);
-    }
+	@Override
+	public void nextMove(final Position firstPos, final Position finalPos) throws IOException {
+		if (isFinished) {
+			return;
+		}
+		final Optional<Piece> attacker = chessboard.getPieceOnPosition(firstPos);
+		if (checkIllegalArgument(attacker, firstPos, finalPos)) {
+			throw new IllegalArgumentException();
+		}
+		chessboard.move(firstPos, finalPos);
+		turnManager.turnIncrement();
+		if (gameController.isCheckmate(chessboard, turnManager.getUserTurn())) {
+			setWinner();
+		} else if (gameController.isDraw(chessboard, turnManager.getUserTurn())) {
+			matchEnded();
+		}
+	}
 
-    @Override
-    public boolean isGameFinished() {
-        return this.isFinished;
-    }
+	@Override
+	public Optional<Pair<User, Side>> getWinner() {
+		return Optional.ofNullable(winner);
+	}
 
-    @JsonIgnore
-    @Override
-    public List<Piece> getPiecesList() {
-        return this.chessboard.getAllPieces();
-    }
+	@Override
+	public boolean isGameFinished() {
+		return this.isFinished;
+	}
 
-    @Override
-    public List<Position> getPossiblePiecePositions(final Piece piece) {
-        return Collections.unmodifiableList(chessboard.getAllPosition(piece));
-    }
+	@JsonIgnore
+	@Override
+	public List<Piece> getPiecesList() {
+		return this.chessboard.getAllPieces();
+	}
 
-    @JsonIgnore
-    @Override
-    public Side getUserSideTurn() {
-        return turnManager.getUserTurn();
-    }
+	@Override
+	public List<Position> getPossiblePiecePositions(final Piece piece) {
+		return Collections.unmodifiableList(chessboard.getAllPosition(piece));
+	}
 
-    @JsonIgnore
-    @Override
-    public boolean isInCheck() {
-        final ControlCheck control = new ControlCheckImpl();
-        return control.isInCheck(chessboard, getUserSideTurn());
-    }
+	@JsonIgnore
+	@Override
+	public Side getUserSideTurn() {
+		return turnManager.getUserTurn();
+	}
 
-    @Override
-    public boolean isCastling(final Piece piece, final Position targetPos) {
-        return chessboard.isCastling(piece, targetPos);
-    }
+	@JsonIgnore
+	@Override
+	public boolean isInCheck() {
+		final ControlCheck control = new ControlCheckImpl();
+		return control.isInCheck(chessboard, getUserSideTurn());
+	}
 
-    @JsonIgnore
-    @Override
-    public Pair<User, User> getUsers() {
-        return turnManager.getUsers();
-    }
+	@Override
+	public boolean isCastling(final Piece piece, final Position targetPos) {
+		return chessboard.isCastling(piece, targetPos);
+	}
 
-    @Override
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+	@JsonIgnore
+	@Override
+	public Pair<User, User> getUsers() {
+		return turnManager.getUsers();
+	}
 
-    @Override
-    public Piece promotion(final Name namePiece) {
-        return chessboard.promotion(namePiece);
-    }
+	@Override
+	public LocalDate getStartDate() {
+		return startDate;
+	}
 
-    @Override
-    public void setDraw() throws IOException {
-        matchEnded();
-    }
+	@Override
+	public Piece promotion(final Name namePiece) {
+		return chessboard.promotion(namePiece);
+	}
 
-    @Override
-    public Optional<Piece> checkPromotion() {
-        return promotion.checkForPromotion(getPiecesList());
-    }
+	@Override
+	public void setDraw() throws IOException {
+		matchEnded();
+	}
 
-    @Override
-    public Side getOppositeColor(final Side color) {
-        return turnManager.getOppositeColor(color);
-    }
+	@Override
+	public Optional<Piece> checkPromotion() {
+		return promotion.checkForPromotion(getPiecesList());
+	}
 
-    @Override
-    public void setWinner() throws IOException {
-        winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
-        winner.getX().haveWon();
-        matchEnded();
-    }
+	@Override
+	public Side getOppositeColor(final Side color) {
+		return turnManager.getOppositeColor(color);
+	}
 
-    private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos, final Position finalPos) {
-        return chessboard.getPieceOnPosition(firstPos).isEmpty()
-                || attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())
-                || !chessboard.getAllPosition(attacker.get()).contains(finalPos)
-                || promotion.checkForPromotion(getPiecesList()).isPresent();
-    }
+	@Override
+	public void setWinner() throws IOException {
+		winner = turnManager.getPairByColor(turnManager.getOppositeColor(turnManager.getUserTurn()));
+		winner.getX().haveWon();
+		matchEnded();
+	}
 
-    private void matchEnded() throws IOException {
-        isFinished = true;
-        JsonUtils.addToDatabase(this);
-    }
+	private boolean checkIllegalArgument(final Optional<Piece> attacker, final Position firstPos,
+			final Position finalPos) {
+		return chessboard.getPieceOnPosition(firstPos).isEmpty()
+				|| attacker.isPresent() && !attacker.get().getSide().equals(turnManager.getUserTurn())
+				|| !chessboard.getAllPosition(attacker.get()).contains(finalPos)
+				|| promotion.checkForPromotion(getPiecesList()).isPresent();
+	}
+
+	private void matchEnded() throws IOException {
+		isFinished = true;
+		JsonUtils.addToDatabase(this);
+	}
+
+	@Override
+	public String getFen() {
+		return new FenBuilder().activeColor(getUserSideTurn()).build(this.chessboard);
+	}
 }
