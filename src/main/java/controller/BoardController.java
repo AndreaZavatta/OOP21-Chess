@@ -572,9 +572,6 @@ public class BoardController {
 	}
 
 	private Position parsePosString(String posStr) {
-		String digits = posStr.replaceAll("[^0-9]", "");
-		int x = Character.getNumericValue(digits.charAt(0));
-		int y = Character.getNumericValue(digits.charAt(1));
-		return Position.createNumericPosition(x, y);
+		return Position.createNewPosition(posStr);
 	}
 }

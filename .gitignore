@@ -22,7 +22,7 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 ##############################
-## IntelliJ
+## IntelliJ / VS Code
 ##############################
 out/
 .idea/
@@ -30,6 +30,7 @@ out/
 *.iml
 *.ipr
 *.iws
+.vscode/
 
 ##############################
 ## Eclipse
@@ -58,3 +59,9 @@ local.properties
 ## database
 ##############################
 database.txt
+
+##############################
+## Metals
+##############################
+.metals/
+metals/

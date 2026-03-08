@@ -60,9 +60,9 @@ dependencies {
     implementation("io.vertx:vertx-core:3.5.3")
 
     // LangChain4j for AI Player
-    implementation("dev.langchain4j:langchain4j-open-ai:0.29.0")
-    implementation("dev.langchain4j:langchain4j-google-ai-gemini:0.29.0")
-    implementation("dev.langchain4j:langchain4j:0.29.0")
+    implementation("dev.langchain4j:langchain4j-open-ai:0.35.0")
+    implementation("dev.langchain4j:langchain4j-google-ai-gemini:0.35.0")
+    implementation("dev.langchain4j:langchain4j:0.35.0")
 }
 
 tasks.withType<JavaCompile> {
