@@ -31,13 +31,7 @@ public class UserHandlerController {
 
 	private static final String MALE_PATH = "user" + Start.SEPARATOR + "images" + Start.SEPARATOR + "MaleLama.png";
 	private static final String FEMALE_PATH = "user" + Start.SEPARATOR + "images" + Start.SEPARATOR + "FemaleLama.png";
-	private static final String BOT_PATH = "user" + Start.SEPARATOR + "images" + Start.SEPARATOR + "MaleLama.png"; // Reusing
-																													// MaleLama
-																													// as
-																													// bot
-																													// representation
-																													// for
-																													// now
+	private static final String BOT_PATH = "user" + Start.SEPARATOR + "images" + Start.SEPARATOR + "RobotBot.png";
 
 	@FXML
 	private TextField userName1 = new TextField();
@@ -136,6 +130,9 @@ public class UserHandlerController {
 	void setImageMaleUser1(final ActionEvent event) {
 		imgUser1 = new Image(MALE_PATH);
 		isBot1 = false;
+		if ("AI Player".equals(userName1.getText())) {
+			userName1.setText("");
+		}
 		update(chooseFemaleUser1, chooseBotUser1, chooseMaleUser1);
 	}
 
@@ -143,6 +140,9 @@ public class UserHandlerController {
 	void setImageFemaleUser1(final ActionEvent event) {
 		imgUser1 = new Image(FEMALE_PATH);
 		isBot1 = false;
+		if ("AI Player".equals(userName1.getText())) {
+			userName1.setText("");
+		}
 		update(chooseMaleUser1, chooseBotUser1, chooseFemaleUser1);
 	}
 
@@ -158,6 +158,9 @@ public class UserHandlerController {
 	void setImageMaleUser2(final ActionEvent event) {
 		imgUser2 = new Image(MALE_PATH);
 		isBot2 = false;
+		if ("AI Player".equals(userName2.getText())) {
+			userName2.setText("");
+		}
 		update(chooseFemaleUser2, chooseBotUser2, chooseMaleUser2);
 	}
 
@@ -165,6 +168,9 @@ public class UserHandlerController {
 	void setImageFemaleUser2(final ActionEvent event) {
 		imgUser2 = new Image(FEMALE_PATH);
 		isBot2 = false;
+		if ("AI Player".equals(userName2.getText())) {
+			userName2.setText("");
+		}
 		update(chooseMaleUser2, chooseBotUser2, chooseFemaleUser2);
 	}
 
