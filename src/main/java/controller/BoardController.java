@@ -204,9 +204,13 @@ public class BoardController {
 	}
 
 	private void setupAi() {
-		// REPLACE "demo" with your actual api key if provided by user. We will rely on
-		// random fallback for now if key is invalid, or you can paste a valid one
-		this.aiModel = GoogleAiGeminiChatModel.builder().apiKey("AIzaSyCxZGspQJS1DDteFzAUXmr4Rd6JCpK55iA")
+		final String apiKey = System.getenv("GEMINI_API_KEY");
+		if (apiKey == null || apiKey.trim().isEmpty()) {
+			System.err.println(
+					"WARNING: GEMINI_API_KEY environment variable is not set. AI player might fail to connect. Please set it before running the game.");
+		}
+
+		this.aiModel = GoogleAiGeminiChatModel.builder().apiKey(apiKey != null ? apiKey : "MISSING_API_KEY")
 				.modelName("gemini-3.1-flash-lite-preview").build();
 
 		final ChessPrompt prompt = new JsonChessPrompt();

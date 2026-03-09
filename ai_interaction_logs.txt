@@ -1,0 +1,221 @@
+============== AI REQUEST [2026-03-09 19:59:15] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbqkbnr/pppppppp/8/8/5P2/8/PPPPP1PP/RNBQKBNR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a7-a6, a7-a5, b7-b6, b7-b5, c7-c6, c7-c5, d7-d6, d7-d5, e7-e6, e7-e5, f7-f6, f7-f5, g7-g6, g7-g5, h7-h6, h7-h5, b8-a6, b8-c6, g8-f6, g8-h6]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:18] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbqkbnr/pppppp1p/6p1/8/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a7-a6, a7-a5, b7-b6, b7-b5, c7-c6, c7-c5, d7-d6, d7-d5, e7-e6, e7-e5, f7-f6, f7-f5, g6-g5, h7-h6, h7-h5, b8-a6, b8-c6, f8-g7, f8-h6, g8-f6, g8-h6]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:20] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbqkbnr/pp1ppp1p/2p3p1/8/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a7-a6, a7-a5, b7-b6, b7-b5, c6-c5, d7-d6, d7-d5, e7-e6, e7-e5, f7-f6, f7-f5, g6-g5, h7-h6, h7-h5, b8-a6, d8-c7, d8-b6, d8-a5, f8-g7, f8-h6, g8-f6, g8-h6]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:21] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbqkbnr/pp1p1p1p/2p3p1/4p3/2B1PP2/2N5/PPPP2PP/R1BQK1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a7-a6, a7-a5, b7-b6, b7-b5, c6-c5, d7-d6, d7-d5, e5-f4, f7-f6, f7-f5, g6-g5, h7-h6, h7-h5, b8-a6, d8-e7, d8-f6, d8-g5, d8-h4, d8-c7, d8-b6, d8-a5, e8-e7, f8-g7, f8-h6, f8-e7, f8-d6, f8-c5, f8-b4, f8-a3, g8-f6, g8-h6, g8-e7]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:24] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbqk1nr/pp1p1pbp/2p3p1/4P3/2B1P3/2N5/PPPP2PP/R1BQK1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a7-a6, a7-a5, b7-b6, b7-b5, c6-c5, d7-d6, d7-d5, f7-f6, f7-f5, g6-g5, h7-h6, h7-h5, b8-a6, d8-e7, d8-f6, d8-g5, d8-h4, d8-c7, d8-b6, d8-a5, e8-f8, e8-e7, g7-h6, g7-f8, g7-f6, g7-e5, g8-f6, g8-h6, g8-e7]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:29] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbqk1nr/1p1p1Bbp/2p3p1/p3P3/4P3/2N5/PPPP2PP/R1BQK1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[e8-f8, e8-e7, e8-f7]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:39] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq2nr/1p1pkBbp/2p3p1/p2NP3/4P3/8/PPPP2PP/R1BQK1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[c6-d5, e7-f7, e7-f8]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:42] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq2nr/1p1p1kbp/2p3p1/p2NP3/4P3/5Q2/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[d8-f6, f7-e8, f7-e6, g7-f6, g8-f6]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:47] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq2nr/1p1p1k1p/2p2Pp1/p2N4/4P3/5Q2/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a5-a4, b7-b6, b7-b5, c6-d5, c6-c5, d7-d6, g6-g5, h7-h6, h7-h5, a8-a7, a8-a6, b8-a6, d8-e7, d8-f6, d8-c7, d8-b6, d8-e8, d8-f8, f7-f8, f7-e8, f7-e6, g8-f6, g8-h6, g8-e7]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 19:59:54] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq2nr/1p1p1k2/2p2Pp1/p6p/4PN2/5Q2/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a5-a4, b7-b6, b7-b5, c6-c5, d7-d6, d7-d5, g6-g5, h5-h4, a8-a7, a8-a6, b8-a6, d8-e7, d8-f6, d8-c7, d8-b6, d8-e8, d8-f8, f7-f6, f7-f8, f7-e8, g8-f6, g8-h6, g8-e7, h8-h7, h8-h6]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:01] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq2nr/1p1p1k2/2p2Pp1/7p/p3PN2/6Q1/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a4-a3, b7-b6, b7-b5, c6-c5, d7-d6, d7-d5, g6-g5, h5-h4, a8-a7, a8-a6, a8-a5, b8-a6, d8-e7, d8-f6, d8-c7, d8-b6, d8-a5, d8-e8, d8-f8, f7-f6, f7-f8, f7-e8, g8-f6, g8-h6, g8-e7, h8-h7, h8-h6]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:03] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq2nr/1p3k2/2p2PQ1/3p3p/p3PN2/8/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[f7-f8]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:07] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq1knr/1p6/2p2PQ1/3p3N/p3P3/8/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a4-a3, b7-b6, b7-b5, c6-c5, d5-e4, d5-d4, a8-a7, a8-a6, a8-a5, b8-d7, b8-a6, c8-d7, c8-e6, c8-f5, c8-g4, c8-h3, d8-e7, d8-f6, d8-c7, d8-b6, d8-a5, d8-e8, d8-d7, d8-d6, g8-f6, g8-h6, g8-e7, h8-h7, h8-h6, h8-h5]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:09] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnbq1kn1/1p5Q/2p2P2/3p3N/p3P3/8/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[a4-a3, b7-b6, b7-b5, c6-c5, d5-e4, d5-d4, a8-a7, a8-a6, a8-a5, b8-d7, b8-a6, c8-d7, c8-e6, c8-f5, c8-g4, c8-h3, d8-e7, d8-f6, d8-c7, d8-b6, d8-a5, d8-e8, d8-d7, d8-d6, f8-e8, g8-f6, g8-h6, g8-e7]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:11] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnb2kn1/1p4Q1/2p2P2/q2p3N/p3P3/8/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[f8-e8]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:15] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnb1k1Q1/1p6/2p2P2/q2p3N/p3P3/8/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[e8-d7]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+
+============== AI REQUEST [2026-03-09 20:00:22] ==============
+You are a chess master playing as BLACK.
+The current board state in FEN notation is:
+rnb5/1p1k2Q1/2p2P2/q2p3N/p3P3/8/PPPP2PP/R1B1K1NR b KQkq - 0 1
+
+AVAILABLE MOVES FOR THIS TURN:
+[d7-d6, d7-d8, d7-e6, d7-e8]
+
+CRITICAL: You MUST choose exactly ONE move from the AVAILABLE MOVES list provided above. Choosing any other move is illegal.
+IMPORTANT INSTRUCTION: You MUST respond ONLY with a valid JSON object in the following format:
+{"move": "<your_chosen_move>"}
+Do not add any additional text, markdown formatting, explanations, or comments. Just the raw JSON object.
+

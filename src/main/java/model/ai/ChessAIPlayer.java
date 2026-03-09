@@ -46,10 +46,6 @@ public class ChessAIPlayer implements ChessPlayerLogic {
 		this.moveParser = moveParser;
 		this.aiColor = aiColor;
 		this.random = new Random();
-
-		// Using a cached thread pool if Java versions prior to 21. For Java 21+,
-		// Virtual Threads are preferred.
-		// Assuming Java 15 as per build.gradle.kts settings
 		this.executor = Executors.newCachedThreadPool();
 	}
 
