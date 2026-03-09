@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import controller.user.UserController;
 import controller.utils.ColorSettings;
 import controller.utils.PieceImagePath;
@@ -524,13 +525,10 @@ public class BoardController {
 
 			@Override
 			public List<String> getLegalMoves() {
-				final List<String> algebraicMoves = new ArrayList<>();
-				match.getPiecesList().stream().filter(p -> p.getSide() == match.getUserSideTurn()).forEach(p -> {
-					match.getPossiblePiecePositions(p).forEach(pos -> {
-						algebraicMoves.add(p.getPosition().toString() + "-" + pos.toString());
-					});
-				});
-				return algebraicMoves;
+				return match.getPiecesList().stream().filter(p -> p.getSide() == match.getUserSideTurn())
+						.flatMap(p -> match.getPossiblePiecePositions(p).stream()
+								.map(pos -> p.getPosition().toString() + "-" + pos.toString()))
+						.collect(Collectors.toList());
 			}
 
 			@Override
